@@ -15,4 +15,5 @@ import com.example.board.filter.LoginCheckFilter;
 @Configuration
 public class WebConfig implements WebMvcConfigurer{
 
+// 병합 테스트
 }
