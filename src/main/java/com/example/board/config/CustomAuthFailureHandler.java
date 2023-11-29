@@ -15,7 +15,7 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationFa
 import org.springframework.stereotype.Component;
 
 import lombok.extern.slf4j.Slf4j;
-
+tlqkf
 @Component
 @Slf4j
 public class CustomAuthFailureHandler extends SimpleUrlAuthenticationFailureHandler{
