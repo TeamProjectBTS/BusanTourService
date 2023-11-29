@@ -22,6 +22,35 @@ public class HomeController {
 	  return "index";
   }
 	
+	//about 페이지 이동
+	@GetMapping("about")
+  public String about(@AuthenticationPrincipal UserInfo userInfo,
+  									Model model) {
+		model.addAttribute("loginUser", userInfo);
+		
+	  return "about";
+  }
+	
+//about 페이지 이동
+	@GetMapping("deals")
+  public String deals(@AuthenticationPrincipal UserInfo userInfo,
+  									Model model) {
+		model.addAttribute("loginUser", userInfo);
+		
+	  return "deals";
+  }
+	
+//about 페이지 이동
+	@GetMapping("reservation")
+  public String reservation(@AuthenticationPrincipal UserInfo userInfo,
+  									Model model) {
+		model.addAttribute("loginUser", userInfo);
+		
+	  return "reservation";
+  }
+	
+	
+	
 	@GetMapping("admin")
 	public String adminHome(@AuthenticationPrincipal UserInfo userInfo, Model model) {
 		model.addAttribute("adminUser", userInfo);
