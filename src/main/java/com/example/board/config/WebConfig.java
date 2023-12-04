@@ -9,6 +9,13 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 
+<<<<<<< HEAD
 @Configuration
 public class WebConfig implements WebMvcConfigurer{
 }
+=======
+//@Configuration
+//public class WebConfig implements WebMvcConfigurer{
+//	/////
+//}
+>>>>>>> sub/sungmin
