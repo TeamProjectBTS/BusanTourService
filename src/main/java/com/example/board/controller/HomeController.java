@@ -22,13 +22,13 @@ public class HomeController {
 	  return "index";
   }
 	
-	//about 페이지 이동
-	@GetMapping("about")
-  public String about(@AuthenticationPrincipal UserInfo userInfo,
+	//hotel 페이지 이동
+	@GetMapping("hotel")
+  public String hotel(@AuthenticationPrincipal UserInfo userInfo,
   									Model model) {
 		model.addAttribute("loginUser", userInfo);
 		
-	  return "about";
+	  return "hotel";
   }
 	
 //about 페이지 이동
