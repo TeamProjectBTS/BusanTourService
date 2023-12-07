@@ -42,9 +42,7 @@ public class MemberService {
 		memberMapper.saveMember(member);
 	}
 	
-	
-	
-	
+
 	
 	
 	

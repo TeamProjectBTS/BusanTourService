@@ -2,12 +2,16 @@ package com.example.board.model.member;
 
 import java.time.LocalDate;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
 
 import lombok.Data;
 
@@ -33,10 +37,13 @@ public class MemberJoinForm {
 	@NotEmpty(message = "닉네임을 입력해주세요")
 	private String nickname;
 	@NotEmpty(message = "이름을 입력해주세요")
+	@Pattern(regexp = "^[ㄱ-ㅎ가-힣]{2,5}$",message="닉네임은 특수문자를 제외한 2~5자리여야 합니다.")
 	private String name;
 	@NotEmpty(message = "이메일을 입력해주세요")
+	@Email
 	private String email;
 	@NotEmpty(message = "전화번호를 입력해주세요")
+	@Pattern(regexp = "^01(?:0|1|[6-9])(?:\\d{3}|\\d{4})\\d{4}$", message="전화번호를 정확히 입력해주세요")
 	private String phone;
 	
 	public static Member toMember(MemberJoinForm memberJoinForm) {

@@ -50,15 +50,6 @@ public class HomeController {
 	  return "joinForm";
   }
 	
-// loginForm페이지 이동
-	@GetMapping("loginForm")
-	public String loginForm(@AuthenticationPrincipal UserInfo userInfo,
-	  									Model model) {
-	model.addAttribute("loginUser", userInfo);
-			
-		  return "loginForm";
-	 }
-	
 //	@GetMapping("join")
 //	public String joinForm(Model model) {
 //		// joinForm.html 의 필드 세팅을 위해 model 에 빈 MemberJoinForm 객체 생성하여 저장한다
