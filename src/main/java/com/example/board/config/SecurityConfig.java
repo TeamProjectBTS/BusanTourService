@@ -34,7 +34,7 @@ public class SecurityConfig {
 			.authorizeRequests()
 			.antMatchers("/", "/member/join", "/member/login", "/member/login-failed","/member/logout").permitAll()
 			.antMatchers("/js/*", "/favicon.ico", "/error", "/vendor/**", "/assets/**",
-										"/about","/deals","/reservation").permitAll()
+										"/index","/joinForm","/loginForm","/about","/deals","/reservation").permitAll()
 			// "/admin" 하위의 모든 요청은 인증 후에 ADMIN 권한을 가진 사용자만 접근 가능
 			.antMatchers("/admin/**").hasAnyRole("ADMIN")
 			// 위의 경로 이외의 모든 경로는 인증을 받아야 접근 가능
