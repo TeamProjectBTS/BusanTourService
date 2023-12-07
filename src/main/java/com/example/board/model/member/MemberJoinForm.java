@@ -26,27 +26,33 @@ import lombok.Data;
  */
 @Data
 public class MemberJoinForm {
-	@Size(min = 4, max = 20, message = "아이디는 4~20사이로 입력해주세요.")
+	@Size(min = 6, max = 20, message = "아이디는 6~20사이로 입력해주세요.")
 	private String member_id;
-	@Size(min = 4, max = 20 , message = "비밀번호는 4~20사이로 입력해주세요.")
+	@Size(min = 6, max = 20 , message = "비밀번호는 6~20사이로 입력해주세요.")
 	private String password;
+	@NotEmpty(message = "닉네임을 입력해주세요")
+	private String nickname;
 	@NotEmpty(message = "이름을 입력해주세요")
 	private String name;
-	@NotNull(message = "성별을 선택해주세요")
-	private GenderType gender;
-	@Past
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate birth;
+	@NotEmpty(message = "이메일을 입력해주세요")
 	private String email;
+	@NotEmpty(message = "전화번호를 입력해주세요")
+	private String phone;
 	
 	public static Member toMember(MemberJoinForm memberJoinForm) {
 		Member member = new Member();
 		member.setMember_id(memberJoinForm.getMember_id());
 		member.setPassword(memberJoinForm.getPassword());
+		member.setNickname(memberJoinForm.getNickname());
 		member.setName(memberJoinForm.getName());
-		member.setGender(memberJoinForm.getGender());
-		member.setBirth(memberJoinForm.getBirth());
 		member.setEmail(memberJoinForm.getEmail());
+		member.setPhone(memberJoinForm.getPhone());
 		return member;
 	}
+	
+	
+	
+	
+	
+	
 }
