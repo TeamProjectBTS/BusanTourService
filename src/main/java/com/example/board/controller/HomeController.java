@@ -23,40 +23,7 @@ public class HomeController {
 	  return "index";
   }
 	
-	//about 페이지 이동
-	@GetMapping("about")
-  public String about(@AuthenticationPrincipal UserInfo userInfo,
-  									Model model) {
-		model.addAttribute("loginUser", userInfo);
-		
-	  return "about";
-  }
 	
-//deals 페이지 이동
-	@GetMapping("deals")
-  public String deals(@AuthenticationPrincipal UserInfo userInfo,
-  									Model model) {
-		model.addAttribute("loginUser", userInfo);
-		
-	  return "deals";
-  }
-	
-//joinForm 페이지 이동
-	@GetMapping("joinForm")
-  public String joinForm (@AuthenticationPrincipal UserInfo userInfo,
-  									Model model) {
-		model.addAttribute("loginUser", userInfo);
-		
-	  return "joinForm";
-  }
-	
-//	@GetMapping("join")
-//	public String joinForm(Model model) {
-//		// joinForm.html 의 필드 세팅을 위해 model 에 빈 MemberJoinForm 객체 생성하여 저장한다
-//		model.addAttribute("joinForm", new MemberJoinForm());
-//		// member/joinForm.html 페이지를 리턴한다.
-//		return "member/joinForm";
-//	}
 	
 
 	

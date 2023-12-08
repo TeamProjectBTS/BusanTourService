@@ -27,21 +27,17 @@ import com.example.board.model.member.MemberJoinForm;
 import com.example.board.repository.MemberMapper;
 import com.example.board.service.MemberService;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RequestMapping("member")
 @Controller
+@RequiredArgsConstructor
 public class MemberController {
 	
 	// 데이터베이스 접근을 위한 MemberMapper 필드 선언
-	private MemberService memberService;
-	
-	// MemberMapper 필드 객체 주입(setter 를 이용한 주입)
-	@Autowired
-	public void setMemberService(MemberService memberService) {
-		this.memberService = memberService;
-	}
+	private final MemberService memberService;
 	
 	//회원가입 페이지 이동
 	@GetMapping("join")
@@ -64,7 +60,7 @@ public class MemberController {
 		
 		// validation 에 에러가 있으면 가입시키지 않고 member/joinForm.html 페이지로 돌아간다.
 		if(result.hasErrors()) {
-			return "/member/joinForm";
+			return "member/joinForm";
 		}
 		
 //		// 이메일 주소에 '@' 문자가 포함되어 있는지 확인한다.
@@ -103,11 +99,17 @@ public class MemberController {
 	// 로그인 페이지 이동
   @GetMapping("login")
   public String loginForm(Model model,
-						@RequestParam(value="error", required=false) boolean error,
-						@RequestParam(value="message", required=false) String message) {
+		  @AuthenticationPrincipal UserInfo userInfo,
+		  @RequestParam(value="error", required=false) boolean error,
+		  @RequestParam(value="message", required=false) String message) {
 	log.info("로그인 페이지");
-	log.info("error : {} ", error);
-	log.info("message : {} ", message);
+//	log.info("error : {} ", error);
+//	log.info("message : {} ", message);
+	
+	if(userInfo != null) {
+		log.info("이미 로그인한 사용자");
+		return "redirect:/";
+	}
 	
 	if (error) {
 		model.addAttribute("error", error);
@@ -117,7 +119,7 @@ public class MemberController {
       // member/loginForm.html 에 필드 셋팅을 위해 빈 LoginForm 객체를 생성하여 model 에 저장한다.
       model.addAttribute("loginForm", new LoginForm());
       // member/loginForm.html 페이지를 리턴한다.
-      return "member/loginForm";
+      return "/member/loginForm";
   }
 	
 	@GetMapping("sessionInfo")
