@@ -18,6 +18,6 @@ public interface BoardMapper {
   void saveFile(AttachedFile attachedFile);
   AttachedFile findFileByBoardId(Long board_id);
 	AttachedFile findFileByAttachedFileId(Long id);
-	int getTotal(String searchText);
+	//int getTotal(String searchText);
 	void removeAttachedFile(Long attached_file_id);
 }

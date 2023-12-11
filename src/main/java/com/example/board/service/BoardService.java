@@ -49,8 +49,8 @@ public class BoardService {
 		return attachedFile;
 	}
 
-	public int getTotal(String searchText) {
-		return boardMapper.getTotal(searchText);
+	public void getTotal(String searchText) {
+		//return boardMapper.getTotal(searchText);
 	}
 
 	public List<Board> findBoards(String searchText, int startRecord, int countPerPage) {

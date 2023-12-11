@@ -3,7 +3,7 @@
 		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.board.repository.BoardMapper">
-  <insert id="saveBoard">
+  <!-- <insert id="saveBoard">
     <selectKey keyProperty="board_id" resultType="long" order="BEFORE">
       select seq_board.nextval from dual
     </selectKey>
@@ -85,7 +85,7 @@
   	delete attached_file where attached_file_id = #{attached_file_id}
   </delete>
   
-  
+   -->
   
   
 </mapper>

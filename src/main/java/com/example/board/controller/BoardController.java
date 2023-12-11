@@ -98,16 +98,16 @@ public class BoardController {
                        Model model) {
     	log.info("검색어 : {}", searchText);
     	
-    	int total = boardService.getTotal(searchText);
+    	//int total = boardService.getTotal(searchText);
     	
-      PageNavigator navi = new PageNavigator(countPerPage, pagePerGroup, page, total);
+    //  PageNavigator navi = new PageNavigator(countPerPage, pagePerGroup, page, total);
 //      log.info("페이지 정보 : {}", navi);
       
       // 데이터베이스에 저장된 모든 Board 객체를 리스트 형태로 받는다.
-      List<Board> boards = boardService.findBoards(searchText, navi.getStartRecord(), navi.getCountPerPage());
+     // List<Board> boards = boardService.findBoards(searchText, navi.getStartRecord(), navi.getCountPerPage());
       // Board 리스트를 model 에 저장한다.
-      model.addAttribute("boards", boards);
-      model.addAttribute("navi", navi);
+//      model.addAttribute("boards", boards);
+//      model.addAttribute("navi", navi);
       model.addAttribute("searchText", searchText);
       // board/list.html 를 찾아서 리턴한다.
       return "board/list";
@@ -247,13 +247,4 @@ public class BoardController {
     			.header(HttpHeaders.CONTENT_DISPOSITION, contentDisposition)
     			.body(resource);
     }
-    
-    
-    
-    
-    
-    
-    
-    
-
 }
