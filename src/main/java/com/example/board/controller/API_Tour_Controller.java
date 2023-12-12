@@ -2,19 +2,15 @@ package com.example.board.controller;
 
 import java.util.List;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.example.board.model.tour_spot.Tour_spotResponse;
-import com.example.board.model.tour_spot.Tour_spotResponse.Body.Items;
 import com.example.board.model.tour_spot.Tour_spotResponse.Body.Items.Item;
 import com.example.board.service.T_ApiService;
 
-import jdk.internal.org.jline.utils.Log;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
