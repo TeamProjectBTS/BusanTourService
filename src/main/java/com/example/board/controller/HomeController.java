@@ -23,7 +23,6 @@ public class HomeController {
 	  return "index";
   }
 	
-<<<<<<< HEAD
 	//hotel 페이지 이동
 	@GetMapping("hotel")
   public String hotel(@AuthenticationPrincipal UserInfo userInfo,
@@ -50,8 +49,6 @@ public class HomeController {
 		
 	  return "reservation";
   }
-=======
->>>>>>> sub/sungmin
 	
 	
 
