@@ -13,15 +13,19 @@ server:
 spring:
   datasource:
     url: jdbc:oracle:thin:@localhost:1521:xe
-    username: board
+    username: busanguide
     password: 1234
     driver-class-name: oracle.jdbc.driver.OracleDriver
   servlet:
     multipart:
       max-file-size:
-        1MB
+        50MB
       max-request-size:
-        10MB
+        50MB
+#  web:
+#    resources:
+#      static-locations:
+#      - classpaths:/static/
 mybatis:
 #  type-aliases-package: com.example.board.model
   config-location: classpath:config/mybatis-config.xml

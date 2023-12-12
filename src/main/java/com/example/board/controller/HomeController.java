@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.board.config.UserInfo;
+import com.example.board.model.member.MemberJoinForm;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,6 +23,7 @@ public class HomeController {
 	  return "index";
   }
 	
+<<<<<<< HEAD
 	//hotel 페이지 이동
 	@GetMapping("hotel")
   public String hotel(@AuthenticationPrincipal UserInfo userInfo,
@@ -48,8 +50,11 @@ public class HomeController {
 		
 	  return "reservation";
   }
+=======
+>>>>>>> sub/sungmin
 	
 	
+
 	
 	@GetMapping("admin")
 	public String adminHome(@AuthenticationPrincipal UserInfo userInfo, Model model) {

@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="assets/css/templatemo-woox-travel.css">
     <link rel="stylesheet" href="assets/css/owl.css">
     <link rel="stylesheet" href="assets/css/animate.css">
-    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
 <!--
 
 TemplateMo 580 Woox Travel
@@ -26,7 +26,6 @@ TemplateMo 580 Woox Travel
 https://templatemo.com/tm-580-woox-travel
 
 -->
-
   </head>
 
 <body>
@@ -57,6 +56,7 @@ https://templatemo.com/tm-580-woox-travel
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
+<<<<<<< HEAD
                         <li><a href="tourspot">관광지</a></li>
                         <li><a href="restaurant">음식점</a></li>
                         <li><a href="hotel">숙소</a></li>
@@ -64,6 +64,23 @@ https://templatemo.com/tm-580-woox-travel
                         <li><a href="reservation">고객문의</a></li>
                         <li><a href="reservation">로그인</a></li>
                     </ul>   
+=======
+                        <li><a href="tour_spot/list">관광지</a></li>
+                        <li><a href="restaurant/list">음식점</a></li>
+                        <li><a href="hotel/list">숙소</a></li>
+                        <li><a href="board/list">게시판</a></li>
+                        <li><a href="deals2">고객문의</a></li>
+                        <li sec:authorize="isAuthenticated()">
+							<a href="member/mypage">마이페이지</a>
+						</li>
+						<li sec:authorize="isAuthenticated()">
+							<a href="member/logout">로그아웃</a>
+						</li>
+						<li sec:authorize="isAnonymous()">
+							<a href="member/login">로그인</a>
+						</li>
+                    </ul>
+>>>>>>> sub/sungmin
                     <a class='menu-trigger'>
                         <span>Menu</span>
                     </a>
@@ -83,15 +100,18 @@ https://templatemo.com/tm-580-woox-travel
       <input type="radio" id="banner2" class="sec-1-input" name="banner">
       <input type="radio" id="banner3" class="sec-1-input" name="banner">
       <input type="radio" id="banner4" class="sec-1-input" name="banner">
+
 	<div class="slider">
 		<div id="top-banner-1" class="banner">
 			<div class="banner-inner-wrapper header-text">
 				<div class="main-caption">
-					<h2>부산에 오신것을 환영합니다! Welcome to Busan! ようこそプサンへ！</h2>
+					<h2 sec:authorize="isAuthenticated()">[[${loginUser.member.nickname}]]님 어서오세요!</h2>
+					<h2 sec:authorize="isAnonymous()">부산에 오신것을 환영합니다! Welcome to Busan! ようこそプサンへ！</h2>
 					<h2>이런 장소는 어떠신가요? :)</h2>
 					<h1>부산의 지역별 관광명소</h1>
-					<div class="border-button"><a href="about">둘러보기</a></div>
+					<div class="border-button"><a href="tour_spot/list">둘러보기</a></div>
 				</div>
+
             <div class="container">
               <div class="row">
                 <div class="col-lg-12">
@@ -293,11 +313,12 @@ https://templatemo.com/tm-580-woox-travel
     </div>
   </section>
   <!-- ***** Main Banner Area End ***** -->
-    <div class="search-form">
+    <div class="search-form" style="margin-top: 10px;">
     <div class="container">
       <div class="row">
-        <div class="col-lg-12">
-          <form id="search-form" name="gs" method="submit" role="search" action="#">
+        <div class="col-lg-10" style="margin: auto;">
+          <form id="search-form" name="gs" method="submit" role="search" action="#" 
+          	style="border-radius: 20px;">
             <div class="row">
               <div class="col-lg-3">
                   <fieldset>
@@ -327,14 +348,14 @@ https://templatemo.com/tm-580-woox-travel
                       </select>
                   </fieldset>
               </div>
-              <div class="col-lg-3" style="width: auto;">
-                  <fieldset>
-                      <input class="input" type="text" style="width: 250px;">
+              <div class="col-lg-3" style="margin: auto;">
+                  <fieldset >
+                      <input class="input" type="text" style="width: 100%;">
                   </fieldset>
               </div>
               <div class="col-lg-3">                        
-                  <fieldset>
-                      <button class="border-button">해당 조건으로 검색하기</button>
+                  <fieldset >
+                      <button class="border-button">검색하기</button>
                   </fieldset>
               </div>
             </div>
@@ -350,15 +371,19 @@ https://templatemo.com/tm-580-woox-travel
         <div class="col-lg-5">
           <div class="section-heading">
             <h2>부산에서 꼭 들러봐야 할 곳!</h2>
-            <p>#해쉬태그 #해쉬태그</p>
-          	
-          </div>
-        </div>
-        <div class="col-lg-5" style="padding-top: 50px;">
-	          	<div class="main-button">
-	              <a href="about.html">Explore More</a>
+            <div class="row">
+	            <div class="col-lg-6" style="margin: auto;">
+			        <p>#해쉬태그 #해쉬태그</p>
 	            </div>
-            </div>
+	            <div class="col-lg-6">
+					<div class="main-button" >
+			          <a href="about">더 보기</a>
+			        </div>
+				</div>
+			</div>
+          </div>
+          
+        </div>
       </div>
       <div class="row">
         <div class="col-lg-12" style="margin: auto;">
