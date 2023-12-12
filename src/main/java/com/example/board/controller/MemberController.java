@@ -60,7 +60,7 @@ public class MemberController {
 		
 		// validation 에 에러가 있으면 가입시키지 않고 member/joinForm.html 페이지로 돌아간다.
 		if(result.hasErrors()) {
-			return "member/joinForm";
+			return "/member/joinForm";
 		}
 		
 //		// 이메일 주소에 '@' 문자가 포함되어 있는지 확인한다.
@@ -79,7 +79,7 @@ public class MemberController {
         // BindingResult 객체에 GlobalError 를 추가한다.
         result.reject("duplicate ID", "이미 가입된 아이디 입니다.");
         // member/joinForm.html 페이지를 리턴한다.
-        return "member/joinForm";
+        return "/member/joinForm";
     }
     
 //    if () {
