@@ -77,12 +77,7 @@ https://templatemo.com/tm-580-woox-travel
 
  
  
-           
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+
 
   <div class="reservation-form">
     <div class="container">
@@ -98,51 +93,60 @@ https://templatemo.com/tm-580-woox-travel
               <div class="col-lg-6">
                   <fieldset>
                       <label for="member_id" class="form-label">&nbsp;&nbsp;&nbsp;&nbsp; ID입력</label>
-                      <input type="text" th:field="*{member_id}" class="UserID" placeholder="ID를 입력해 주세요" autocomplete="on" required>
-                  	  <div th:errorClass="error" th:errors="*{member_id}"></div>
+                      <input type="text" th:field="*{member_id}" class="UserID" placeholder="6~20자의 ID" autocomplete="on" required>
+                  	  <!--<div th:errorClass="error" th:errors="*{member_id}"></div>-->
+             		<div class="alert alert-success" th:errors="*{member_id}"></div>
                   </fieldset>
               </div>
               
               <div class="col-lg-6">
                   <fieldset>
                       <label for="password" class="form-label">&nbsp;&nbsp;&nbsp;&nbsp; 패스워드 입력</label>
-                 	 <input type="password" th:field="*{password}" class="password" placeholder="패스워드를 입력해 주세요" autocomplete="on" required>
+                 	 <input type="password" th:field="*{password}" class="password" placeholder="6~20자의 패스워드" autocomplete="on" required>
+                 	 <div class="alert alert-success" th:errors="*{password}"></div>
                   </fieldset>
-              </div>
+              </div>	
               
               
               <div class="col-lg-6">
                   <fieldset>
                       <label for="nickname" class="form-label">&nbsp;&nbsp;&nbsp;&nbsp; 닉네임 입력</label>
-                      <input type="text" th:field="*{nickname}" placeholder="닉네임을 입력해 주세요" autocomplete="on" required>
+                      <input type="text" th:field="*{nickname}" placeholder="닉네임 입력" autocomplete="on" required>
+                       <div class="alert alert-danger" th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}"></div>
+
                   </fieldset>
               </div>
               
               <div class="col-lg-6">
                 <fieldset>
                     <label for="email" class="form-label">&nbsp;&nbsp;&nbsp;&nbsp; E-Mail 입력</label>
-                    <input type="text" th:field="*{email}" placeholder="E-mail을 입력해 주세요" autocomplete="on" required>
+                    <input type="text" th:field="*{email}" placeholder="ex)abc@naver.com" autocomplete="on" required>
+                     <div class="alert alert-success" th:errors="*{email}"></div>
                 </fieldset>
               </div>
               
               <div class="col-lg-6">
                 <fieldset>
                     <label for="name" class="form-label">&nbsp;&nbsp;&nbsp;&nbsp; 이름 입력</label>
-                    <input type="text" th:field="*{name}" placeholder="이름을 입력해 주세요" autocomplete="on" required>
+                    <input type="text" th:field="*{name}" placeholder="ex)홍길동" autocomplete="on" required>
+                     <div class="alert alert-success" th:errors="*{name}"></div>
                 </fieldset>
               </div>
               
               <div class="col-lg-6">
                 <fieldset>
                     <label for="phone" class="form-label">&nbsp;&nbsp;&nbsp;&nbsp; 휴대전화 입력</label>
-                    <input type="text" th:field="*{phone}" placeholder="휴대전화를 입력해 주세요" autocomplete="on" required>
+                    <input type="text" th:field="*{phone}" placeholder="ex)0101112222" autocomplete="on" required>
+                     <div class="alert alert-success" th:errors="*{phone}"></div>
                 </fieldset>
               </div>
        
               <div class="col-lg-3" style="margin: auto;">                        
-                  <fieldset>
+					  <fieldset>
                       <button class="main-button">가입하기</button>
-                  </fieldset>
+					  </fieldset>
+                     
+                 
               </div>
             </div>
           </form>
@@ -180,6 +184,10 @@ https://templatemo.com/tm-580-woox-travel
       $(".option").removeClass("active");
       $(this).addClass("active"); 
     });
+    
+   
+    
+
   </script>
 
   </body>

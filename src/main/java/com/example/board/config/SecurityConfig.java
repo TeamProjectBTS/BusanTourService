@@ -52,7 +52,7 @@ public class SecurityConfig {
 			// 로그인에 성공했을때 이동할 URL
 			.defaultSuccessUrl("/member/login-success")
 			// 로그인에 실패했을때 이동할 URL
-//			.failureUrl("/member/login-failed")
+			.failureUrl("/member/login-failed")
 			.failureHandler(authenticationFailureHandler)
 			.and()
 			.logout()

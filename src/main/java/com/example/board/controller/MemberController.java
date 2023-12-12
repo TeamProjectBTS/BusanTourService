@@ -60,7 +60,7 @@ public class MemberController {
 		
 		// validation 에 에러가 있으면 가입시키지 않고 member/joinForm.html 페이지로 돌아간다.
 		if(result.hasErrors()) {
-			return "member/joinForm";
+			return "/member/joinForm";
 		}
 		
 //		// 이메일 주소에 '@' 문자가 포함되어 있는지 확인한다.
@@ -114,6 +114,7 @@ public class MemberController {
 	if (error) {
 		model.addAttribute("error", error);
 		model.addAttribute("message", message);
+		
 	}
   		
       // member/loginForm.html 에 필드 셋팅을 위해 빈 LoginForm 객체를 생성하여 model 에 저장한다.
@@ -125,10 +126,7 @@ public class MemberController {
 	@GetMapping("sessionInfo")
 	public String sessionInfo(HttpServletRequest request) {
 		//getSession()는 비워놓으면 세션을 만듭니다. false:세션이 없으면 null 리턴
-		HttpSession session = request.getSession(false);
-		if(session == null) {
-			return "redirect:/member/login";
-		}
+		HttpSession session = request.getSession(false);		
 		log.info("sessionId:{}", session.getId());
 		log.info("maxInactiveInterval:{}", session.getMaxInactiveInterval());
 		log.info("creationTime:{}", new Date(session.getCreationTime()));
@@ -145,8 +143,12 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	@GetMapping("login-failed")
-	public String loginFailed() {
+	@PostMapping("login-failed")
+	public String loginFailed(
+			@Validated @ModelAttribute("loginForm") LoginForm loginForm ,BindingResult result) {
+		if(result.hasErrors()) {
+			return "/member/login";
+		}
 		log.info("로그인 실패");
 		
 		return "redirect:/";
