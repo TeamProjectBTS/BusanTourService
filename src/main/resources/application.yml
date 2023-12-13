@@ -31,3 +31,4 @@ mybatis:
 #  type-aliases-package: com.example.board.model
   config-location: classpath:config/mybatis-config.xml
   mapper-locations: classpath:mapper/**/*.xml
+

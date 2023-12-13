@@ -57,10 +57,15 @@ public class BoardService {
 		RowBounds rowBounds = new RowBounds(startRecord, countPerPage);
 		return boardMapper.findBoards(searchText, rowBounds);
 	}
+	
+//	public Board findBoard(Long board_id) {
+//		return boardMapper.findBoard(board_id);
+//	}
 
 	public Board readBoard(Long board_id) {
 		Board board = findBoard(board_id);
 		board.addHit();
+		updateBoard(board, false, null);
 		AttachedFile attachedFile = findFileByBoardId(board_id);
 		
 		boolean isFileRemoved = true;
