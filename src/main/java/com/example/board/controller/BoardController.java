@@ -1,4 +1,3 @@
-//////
 
 package com.example.board.controller;
 
@@ -61,7 +60,7 @@ public class BoardController {
         
         // writeForm.html의 필드 표시를 위해 빈 BoardWriteForm 객체를 생성하여 model 에 저장한다.
         model.addAttribute("writeForm", new BoardWriteForm());
-        // board/writeForm.html 을 찾아 리턴한다.
+        // board/writeForm.html 을 찾아 리턴한다.abou
         return "board/write";
     }
 
