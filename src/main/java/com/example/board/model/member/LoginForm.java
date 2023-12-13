@@ -6,8 +6,8 @@ import lombok.Data;
 
 @Data
 public class LoginForm {
-	@Size(min = 4, max = 20)
+	@Size(min = 6, max = 20)
 	private String member_id;
-	@Size(min = 4, max = 20)
+	@Size(min = 6, max = 20)
 	private String password;
 }
