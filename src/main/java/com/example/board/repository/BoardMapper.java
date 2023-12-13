@@ -12,11 +12,11 @@ import com.example.board.model.board.Board;
 public interface BoardMapper {
 	void saveBoard(Board board);
 	List<Board> findBoards(String searchText, RowBounds rowBounds);
-  Board findBoard(Long board_id);
-  void updateBoard(Board updateBoard);
-  void removeBoard(Long board_id);
-  void saveFile(AttachedFile attachedFile);
-  AttachedFile findFileByBoardId(Long board_id);
+	Board findBoard(Long board_id);
+	void updateBoard(Board updateBoard);
+	void removeBoard(Long board_id);
+	void saveFile(AttachedFile attachedFile);
+	AttachedFile findFileByBoardId(Long board_id);
 	AttachedFile findFileByAttachedFileId(Long id);
 	int getTotal(String searchText);
 	void removeAttachedFile(Long attached_file_id);
