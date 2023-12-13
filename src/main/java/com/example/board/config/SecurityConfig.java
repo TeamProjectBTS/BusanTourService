@@ -30,8 +30,11 @@ public class SecurityConfig {
 			// iframe 으로 접근이 안되도록 하는 설정을 비활성화(iframe으로 접근이 가능하게)
 			.headers().frameOptions().disable()
 			.and()
-			// URL별 접근권한제어
+			// URL별 접근권한제어 //**접근권한 주기
 			.authorizeRequests()
+			.antMatchers("/", "/member/join", "/member/login", "/member/login-failed","/member/logout").permitAll()
+			.antMatchers("/js/*", "/favicon.ico", "/error", "/vendor/**", "/assets/**",
+										"/hotel/**","/deals","/reservation").permitAll()
 			.antMatchers("/", "/member/login", "/member/logout", "/member/join", "/member/login-success",
 					"/member/login-failed", "/**.css").permitAll()
 			.antMatchers("/js/*", "/favicon.ico", "/error", "/**/**", "/tour_spot/**").permitAll()
