@@ -373,6 +373,13 @@ Header Style
   background-color: transparent;
 }
 
+
+  .logo2{
+	  padding-top: 5px;
+	  width: 310px;
+  }
+
+
 .header-area .main-nav .logo {
   flex-basis: 30%;
   -webkit-transition: all 0.3s ease 0s;
