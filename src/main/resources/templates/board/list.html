@@ -6,7 +6,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <title>WoOx Travel - Special Deals</title>
+    <title>보드</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -53,20 +53,19 @@ https://templatemo.com/tm-580-woox-travel
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
-                    <ul class="nav">
-                        <li><a href="index.html">관광지</a></li>
-                        <li><a href="about.html">음식점</a></li>
-                        <li><a href="about.html">숙소</a></li>
-                        <li><a href="deals.html" class="active">게시판</a></li>
-                        <li><a href="reservation.html">고객문의</a></li>
+                    <ul class="nav">	
+                        <li><a href="/tour_spot/list">관광지</a></li>
+                        <li><a href="/restaurant/list">음식점</a></li>
+                        <li><a href="/hotel/list">숙소</a></li>
+                        <li><a href="/complain/list">고객문의</a></li>                  
                         <li sec:authorize="isAuthenticated()">
-							<a href="member/mypage">마이페이지</a>
+							<a href="/member/mypage">마이페이지</a>
 						</li>
 						<li sec:authorize="isAuthenticated()">
-							<a href="member/logout">로그아웃</a>
+							<a href="/member/logout">로그아웃</a>
 						</li>
 						<li sec:authorize="isAnonymous()">
-							<a href="member/login">로그인</a>
+							<a href="/member/login">로그인</a>
 						</li>
                     </ul>   
                     <a class='menu-trigger'>
@@ -98,13 +97,15 @@ https://templatemo.com/tm-580-woox-travel
         <div class="col-lg-12">
           <form id="search-form" name="gs" method="submit" role="search" action="#">
             <div class="row">
+
+
               <div class="col-lg-2">
                 <h4>카테고리:</h4>
               </div>
               <div class="col-lg-4">
 
                   <fieldset>
-                      <select name="Location" class="form-select" aria-label="Default select example" id="chooseLocation" onChange="this.form.click()">
+                      <select name="Locatio" class="form-select" aria-label="Default select example" id="chooseLocation" onChange="this.form.click()">
                           <option selected>대표 관광지</option>
                           <option type="checkbox" name="option1" value="광안리">광안리</option>
                           <option value="해운대">해운대</option>
@@ -118,10 +119,16 @@ https://templatemo.com/tm-580-woox-travel
                       </select>
                   </fieldset>
               </div>
+
+
+              <!--<div class="col-lg-4">
+>>>>>>> sub/hojun:src/main/resources/templates/deals.html
+=======
               <!--<div class="col-lg-4">
 =======
               <div class="col-lg-3">
 >>>>>>> sub/sungmin:src/main/resources/templates/board/list.html
+>>>>>>> sub/sungmin
                   <fieldset>
                       <select name="Price" class="form-select" aria-label="Default select example" id="choosePrice" onChange="this.form.click()">
                           <option selected>Price Range</option>
@@ -132,7 +139,19 @@ https://templatemo.com/tm-580-woox-travel
                           <option value="2500+">$2,500+</option>
                       </select>
                   </fieldset>
+<<<<<<< HEAD
+<<<<<<< HEAD:src/main/resources/templates/board/list.html
+              </div>
+              <div class="col-lg-3" style="width: auto;">
+                  <fieldset>
+                      <input class="input" type="text" style="width: 250px;">
+                  </fieldset>
+              </div>
+              <div class="col-lg-3">                        
+=======
+=======
 <<<<<<< HEAD:src/main/resources/templates/deals.html
+>>>>>>> sub/sungmin
               </div>-->
               <div class="col-lg-2">                        
                   <fieldset>
@@ -392,7 +411,7 @@ https://templatemo.com/tm-580-woox-travel
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <p>Copyright © 2036 <a href="#">WoOx Travel</a> Company. All rights reserved. 
+          <p>Copyright © 2036 <a href="#">워싱시</a> Company. All rights reserved. 
           <br>Design: <a href="https://templatemo.com" target="_blank" title="free CSS templates">TemplateMo</a></p>
         </div>
       </div>

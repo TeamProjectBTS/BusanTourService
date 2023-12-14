@@ -3,12 +3,14 @@ package com.example.board.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.board.config.UserInfo;
 import com.example.board.model.tour_spot.Tour_spotResponse;
 import com.example.board.model.tour_spot.Tour_spotResponse.Body.Items.Item;
 import com.example.board.service.T_ApiService;
@@ -80,6 +82,7 @@ public class API_Tour_Controller {
   	return "tour_spot/list";
   }
   
+
   @GetMapping("read")
   public String readTour(@RequestParam(value="UC_SEQ") int UC_SEQ,
   		Model model) {
@@ -105,3 +108,4 @@ public class API_Tour_Controller {
 	
 	
 }
+
