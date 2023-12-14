@@ -7,22 +7,29 @@
 	INSERT INTO member(
 	  member_id,
 	  password,
+	  nickname,
 	  name,
-	  gender,
-	  birth,
+	  phone,
 	  email,
 	  role
 	) VALUES (
 	  #{member_id},
 	  #{password},
+	  #{nickname},
 	  #{name},
-	  #{gender},
-	  #{birth},
+	  #{phone},
 	  #{email},
 	  #{role}
 	)
   </insert>
+  
   <select id="findMember" resultType="member">
     select * from member where member_id = #{member_id}
   </select>
 </mapper>
+
+
+
+
+
+

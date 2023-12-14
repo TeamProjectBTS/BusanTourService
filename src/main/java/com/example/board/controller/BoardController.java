@@ -41,6 +41,7 @@ public class BoardController {
 
     // 데이터베이스 접근을 위한 BoardMapper 필드 선언
     private final BoardMapper boardMapper;
+    private final FileService fileService;
     private final BoardService boardService;
     @Value("${file.upload.path}")
     private String uploadPath;
@@ -60,7 +61,7 @@ public class BoardController {
         
         // writeForm.html의 필드 표시를 위해 빈 BoardWriteForm 객체를 생성하여 model 에 저장한다.
         model.addAttribute("writeForm", new BoardWriteForm());
-        // board/writeForm.html 을 찾아 리턴한다.
+        // board/writeForm.html 을 찾아 리턴한다.abou
         return "board/write";
     }
 
@@ -93,9 +94,10 @@ public class BoardController {
 
     // 게시글 전체 보기
     @GetMapping("list")
-    public String list(@RequestParam(value="page", defaultValue="1") int page,
-    									 @RequestParam(value="searchText", defaultValue="") String searchText,
-                       Model model) {
+    public String list(
+	  		@RequestParam(value="page", defaultValue="1") int page,
+			 @RequestParam(value="searchText", defaultValue="") String searchText,
+	     Model model) {
     	log.info("검색어 : {}", searchText);
     	
     	int total = boardService.getTotal(searchText);
@@ -247,7 +249,6 @@ public class BoardController {
     			.header(HttpHeaders.CONTENT_DISPOSITION, contentDisposition)
     			.body(resource);
     }
-    
     
     
     

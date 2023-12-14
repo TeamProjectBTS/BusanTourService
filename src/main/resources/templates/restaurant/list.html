@@ -8,17 +8,16 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <title>WoOx Travel - About Us</title>
+    <title>숙소 정보</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="assets/css/fontawesome.css">
-    <link rel="stylesheet" href="assets/css/templatemo-woox-travel.css">
-    <link rel="stylesheet" href="assets/css/owl.css">
-    <link rel="stylesheet" href="assets/css/animate.css">
-    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="/assets/css/fontawesome.css">
+    <link rel="stylesheet" href="/assets/css/templatemo-woox-travel.css">
+    <link rel="stylesheet" href="/assets/css/owl.css">
+    <link rel="stylesheet" href="/assets/css/animate.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
 <!--
 
 TemplateMo 580 Woox Travel
@@ -44,24 +43,32 @@ https://templatemo.com/tm-580-woox-travel
   <!-- ***** Preloader End ***** -->
 
   <!-- ***** Header Area Start ***** -->
-  <header class="header-area header-sticky">
+ <header class="header-area header-sticky">
     <div class="container">
         <div class="row">
             <div class="col-12">
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
-                    <a href="index.html" class="logo">
-                        <img src="assets/images/logo.png" alt="">
+                    <a href="/" class="logo">
+                        <img src="assets/images/BTSlogo.png" alt=""> //이미지 추가요망
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
-                    <ul class="nav">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html" class="active">About</a></li>
-                        <li><a href="deals.html">Deals</a></li>
-                        <li><a href="reservation.html">Reservation</a></li>
-                        <li><a href="reservation.html">Book Yours</a></li>
-                    </ul>   
+                        <ul class="nav">
+                            <li><a href="/tour_spot/list">관광지</a></li>
+                            <li><a href="/restaurant/list">음식점</a></li>
+                            <li><a href="/board/list">게시판</a></li>
+                            <li><a href="/deals2/list">고객문의</a></li>                            
+                            <li sec:authorize="isAuthenticated()">
+							<a href="/member/mypage">마이페이지</a>
+						</li>
+						<li sec:authorize="isAuthenticated()">
+							<a href="/member/logout">로그아웃</a>
+						</li>
+						<li sec:authorize="isAnonymous()">
+							<a href="/member/login">로그인</a>
+						</li>
+                        </ul>
                     <a class='menu-trigger'>
                         <span>Menu</span>
                     </a>
@@ -70,7 +77,7 @@ https://templatemo.com/tm-580-woox-travel
             </div>
         </div>
     </div>
-  </header>
+</header>
   <!-- ***** Header Area End ***** -->
 
   <!-- ***** Main Banner Area Start ***** -->
@@ -79,13 +86,12 @@ https://templatemo.com/tm-580-woox-travel
       <div class="row">
         <div class="col-lg-12">
           <div class="content">
-            <div class="blur-bg"></div>
-            <h4>EXPLORE OUR COUNTRY</h4>
+            <h4>부산지역 숙소를 확인하세요</h4>
             <div class="line-dec"></div>
-            <h2>Welcome To Caribbean</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt uttersi labore et dolore magna aliqua is ipsum suspendisse ultrices gravida</p>
+            <h2>Welcome To Busan</h2>
+            <em>더 자세히 알고싶으면 로그인 해!</em>
             <div class="main-button">
-              <a href="reservation.html">Discover More</a>
+              <a href="reservation.html">로그인하세요</a>
             </div>
           </div>
         </div>
@@ -100,56 +106,44 @@ https://templatemo.com/tm-580-woox-travel
         <div class="slider-content">
           <div class="row">
             <div class="col-lg-12">
-              <h2>Caribbean’s <em>Cities &amp; Towns</em></h2>
+              <h2>부산의 대표적인 숙소를 확인하세요</h2>
             </div>
             <div class="col-lg-12">
               <div class="owl-cites-town owl-carousel">
                 <div class="item">
                   <div class="thumb">
-                    <img src="assets/images/cities-01.jpg" alt="">
-                    <h4>Havana</h4>
+                    <img src="assets/images/slider1.jpg" alt="">
+                    <h4>파크하얏트 호텔</h4>
                   </div>
                 </div>
                 <div class="item">
                   <div class="thumb">
-                    <img src="assets/images/cities-02.jpg" alt="">
-                    <h4>Kingston</h4>
+                    <img src="assets/images/slider2.jpg" alt="">
+                    <h4>시그니엘 호텔</h4>
                   </div>
                 </div>
                 <div class="item">
                   <div class="thumb">
-                    <img src="assets/images/cities-03.jpg" alt="">
-                    <h4>George Town</h4>
+                    <img src="assets/images/slider3.jpg" alt="">
+                    <h4>아난티 앳 부산 코브</h4>
                   </div>
                 </div>
                 <div class="item">
                   <div class="thumb">
-                    <img src="assets/images/cities-04.jpg" alt="">
-                    <h4>Santo Domingo</h4>
+                    <img src="assets/images/slider4.jpg" alt="">
+                    <h4>롯데부산 호텔</h4>
                   </div>
                 </div>
                 <div class="item">
                   <div class="thumb">
-                    <img src="assets/images/cities-01.jpg" alt="">
-                    <h4>Havana</h4>
+                    <img src="assets/images/slider5.jpg" alt="">
+                    <h4>아쿠아 펠리스</h4>
                   </div>
                 </div>
                 <div class="item">
                   <div class="thumb">
-                    <img src="assets/images/cities-02.jpg" alt="">
-                    <h4>Kingston</h4>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="thumb">
-                    <img src="assets/images/cities-03.jpg" alt="">
-                    <h4>George Town</h4>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="thumb">
-                    <img src="assets/images/cities-04.jpg" alt="">
-                    <h4>Santo Domingo</h4>
+                    <img src="assets/images/slider6.jpg" alt="">
+                    <h4>그랜드 조선 부산</h4>
                   </div>
                 </div>
               </div>
@@ -160,185 +154,212 @@ https://templatemo.com/tm-580-woox-travel
     </div>
   </div>
 
-  <div class="weekly-offers">
+<div class="search-form" style="margin-top: 50px;">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10" style="margin: auto;">
+          <form id="search-form" name="gs" method="submit" role="search" action="#" 
+          	style="border-radius: 20px;">
+            <div class="row">
+              <div class="col-lg-3">
+                  <fieldset>
+                      <select name="Location" class="form-select" aria-label="Default select example" id="chooseLocation" onChange="this.form.click()">
+                          <option selected>Destinations</option>
+                          <option type="checkbox" name="option1" value="Italy">Italy</option>
+                          <option value="France">France</option>
+                          <option value="Switzerland">Switzerland</option>
+                          <option value="Thailand">Thailand</option>
+                          <option value="Australia">Australia</option>
+                          <option value="India">India</option>
+                          <option value="Indonesia">Indonesia</option>
+                          <option value="Malaysia">Malaysia</option>
+                          <option value="Singapore">Singapore</option>
+                      </select>
+                  </fieldset>
+              </div>
+              <div class="col-lg-3">
+                  <fieldset>
+                      <select name="Price" class="form-select" aria-label="Default select example" id="choosePrice" onChange="this.form.click()">
+                          <option selected>Price Range</option>
+                          <option value="100">$100 - $250</option>
+                          <option value="250">$250 - $500</option>
+                          <option value="500">$500 - $1,000</option>
+                          <option value="1000">$1,000 - $2,500</option>
+                          <option value="2500+">$2,500+</option>
+                      </select>
+                  </fieldset>
+              </div>
+              <div class="col-lg-3" style="margin: auto;">
+                  <fieldset >
+                      <input class="input" type="text" style="width: 100%;">
+                  </fieldset>
+              </div>
+              <div class="col-lg-3">                        
+                  <fieldset >
+                      <button class="border-button">검색하기</button>
+                  </fieldset>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  <div class="weekly-offers" style="margin-top: 10px;">
     <div class="container">
       <div class="row">
         <div class="col-lg-6 offset-lg-3">
           <div class="section-heading text-center">
-            <h2>Best Weekly Offers In Each City</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
           </div>
         </div>
       </div>
     </div>
+    
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-12">
           <div class="owl-weekly-offers owl-carousel">
             <div class="item">
               <div class="thumb">
-                <img src="assets/images/offers-01.jpg" alt="">
+                <img src="assets/images/slider1.jpg" alt=""> //300 x 422
                 <div class="text">
-                  <h4>Havana<br><span><i class="fa fa-users"></i> 234 Check Ins</span></h4>
-                  <h6>$420<br><span>/person</span></h6>
+                  <h4>파크 하얏트<br><span><i class="fa fa-users"></i> 조회수</span></h4>
+                  <h6>가격<br><span>/person</span></h6>
                   <div class="line-dec"></div>
                   <ul>
-                    <li>Deal Includes:</li>
+                    <li>숙소 정보</li>
                     <li><i class="fa fa-taxi"></i> 5 Days Trip > Hotel Included</li>
                     <li><i class="fa fa-plane"></i> Airplane Bill Included</li>
                     <li><i class="fa fa-building"></i> Daily Places Visit</li>
                   </ul>
                   <div class="main-button">
-                    <a href="reservation.html">Make a Reservation</a>
+                    <a href="reservation.html">더 자세한 정보보기</a>
                   </div>
                 </div>
               </div>
             </div>
+            
+            <div class="item">
+              <div class="thumb">
+                <img src="assets/images/slider2.jpg" alt="">
+                <div class="text">
+                  <h4>시그니엘 호텔<br><span><i class="fa fa-users"></i> 조회수 </span></h4>
+                  <h6>가격<br><span>/person</span></h6>
+                  <div class="line-dec"></div>
+                  <ul>
+                    <li>숙소 정보</li>
+                    <li><i class="fa fa-taxi"></i> 5 Days Trip > Hotel Included</li>
+                    <li><i class="fa fa-plane"></i> Airplane Bill Included</li>
+                    <li><i class="fa fa-building"></i> Daily Places Visit</li>
+                  </ul>
+                  <div class="main-button">
+                    <a href="reservation.html">더 자세한 정보보기</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="item">
+              <div class="thumb">
+                <img src="assets/images/slider3.jpg" alt="">
+                <div class="text">
+                  <h4>아난티 앳 부산 코브 <br><span><i class="fa fa-users"></i> 조회수</span></h4>
+                  <h6>가격<br><span>/person</span></h6>
+                  <div class="line-dec"></div>
+                  <ul>
+                    <li>숙소 정보</li>
+                    <li><i class="fa fa-taxi"></i> 5 Days Trip > Hotel Included</li>
+                    <li><i class="fa fa-plane"></i> Airplane Bill Included</li>
+                    <li><i class="fa fa-building"></i> Daily Places Visit</li>
+                  </ul>
+                  <div class="main-button">
+                    <a href="reservation.html">더 자세한 정보보기</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="item">
+              <div class="thumb">
+                <img src="assets/images/offers-01.jpg" alt="">
+                <div class="text">
+                  <h4>파크하얏트<br><span><i class="fa fa-users"></i> 조회수</span></h4>
+                  <h6>가격<br><span>/person</span></h6>
+                  <div class="line-dec"></div>
+                  <ul>
+                    <li>정보</li>
+                    <li><i class="fa fa-taxi"></i> 5 Days Trip > Hotel Included</li>
+                    <li><i class="fa fa-plane"></i> Airplane Bill Included</li>
+                    <li><i class="fa fa-building"></i> Daily Places Visit</li>
+                  </ul>
+                  <div class="main-button">
+                    <a href="reservation.html">더 자세한 정보보기</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
             <div class="item">
               <div class="thumb">
                 <img src="assets/images/offers-02.jpg" alt="">
                 <div class="text">
-                  <h4>Kingston<br><span><i class="fa fa-users"></i> 234 Check Ins</span></h4>
-                  <h6>$420<br><span>/person</span></h6>
+                  <h4>롯데부산 호텔<br><span><i class="fa fa-users"></i> 조회수</span></h4>
+                  <h6>가격<br><span>/person</span></h6>
                   <div class="line-dec"></div>
                   <ul>
-                    <li>Deal Includes:</li>
+                    <li>정보</li>
                     <li><i class="fa fa-taxi"></i> 5 Days Trip > Hotel Included</li>
                     <li><i class="fa fa-plane"></i> Airplane Bill Included</li>
                     <li><i class="fa fa-building"></i> Daily Places Visit</li>
                   </ul>
                   <div class="main-button">
-                    <a href="reservation.html">Make a Reservation</a>
+                    <a href="reservation.html">더 자세한 정보보기</a>
                   </div>
                 </div>
               </div>
             </div>
+            
             <div class="item">
               <div class="thumb">
                 <img src="assets/images/offers-03.jpg" alt="">
                 <div class="text">
-                  <h4>George Town<br><span><i class="fa fa-users"></i> 234 Check Ins</span></h4>
-                  <h6>$420<br><span>/person</span></h6>
+                  <h4>아쿠아 펠리스<br><span><i class="fa fa-users"></i> 조회수 </span></h4>
+                  <h6>가격<br><span>/person</span></h6>
                   <div class="line-dec"></div>
                   <ul>
-                    <li>Deal Includes:</li>
+                    <li>정보</li>
                     <li><i class="fa fa-taxi"></i> 5 Days Trip > Hotel Included</li>
                     <li><i class="fa fa-plane"></i> Airplane Bill Included</li>
                     <li><i class="fa fa-building"></i> Daily Places Visit</li>
                   </ul>
+                  
                   <div class="main-button">
-                    <a href="reservation.html">Make a Reservation</a>
+                    <a href="reservation.html">더 자세한 정보보기</a>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="item">
-              <div class="thumb">
-                <img src="assets/images/offers-01.jpg" alt="">
-                <div class="text">
-                  <h4>Havana<br><span><i class="fa fa-users"></i> 234 Check Ins</span></h4>
-                  <h6>$420<br><span>/person</span></h6>
-                  <div class="line-dec"></div>
-                  <ul>
-                    <li>Deal Includes:</li>
-                    <li><i class="fa fa-taxi"></i> 5 Days Trip > Hotel Included</li>
-                    <li><i class="fa fa-plane"></i> Airplane Bill Included</li>
-                    <li><i class="fa fa-building"></i> Daily Places Visit</li>
-                  </ul>
-                  <div class="main-button">
-                    <a href="reservation.html">Make a Reservation</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="thumb">
-                <img src="assets/images/offers-02.jpg" alt="">
-                <div class="text">
-                  <h4>Kingston<br><span><i class="fa fa-users"></i> 234 Check Ins</span></h4>
-                  <h6>$420<br><span>/person</span></h6>
-                  <div class="line-dec"></div>
-                  <ul>
-                    <li>Deal Includes:</li>
-                    <li><i class="fa fa-taxi"></i> 5 Days Trip > Hotel Included</li>
-                    <li><i class="fa fa-plane"></i> Airplane Bill Included</li>
-                    <li><i class="fa fa-building"></i> Daily Places Visit</li>
-                  </ul>
-                  <div class="main-button">
-                    <a href="reservation.html">Make a Reservation</a>
-                  </div>
-                </div>
-              </div>
-            </div>
+            
             <div class="item">
               <div class="thumb">
                 <img src="assets/images/offers-03.jpg" alt="">
                 <div class="text">
-                  <h4>George Town<br><span><i class="fa fa-users"></i> 234 Check Ins</span></h4>
-                  <h6>$420<br><span>/person</span></h6>
+                  <h4>그랜드 조선 부산<br><span><i class="fa fa-users"></i> 조회수 </span></h4>
+                  <h6>가격<br><span>/person</span></h6>
                   <div class="line-dec"></div>
                   <ul>
-                    <li>Deal Includes:</li>
+                    <li>정보</li>
                     <li><i class="fa fa-taxi"></i> 5 Days Trip > Hotel Included</li>
                     <li><i class="fa fa-plane"></i> Airplane Bill Included</li>
                     <li><i class="fa fa-building"></i> Daily Places Visit</li>
                   </ul>
                   <div class="main-button">
-                    <a href="reservation.html">Make a Reservation</a>
+                    <a href="reservation.html">더 자세한 정보보기</a>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="more-about">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6 align-self-center">
-          <div class="left-image">
-            <img src="assets/images/about-left-image.jpg" alt="">
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <div class="section-heading">
-            <h2>Discover More About Our Country</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
-          </div>
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="info-item">
-                <h4>150.640 +</h4>
-                <span>Total Guests Yearly</span>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="info-item">
-                <h4>175.000+</h4>
-                <span>Amazing Accomoditations</span>
-              </div>
-            </div>
-            <div class="col-lg-12">
-              <div class="info-item">
-                <div class="row">
-                  <div class="col-lg-6">
-                    <h4>12.560+</h4>
-                    <span>Amazing Places</span>
-                  </div>
-                  <div class="col-lg-6">
-                    <h4>240.580+</h4>
-                    <span>Different Check-ins Yearly</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
-          <div class="main-button">
-            <a href="reservation.html">Discover More</a>
+            
           </div>
         </div>
       </div>
@@ -350,13 +371,12 @@ https://templatemo.com/tm-580-woox-travel
       <div class="row">
         <div class="col-lg-6 offset-lg-3">
           <div class="section-heading text-center">
-            <h2>Best Locations In Caribbeans</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+            <h2>부산 최고의 숙소들을 확인하세요</h2>
           </div>
         </div>
         <div class="col-lg-8 offset-lg-2">
           <div class="options">
-            <div class="option active" style="--optionBackground:url(https://buttoncreatives.com/html/woox/assets/images/best-01.jpg);">
+            <div class="option active" style="--optionBackground: url('hotel-main.jpg');">
                <div class="shadow"></div>
                <div class="label">
                   <div class="icon">
@@ -418,9 +438,10 @@ https://templatemo.com/tm-580-woox-travel
             </div>
          </div>
         </div>
+        
         <div class="col-lg-12">
           <div class="main-button text-center">
-            <a href="deals.html">Discover All Places</a>
+            <a href="deals.html">이거 뭐함?</a>
           </div>
         </div>
       </div>
@@ -440,7 +461,7 @@ https://templatemo.com/tm-580-woox-travel
           </div>
         </div>
       </div>
-    </div>
+    </div>b
   </div>
 
   <footer>
@@ -457,15 +478,15 @@ https://templatemo.com/tm-580-woox-travel
 
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+  <script src="/vendor/jquery/jquery.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
 
-  <script src="assets/js/isotope.min.js"></script>
-  <script src="assets/js/owl-carousel.js"></script>
-  <script src="assets/js/wow.js"></script>
-  <script src="assets/js/tabs.js"></script>
-  <script src="assets/js/popup.js"></script>
-  <script src="assets/js/custom.js"></script>
+  <script src="/assets/js/isotope.min.js"></script>
+  <script src="/assets/js/owl-carousel.js"></script>
+  <script src="/assets/js/wow.js"></script>
+  <script src="/assets/js/tabs.js"></script>
+  <script src="/assets/js/popup.js"></script>
+  <script src="/assets/js/custom.js"></script>
 
   <script>
     $(".option").click(function(){

@@ -1,6 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<!DOCTYPE html> 
+<html lang="en"> 
+	
   <head>
 
     <meta charset="utf-8">
@@ -279,6 +279,50 @@ https://templatemo.com/tm-580-woox-travel
       </div>
     </div>
   </div>
+  
+  <!--API 구현 연습중 -->
+   <div id="map" style="width: 100%;height: 700px;" data-locations-th="${locations}"></div> 이거 바디에 넣으삼 지도 띄울자리 설정!!	
+
+<!--API 설정 스크립트 -->
+	
+<!-- JavaScript로 Thymeleaf에서 가져온 데이터 사용 -->
+<script th:inline="javascript">
+    // Google 지도 초기화
+    function initMap() {
+        console.log('불러오나');
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 36.236729062134685, lng: 137.189600722708},
+            zoom: 15 
+        });
+
+        // 각 위치에 대한 마커와 정보창 추가
+        var locations = /*[[${locations}]]*/ [];
+        locations.forEach(function(location) {
+            var marker = new google.maps.Marker({
+                position: {lat: location.latitude, lng: location.longitude},
+                map: map
+            });
+
+            // 정보창 생성
+            var infoWindow = new google.maps.InfoWindow({
+                content: '<div style="font-size: 18px; font-weight: bold;"><strong>' + location.name + '</strong><br>' +
+                         '<img src="' + location.imageUrl1 + '" alt="Location Image 1" style="width: 350px; height: 190px; margin-bottom: 10px;">' +
+         				 '<img src="' + location.imageUrl2 + '" alt="Location Image 2" style="width: 350px; height: 190px;"><p></p>' +
+                         'place: ' + location.place + '</div>'
+            });
+
+            // 마커를 클릭할 때 정보창 열기
+            marker.addListener('click', function() {
+                infoWindow.open(map, marker);
+            });
+        });
+    }
+</script>
+
+
+<!-- Google Maps API 스크립트 추가 -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=엄상 API 발급 키 넣으삼&callback=initMap" 
+            async defer></script>
 
   <div class="call-to-action">
     <div class="container">
