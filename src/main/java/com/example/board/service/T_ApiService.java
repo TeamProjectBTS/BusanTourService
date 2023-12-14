@@ -21,7 +21,6 @@ import com.example.board.model.tour_spot.Tour_spotResponse;
 
 import lombok.extern.slf4j.Slf4j;
 
-
 @Slf4j
 @Service
 public class T_ApiService {
