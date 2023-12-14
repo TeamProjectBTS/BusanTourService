@@ -62,11 +62,19 @@ https://templatemo.com/tm-580-woox-travel
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                         <ul class="nav">
-                            <li><a href="tour_spot/list">관광지</a></li>
-                            <li><a href="restaurant/list">음식점</a></li>
-                            <li><a href="board/list">게시판</a></li>
-                            <li><a href="reservation">고객문의</a></li>
-                            <li><a href="member/login">로그인</a></li>
+                            <li><a href="/restaurant/list">음식점</a></li>
+                            <li><a href="/tour_spot/list">숙소</a></li>
+                            <li><a href="/board/list">게시판</a></li>
+                            <li><a href="/deals2">고객문의</a></li>                            
+                            <li sec:authorize="isAuthenticated()">
+							<a href="/member/mypage">마이페이지</a>
+						</li>
+						<li sec:authorize="isAuthenticated()">
+							<a href="/member/logout">로그아웃</a>
+						</li>
+						<li sec:authorize="isAnonymous()">
+							<a href="/member/login">로그인</a>
+						</li>
                         </ul>
                     <a class='menu-trigger'>
                         <span>Menu</span>
@@ -85,10 +93,9 @@ https://templatemo.com/tm-580-woox-travel
       <div class="row">
         <div class="col-lg-12">
           <div class="content">
-            <h4>부산지역 숙소를 확인하세요</h4>
+            <h4>부산지역 관광지를 확인하세요</h4>
             <div class="line-dec"></div>
             <h2>Welcome To Busan</h2>
-            <em>더 자세히 알고싶으면 로그인 해!</em>
             <div class="main-button">
               <a href="/member/login">로그인하세요</a>
             </div>
@@ -105,7 +112,7 @@ https://templatemo.com/tm-580-woox-travel
         <div class="slider-content">
           <div class="row">
             <div class="col-lg-12">
-              <h2>부산의 대표적인 숙소를 확인하세요</h2>
+              <h2>부산 관광지역을 확인하세요</h2>
             </div>
             <div class="col-lg-12">
               <div class="owl-cites-town owl-carousel">
@@ -220,7 +227,7 @@ https://templatemo.com/tm-580-woox-travel
           <div class="owl-weekly-offers owl-carousel">
             <div class="item">
               <div class="thumb">
-                <img src="assets/images/slider1.jpg" alt=""> //300 x 422
+                <img src="assets/images/slider1.jpg" alt=""> 
                 <div class="text">
                   <h4>파크 하얏트<br><span><i class="fa fa-users"></i> 조회수</span></h4>
                   <h6>가격<br><span>/person</span></h6>
@@ -370,7 +377,7 @@ https://templatemo.com/tm-580-woox-travel
       <div class="row">
         <div class="col-lg-6 offset-lg-3">
           <div class="section-heading text-center" style="margin: auto;">
-            <h2 style="margin-top: 30px ;">부산 최고의 숙소들을 확인하세요</h2>
+            <h2 style="margin-top: 30px ;">부산 최고의 관광지들을 확인하세요</h2>
           </div>
         </div>
     <div class="visit-country" style="margin-top: 50px;">
@@ -543,7 +550,7 @@ https://templatemo.com/tm-580-woox-travel
     </div>
   </div>
 
-  <div class="call-to-action">
+<!--  <div class="call-to-action">
     <div class="container">
       <div class="row">
         <div class="col-lg-8">
@@ -556,14 +563,15 @@ https://templatemo.com/tm-580-woox-travel
           </div>
         </div>
       </div>
-    </div>b
+    </div>
   </div>
-
+-->
+<br><br><br>
   <footer>
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <p>Copyright © 2036 <a href="#">WoOx Travel</a> Company. All rights reserved. 
+          <p>Copyright © 2023 <a href="#">맨위로가기</a> Company. All rights reserved. 
           <br>Design: <a href="https://templatemo.com" target="_blank" title="free CSS templates">TemplateMo</a></p>
         </div>
       </div>
