@@ -62,11 +62,19 @@ https://templatemo.com/tm-580-woox-travel
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                         <ul class="nav">
-                            <li><a href="tour_spot/list">관광지</a></li>
-                            <li><a href="restaurant/list">음식점</a></li>
-                            <li><a href="board/list">게시판</a></li>
-                            <li><a href="reservation">고객문의</a></li>
-                            <li><a href="member/login">로그인</a></li>
+                            <li><a href="/restaurant/list">음식점</a></li>
+                            <li><a href="/tour_spot/list">숙소</a></li>
+                            <li><a href="/board/list">게시판</a></li>
+                            <li><a href="/deals2">고객문의</a></li>                            
+                            <li sec:authorize="isAuthenticated()">
+							<a href="/member/mypage">마이페이지</a>
+						</li>
+						<li sec:authorize="isAuthenticated()">
+							<a href="/member/logout">로그아웃</a>
+						</li>
+						<li sec:authorize="isAnonymous()">
+							<a href="/member/login">로그인</a>
+						</li>
                         </ul>
                     <a class='menu-trigger'>
                         <span>Menu</span>
@@ -85,7 +93,7 @@ https://templatemo.com/tm-580-woox-travel
       <div class="row">
         <div class="col-lg-12">
           <div class="content">
-            <h4>부산지역 숙소를 확인하세요</h4>
+            <h4>부산지역 관광지를 확인하세요</h4>
             <div class="line-dec"></div>
             <h2>Welcome To Busan</h2>
             <em>더 자세히 알고싶으면 로그인 해!</em>
@@ -105,7 +113,7 @@ https://templatemo.com/tm-580-woox-travel
         <div class="slider-content">
           <div class="row">
             <div class="col-lg-12">
-              <h2>부산의 대표적인 숙소를 확인하세요</h2>
+              <h2>부산 관광지역을 확인하세요</h2>
             </div>
             <div class="col-lg-12">
               <div class="owl-cites-town owl-carousel">

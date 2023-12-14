@@ -53,13 +53,20 @@ https://templatemo.com/tm-580-woox-travel
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
-                    <ul class="nav">
-                        <li><a href="index.html">관광지</a></li>
-                        <li><a href="about.html">음식점</a></li>
-                        <li><a href="about.html">숙소</a></li>
-                        <li><a href="deals.html" class="active">게시판</a></li>
-                        <li><a href="reservation.html">고객문의</a></li>
-                        <li><a href="reservation.html">로그인 / 회원가입</a></li>
+                    <ul class="nav">	
+                        <li><a href="/index/list">관광지</a></li>
+                        <li><a href="/restaurant/list">음식점</a></li>
+                        <li><a href="/hotel/list">숙소</a></li>
+                        <li><a href="/deals2">고객문의</a></li>                  
+                        <li sec:authorize="isAuthenticated()">
+							<a href="/member/mypage">마이페이지</a>
+						</li>
+						<li sec:authorize="isAuthenticated()">
+							<a href="/member/logout">로그아웃</a>
+						</li>
+						<li sec:authorize="isAnonymous()">
+							<a href="/member/login">로그인</a>
+						</li>
                     </ul>   
                     <a class='menu-trigger'>
                         <span>Menu</span>
