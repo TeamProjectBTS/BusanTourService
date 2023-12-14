@@ -129,7 +129,7 @@ https://templatemo.com/tm-580-woox-travel
                 <fieldset>
                     <label for="name" class="form-label">&nbsp;&nbsp;&nbsp;&nbsp; 이름 입력</label>
                     <input type="text" th:field="*{name}" placeholder="ex)홍길동" autocomplete="on" required>
-                     <div class="alert alert-success" th:errors="*{name}"></div>
+                     <div  th:errors="*{name}"></div>
                 </fieldset>
               </div>
               
@@ -143,10 +143,10 @@ https://templatemo.com/tm-580-woox-travel
        
               <div class="col-lg-3" style="margin: auto;">                        
 					  <fieldset>
-                      <button class="main-button">가입하기</button>
+                      <input type="submit" style="background-color: lightsteelblue;"  value="회원가입">	
+                      <input type="reset" style="background-color: lightsteelblue;" value="다시작성">
 					  </fieldset>
-                     
-                 
+                    
               </div>
             </div>
           </form>
