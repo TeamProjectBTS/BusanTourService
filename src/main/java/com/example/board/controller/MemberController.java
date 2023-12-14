@@ -79,7 +79,7 @@ public class MemberController {
         // BindingResult 객체에 GlobalError 를 추가한다.
         result.reject("duplicate ID", "이미 가입된 아이디 입니다.");
         // member/joinForm.html 페이지를 리턴한다.
-        return "member/joinForm";
+        return "/member/joinForm";
     }
     
 //    if () {

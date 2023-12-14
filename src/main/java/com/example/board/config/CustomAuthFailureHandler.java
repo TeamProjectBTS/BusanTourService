@@ -1,5 +1,4 @@
 package com.example.board.config;
-
 import java.io.IOException;
 import java.net.URLEncoder;
 

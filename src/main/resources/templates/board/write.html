@@ -6,7 +6,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <title>보드</title>
+    <title>글쓰기</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -49,22 +49,9 @@ https://templatemo.com/tm-580-woox-travel
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
                     <a href="/" class="logo">
-                        <img src="assets/images/BTSlogo.png" alt="">
+                        <img src="assets/images/logo.png" alt="">
                     </a>
                     <!-- ***** Logo End ***** -->
-                    <!-- ***** Menu Start ***** -->
-                    <ul class="nav">
-                        <li><a href="index.html">관광지</a></li>
-                        <li><a href="about.html">음식점</a></li>
-                        <li><a href="about.html">숙소</a></li>
-                        <li><a href="deals.html" class="active">게시판</a></li>
-                        <li><a href="reservation.html">고객문의</a></li>
-                        <li><a href="reservation.html">로그인 / 회원가입</a></li>
-                    </ul>   
-                    <a class='menu-trigger'>
-                        <span>Menu</span>
-                    </a>
-                    <!-- ***** Menu End ***** -->
                 </nav>
             </div>
         </div>
@@ -90,20 +77,13 @@ https://templatemo.com/tm-580-woox-travel
         <div class="col-lg-12">
           <form id="search-form" name="gs" method="submit" role="search" action="#">
             <div class="row">
-<<<<<<< HEAD
-
-=======
->>>>>>> sub/sungmin
               <div class="col-lg-2">
                 <h4>카테고리:</h4>
               </div>
               <div class="col-lg-4">
-<<<<<<< HEAD
-=======
 
->>>>>>> sub/sungmin
                   <fieldset>
-                      <select name="Locatio" class="form-select" aria-label="Default select example" id="chooseLocation" onChange="this.form.click()">
+                      <select name="Location" class="form-select" aria-label="Default select example" id="chooseLocation" onChange="this.form.click()">
                           <option selected>대표 관광지</option>
                           <option type="checkbox" name="option1" value="광안리">광안리</option>
                           <option value="해운대">해운대</option>
@@ -117,16 +97,10 @@ https://templatemo.com/tm-580-woox-travel
                       </select>
                   </fieldset>
               </div>
-<<<<<<< HEAD
-
-              <!--<div class="col-lg-4">
->>>>>>> sub/hojun:src/main/resources/templates/deals.html
-=======
               <!--<div class="col-lg-4">
 =======
               <div class="col-lg-3">
 >>>>>>> sub/sungmin:src/main/resources/templates/board/list.html
->>>>>>> sub/sungmin
                   <fieldset>
                       <select name="Price" class="form-select" aria-label="Default select example" id="choosePrice" onChange="this.form.click()">
                           <option selected>Price Range</option>
@@ -137,19 +111,7 @@ https://templatemo.com/tm-580-woox-travel
                           <option value="2500+">$2,500+</option>
                       </select>
                   </fieldset>
-<<<<<<< HEAD
-<<<<<<< HEAD:src/main/resources/templates/board/list.html
-              </div>
-              <div class="col-lg-3" style="width: auto;">
-                  <fieldset>
-                      <input class="input" type="text" style="width: 250px;">
-                  </fieldset>
-              </div>
-              <div class="col-lg-3">                        
-=======
-=======
 <<<<<<< HEAD:src/main/resources/templates/deals.html
->>>>>>> sub/sungmin
               </div>-->
               <div class="col-lg-2">                        
                   <fieldset>
@@ -244,125 +206,36 @@ https://templatemo.com/tm-580-woox-travel
   }
   </style>
   
-  <!-- *** 게시판 리스트 Start *** -->
-  <div class="bulletin-board-container">
-   <table class="table">
-    <thead>
-      <tr>
-        <th>번호</th>	  
-        <th>제목</th>	  
-        <th>닉네임</th>	  
-        <th>등록일</th>	  
-        <th>조회수</th>	  
-        <th>좋아요</th>	  
-      </tr>
-    </thead>
-    
-    <body>
-      <tr>
-        <td>1</td>
-        <td><a href="post.html">게시물 제목 1</a></td>
-        <td>닉네임1</td>
-        <td>2023-01-01</td>
-        <td>100</td>
-        <td>50</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td><a href="post.html">게시물 제목 2</a></td>
-        <td>닉네임2</td>
-        <td>2023-01-02</td>
-        <td>80</td>
-        <td>30</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td><a href="post.html">게시물 제목 3</a></td>
-        <td>닉네임2</td>
-        <td>2023-01-03</td>
-        <td>80</td>
-        <td>30</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td><a href="post.html">게시물 제목 4</a></td>
-        <td>닉네임2</td>
-        <td>2023-01-04</td>
-        <td>80</td>
-        <td>30</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td><a href="post.html">게시물 제목 5</a></td>
-        <td>닉네임2</td>
-        <td>2023-01-05</td>
-        <td>80</td>
-        <td>30</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td><a href="post.html">게시물 제목 6</a></td>
-        <td>닉네임2</td>
-        <td>2023-01-06</td>
-        <td>80</td>
-        <td>30</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td><a href="post.html">게시물 제목 7</a></td>
-        <td>닉네임2</td>
-        <td>2023-01-07</td>
-        <td>80</td>
-        <td>30</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td><a href="post.html">게시물 제목 8</a></td>
-        <td>닉네임2</td>
-        <td>2023-01-08</td>
-        <td>80</td>
-        <td>30</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td><a href="post.html">게시물 제목 9</a></td>
-        <td>닉네임2</td>
-        <td>2023-01-09</td>
-        <td>80</td>
-        <td>30</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td><a href="post.html">게시물 제목 10</a></td>
-        <td>닉네임2</td>
-        <td>2023-01-10</td>
-        <td>80</td>
-        <td>30</td>
-      </tr>
-      <!-- Add more rows as needed -->
-    </body>
-   </table>
+  <!-- *** 게시판 글쓰기 Start *** -->
   
-  <div class="search-bar">
-	 <form id="post-search-form" name="post-search" method="get" role="search" action="#">
-		<select name="type">
-	      <option selected value="">검색 내용</option>
-          <option value="title">제목</option>
-          <option value="content">내용</option>
-          <option value="writer">닉네임</option>
-          <option value="title" + "content">제목 + 내용</option>
-		</select>
-		 <input type="text" id="post-search" name="post-search" placeholder="제목 또는 내용을 입력하세요...">
-		 <button type="submit">검색</button>
-	 </form>
-		 <div class="border-button">
-          <a href="write.html">목록</a>
-          <a href="list.html">글쓰기</a>
-         </div>
-   </div>
+  <div class="bulletin-board-container">
+	<table cellpadding="0" cellspacing="0" border="0" whidth="1000" align="center" class="board-write"></table>
+	  
+  
+  
+  
+  
+  
+  
+  
   </div>
   
-  <!-- *** 게시판 리스트 End *** -->
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!-- *** 게시판 글쓰기 End *** -->
 
   <div class="visit-country" style="margin: auto;">
     <div class="container">
@@ -409,7 +282,7 @@ https://templatemo.com/tm-580-woox-travel
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <p>Copyright © 2036 <a href="#">워싱시</a> Company. All rights reserved. 
+          <p>Copyright © 2036 <a href="#">WoOx Travel</a> Company. All rights reserved. 
           <br>Design: <a href="https://templatemo.com" target="_blank" title="free CSS templates">TemplateMo</a></p>
         </div>
       </div>

@@ -50,8 +50,8 @@ https://templatemo.com/tm-580-woox-travel
             <div class="col-12">
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
-                    <a href="/" class="logo">
-                        <img src="assets/images/logo.png" alt="">
+                    <a href="/" class="logo2">
+                        <img src="/assets/images/logo2.png" alt="">
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
@@ -60,9 +60,14 @@ https://templatemo.com/tm-580-woox-travel
                         <li><a href="about">음식점</a></li>
                         <li><a href="about">숙소</a></li>
                         <li><a href="deals">게시판</a></li>
-                        <li><a href="reservation">고객문의</a></li>
-                        <li><a href="loginForm" class="active">로그인</a></li>
-                    </ul>   
+                  	    <li sec:authorize="isAuthenticated()">
+						<a href="member/mypage">마이페이지</a>	</li>	
+						<li sec:authorize="isAuthenticated()">
+				     	<a href="member/logout">로그아웃</a></li>
+							<li sec:authorize="isAnonymous()">
+							<a href="member/login">로그인</a>
+						</li>
+					   </ul> 
                     <a class='menu-trigger'>
                         <span>Menu</span>
                     </a>
@@ -73,10 +78,6 @@ https://templatemo.com/tm-580-woox-travel
     </div>
   </header>
   <!-- ***** Header Area End ***** -->
-
-
- 
- 
 
 
   <div class="reservation-form">
