@@ -77,19 +77,19 @@ https://templatemo.com/tm-580-woox-travel
       <div class="row">
         <div class="col-lg-12">
           <h4>Busan Tour Service</h4>
-          <h2>뭘로할까?</h2>
+          <h2>부산여행</h2>
           <div class="border-button text-center"><a href="about.html">자세히 보기</a></div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="search-form">
+  <!--<div class="search-form">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
           <form id="search-form" name="gs" method="submit" role="search" action="#">
-            <div class="row">
+            <div class="row">-->
               <!--<div class="col-lg-4">
 =======
               <div class="col-lg-3">
@@ -106,11 +106,11 @@ https://templatemo.com/tm-580-woox-travel
                   </fieldset>
 <<<<<<< HEAD:src/main/resources/templates/deals.html
               </div>-->
-          </form>
+          <!--</form>
         </div>
       </div>
     </div>
-  </div>
+  </div>-->
   
   <style>
   
@@ -199,20 +199,25 @@ https://templatemo.com/tm-580-woox-travel
   <!-- *** 게시판 글쓰기 Start *** -->
   
   <div class="bulletin-board-container">
-	<textarea name="re_content" style="position:absolute;visibility:hidden;"></textarea>
+	<!--<textarea name="re_content" style="position:absolute;visibility:hidden;"></textarea>
 	<table cellpadding="0" cellspacing="0" border="0" width="800" align="center" class="board-write">
 	  <from name="hidden_rewrite"></from>
-	  <input type="HIDDEN" name="re_subject" value>
+	  <input type="HIDDEN" name="re_subject" value>-->
 	  <!-- 상단 이미지 삽입부분 시작 -->
-	  <tbody>
+	  <!--<tbody>
 		  <tr height="3" bgcolor="#CDCCCC">
-		  </tr>
+		  </tr>-->
 	  <!-- 상단 이미지 삽입부분 끝 -->
 	  <!-- 실제 write 부분 시작 -->
 	  	  <tr>
 			<td>
 			  <form method="post" action="/board/write" enctype="multipart/form-data" th:object="${writeForm}"
 			   style="margin:0; padding:0;" >
+			   <tr>
+				<td>
+				<input type="file" name="file">  
+				</td>
+			  </tr>
 			    <table cellpadding="0" cellspacing="0" border="0" width="100%" style="table-layout: fixed">
 				 <!-- <tbody> -->
 				  <tr>
@@ -220,16 +225,6 @@ https://templatemo.com/tm-580-woox-travel
 					<table cellpadding="0" cellspacing="0" border="0" whidth="100%">
 					 <tbody>
 					  <tr style="height:40px;">
-						<td style="padding:0 0 0 5px;">
-						 <select >
-							 <option value>분류</option>
-							 <option value="카테고리" selected="seleteted">카테고리</option>
-							 <option value="해운대">해운대</option>
-							 <option value="광안리">광안리</option>
-							 <option value="기타">기타</option>
-						 </select>
-						 <span id="subCategoryWrap"></span>
-						</td>
 						<td align="center" style="width:60px;">제목 :</td>
 						<td style="padding:0 5px 0 0;">
 						  <input type="text" th:field="${writeForm.b_title}" style="width:700px;border:1 #C4CAD1 solid;font-size:9pt;padding-top: 3px;">	
@@ -256,26 +251,25 @@ https://templatemo.com/tm-580-woox-travel
 			   </div> -->
 			   <table cellspacing="0" cellpadding="0" border="0" width="100%">
 				 <tbody>
-					<!-- <tr height="1">
+					<tr height="1">
 					  <td width="100%" bgcolor="#22B3C1"></td>
-					</tr> -->
+					</tr>
 				 </tbody>  
 			   </table>
-			   <div class="row">
-			   <div class="col-lg-12">
-			   <div class="border-button" style="display:inline-block;">
+			   <div class="row" style="margin-top: 50px;">
+			    <div class="col-lg-12">
+			   	 <div class="border-button" style="display:inline-block; float: right;">
 				   <a href="/board/list">목록</a>
-			   </div>
-			   <div class="border-button" style="display: inline-block;">
-	                <input type="submit" value="등록"></input>
-	            </div>
-			    <div class="border-button" style="display: inline-block;">
-				   <input type="reset" value="취소"></input>
+			     </div>
+			     <div class="border-button" style="display: inline-block; float: right;">
+	                <input type="submit" value="작성완료">
+	             </div>
+			     <div class="border-button" style="display: inline-block; float: right; margin-right: 10px;">
+				    <input type="reset" value="취소">
+			     </div>
+			     </div>
 			    </div>
-			    </div>
-			    </div>
-			    <input type="file" name="file">
-			   </form>
+				</form>
 			</td>	
 		  </tr>
 	  </tbody>
@@ -296,7 +290,7 @@ https://templatemo.com/tm-580-woox-travel
           <div class="items">
             <div class="row">
               
-              <div class="col-lg-12">
+              <!--<div class="col-lg-12">
                 <ul class="page-numbers">
                   <li><a href="#"><i class="fa fa-arrow-left"></i></a></li>
                   <li><a href="#">1</a></li>
@@ -304,7 +298,7 @@ https://templatemo.com/tm-580-woox-travel
                   <li><a href="#">3</a></li>
                   <li><a href="#"><i class="fa fa-arrow-right"></i></a></li>
                 </ul>
-              </div>
+              </div>-->
             </div>
           </div>
         </div>
@@ -330,7 +324,7 @@ https://templatemo.com/tm-580-woox-travel
     </div>
   </div>-->
 
-  <footer>
+  <!--<footer>
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
@@ -339,7 +333,7 @@ https://templatemo.com/tm-580-woox-travel
         </div>
       </div>
     </div>
-  </footer>
+  </footer>-->
 
 
   <!-- Scripts -->

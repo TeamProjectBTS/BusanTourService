@@ -77,14 +77,14 @@ https://templatemo.com/tm-580-woox-travel
       <div class="row">
         <div class="col-lg-12">
           <h4>Busan Tour Service</h4>
-          <h2>뭘로할까?</h2>
+          <h2>부산여행</h2>
           <div class="border-button text-center"><a href="about.html">자세히 보기</a></div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="search-form">
+  <!--<div class="search-form">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
@@ -109,7 +109,7 @@ https://templatemo.com/tm-580-woox-travel
                           <option value="미정">미정</option>
                       </select>
                   </fieldset>
-              </div>
+              </div>-->
               <!--<div class="col-lg-4">
 =======
               <div class="col-lg-3">
@@ -126,7 +126,7 @@ https://templatemo.com/tm-580-woox-travel
                   </fieldset>
 <<<<<<< HEAD:src/main/resources/templates/deals.html
               </div>-->
-              <div class="col-lg-2">                        
+              <!--<div class="col-lg-2">                        
                   <fieldset>
                       <button class="border-button">검색</button>
                   </fieldset>
@@ -136,7 +136,7 @@ https://templatemo.com/tm-580-woox-travel
         </div>
       </div>
     </div>
-  </div>
+  </div>-->
   
   <style>
   
@@ -225,50 +225,42 @@ https://templatemo.com/tm-580-woox-travel
    <table th:object="${board}">
      <tr>
         <th>제목</th>
-        <td th:text="*{title}"></td>
+        <td th:text="*{b_title}"></td>
       </tr>
       <tr>
         <th>내용</th>
-        <td th:text="*{contents}"></td>
+        <td th:text="*{b_contents}"></td>
       </tr>
       <tr>
         <th>조회수</th>
-        <td th:text="*{hit}"></td>
+        <td th:text="*{b_view_count}"></td>
+      </tr>
+      <tr>
+        <th>좋아요</th>
+        <td th:text="*{b_like_count}"></td>
       </tr>
       <tr>
         <th>작성일</th>
-        <td th:text="${#temporals.format(board.created_time, 'yyyy-MM-dd HH:mm')}"></td>
+        <td th:text="${#temporals.format(board.wr_date, 'yyyy-MM-dd HH:mm')}"></td>
       </tr>
       <tr>
-        <th>작성자</th>
-        <td th:text="*{member_id}"></td>
+        <th>닉네임</th>
+        <td th:text="*{nickname}"></td>
+      </tr>
+      <tr>
+        <th>첨부파일</th>
+        <td>
+          <a th:if="${file}" th:text="${file.original_filename}"
+             th:href="@{/board/download/{id}(id=${file.attached_file_id})}"></a>
+        </td>
       </tr>
    </table>
    <div class="center">
      <input type="button" onclick="location.href='/board/list'" value="목록으로">
-      <th:block th:if="${session.loginMember.member_id == board.member_id}">
+      <th:block th:if="${session.loginMember.nickname == board.nickname}">
         <input type="button" th:onclick="|location.href='/board/update?board_id=${board.board_id}'|" value="수정하기">
         <input type="button" th:onclick="|location.href='/board/delete?board_id=${board.board_id}'|" value="삭제하기">
       </th:block>
-   </div>
-  </div>
-  <div class="search-bar">
-	 <form id="post-search-form" name="post-search" method="get" role="search" action="#">
-		<select name="type">
-	      <option selected value="">검색 내용</option>
-          <option value="title">제목</option>
-          <option value="content">내용</option>
-          <option value="writer">닉네임</option>
-          <option value="title" + "content">제목 + 내용</option>
-		</select>
-		 <input type="text" id="post-search" name="post-search" placeholder="제목 또는 내용을 입력하세요...">
-		 <button type="submit" class="search-btn board-img">
-			<i class="fa fa-search" aria-hidden="true"></i>	 <!-- 돋보기 -->
-		 </button>
-	 </form>
-		 <div class="border-button">
-          <a href="/board/write">글쓰기</a>
-         </div>
    </div>
   </div>
   <!-- *** 게시판 읽기 End *** -->
