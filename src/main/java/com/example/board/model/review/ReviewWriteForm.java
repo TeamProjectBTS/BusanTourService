@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import lombok.Data;
 
 @Data
-public class Review {
+public class ReviewWriteForm {
 	
 	private Long review_id;
 	private String member_id;
