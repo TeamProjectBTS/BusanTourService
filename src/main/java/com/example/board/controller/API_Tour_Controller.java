@@ -1,17 +1,16 @@
 package com.example.board.controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.board.config.UserInfo;
-import com.example.board.model.tour_spot.Tour_spotResponse;
 import com.example.board.model.tour_spot.Tour_spotResponse.Body.Items.Item;
 import com.example.board.service.T_ApiService;
 import com.example.board.util.PageNavigator;
@@ -36,15 +35,13 @@ public class API_Tour_Controller {
   public String tour_spot_list(Model model,
 		  	@RequestParam(value="page", defaultValue="1") int page,
 				@RequestParam(value="searchText", defaultValue="") String searchText) {
-  	Tour_spotResponse ts_list = t_ApiService.xmlToJavaObject();
-  	List<Item> items = ts_list
-  		.getBody()
-  		.getItems()
-  		.getItem();
+  	
+  	List<Item> items = t_ApiService.getItems();
   	int startRecord = (page - 1) * countPerPage;
   	int currentRecord = 1;
   	List<Item> searchItems = new ArrayList<>();
   	
+  	Collections.sort(items, Comparator.comparing(Item::getPLACE));
   	
 		for(Item item : items) {
 		
@@ -69,8 +66,6 @@ public class API_Tour_Controller {
 			}
 		}
   	
-		
-  	
   	int total = searchItems.size();
   	log.info("total : {}", total);
   	PageNavigator navi = new PageNavigator(countPerPage, pagePerGroup, page, total);
@@ -82,16 +77,12 @@ public class API_Tour_Controller {
   	return "tour_spot/list";
   }
   
-
   @GetMapping("read")
   public String readTour(@RequestParam(value="UC_SEQ") int UC_SEQ,
   		Model model) {
   	
-  	Tour_spotResponse ts_list = t_ApiService.xmlToJavaObject();
-  	List<Item> items = ts_list
-  		.getBody()
-  		.getItems()
-  		.getItem();
+  
+  	List<Item> items = t_ApiService.getItems();
   	
   	for(Item item : items) {
   		if(item.getUC_SEQ() == UC_SEQ) {

@@ -10,22 +10,32 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.example.board.model.tour_spot.Tour_spotResponse;
+import com.example.board.model.tour_spot.Tour_spotResponse.Body.Items.Item;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class T_ApiService {
-	 
-	public Tour_spotResponse xmlToJavaObject() {
+	  
+		private static List<Item> items = new ArrayList<>();
+		
+		@PostConstruct
+		public void xmlToJavaObject() {
 
     StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/6260000/AttractionService/getAttractionKr"); /*URL*/
     try {
@@ -108,8 +118,19 @@ public class T_ApiService {
     } catch (JAXBException e) {
         e.printStackTrace();
     }
-    return apiResponse;
+    
+    setItems(apiResponse.getBody().getItems().getItem());
   }
+
+		public List<Item> getItems() {
+			return items;
+		}
+
+		public static void setItems(List<Item> items) {
+			T_ApiService.items = items;
+		}
+
+		
    
    
 }
