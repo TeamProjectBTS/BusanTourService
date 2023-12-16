@@ -90,6 +90,26 @@ https://templatemo.com/tm-580-woox-travel
         <div class="col-lg-12">
           <form id="search-form" name="gs" method="submit" role="search" action="#">
             <div class="row">
+              <div class="col-lg-2">
+                <h4>카테고리:</h4>
+              </div>
+              <div class="col-lg-4">
+
+                  <fieldset>
+                      <select name="Location" class="form-select" aria-label="Default select example" id="chooseLocation" onChange="this.form.click()">
+                          <option selected>대표 관광지</option>
+                          <option type="checkbox" name="option1" value="광안리">광안리</option>
+                          <option value="해운대">해운대</option>
+                          <option value="미정">미정</option>
+                          <option value="미정">미정</option>
+                          <option value="미정">미정</option>
+                          <option value="미정">미정</option>
+                          <option value="미정">미정</option>
+                          <option value="미정">미정</option>
+                          <option value="미정">미정</option>
+                      </select>
+                  </fieldset>
+              </div>
               <!--<div class="col-lg-4">
 =======
               <div class="col-lg-3">
@@ -106,6 +126,12 @@ https://templatemo.com/tm-580-woox-travel
                   </fieldset>
 <<<<<<< HEAD:src/main/resources/templates/deals.html
               </div>-->
+              <div class="col-lg-2">                        
+                  <fieldset>
+                      <button class="border-button">검색</button>
+                  </fieldset>
+              </div>
+            </div>
           </form>
         </div>
       </div>
@@ -164,14 +190,12 @@ https://templatemo.com/tm-580-woox-travel
       margin-right: 10px
   }
     
-    
-    
 	.border-button {
       text-align: right;
   }
  
     .border-button a {
-    	margin-left: 10px;
+    margin-left: 10px;
   }
  
     .page-numbers {
@@ -196,98 +220,58 @@ https://templatemo.com/tm-580-woox-travel
   
   </style>
   
-  <!-- *** 게시판 글쓰기 Start *** -->
-  
+  <!-- *** 게시판 읽기 Start *** -->
   <div class="bulletin-board-container">
-	<textarea name="re_content" style="position:absolute;visibility:hidden;"></textarea>
-	<table cellpadding="0" cellspacing="0" border="0" width="800" align="center" class="board-write">
-	  <from name="hidden_rewrite"></from>
-	  <input type="HIDDEN" name="re_subject" value>
-	  <!-- 상단 이미지 삽입부분 시작 -->
-	  <tbody>
-		  <tr height="3" bgcolor="#CDCCCC">
-		  </tr>
-	  <!-- 상단 이미지 삽입부분 끝 -->
-	  <!-- 실제 write 부분 시작 -->
-	  	  <tr>
-			<td>
-			  <form method="POST" action="/board/write" enctype="multipart/form-data" th:object="${writeForm}"
-			   style="margin:0; padding:0;" >
-			    <table cellpadding="0" cellspacing="0" border="0" width="100%" style="table-layout: fixed">
-				 <!-- <tbody> -->
-				  <tr>
-				   <!-- <td bgcolor="#EDEDED"> -->
-					<table cellpadding="0" cellspacing="0" border="0" whidth="100%">
-					 <tbody>
-					  <tr style="height:40px;">
-						<td style="padding:0 0 0 5px;">
-						 <select name="CATEGORY">
-							 <option value>분류</option>
-							 <option value="카테고리" selected="seleteted">카테고리</option>
-							 <option value="해운대">해운대</option>
-							 <option value="광안리">광안리</option>
-							 <option value="기타">기타</option>
-						 </select>
-						 <span id="subCategoryWrap"></span>
-						</td>
-						<td align="center" style="width:60px;">제목 :</td>
-						<td style="padding:0 5px 0 0;">
-						  <input type="TEXT" th:field="*{b_title}" value style="width:700px;border:1 #C4CAD1 solid;font-size:9pt;padding-top: 3px;"
-						  maxlength="150">	
-						</td>  
-					  </tr>	 
-					 </tbody>
-					</table>
-					<tr>
-					  <td align="center">
-						<textarea id="CONTENT2" th:field="*{b_contents}" class="signContent" style="float: left; resize: none; width: 100%; height: 500px;
-						margin-top: 2px; margin-bottom: 0px;"></textarea>						  
-					  </td>
-					 </tr>	   
-				   <!-- </td> -->	  
-				  </tr>					 
-				 <!-- </tbody> -->	
-				</table>
-				
-			
-			   <!-- 1픽셀 라인 -->
-			   <!-- <div id="bbs-poll-setting" class="bbs-poll-setting" data-has-poll="0" data-admin="0">
-				 <div class="top ipoll-1ucydmo" style="order: 1;">
-				 </div>   
-			   </div> -->
-			   <table cellspacing="0" cellpadding="0" border="0" width="100%">
-				 <tbody>
-					<!-- <tr height="1">
-					  <td width="100%" bgcolor="#22B3C1"></td>
-					</tr> -->
-				 </tbody>  
-			   </table>
-			   <div class="row">
-			   <div class="col-lg-12">
-			   <div class="border-button" style="display:inline-block;">
-				   <a href="/board/list">목록</a>
-			   </div>
-			   <div class="border-button" style="display: inline-block;">
-	                <input type="submit" value="등록"></input>
-	            </div>
-			    <div class="border-button" style="display: inline-block;">
-				   <input type="reset" value="취소"></input>
-			    </div>
-			    </div>
-			    </div>
-			   </form>
-			</td>	
-		  </tr>
-	  </tbody>
-	</table>
-	<tr>
-	  <td>
-		<input type="file" name="file">
-	  </td>
-	</tr>
-	
-  
-  <!-- *** 게시판 글쓰기 End *** -->
+   <table th:object="${board}">
+     <tr>
+        <th>제목</th>
+        <td th:text="*{title}"></td>
+      </tr>
+      <tr>
+        <th>내용</th>
+        <td th:text="*{contents}"></td>
+      </tr>
+      <tr>
+        <th>조회수</th>
+        <td th:text="*{hit}"></td>
+      </tr>
+      <tr>
+        <th>작성일</th>
+        <td th:text="${#temporals.format(board.created_time, 'yyyy-MM-dd HH:mm')}"></td>
+      </tr>
+      <tr>
+        <th>작성자</th>
+        <td th:text="*{member_id}"></td>
+      </tr>
+   </table>
+   <div class="center">
+     <input type="button" onclick="location.href='/board/list'" value="목록으로">
+      <th:block th:if="${session.loginMember.member_id == board.member_id}">
+        <input type="button" th:onclick="|location.href='/board/update?board_id=${board.board_id}'|" value="수정하기">
+        <input type="button" th:onclick="|location.href='/board/delete?board_id=${board.board_id}'|" value="삭제하기">
+      </th:block>
+   </div>
+  </div>
+  <div class="search-bar">
+	 <form id="post-search-form" name="post-search" method="get" role="search" action="#">
+		<select name="type">
+	      <option selected value="">검색 내용</option>
+          <option value="title">제목</option>
+          <option value="content">내용</option>
+          <option value="writer">닉네임</option>
+          <option value="title" + "content">제목 + 내용</option>
+		</select>
+		 <input type="text" id="post-search" name="post-search" placeholder="제목 또는 내용을 입력하세요...">
+		 <button type="submit" class="search-btn board-img">
+			<i class="fa fa-search" aria-hidden="true"></i>	 <!-- 돋보기 -->
+		 </button>
+	 </form>
+		 <div class="border-button">
+          <a href="/board/write">글쓰기</a>
+         </div>
+   </div>
+  </div>
+  <!-- *** 게시판 읽기 End *** -->
 
   <div class="visit-country" style="margin: auto;">
     <div class="container">

@@ -85,7 +85,7 @@ public class BoardController {
         
         // board 객체에 로그인한 사용자의 아이디를 추가한다.
         board.setMember_id(loginMember.getMember_id());
-        
+        board.setNickname(loginMember.getNickname());
         boardService.saveBoard(board, file);
         
         // board/list 로 리다이렉트한다.
@@ -193,9 +193,9 @@ public class BoardController {
             return "redirect:/board/list";
         }
         // 제목을 수정한다.
-        board.setTitle(updateBoard.getTitle());
+        board.setB_title(updateBoard.getB_title());
         // 내용을 수정한다.
-        board.setContents(updateBoard.getContents());
+        board.setB_contents(updateBoard.getB_contents());
         // 수정한 Board 를 데이터베이스에 update 한다.
         boardService.updateBoard(board , updateBoard.isFileRemoved(), file);
         // 수정이 완료되면 리스트로 리다이렉트 시킨다.

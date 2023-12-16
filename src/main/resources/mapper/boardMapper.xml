@@ -9,14 +9,16 @@
     </selectKey>
     insert into board(
       board_id,
-      title,
-      contents,
-      member_id
+      member_id,
+      nickname,
+      b_title,
+      b_contents
     ) values (
       #{board_id},
-      #{title},
-      #{contents},
-      #{member_id}
+      #{member_id},
+      #{nickname},
+      #{b_title},
+      #{b_contents}
     )
   </insert>
   
@@ -26,7 +28,7 @@
     	where title like '%' || #{searchText} || '%'
     </if>
     order by 
-    	created_time desc
+    	wr_date desc
   </select>
 
   <select id="findBoard" resultType="board">
@@ -36,9 +38,11 @@
   <update id="updateBoard">
     update board
     <set>
-        <if test="title != null">title = #{title},</if>
-        <if test="contents != null">contents = #{contents},</if>
-        <if test="hit != null">hit = #{hit}</if>
+        <if test="b_title != null">b_title = #{b_title},</if>
+        <if test="b_contents != null">b_contents = #{b_contents},</if>
+        <if test="b_view_count != null">b_view_count = #{b_view_count}</if>
+        <if test="b_like_count != null">b_like_count = #{b_like_count}</if>
+        <if test="b_com_count != null">b_com_count = #{b_com_count}</if>
     </set>
     where board_id = #{board_id}
   </update>
