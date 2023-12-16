@@ -211,7 +211,7 @@ https://templatemo.com/tm-580-woox-travel
 	  <!-- 실제 write 부분 시작 -->
 	  	  <tr>
 			<td>
-			  <form method="POST" action="/board/write" enctype="multipart/form-data" th:object="${writeForm}"
+			  <form method="post" action="/board/write" enctype="multipart/form-data" th:object="${writeForm}"
 			   style="margin:0; padding:0;" >
 			    <table cellpadding="0" cellspacing="0" border="0" width="100%" style="table-layout: fixed">
 				 <!-- <tbody> -->
@@ -221,7 +221,7 @@ https://templatemo.com/tm-580-woox-travel
 					 <tbody>
 					  <tr style="height:40px;">
 						<td style="padding:0 0 0 5px;">
-						 <select name="CATEGORY">
+						 <select >
 							 <option value>분류</option>
 							 <option value="카테고리" selected="seleteted">카테고리</option>
 							 <option value="해운대">해운대</option>
@@ -232,15 +232,14 @@ https://templatemo.com/tm-580-woox-travel
 						</td>
 						<td align="center" style="width:60px;">제목 :</td>
 						<td style="padding:0 5px 0 0;">
-						  <input type="TEXT" th:field="*{b_title}" value style="width:700px;border:1 #C4CAD1 solid;font-size:9pt;padding-top: 3px;"
-						  maxlength="150">	
+						  <input type="text" th:field="${writeForm.b_title}" style="width:700px;border:1 #C4CAD1 solid;font-size:9pt;padding-top: 3px;">	
 						</td>  
 					  </tr>	 
 					 </tbody>
 					</table>
 					<tr>
 					  <td align="center">
-						<textarea id="CONTENT2" th:field="*{b_contents}" class="signContent" style="float: left; resize: none; width: 100%; height: 500px;
+						<textarea id="CONTENT2" th:field="${writeForm.b_contents}" class="signContent" style="float: left; resize: none; width: 100%; height: 500px;
 						margin-top: 2px; margin-bottom: 0px;"></textarea>						  
 					  </td>
 					 </tr>	   
@@ -275,16 +274,17 @@ https://templatemo.com/tm-580-woox-travel
 			    </div>
 			    </div>
 			    </div>
+			    <input type="file" name="file">
 			   </form>
 			</td>	
 		  </tr>
 	  </tbody>
 	</table>
-	<tr>
+	<!--<tr>
 	  <td>
 		<input type="file" name="file">
 	  </td>
-	</tr>
+	</tr>-->
 	
   
   <!-- *** 게시판 글쓰기 End *** -->

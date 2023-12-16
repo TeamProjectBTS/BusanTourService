@@ -5,7 +5,7 @@
 <mapper namespace="com.example.board.repository.BoardMapper">
   <insert id="saveBoard">
     <selectKey keyProperty="board_id" resultType="long" order="BEFORE">
-      select seq_board.nextval from dual
+      select seq_busanguide.nextval from dual
     </selectKey>
     insert into board(
       board_id,

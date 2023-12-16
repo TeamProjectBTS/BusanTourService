@@ -1,6 +1,7 @@
 
 package com.example.board.controller;
 
+import com.example.board.config.UserInfo;
 import com.example.board.model.board.AttachedFile;
 import com.example.board.model.board.Board;
 import com.example.board.model.board.BoardUpdateForm;
@@ -21,6 +22,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -67,25 +69,25 @@ public class BoardController {
 
     // 게시글 쓰기
     @PostMapping("write")
-    public String write(@SessionAttribute(value = "loginMember", required = false) Member loginMember,
+    public String write(@AuthenticationPrincipal UserInfo userInfo,
                         @Validated @ModelAttribute("writeForm") BoardWriteForm boardWriteForm,
                         @RequestParam(required=false) MultipartFile file,
                         BindingResult result) {
        
 //        log.info("board: {}", boardWriteForm);
 //        log.info("file : {}", file);
-        
+        log.info("userInfo : {}", userInfo);
         // validation 에러가 있으면 board/write.html 페이지를 다시 보여준다.
         if (result.hasErrors()) {
-            return "board/write";
+            return "/board/write.html";
         }
 
         // 파라미터로 받은 BoardWriteForm 객체를 Board 타입으로 변환한다.
         Board board = BoardWriteForm.toBoard(boardWriteForm);
         
         // board 객체에 로그인한 사용자의 아이디를 추가한다.
-        board.setMember_id(loginMember.getMember_id());
-        board.setNickname(loginMember.getNickname());
+        board.setMember_id(userInfo.getMember().getMember_id());
+        board.setNickname(userInfo.getMember().getNickname());
         boardService.saveBoard(board, file);
         
         // board/list 로 리다이렉트한다.

@@ -3,14 +3,15 @@ package com.example.board.model.board;
 import java.time.LocalDateTime;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
 import lombok.Data;
 
 @Data
 public class BoardWriteForm {
-	@NotBlank
+	@NotEmpty
 	private String b_title; //글 제목
-	@NotBlank
+	@NotEmpty
 	private String b_contents; //내용
 	
 	public static Board toBoard(BoardWriteForm boardWriteForm) {
