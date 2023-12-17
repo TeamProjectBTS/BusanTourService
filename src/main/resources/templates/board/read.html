@@ -257,7 +257,7 @@ https://templatemo.com/tm-580-woox-travel
    </table>
    <div class="center">
      <input type="button" onclick="location.href='/board/list'" value="목록으로">
-      <th:block th:if="${session.loginMember.nickname == board.nickname}">
+     <th:block th:if="${#authentication.name == board.member_id}">
         <input type="button" th:onclick="|location.href='/board/update?board_id=${board.board_id}'|" value="수정하기">
         <input type="button" th:onclick="|location.href='/board/delete?board_id=${board.board_id}'|" value="삭제하기">
       </th:block>
