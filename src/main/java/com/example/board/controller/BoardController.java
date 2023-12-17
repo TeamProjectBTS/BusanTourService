@@ -16,7 +16,6 @@ import lombok.RequiredArgsConstructor;
 
 import lombok.extern.slf4j.Slf4j;
 
-import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -97,24 +96,24 @@ public class BoardController {
     // 게시글 전체 보기
     @GetMapping("list")
     public String list(
-
-	  		@RequestParam(value="page", defaultValue="1") int page,
-			 @RequestParam(value="searchText", defaultValue="") String searchText,
-	     Model model) {
+    		@RequestParam(value="page", defaultValue="1") int page,
+    									 @RequestParam(value="searchText", defaultValue="") String searchText,
+                       Model model) {
     	log.info("검색어 : {}", searchText);
-
-//    	int total = boardService.getTotal(searchText);
     	
-//      PageNavigator navi = new PageNavigator(countPerPage, pagePerGroup, page, total);
-//      log.info("페이지 정보 : {}", navi);
+    	int total = boardService.getTotal(searchText);
+    	
+      PageNavigator navi = new PageNavigator(countPerPage, pagePerGroup, page, total);
+      log.info("페이지 정보 : {}", navi);
       
       // 데이터베이스에 저장된 모든 Board 객체를 리스트 형태로 받는다.
-//      List<Board> boards = boardService.findBoards(searchText, navi.getStartRecord(), navi.getCountPerPage());
+      List<Board> boards = boardService.findBoards(searchText, navi.getStartRecord(), navi.getCountPerPage());
       // Board 리스트를 model 에 저장한다.
-//      model.addAttribute("boards", boards);
-//      model.addAttribute("navi", navi);
-//      model.addAttribute("searchText", searchText);
-      // board/list.html 를 찾아서 리턴한다.
+      model.addAttribute("boards", boards);
+      model.addAttribute("navi", navi);
+      model.addAttribute("searchText", searchText);
+//       board/list.html 를 찾아서 리턴한다.
+
       return "board/list";
     }
     	
@@ -146,7 +145,7 @@ public class BoardController {
 
     // 게시글 수정 페이지 이동
     @GetMapping("update")
-    public String updateForm(@SessionAttribute(value = "loginMember", required = false) Member loginMember,
+    public String updateForm(@AuthenticationPrincipal UserInfo userInfo,
                              @RequestParam Long board_id,
                              Model model) {
         
@@ -155,7 +154,7 @@ public class BoardController {
 
         // board_id에 해당하는 게시글이 없거나 게시글의 작성자가 로그인한 사용자의 아이디와 다르면 수정하지 않고 리스트로 리다이렉트 시킨다.
         Board board = boardService.findBoard(board_id);
-        if (board_id == null || !board.getMember_id().equals(loginMember.getMember_id())) {
+        if (board_id == null || !board.getMember_id().equals(userInfo.getMember().getMember_id())) {
             log.info("수정 권한 없음");
             return "redirect:/board/list";
         }
@@ -174,7 +173,7 @@ public class BoardController {
 
     // 게시글 수정
     @PostMapping("update")
-    public String update(@SessionAttribute(value = "loginMember", required = false) Member loginMember,
+    public String update(@AuthenticationPrincipal UserInfo userInfo,
                          @RequestParam Long board_id,
                          @Validated @ModelAttribute("board") BoardUpdateForm updateBoard,
                          @RequestParam(required=false) MultipartFile file,
@@ -191,7 +190,7 @@ public class BoardController {
         // board_id 에 해당하는 Board 정보를 데이터베이스에서 가져온다.
         Board board = boardService.findBoard(board_id);
         // Board 객체가 없거나 작성자가 로그인한 사용자의 아이디와 다르면 수정하지 않고 리스트로 리다이렉트 시킨다.
-        if (board == null || !board.getMember_id().equals(loginMember.getMember_id())) {
+        if (board == null || !board.getMember_id().equals(userInfo.getMember().getMember_id())) {
             log.info("수정 권한 없음");
             return "redirect:/board/list";
         }
@@ -207,13 +206,13 @@ public class BoardController {
 
     // 게시글 삭제
     @GetMapping("delete")
-    public String remove(@SessionAttribute(value = "loginMember", required = false) Member loginMember,
+    public String remove(@AuthenticationPrincipal UserInfo userInfo,
                          @RequestParam Long board_id) {
         
         // board_id 에 해당하는 게시글을 가져온다.
         Board board = boardService.findBoard(board_id);
         // 게시글이 존재하지 않거나 작성자와 로그인 사용자의 아이디가 다르면 리스트로 리다이렉트 한다.
-        if (board == null || !board.getMember_id().equals(loginMember.getMember_id())) {
+        if (board == null || !board.getMember_id().equals(userInfo.getMember().getMember_id())) {
             log.info("삭제 권한 없음");
             return "redirect:/board/list";
         }

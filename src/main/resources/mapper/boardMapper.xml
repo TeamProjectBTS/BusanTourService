@@ -25,7 +25,7 @@
   <select id="findBoards" resultType="board">
     select * from board 
     <if test="_parameter != null">
-    	where title like '%' || #{searchText} || '%'
+    	where b_title like '%' || #{searchText} || '%'
     </if>
     order by 
     	wr_date desc
@@ -81,7 +81,7 @@
   <select id="getTotal" resultType="int">
   	select count(*) from board
   	<if test="_parameter != null">
-  		where title like '%' || #{searchText} || '%'
+  		where b_title like '%' || #{searchText} || '%'
   	</if>
   </select>
   
