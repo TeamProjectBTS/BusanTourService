@@ -2,88 +2,100 @@
 <!DOCTYPE mapper
 		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.board.repository.BoardMapper">
+<mapper namespace="com.example.board.repository.ReviewMapper">
   <insert id="saveBoard">
-    <selectKey keyProperty="board_id" resultType="long" order="BEFORE">
-      select seq_board.nextval from dual
+    <selectKey keyProperty="review_id" resultType="long" order="BEFORE">
+      select seq_busanguide.nextval from dual
     </selectKey>
-    insert into board(
-      board_id,
-      title,
-      contents,
-      member_id
+    insert into review(
+      review_id,
+      member_id,
+      nickname,
+      sort,
+      rv_title,
+      rv_contents,
+      star
     ) values (
-      #{board_id},
-      #{title},
-      #{contents},
-      #{member_id}
+      #{review_id},
+      #{member_id},
+      #{nickname},
+      #{sort},
+      #{rv_title},
+      #{rv_contents},
+      #{star}
     )
   </insert>
   
-  <select id="findBoards" resultType="board">
-    select * from board 
+  <select id="findReviews" resultType="review">
+    select * from review 
     <if test="_parameter != null">
-    	where title like '%' || #{searchText} || '%'
+    	where rv_title like '%' || #{searchText} || '%' 
+    	or nickname like '%' || #{searchText} || '%'
     </if>
     order by 
-    	created_time desc
+    	wr_date desc
   </select>
 
-  <select id="findBoard" resultType="board">
-    select * from board where board_id = #{board_id}
+  <select id="findReview" resultType="review">
+    select * from review where review_id = #{review_id}
   </select>
 
-  <update id="updateBoard">
-    update board
+  <update id="updateReview">
+    update review
     <set>
-        <if test="title != null">title = #{title},</if>
-        <if test="contents != null">contents = #{contents},</if>
-        <if test="hit != null">hit = #{hit}</if>
+        <if test="title != null">rv_title = #{rv_title},</if>
+        <if test="contents != null">rv_contents = #{rv_contents},</if>
+        <if test="rv_view_count != null">rv_view_count = #{rv_view_count}</if>
+        <if test="rv_like_count != null">rv_like_count = #{rv_like_count}</if>
+        <if test="rv_com_count != null">rv_com_count = #{rv_com_count}</if>
     </set>
-    where board_id = #{board_id}
+    where review_id = #{review_id}
   </update>
 
-  <delete id="removeBoard">
-    delete from board where board_id = #{board_id}
+  <delete id="removeReview">
+    delete from review where review_id = #{review_id}
   </delete>
   
   <insert id="saveFile">
   	<selectKey keyProperty="attached_file_id" resultType="long" order="BEFORE">
   		select seq_board.nextval from dual
   	</selectKey>
-  	insert into attached_file (
+  	insert into review_attached_file (
   		attached_file_id,
-  		board_id,
+  		review_id,
   		original_filename,
   		saved_filename,
   		file_size
   	) values (
   		#{attached_file_id},
-  		#{board_id},
+  		#{review_id},
   		#{original_filename},
   		#{saved_filename},
   		#{file_size}
   	)
   </insert>
   
-  <select id="findFileByBoardId" resultType="file">
-  	select * from attached_file where board_id = #{board_id}
+  <select id="findFilesByReviewId" resultType="file">
+  	select * from review_attached_file where review_id = #{review_id}
   </select>
   
-  <select id="findFileByAttachedFileId" resultType="file">
-  	select * from attached_file where attached_file_id = #{attached_file_id}
+  <select id="findFilesByReviewAttachedFileId" resultType="file">
+  	select * from review_attached_file where attached_file_id = #{attached_file_id}
   </select>
   
   <select id="getTotal" resultType="int">
-  	select count(*) from board
+  	select count(*) from review
   	<if test="_parameter != null">
-  		where title like '%' || #{searchText} || '%'
+  		where rv_title like '%' || #{searchText} || '%' 
+  		or nickname like '%' || #{searchText} || '%'
   	</if>
   </select>
   
-  <delete id="removeAttachedFile">
-  	delete attached_file where attached_file_id = #{attached_file_id}
+  <delete id="removeReviewAttachedFile">
+  	delete review_attached_file where attached_file_id = #{attached_file_id}
   </delete>
+  
+  
   
   
   

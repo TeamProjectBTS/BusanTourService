@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ReviewAttachedFile {
 	private Long attached_file_id;
-	private Long board_id;
+	private Long review_id;
 	private String original_filename;
 	private String saved_filename;
 	private Long file_size;

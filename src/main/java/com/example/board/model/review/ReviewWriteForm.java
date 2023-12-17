@@ -1,23 +1,34 @@
 package com.example.board.model.review;
 
-import java.time.LocalDate;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+
+
 
 import lombok.Data;
 
 @Data
 public class ReviewWriteForm {
-	
-	private Long review_id;
-	private String member_id;
-	private String nickname;
-	private ReviewSort reviewSort; // 관광지, 음식점, 호텔 중 택1
+	@NotBlank
+	private String sort; // 관광지, 음식점, 호텔 중 택1
+	@NotEmpty
 	private String rv_title;
+	@NotEmpty
 	private String rv_content;
 	private Long star; // 별점 (기본 10점)
-	private Long rv_view_count; // 조회수
-	private Long rv_like_count; // 좋아요수
-	private Long rv_com_count; // 댓글수
-	private LocalDate wr_date;
+	
+	
+	public static Review toReview(ReviewWriteForm reviewWriteForm) {
+		Review review = new Review();
+		
+		review.setSort(reviewWriteForm.getSort());
+		review.setRv_title(reviewWriteForm.getRv_title());
+		review.setRv_content(reviewWriteForm.getRv_content());
+		review.setStar(reviewWriteForm.getStar());
+		
+		return review;
+	}
+
 	
 	
 	
