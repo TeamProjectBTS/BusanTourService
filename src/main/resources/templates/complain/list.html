@@ -48,24 +48,30 @@ https://templatemo.com/tm-580-woox-travel
             <div class="col-12">
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
-                    <a href="/" class="logo">
-                        <img src="assets/images/logo.png" alt="">
+                   <a href="/" class="logo2">
+                        <img src="/assets/images/logo2.png" alt="">
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
-                  <ul class="nav">
+                 <ul class="nav">
+
                         <li><a href="/tour_spot/list">관광지</a></li>
                         <li><a href="/restaurant/list">음식점</a></li>
                         <li><a href="/hotel/list">숙소</a></li>
-                        <li><a href="/board/list">게시판</a></li>
-                  	    <li sec:authorize="isAuthenticated()">
-						<a href="/member/mypage">마이페이지</a>	</li>	
+                        <li><a href="/board/list">게시판</a></li> <!--연결안됌-->
+                        <li><a href="/complain/list">고객문의</a></li> 
+
+                        <li sec:authorize="isAuthenticated()">
+							<a href="/member/mypage">마이페이지</a>
+						</li>
 						<li sec:authorize="isAuthenticated()">
-				     	<a href="/member/logout">로그아웃</a></li>
-							<li sec:authorize="isAnonymous()">
+							<a href="/member/logout">로그아웃</a>
+						</li>
+						<li sec:authorize="isAnonymous()">
 							<a href="/member/login">로그인</a>
 						</li>
-					   </ul> 
+                    </ul>
+                    
                     <a class='menu-trigger'>
                         <span>Menu</span>
                     </a>
@@ -366,7 +372,7 @@ https://templatemo.com/tm-580-woox-travel
   </div>
   
   <!-- *** 게시판 리스트 End *** -->
-
+<br><br>
   <div class="visit-country" style="margin: auto;">
     <div class="container">
       <div class="row">
@@ -407,7 +413,7 @@ https://templatemo.com/tm-580-woox-travel
       </div>
     </div>
   </div>-->
-
+<br><br><br>
   <footer>
     <div class="container">
       <div class="row">

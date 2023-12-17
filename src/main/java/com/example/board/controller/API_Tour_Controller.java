@@ -30,7 +30,8 @@ public class API_Tour_Controller {
 	//페이징 처리를 위한 상수값
   private final int countPerPage = 10;
   private final int pagePerGroup = 5;
-
+  
+  
   @GetMapping("list")
   public String tour_spot_list(Model model,
 		  	@RequestParam(value="page", defaultValue="1") int page,
@@ -43,18 +44,20 @@ public class API_Tour_Controller {
   	int startRecord = (page - 1) * countPerPage;
   	int currentRecord = 1;
   	List<Item> searchItems = new ArrayList<>();
-  	List<Item> showItems = new ArrayList<>();
+  	
   	
 		for(Item item : items) {
 		
   		if(item.getPLACE().contains(searchText) || 
-  				item.getMAIN_TITLE().contains(searchText) || 
+  				item.getSUBTITLE().contains(searchText) || 
   				item.getTITLE().contains(searchText)) {
 	  			
   			searchItems.add(item);
 	  			
   		}
 		}
+		
+		 List<Item> showItems = new ArrayList<>();
 		
 		for(Item item : searchItems) {
 			
@@ -79,4 +82,33 @@ public class API_Tour_Controller {
   	return "tour_spot/list";
   }
   
+
+
+
+  @GetMapping("read")
+  public String readTour(@RequestParam(value="UC_SEQ") int UC_SEQ,
+  		Model model) {
+  	
+  	Tour_spotResponse ts_list = t_ApiService.xmlToJavaObject();
+  	List<Item> items = ts_list
+  		.getBody()
+  		.getItems()
+  		.getItem();
+  	
+  	for(Item item : items) {
+  		if(item.getUC_SEQ() == UC_SEQ) {
+  			model.addAttribute("item", item);
+  		}
+  	}
+  	
+  	return "tour_spot/read";
+  
+  
+  
+	
+	
+	
+	
 }
+}
+

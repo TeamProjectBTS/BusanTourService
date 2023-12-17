@@ -62,11 +62,14 @@ https://templatemo.com/tm-580-woox-travel
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                         <ul class="nav">
-                            <li><a href="/restaurant/list">음식점</a></li>
-                            <li><a href="/tour_spot/list">숙소</a></li>
-                            <li><a href="/board/list">게시판</a></li>
-                            <li><a href="/deals2">고객문의</a></li>                            
-                            <li sec:authorize="isAuthenticated()">
+
+                        <li><a href="/tour_spot/list">관광지</a></li>
+                        <li><a href="/restaurant/list">음식점</a></li>
+                        <li><a href="/hotel/list">숙소</a></li>
+                        <li><a href="/board/list">게시판</a></li> <!--연결안됌-->
+                        <li><a href="/complain/list">고객문의</a></li> 
+
+                        <li sec:authorize="isAuthenticated()">
 							<a href="/member/mypage">마이페이지</a>
 						</li>
 						<li sec:authorize="isAuthenticated()">
@@ -75,10 +78,8 @@ https://templatemo.com/tm-580-woox-travel
 						<li sec:authorize="isAnonymous()">
 							<a href="/member/login">로그인</a>
 						</li>
-                        </ul>
-                    <a class='menu-trigger'>
-                        <span>Menu</span>
-                    </a>
+                    </ul>
+                    
                     <!-- ***** Menu End ***** -->
                 </nav>
             </div>
@@ -404,8 +405,8 @@ https://templatemo.com/tm-580-woox-travel
                         </div>-->
                         <p th:text="${item.SUBTITLE}"> 부제목 </p>
                         <ul class="info">
-                          <li th:text="${item.GUGUN_NM}"> 구, 군 이름</li>
-                          <li th:text="${item.CNTCT_TEL}">전화번호</li>
+                          <li style="width: 24%;" th:text="${item.GUGUN_NM}"> 구, 군 이름</li>
+                          <li style="width: 74%;" th:text="${item.CNTCT_TEL}">전화번호</li>
 
                         </ul>
                         <!--<div class="text-button">

@@ -196,7 +196,14 @@ public class MemberController {
 		log.info("회원가입 잘 됨 : {}", member);
 		return "redirect:/";
 	}
-
 	
+
+
+		@GetMapping("mypage")
+		public String mypage(//@AuthenticationPrincipal UserInfo userInfo, 
+									Model model) {
+			
+			return "member/mypage";
+		}
 	
 }
