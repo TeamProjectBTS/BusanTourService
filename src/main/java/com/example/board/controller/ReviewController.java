@@ -97,7 +97,6 @@ public class ReviewController {
     // 게시글 전체 보기
     @GetMapping("list")
     public String list(
-
 	  		@RequestParam(value="page", defaultValue="1") int page,
 			 @RequestParam(value="searchText", defaultValue="") String searchText,
 	     Model model) {
@@ -111,7 +110,7 @@ public class ReviewController {
       // 데이터베이스에 저장된 모든 Board 객체를 리스트 형태로 받는다.
       List<Review> reviews = reviewService.findReviews(searchText, navi.getStartRecord(), navi.getCountPerPage());
       // Board 리스트를 model 에 저장한다.
-      model.addAttribute("boards", reviews);
+      model.addAttribute("reviews", reviews);
       model.addAttribute("navi", navi);
       model.addAttribute("searchText", searchText);
       // board/list.html 를 찾아서 리턴한다.
