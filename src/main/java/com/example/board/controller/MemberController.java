@@ -41,7 +41,14 @@ public class MemberController {
 	
 	//회원가입 페이지 이동
 	@GetMapping("join")
-	public String joinForm(Model model) {
+	public String joinForm(Model model,
+			@AuthenticationPrincipal UserInfo userInfo) {
+		
+		if(userInfo != null) {
+			log.info("이미 로그인한 사용자");
+			return "redirect:/";
+		}
+		
 		log.info("회원가입 페이지");
 		// joinForm.html 의 필드 세팅을 위해 model 에 빈 MemberJoinForm 객체 생성하여 저장한다
 		model.addAttribute("joinForm", new MemberJoinForm());
@@ -102,50 +109,53 @@ public class MemberController {
 		  @AuthenticationPrincipal UserInfo userInfo,
 		  @RequestParam(value="error", required=false) boolean error,
 		  @RequestParam(value="message", required=false) String message) {
-	log.info("로그인 페이지");
-//	log.info("error : {} ", error);
-//	log.info("message : {} ", message);
-	
-	if(userInfo != null) {
-		log.info("이미 로그인한 사용자");
-		return "redirect:/";
-	}
-	
-	if (error) {
-		model.addAttribute("error", error);
-		model.addAttribute("message", message);
+		log.info("로그인 페이지");
+	//	log.info("error : {} ", error);
+	//	log.info("message : {} ", message);
 		
-	}
+		if(userInfo != null) {
+			log.info("이미 로그인한 사용자");
+			return "redirect:/";
+		}
+		
+		if (error) {
+			model.addAttribute("error", error);
+			model.addAttribute("message", message);
+			
+		}
   		
-      // member/loginForm.html 에 필드 셋팅을 위해 빈 LoginForm 객체를 생성하여 model 에 저장한다.
-      model.addAttribute("loginForm", new LoginForm());
-      // member/loginForm.html 페이지를 리턴한다.
-      return "/member/loginForm";
+    // member/loginForm.html 에 필드 셋팅을 위해 빈 LoginForm 객체를 생성하여 model 에 저장한다.
+    model.addAttribute("loginForm", new LoginForm());
+    // member/loginForm.html 페이지를 리턴한다.
+    return "/member/loginForm";
   }
 	
-	@GetMapping("sessionInfo")
-	public String sessionInfo(HttpServletRequest request) {
-		//getSession()는 비워놓으면 세션을 만듭니다. false:세션이 없으면 null 리턴
-		HttpSession session = request.getSession(false);		
-		log.info("sessionId:{}", session.getId());
-		log.info("maxInactiveInterval:{}", session.getMaxInactiveInterval());
-		log.info("creationTime:{}", new Date(session.getCreationTime()));
-		log.info("lastAccessedTime:{}", new Date(session.getLastAccessedTime()));
-		return "redirect:/";
-	}
-	
-	
+//	@GetMapping("sessionInfo")
+//	public String sessionInfo(HttpServletRequest request) {
+//		//getSession()는 비워놓으면 세션을 만듭니다. false:세션이 없으면 null 리턴
+//		HttpSession session = request.getSession(false);		
+//		log.info("sessionId:{}", session.getId());
+//		log.info("maxInactiveInterval:{}", session.getMaxInactiveInterval());
+//		log.info("creationTime:{}", new Date(session.getCreationTime()));
+//		log.info("lastAccessedTime:{}", new Date(session.getLastAccessedTime()));
+//		return "redirect:/";
+//	}
 	
 	@GetMapping("login-success")
 	public String loginSuccess(@AuthenticationPrincipal UserInfo userInfo) {
+		
+		if(userInfo == null) {
+			log.info("로그인하지 않은 사용자");
+			return "redirect:/member/login";
+		}
+		
 		log.info("로그인 성공, userInfo : {}", userInfo.getMember());
 		
 		return "redirect:/";
 	}
 	
 	@PostMapping("login-failed")
-	public String loginFailed(
-			@Validated @ModelAttribute("loginForm") LoginForm loginForm ,BindingResult result) {
+	public String loginFailed(BindingResult result) {
 		if(result.hasErrors()) {
 			return "/member/login";
 		}
@@ -182,20 +192,8 @@ public class MemberController {
     return "redirect:/";
 	}
 	
-	@GetMapping("test")
-	public String testMemberSave() {
-		log.info("실행시작 잘 됨");
-		Member member = new Member();
-		member.setMember_id("aaaaaa");
-		member.setPassword("aaaaaa");
-		member.setNickname("엄준식");
-		member.setName("엄준식");
-		member.setEmail("umjoon@naver.com");
-		member.setPhone("01012341234");
-		memberService.saveMember(member);
-		log.info("회원가입 잘 됨 : {}", member);
-		return "redirect:/";
-	}
+
+
 	
 
 

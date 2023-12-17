@@ -62,11 +62,11 @@ https://templatemo.com/tm-580-woox-travel
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                         <ul class="nav">
-                            <li><a href="tour_spot/list">관광지</a></li>
-                            <li><a href="restaurant/list">음식점</a></li>
-                            <li><a href="hotel/list">숙박지</a></li>
-                            <li><a href="board/list">게시판</a></li>
-                            <li><a href="reservation">고객문의</a></li>
+                            <li><a href="/tour_spot/list">관광지</a></li>
+                            <li><a href="/restaurant/list">음식점</a></li>
+                            <li><a href="/hotel/list">숙박지</a></li>
+                            <li><a href="/board/list">게시판</a></li>
+                            <li><a href="/reservation">고객문의</a></li>
                             <li sec:authorize="isAuthenticated()">
 							<a href="member/mypage">마이페이지</a>
 						</li>
@@ -153,15 +153,17 @@ https://templatemo.com/tm-580-woox-travel
               <div class="info-item">
                 <div class="row">
                   <div class="col-lg-12">
-                    <h4 style="display: inline-block;">오시는길 : &nbsp;</h4>
-                    <h4  style="display: inline-block;" th:text="${item.TRFC_INFO}">주소</h4>
+                    <h4 style="display: inline-block;">대중교통 이용안내 : &nbsp;</h4>
+                    <h4 style="display: inline-block;" th:text="${item.TRFC_INFO}">대중교통 정보</h4>
                   </div>
                 </div>
               </div>
             </div>
             
           </div>
-          <p th:text="${item.ITEMCNTNTS}"> 메인컨텐츠</p>
+          
+          <span style="line-height: 35px; font-size: 20px; line-height: 1.8;" th:text="${item.ITEMCNTNTS}">메인컨텐츠</span>
+          
           <div class="main-button">
             <a th:href="${item.HOMEPAGE_URL}" target="_blank">홈페이지 가기</a>
           </div>
