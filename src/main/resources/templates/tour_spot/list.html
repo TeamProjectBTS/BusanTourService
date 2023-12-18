@@ -378,6 +378,7 @@ https://templatemo.com/tm-580-woox-travel
         </div>
       </div>
     </div>
+  </div>
 
 
   <div class="best-locations" style="margin: auto;">
@@ -385,7 +386,7 @@ https://templatemo.com/tm-580-woox-travel
       <div class="row">
         <div class="col-lg-6 offset-lg-3">
           <div class="section-heading text-center" style="margin: auto;">
-            <h2 style="margin-top: 30px ;">부산 최고의 숙소들을 확인하세요</h2>
+            
           </div>
         </div>
     <div class="visit-country" style="margin-top: 50px;">
@@ -395,7 +396,8 @@ https://templatemo.com/tm-580-woox-travel
           <div class="items">
             <div class="row">
               <div class="col-lg-6" th:each="item : ${items}" style="padding-top: 30px;">
-				<a th:href="|@{/tour_spot/read(UC_SEQ=${item.UC_SEQ})}|">
+				<a th:href="@{/tour_spot/read(UC_SEQ=${item.UC_SEQ})}">
+					 
                 <div class="item" style="margin: auto;">
                   <div class="row">
                     <div class="col-lg-4 col-sm-5">

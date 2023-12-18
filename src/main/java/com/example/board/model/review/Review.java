@@ -11,7 +11,7 @@ import lombok.Data;
 public class Review {
 	
 	private Long review_id;
-	private Long UC_SEQ; // 
+	private int UC_SEQ; // 
 	private String member_id;
 	private String nickname;
 	private String sort; // 관광지, 음식점, 호텔 중 택1

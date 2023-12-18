@@ -55,20 +55,25 @@ public class ReviewService {
 		return attachedFile;
 	}
 	
-	public int getTotal(String searchText) {
-		return reviewMapper.getTotal(searchText);
+	public int getTotal(String searchTextReview) {
+		return reviewMapper.getTotal(searchTextReview);
 	}
 	
-	public List<Review> findReviews(String searchText, int startRecord, int countPerPage) {
+	public int getTotalInReview(Long UC_SEQ, String searchTextReview) {
+		return reviewMapper.getTotalInReview(UC_SEQ, searchTextReview);
+	}
+	
+	
+	public List<Review> findReviews(String searchTextReview, int startRecord, int countPerPage) {
 		RowBounds rowBounds = new RowBounds(startRecord, countPerPage);
-		return reviewMapper.findReviews(searchText, rowBounds);
+		return reviewMapper.findReviews(searchTextReview, rowBounds);
 	}
 	
 //	public Board findBoard(Long board_id) {
 //		return boardMapper.findBoard(board_id);
 //	}
 	
-	// 
+	 
 	public Review readReview(Long review_id) {
 		Review review = findReview(review_id);
 		review.addRv_view_count();

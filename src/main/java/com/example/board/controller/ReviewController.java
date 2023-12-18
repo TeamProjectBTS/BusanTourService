@@ -90,7 +90,7 @@ public class ReviewController {
         
         
         
-        // board/list 로 리다이렉트한다.
+        // review/list 로 리다이렉트한다.
         return "redirect:/review/list";
     }
 
@@ -109,6 +109,7 @@ public class ReviewController {
       
       // 데이터베이스에 저장된 모든 Board 객체를 리스트 형태로 받는다.
       List<Review> reviews = reviewService.findReviews(searchText, navi.getStartRecord(), navi.getCountPerPage());
+      
       // Board 리스트를 model 에 저장한다.
       model.addAttribute("reviews", reviews);
       model.addAttribute("navi", navi);
@@ -169,7 +170,7 @@ public class ReviewController {
         model.addAttribute("files", attachedFiles);
         
         // board/update.html 를 찾아서 리턴한다.
-        return "board/update";
+        return "review/update";
     }
 
     // 게시글 수정
