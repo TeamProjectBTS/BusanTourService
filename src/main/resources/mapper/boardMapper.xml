@@ -5,28 +5,30 @@
 <mapper namespace="com.example.board.repository.BoardMapper">
   <insert id="saveBoard">
     <selectKey keyProperty="board_id" resultType="long" order="BEFORE">
-      select seq_board.nextval from dual
+      select seq_busanguide.nextval from dual
     </selectKey>
     insert into board(
       board_id,
-      title,
-      contents,
-      member_id
+      member_id,
+      nickname,
+      b_title,
+      b_contents
     ) values (
       #{board_id},
-      #{title},
-      #{contents},
-      #{member_id}
+      #{member_id},
+      #{nickname},
+      #{b_title},
+      #{b_contents}
     )
   </insert>
   
   <select id="findBoards" resultType="board">
     select * from board 
     <if test="_parameter != null">
-    	where title like '%' || #{searchText} || '%'
+    	where b_title like '%' || #{searchText} || '%'
     </if>
     order by 
-    	created_time desc
+    	wr_date desc
   </select>
 
   <select id="findBoard" resultType="board">
@@ -36,9 +38,11 @@
   <update id="updateBoard">
     update board
     <set>
-        <if test="title != null">title = #{title},</if>
-        <if test="contents != null">contents = #{contents},</if>
-        <if test="hit != null">hit = #{hit}</if>
+        <if test="b_title != null">b_title = #{b_title},</if>
+        <if test="b_contents != null">b_contents = #{b_contents},</if>
+        <if test="b_view_count != null">b_view_count = #{b_view_count},</if>
+        <if test="b_like_count != null">b_like_count = #{b_like_count},</if>
+        <if test="b_com_count != null">b_com_count = #{b_com_count},</if>
     </set>
     where board_id = #{board_id}
   </update>
@@ -49,9 +53,9 @@
   
   <insert id="saveFile">
   	<selectKey keyProperty="attached_file_id" resultType="long" order="BEFORE">
-  		select seq_board.nextval from dual
+  		select seq_busanguide.nextval from dual
   	</selectKey>
-  	insert into attached_file (
+  	insert into board_attached_file (
   		attached_file_id,
   		board_id,
   		original_filename,
@@ -67,22 +71,22 @@
   </insert>
   
   <select id="findFileByBoardId" resultType="file">
-  	select * from attached_file where board_id = #{board_id}
+  	select * from board_attached_file where board_id = #{board_id}
   </select>
   
   <select id="findFileByAttachedFileId" resultType="file">
-  	select * from attached_file where attached_file_id = #{attached_file_id}
+  	select * from board_attached_file where attached_file_id = #{attached_file_id}
   </select>
   
   <select id="getTotal" resultType="int">
   	select count(*) from board
   	<if test="_parameter != null">
-  		where title like '%' || #{searchText} || '%'
+  		where b_title like '%' || #{searchText} || '%'
   	</if>
   </select>
   
   <delete id="removeAttachedFile">
-  	delete attached_file where attached_file_id = #{attached_file_id}
+  	delete board_attached_file where attached_file_id = #{attached_file_id}
   </delete>
   
   

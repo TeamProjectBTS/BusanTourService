@@ -6,7 +6,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <title>부산투어서비스 자유게시판</title>
+    <title>관리자페이지</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -24,6 +24,8 @@ TemplateMo 580 Woox Travel
 https://templatemo.com/tm-580-woox-travel
 
 -->
+
+
   </head>
 
 <body>
@@ -48,8 +50,8 @@ https://templatemo.com/tm-580-woox-travel
             <div class="col-12">
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
-                    <a href="/" class="logo2">
-                        <img src="/assets/images/logo2.png" alt="">
+                    <a href="/" class="logo">
+                        <img src="assets/images/logo.png" alt="">
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
@@ -70,19 +72,53 @@ https://templatemo.com/tm-580-woox-travel
         </div>
     </div>
   </header>
+  
+    <div class="container">
+<div>
+	
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<div>
+		<div class="row">
+		<h1>관리자페이지</h1>	
+		</div>
+	   </div>
+	</div>
+	<br>
+	<br>
+</div>
+  
   <!-- ***** Header Area End ***** -->
 
-  <div class="page-heading">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <h4>Busan Tour Service</h4>
-          <h2>부산여행</h2>
-          <div class="border-button text-center"><a href="about.html">자세히 보기</a></div>
-        </div>
-      </div>
-    </div>
-  </div>
+
+
+
+              <!--<div class="col-lg-4">
+>>>>>>> sub/hojun:src/main/resources/templates/deals.html
+                  <fieldset>
+                      <select name="Price" class="form-select" aria-label="Default select example" id="choosePrice" onChange="this.form.click()">
+                          <option selected>Price Range</option>
+                          <option value="100">$100 - $250</option>
+                          <option value="250">$250 - $500</option>
+                          <option value="500">$500 - $1,000</option>
+                          <option value="1000">$1,000 - $2,500</option>
+                          <option value="2500+">$2,500+</option>
+                      </select>
+                  </fieldset>
+<<<<<<< HEAD:src/main/resources/templates/board/list.html
+              </div>
+              <div class="col-lg-3" style="width: auto;">
+                  <fieldset>
+                      <input class="input" type="text" style="width: 250px;">
+                  </fieldset>
+              </div>
+              <div class="col-lg-3">                        
+=======
+              </div>-->
+  
   
   <style>
   
@@ -136,14 +172,12 @@ https://templatemo.com/tm-580-woox-travel
       margin-right: 10px
   }
     
-    
-    
 	.border-button {
       text-align: right;
   }
  
     .border-button a {
-    	margin-left: 10px;
+    margin-left: 10px;
   }
  
     .page-numbers {
@@ -165,95 +199,66 @@ https://templatemo.com/tm-580-woox-travel
   .call-to-action .border-button {
     text-align: center;
   }
-  
   </style>
   
-  <!-- *** 게시판 글쓰기 Start *** -->
+
   
+  <!-- *** 게시판 리스트 Start *** -->
   <div class="bulletin-board-container">
-	<!--<textarea name="re_content" style="position:absolute;visibility:hidden;"></textarea>
-	<table cellpadding="0" cellspacing="0" border="0" width="800" align="center" class="board-write">
-	  <from name="hidden_rewrite"></from>
-	  <input type="HIDDEN" name="re_subject" value>-->
-	  <!-- 상단 이미지 삽입부분 시작 -->
-	  <!--<tbody>
-		  <tr height="3" bgcolor="#CDCCCC">
-		  </tr>-->
-	  <!-- 상단 이미지 삽입부분 끝 -->
-	  <!-- 실제 write 부분 시작 -->
-	  	  <tr>
-			<td>
-			  <form method="post" action="/board/write" enctype="multipart/form-data" th:object="${writeForm}"
-			   style="margin:0; padding:0;" >
-			   <tr>
-				<td>
-				<input type="file" name="file">  
-				</td>
-			  </tr>
-			    <table cellpadding="0" cellspacing="0" border="0" width="100%" style="table-layout: fixed">
-				 <!-- <tbody> -->
-				  <tr>
-				   <!-- <td bgcolor="#EDEDED"> -->
-					<table cellpadding="0" cellspacing="0" border="0" whidth="100%">
-					 <tbody>
-					  <tr style="height:40px;">
-						<td align="center" style="width:60px;">제목 :</td>
-						<td style="padding:0 5px 0 0;">
-						  <input type="text" th:field="${writeForm.b_title}" style="width:700px;border:1 #C4CAD1 solid;font-size:9pt;padding-top: 3px;">	
-						</td>  
-					  </tr>	 
-					 </tbody>
-					</table>
-					<tr>
-					  <td align="center">
-						<textarea id="CONTENT2" th:field="${writeForm.b_contents}" class="signContent" style="float: left; resize: none; width: 100%; height: 500px;
-						margin-top: 2px; margin-bottom: 0px;"></textarea>						  
-					  </td>
-					 </tr>	   
-				   <!-- </td> -->	  
-				  </tr>					 
-				 <!-- </tbody> -->	
-				</table>
-				
-			
-			   <!-- 1픽셀 라인 -->
-			   <!-- <div id="bbs-poll-setting" class="bbs-poll-setting" data-has-poll="0" data-admin="0">
-				 <div class="top ipoll-1ucydmo" style="order: 1;">
-				 </div>   
-			   </div> -->
-			   <table cellspacing="0" cellpadding="0" border="0" width="100%">
-				 <tbody>
-					<tr height="1">
-					  <td width="100%" bgcolor="#22B3C1"></td>
-					</tr>
-				 </tbody>  
-			   </table>
-			   <div class="row" style="margin-top: 50px;">
-			    <div class="col-lg-12">
-			   	 <div class="border-button" style="display:inline-block; float: right;">
-				   <a href="/board/list">목록</a>
-			     </div>
-			     <div class="border-button" style="display: inline-block; float: right;">
-	                <input type="submit" value="작성완료">
-	             </div>
-			     <div class="border-button" style="display: inline-block; float: right; margin-right: 10px;">
-				    <input type="reset" value="취소">
-			     </div>
-			     </div>
-			    </div>
-				</form>
-			</td>	
-		  </tr>
-	  </tbody>
-	</table>
-	<!--<tr>
-	  <td>
-		<input type="file" name="file">
-	  </td>
-	</tr>-->
-	
+   <table class="table">
+    <thead>
+      <tr>
+        <th>번호</th>	  
+        <th>사용자ID</th>	  
+        <th>닉네임</th>	  
+        <th>이름</th>	  
+        <th>휴대폰번호</th>	  
+        <th>이메일</th>	  
+      </tr>
+    </thead>
+    
+    <body>
+      <tr>
+        <td>1</td>
+        <td><a href="post.html">게시물 제목 1</a></td>
+        <td>닉네임1</td>
+        <td>2023-01-01</td>
+        <td>100</td>
+        <td>50</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><a href="post.html">게시물 제목 2</a></td>
+        <td>닉네임2</td>
+        <td>2023-01-02</td>
+        <td>80</td>
+        <td>30</td>
+      </tr>
+     
+      <!-- Add more rows as needed -->
+    </body>
+   </table>
   
-  <!-- *** 게시판 글쓰기 End *** -->
+  <div class="search-bar">
+	 <form id="post-search-form" name="post-search" method="get" role="search" action="#">
+		<select name="type">
+	      <option selected value="">검색 내용</option>
+          <option value="title">사용자ID</option>
+          <option value="content">엄준식</option>
+          <option value="writer">어엄</option>
+          <option value="title" + "content">제목 + 내용</option>
+		</select>
+		 <input type="text" id="post-search" name="post-search" placeholder="제목 또는 내용을 입력하세요...">
+		 <button type="submit">검색</button>
+	 </form>
+		 <div class="border-button">
+      
+          <a href="list.html">정지시키기</a>
+         </div>
+   </div>
+  </div>
+  
+  <!-- *** 게시판 리스트 End *** -->
 
   <div class="visit-country" style="margin: auto;">
     <div class="container">
@@ -261,16 +266,17 @@ https://templatemo.com/tm-580-woox-travel
         <div class="col-lg-12">
           <div class="items">
             <div class="row">
-              
-              <!--<div class="col-lg-12">
+              <br><br><br>
+              <div class="col-lg-12">
                 <ul class="page-numbers">
                   <li><a href="#"><i class="fa fa-arrow-left"></i></a></li>
                   <li><a href="#">1</a></li>
                   <li class="active"><a href="#">2</a></li>
                   <li><a href="#">3</a></li>
                   <li><a href="#"><i class="fa fa-arrow-right"></i></a></li>
+                  <br><br>
                 </ul>
-              </div>-->
+              </div>
             </div>
           </div>
         </div>
@@ -296,16 +302,16 @@ https://templatemo.com/tm-580-woox-travel
     </div>
   </div>-->
 
-  <!--<footer>
+  <footer>
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <p>Copyright © 2036 <a href="#">WoOx Travel</a> Company. All rights reserved. 
+          <p>Copyright 이런거있는지모르겠지?© 2036 <a href="#">워싱시</a> Company. 
           <br>Design: <a href="https://templatemo.com" target="_blank" title="free CSS templates">TemplateMo</a></p>
         </div>
       </div>
     </div>
-  </footer>-->
+  </footer>
 
 
   <!-- Scripts -->
@@ -325,6 +331,7 @@ https://templatemo.com/tm-580-woox-travel
       $(this).addClass("active"); 
     });
   </script>
+
   </body>
 
 </html> 

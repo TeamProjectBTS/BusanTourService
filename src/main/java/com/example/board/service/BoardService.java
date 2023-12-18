@@ -64,7 +64,7 @@ public class BoardService {
 
 	public Board readBoard(Long board_id) {
 		Board board = findBoard(board_id);
-		board.addHit();
+		board.addB_view_count();
 		updateBoard(board, false, null);
 		AttachedFile attachedFile = findFileByBoardId(board_id);
 		

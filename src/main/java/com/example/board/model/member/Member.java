@@ -14,4 +14,8 @@ public class Member {
 	private String email;
 	private String attached_filename;
 	private RoleType role;
+	
+	
+	
+	
 }

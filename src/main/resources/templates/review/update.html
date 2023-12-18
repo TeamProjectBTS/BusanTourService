@@ -6,9 +6,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-
     <title>부산투어서비스 자유게시판</title>
-
 
     <!-- Bootstrap core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -50,29 +48,18 @@ https://templatemo.com/tm-580-woox-travel
             <div class="col-12">
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
-                    <a href="/" class="logo2">
-                        <img src="/assets/images/logo2.png" alt="">
+                    <a href="/" class="logo">
+                        <img src="assets/images/logo.png" alt="">
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
-                    <ul class="nav">	
-<<<<<<< HEAD
-                        <li><a href="index">관광지</a></li>
-=======
-                        <li><a href="/tour_spot/list">관광지</a></li>
->>>>>>> sub/sungmin
-                        <li><a href="/restaurant/list">음식점</a></li>
-                        <li><a href="/hotel/list">숙소</a></li>
-                        <li><a href="/complain/list">고객문의</a></li>                  
-                        <li sec:authorize="isAuthenticated()">
-							<a href="/member/mypage">마이페이지</a>
-						</li>
-						<li sec:authorize="isAuthenticated()">
-							<a href="/member/logout">로그아웃</a>
-						</li>
-						<li sec:authorize="isAnonymous()">
-							<a href="/member/login">로그인</a>
-						</li>
+                    <ul class="nav">
+                        <li><a href="index.html">관광지</a></li>
+                        <li><a href="about.html">음식점</a></li>
+                        <li><a href="about.html">숙소</a></li>
+                        <li><a href="deals.html" class="active">게시판</a></li>
+                        <li><a href="reservation.html">고객문의</a></li>
+                        <li><a href="reservation.html">로그인 / 회원가입</a></li>
                     </ul>   
                     <a class='menu-trigger'>
                         <span>Menu</span>
@@ -90,8 +77,62 @@ https://templatemo.com/tm-580-woox-travel
       <div class="row">
         <div class="col-lg-12">
           <h4>Busan Tour Service</h4>
-          <h2>부산여행</h2>
+          <h2>뭘로할까?</h2>
           <div class="border-button text-center"><a href="about.html">자세히 보기</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="search-form">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <form id="search-form" name="gs" method="submit" role="search" action="#">
+            <div class="row">
+              <div class="col-lg-2">
+                <h4>카테고리:</h4>
+              </div>
+              <div class="col-lg-4">
+
+                  <fieldset>
+                      <select name="Location" class="form-select" aria-label="Default select example" id="chooseLocation" onChange="this.form.click()">
+                          <option selected>대표 관광지</option>
+                          <option type="checkbox" name="option1" value="광안리">광안리</option>
+                          <option value="해운대">해운대</option>
+                          <option value="미정">미정</option>
+                          <option value="미정">미정</option>
+                          <option value="미정">미정</option>
+                          <option value="미정">미정</option>
+                          <option value="미정">미정</option>
+                          <option value="미정">미정</option>
+                          <option value="미정">미정</option>
+                      </select>
+                  </fieldset>
+              </div>
+              <!--<div class="col-lg-4">
+=======
+              <div class="col-lg-3">
+>>>>>>> sub/sungmin:src/main/resources/templates/board/list.html
+                  <fieldset>
+                      <select name="Price" class="form-select" aria-label="Default select example" id="choosePrice" onChange="this.form.click()">
+                          <option selected>Price Range</option>
+                          <option value="100">$100 - $250</option>
+                          <option value="250">$250 - $500</option>
+                          <option value="500">$500 - $1,000</option>
+                          <option value="1000">$1,000 - $2,500</option>
+                          <option value="2500+">$2,500+</option>
+                      </select>
+                  </fieldset>
+<<<<<<< HEAD:src/main/resources/templates/deals.html
+              </div>-->
+              <div class="col-lg-2">                        
+                  <fieldset>
+                      <button class="border-button">검색</button>
+                  </fieldset>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
     </div>
@@ -149,22 +190,6 @@ https://templatemo.com/tm-580-woox-travel
       margin-right: 10px
   }
     
-	.board-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-	.board-bottom form {
-    display: flex;
-    align-items: center;
-  }
-
-	.board-bottom select,
-	.board-bottom input[type="text"] {
-    margin-right: 10px; 
-  }
-	
 	.border-button {
       text-align: right;
   }
@@ -198,17 +223,6 @@ https://templatemo.com/tm-580-woox-travel
   <!-- *** 게시판 리스트 Start *** -->
   <div class="bulletin-board-container">
    <table class="table">
-    <div class="search-bar">
-	 <form id="post-search-form" name="post-search" method="get" role="search" action="#">
-	  <input type="text" id="post-search" name="post-search" placeholder="제목 또는 내용을 입력하세요...">
-		 <button type="submit" class="search-btn board-img">
-			<i class="fa fa-search" aria-hidden="true"></i>
-		 </button>
-	 </form>
-	  <div class="border-button">
-        <a href="/board/write">글쓰기</a>
-      </div>
-    </div>
     <thead>
       <tr>
         <th>번호</th>	  
@@ -229,29 +243,121 @@ https://templatemo.com/tm-580-woox-travel
         <td>100</td>
         <td>50</td>
       </tr>
-        <tr th:each="board, boardStat: ${boards}">
-        <td th:text="${boardStat.count}" class="center"></td>
-        <td class="center"><a th:text="${board.b_title}" th:href="@{/board/read(board_id=${board.board_id})}"></a></td>
-        <td th:text="${board.nickname}" class="center"></td>
-        <td th:text="${#temporals.format(board.wr_date, 'yyyy-MM-dd HH:mm')}" class="center"></td>
-        <td th:text="${board.b_view_count}" class="center"></td>
-        <td th:text="${board.b_like_count}" class="center"></td>
+      <tr>
+        <td>2</td>
+        <td><a href="post.html">게시물 제목 2</a></td>
+        <td>닉네임2</td>
+        <td>2023-01-02</td>
+        <td>80</td>
+        <td>30</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><a href="post.html">게시물 제목 3</a></td>
+        <td>닉네임2</td>
+        <td>2023-01-03</td>
+        <td>80</td>
+        <td>30</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><a href="post.html">게시물 제목 4</a></td>
+        <td>닉네임2</td>
+        <td>2023-01-04</td>
+        <td>80</td>
+        <td>30</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><a href="post.html">게시물 제목 5</a></td>
+        <td>닉네임2</td>
+        <td>2023-01-05</td>
+        <td>80</td>
+        <td>30</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><a href="post.html">게시물 제목 6</a></td>
+        <td>닉네임2</td>
+        <td>2023-01-06</td>
+        <td>80</td>
+        <td>30</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><a href="post.html">게시물 제목 7</a></td>
+        <td>닉네임2</td>
+        <td>2023-01-07</td>
+        <td>80</td>
+        <td>30</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><a href="post.html">게시물 제목 8</a></td>
+        <td>닉네임2</td>
+        <td>2023-01-08</td>
+        <td>80</td>
+        <td>30</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><a href="post.html">게시물 제목 9</a></td>
+        <td>닉네임2</td>
+        <td>2023-01-09</td>
+        <td>80</td>
+        <td>30</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><a href="post.html">게시물 제목 10</a></td>
+        <td>닉네임2</td>
+        <td>2023-01-10</td>
+        <td>80</td>
+        <td>30</td>
       </tr>
       <!-- Add more rows as needed -->
     </body>
    </table>
    
-   <!--<div class="board-bottom">
+   <div class="board-bottom">
 	 <form action="#" method="get">
 	 	<input type="hidden" name="query" value="list">
 	 	<input type="hidden" name="p" value="1">
 	 	<input type="hidden" name="sterm" value>
-		<input type="text" name="keyword" id="sword" placeholder="제목 또는 내용을 입력하세요...">
+	 	<select name="name">
+		  <option value="title">제목</option>	 
+		  <option value="content">내용</option>	 
+		  <option value="writer">닉네임</option>	 
+		  <option value="title" + "content">제목 + 내용</option>	 
+		</select>
+		<input type="text" name="keyword" id="sword" value>
 		<button type="sumit" class="search-btn board-img">
 		  <i class="fa fa-search" aria-hidden="true"></i>
 		</button>
 	 </form>
-  </div>-->
+	 	<div class="border-button">
+          <a href="/board/write">글쓰기</a>
+        </div>   
+   </div>
+   <!-- <div class="search-bar">
+	 <form id="post-search-form" name="post-search" method="get" role="search" action="#">
+		<select name="type">
+	      <option selected value="">검색 내용</option>
+          <option value="title">제목</option>
+          <option value="content">내용</option>
+          <option value="writer">닉네임</option>
+          <option value="title" + "content">제목 + 내용</option>
+		</select>
+		 <input type="text" id="post-search" name="post-search" placeholder="제목 또는 내용을 입력하세요...">
+		 <button type="submit" class="search-btn board-img">
+			<i class="fa fa-search" aria-hidden="true"></i>	 /* 돋보기 */
+		 </button>
+	 </form>
+		 <div class="border-button">
+          <a href="/board/write">글쓰기</a>
+         </div>
+   </div> -->
+  </div>
   <!-- *** 게시판 리스트 End *** -->
 
   <div class="visit-country" style="margin: auto;">
@@ -299,7 +405,7 @@ https://templatemo.com/tm-580-woox-travel
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <p>Copyright © 2036 <a href="#">워싱시</a> Company. All rights reserved. 
+          <p>Copyright © 2036 <a href="#">WoOx Travel</a> Company. All rights reserved. 
           <br>Design: <a href="https://templatemo.com" target="_blank" title="free CSS templates">TemplateMo</a></p>
         </div>
       </div>

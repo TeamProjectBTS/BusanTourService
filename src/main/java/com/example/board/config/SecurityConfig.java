@@ -32,12 +32,13 @@ public class SecurityConfig {
 			.and()
 			// URL별 접근권한제어 //**접근권한 주기
 			.authorizeRequests()
-			.antMatchers("/", "/member/join", "/member/login", "/member/login-failed","/member/logout").permitAll()
 			.antMatchers("/js/*", "/favicon.ico", "/error", "/vendor/**", "/assets/**",
 										"/hotel/**","/deals","/reservation").permitAll()
 			.antMatchers("/", "/member/login", "/member/logout", "/member/join", "/member/login-success",
 					"/member/login-failed", "/**.css").permitAll()
-			.antMatchers("/js/*", "/favicon.ico", "/error", "/**/**", "/tour_spot/**").permitAll()
+
+			.antMatchers("/js/*", "/favicon.ico", "/error",  "/tour_spot/list").permitAll()
+
 			// "/admin" 하위의 모든 요청은 인증 후에 ADMIN 권한을 가진 사용자만 접근 가능
 			.antMatchers("/admin/**").hasAnyRole("ADMIN")
 			// 위의 경로 이외의 모든 경로는 인증을 받아야 접근 가능
@@ -55,7 +56,7 @@ public class SecurityConfig {
 			// 로그인에 성공했을때 이동할 URL
 			.defaultSuccessUrl("/member/login-success")
 			// 로그인에 실패했을때 이동할 URL
-//			.failureUrl("/member/login-failed")
+			.failureUrl("/member/login-failed")
 			.failureHandler(authenticationFailureHandler)
 			.and()
 			.logout()
