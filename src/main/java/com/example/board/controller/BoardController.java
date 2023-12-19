@@ -160,8 +160,8 @@ public class BoardController {
         }
         
         // model 에 board 객체를 저장한다.
-        model.addAttribute("board", Board.toBoardUpdateForm(board));
-        
+        model.addAttribute("updateBoard", Board.toBoardUpdateForm(board));
+        log.info("updateBoard: {}", Board.toBoardUpdateForm(board));
         AttachedFile attachedFile = boardService.findFileByBoardId(board_id);
 //        log.info("첨부파일 : {}", attachedFile);
         
@@ -175,17 +175,16 @@ public class BoardController {
     @PostMapping("update")
     public String update(@AuthenticationPrincipal UserInfo userInfo,
                          @RequestParam Long board_id,
-                         @Validated @ModelAttribute("board") BoardUpdateForm updateBoard,
+                         @Validated @ModelAttribute("updateBoard") BoardUpdateForm updateBoard,
                          @RequestParam(required=false) MultipartFile file,
-                         
                          BindingResult result) {
         
 
-//        log.info("board: {}", updateBoard);
+        log.info("board: {}", updateBoard);
         // validation 에 에러가 있으면 board/update.html 페이지로 돌아간다.
         if (result.hasErrors()) {
         	log.info("error");
-            return "board/update";
+            return "/board/update.html";
         }
 
         // board_id 에 해당하는 Board 정보를 데이터베이스에서 가져온다.
@@ -195,13 +194,10 @@ public class BoardController {
             log.info("수정 권한 없음");
             return "redirect:/board/list";
         }
-        // 제목을 수정한다.
-        board.setB_title(updateBoard.getB_title());
-        // 내용을 수정한다.
-        board.setB_contents(updateBoard.getB_contents());
+        
         log.info("board:{}", board);
         // 수정한 Board 를 데이터베이스에 update 한다.
-        boardService.updateBoard(board , updateBoard.isFileRemoved(), file);
+        boardService.updateBoard(BoardUpdateForm.toBoard(updateBoard), updateBoard.isFileRemoved(), file);
         // 수정이 완료되면 리스트로 리다이렉트 시킨다.
         return "redirect:/board/list";
     }

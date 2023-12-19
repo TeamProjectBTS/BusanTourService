@@ -185,7 +185,7 @@ public class ReviewController {
 //        log.info("board: {}", updateBoard);
         // validation 에 에러가 있으면 board/update.html 페이지로 돌아간다.
         if (result.hasErrors()) {
-            return "review/update";
+            return "/review/update.html";
         }
 
         // board_id 에 해당하는 Board 정보를 데이터베이스에서 가져온다.

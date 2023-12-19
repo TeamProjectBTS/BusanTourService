@@ -5,10 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @SpringBootApplication
-public class SpiringBootBoardV1Application {
+public class SpringBootBoardV1Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpiringBootBoardV1Application.class, args);
+		SpringApplication.run(SpringBootBoardV1Application.class, args);
 	}
 
 }
