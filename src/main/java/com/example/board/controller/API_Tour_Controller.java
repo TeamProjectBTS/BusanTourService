@@ -84,6 +84,12 @@ public class API_Tour_Controller {
   	return "tour_spot/list";
   }
   
+
+
+
+
+
+
   @GetMapping("read")
   public String readTour(@AuthenticationPrincipal UserInfo userInfo,
   		@RequestParam(value="UC_SEQ") Long UC_SEQ,
@@ -117,7 +123,7 @@ public class API_Tour_Controller {
     model.addAttribute("searchTextReview", searchTextReview);
   	model.addAttribute("loginUser",userInfo);
   	return "tour_spot/read";
-  }
+  
   
   
 	
@@ -125,4 +131,7 @@ public class API_Tour_Controller {
 	
 	
 }
+  
+}
+
 

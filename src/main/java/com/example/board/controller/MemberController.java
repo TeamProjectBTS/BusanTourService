@@ -192,21 +192,30 @@ public class MemberController {
     return "redirect:/";
 	}
 	
-//	@GetMapping("test")
-//	public String testMemberSave() {
-//		log.info("실행시작 잘 됨");
-//		Member member = new Member();
-//		member.setMember_id("aaaaaa");
-//		member.setPassword("aaaaaa");
-//		member.setNickname("엄준식");
-//		member.setName("엄준식");
-//		member.setEmail("umjoon@naver.com");
-//		member.setPhone("01012341234");
-//		memberService.saveMember(member);
-//		log.info("회원가입 잘 됨 : {}", member);
-//		return "redirect:/";
-//	}
+
 
 	
+
+
+		@GetMapping("mypage")
+		public String mypage(//@AuthenticationPrincipal UserInfo userInfo, 
+									Model model) {
+			
+			return "member/mypage";
+		}
+		
+		@GetMapping("myboard")
+		public String myboard(@AuthenticationPrincipal UserInfo userInfo, 
+									Model model) {
+			
+			return "member/myboard";
+		}
+		
+		@GetMapping("myreview")
+		public String myreview(@AuthenticationPrincipal UserInfo userInfo, 
+									Model model) {
+			
+			return "member/myreview";
+		}
 	
 }

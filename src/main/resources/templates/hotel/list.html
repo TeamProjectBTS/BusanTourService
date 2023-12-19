@@ -55,6 +55,7 @@ https://templatemo.com/tm-580-woox-travel
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                         <ul class="nav">
+<<<<<<< HEAD
                         <li><a style=" border-radius: 0px;" class="menu-item" href="/tour_spot/list">관광지</a></li>
                         <li><a style=" border-radius: 0px;" class="menu-item" href="/restaurant/list">음식점</a></li>
                         <li><a style=" border-radius: 0px;" class="menu-item" href="/hotel/list">숙소</a></li>
@@ -68,6 +69,20 @@ https://templatemo.com/tm-580-woox-travel
 								<a class="menu-item" href="/complain/list" style=" border-radius: 0px;">고객문의</a>
 								<a class="menu-item" href="/member/logout" style=" border-radius: 0px;">로그아웃</a>
 							</div>
+=======
+
+                        <li><a href="/tour_spot/list">관광지</a></li>
+                        <li><a href="/restaurant/list">음식점</a></li>
+                        <li><a href="/hotel/list">숙소</a></li>
+                        <li><a href="/board/list">게시판</a></li> <!--연결안됌-->
+                        <li><a href="/complain/list">고객문의</a></li> 
+
+                        <li sec:authorize="isAuthenticated()">
+							<a href="/member/mypage">마이페이지</a>
+						</li>
+						<li sec:authorize="isAuthenticated()">
+							<a href="/member/logout">로그아웃</a>
+>>>>>>> sub/jaewoo
 						</li>
 						
 						<li sec:authorize="isAnonymous()">
