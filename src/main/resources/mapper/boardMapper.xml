@@ -53,9 +53,9 @@
   
   <insert id="saveFile">
   	<selectKey keyProperty="attached_file_id" resultType="long" order="BEFORE">
-  		select seq_board.nextval from dual
+  		select seq_busanguide.nextval from dual
   	</selectKey>
-  	insert into attached_file (
+  	insert into board_attached_file (
   		attached_file_id,
   		board_id,
   		original_filename,

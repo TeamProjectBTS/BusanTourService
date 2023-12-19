@@ -23,10 +23,6 @@ public class HomeController {
 	  return "index";
   }
 	
-	
-	
-
-	
 	@GetMapping("admin")
 	public String adminHome(@AuthenticationPrincipal UserInfo userInfo, Model model) {
 		model.addAttribute("adminUser", userInfo);

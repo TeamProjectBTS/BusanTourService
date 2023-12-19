@@ -50,19 +50,30 @@ https://templatemo.com/tm-580-woox-travel
             <div class="col-12">
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
-                    <a href="/" class="logo">
-                        <img src="assets/images/logo.png" alt="">
+                    <a href="/" class="logo2">
+                        <img src="/assets/images/logo2.png" alt="">
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li><a href="about">관광지</a></li>
-                        <li><a href="about">음식점</a></li>
-                        <li><a href="about">숙소</a></li>
-                        <li><a href="deals">게시판</a></li>
-                        <li><a href="reservation">고객문의</a></li>
-                        <li><a href="loginForm" class="active">로그인</a></li>
-                    </ul>   
+
+                        <li><a href="/tour_spot/list">관광지</a></li>
+                        <li><a href="/restaurant/list">음식점</a></li>
+                        <li><a href="/hotel/list">숙소</a></li>
+                        <li><a href="/board/list">게시판</a></li> <!--연결안됌-->
+                        <li><a href="/complain/list">고객문의</a></li> 
+
+                        <li sec:authorize="isAuthenticated()">
+							<a href="/member/mypage">마이페이지</a>
+						</li>
+						<li sec:authorize="isAuthenticated()">
+							<a href="/member/logout">로그아웃</a>
+						</li>
+						<li sec:authorize="isAnonymous()">
+							<a href="/member/login">로그인</a>
+						</li>
+                    </ul>
+                    
                     <a class='menu-trigger'>
                         <span>Menu</span>
                     </a>
@@ -74,15 +85,6 @@ https://templatemo.com/tm-580-woox-travel
   </header>
   <!-- ***** Header Area End ***** -->
 
-
- 
- 
-           
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <div class="reservation-form">
     <div class="container">
@@ -98,51 +100,60 @@ https://templatemo.com/tm-580-woox-travel
               <div class="col-lg-6">
                   <fieldset>
                       <label for="member_id" class="form-label">&nbsp;&nbsp;&nbsp;&nbsp; ID입력</label>
-                      <input type="text" th:field="*{member_id}" class="UserID" placeholder="ID를 입력해 주세요" autocomplete="on" required>
-                  	  <div th:errorClass="error" th:errors="*{member_id}"></div>
+                      <input type="text" th:field="*{member_id}" class="UserID" placeholder="6~20자의 ID" autocomplete="on" required>
+                  	  <!--<div th:errorClass="error" th:errors="*{member_id}"></div>-->
+             		<div class="alert alert-success" th:errors="*{member_id}"></div>
                   </fieldset>
               </div>
               
               <div class="col-lg-6">
                   <fieldset>
                       <label for="password" class="form-label">&nbsp;&nbsp;&nbsp;&nbsp; 패스워드 입력</label>
-                 	 <input type="password" th:field="*{password}" class="password" placeholder="패스워드를 입력해 주세요" autocomplete="on" required>
+                 	 <input type="password" th:field="*{password}" class="password" placeholder="6~20자의 패스워드" autocomplete="on" required>
+                 	 <div class="alert alert-success" th:errors="*{password}"></div>
                   </fieldset>
-              </div>
+              </div>	
               
               
               <div class="col-lg-6">
                   <fieldset>
                       <label for="nickname" class="form-label">&nbsp;&nbsp;&nbsp;&nbsp; 닉네임 입력</label>
-                      <input type="text" th:field="*{nickname}" placeholder="닉네임을 입력해 주세요" autocomplete="on" required>
+                      <input type="text" th:field="*{nickname}" placeholder="닉네임 입력" autocomplete="on" required>
+                       <div class="alert alert-danger" th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}"></div>
+
                   </fieldset>
               </div>
               
               <div class="col-lg-6">
                 <fieldset>
                     <label for="email" class="form-label">&nbsp;&nbsp;&nbsp;&nbsp; E-Mail 입력</label>
-                    <input type="text" th:field="*{email}" placeholder="E-mail을 입력해 주세요" autocomplete="on" required>
+                    <input type="text" th:field="*{email}" placeholder="ex)abc@naver.com" autocomplete="on" required>
+                     <div class="alert alert-success" th:errors="*{email}"></div>
                 </fieldset>
               </div>
               
               <div class="col-lg-6">
                 <fieldset>
                     <label for="name" class="form-label">&nbsp;&nbsp;&nbsp;&nbsp; 이름 입력</label>
-                    <input type="text" th:field="*{name}" placeholder="이름을 입력해 주세요" autocomplete="on" required>
+                    <input type="text" th:field="*{name}" placeholder="ex)홍길동" autocomplete="on" required>
+                     <div  th:errors="*{name}"></div>
                 </fieldset>
               </div>
               
               <div class="col-lg-6">
                 <fieldset>
                     <label for="phone" class="form-label">&nbsp;&nbsp;&nbsp;&nbsp; 휴대전화 입력</label>
-                    <input type="text" th:field="*{phone}" placeholder="휴대전화를 입력해 주세요" autocomplete="on" required>
+                    <input type="text" th:field="*{phone}" placeholder="ex)0101112222" autocomplete="on" required>
+                     <div class="alert alert-success" th:errors="*{phone}"></div>
                 </fieldset>
               </div>
        
               <div class="col-lg-3" style="margin: auto;">                        
-                  <fieldset>
-                      <button class="main-button">가입하기</button>
-                  </fieldset>
+					  <fieldset>
+                      <input type="submit" style="background-color: lightsteelblue;"  value="회원가입">	
+                      <input type="reset" style="background-color: lightsteelblue;" value="다시작성">
+					  </fieldset>
+                    
               </div>
             </div>
           </form>
@@ -180,6 +191,10 @@ https://templatemo.com/tm-580-woox-travel
       $(".option").removeClass("active");
       $(this).addClass("active"); 
     });
+    
+   
+    
+
   </script>
 
   </body>

@@ -16,7 +16,6 @@ import lombok.RequiredArgsConstructor;
 
 import lombok.extern.slf4j.Slf4j;
 
-import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -63,7 +62,7 @@ public class BoardController {
         
         // writeForm.html의 필드 표시를 위해 빈 BoardWriteForm 객체를 생성하여 model 에 저장한다.
         model.addAttribute("writeForm", new BoardWriteForm());
-        // board/writeForm.html 을 찾아 리턴한다.
+        // board/writeForm.html 을 찾아 리턴한다.abou
         return "board/write";
     }
 
@@ -114,6 +113,7 @@ public class BoardController {
       model.addAttribute("navi", navi);
       model.addAttribute("searchText", searchText);
 //       board/list.html 를 찾아서 리턴한다.
+
       return "board/list";
     }
     	

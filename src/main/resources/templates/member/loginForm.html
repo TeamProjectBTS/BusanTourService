@@ -50,26 +50,29 @@ https://templatemo.com/tm-580-woox-travel
             <div class="col-12">
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
-                    <a href="/" class="logo">
-                        <img src="assets/images/logo.png" alt="">
+                    <a href="/" class="logo2">
+                        <img src="/assets/images/logo2.png" alt="">
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
 
-                        <li><a href="tour_spot/list">관광지</a></li>
-                        <li><a href="restaurant/list">음식점</a></li>
-                        <li><a href="hotel/list">숙소</a></li>
-                        <li><a href="board/list">게시판</a></li>
-                        <li><a href="reservation">고객문의</a></li>
+                        <li><a href="/tour_spot/list">관광지</a></li>
+                        <li><a href="/restaurant/list">음식점</a></li>
+                        <li><a href="/hotel/list">숙소</a></li>
+                        <li><a href="/board/list">게시판</a></li> <!--연결안됌-->
+                        <li><a href="/complain/list">고객문의</a></li> 
+
                         <li sec:authorize="isAuthenticated()">
-							<a href="member/mypage" class="active">마이페이지</a>
+							<a href="/member/mypage">마이페이지</a>
+						</li>
+						<li sec:authorize="isAuthenticated()">
+							<a href="/member/logout">로그아웃</a>
 						</li>
 						<li sec:authorize="isAnonymous()">
-							<a href="member/login" class="active">로그인</a>
+							<a href="/member/login">로그인</a>
 						</li>
-
-                    </ul>   
+                    </ul>
                     <a class='menu-trigger'>
                         <span>Menu</span>
                     </a>
@@ -79,30 +82,77 @@ https://templatemo.com/tm-580-woox-travel
         </div>
     </div>
   </header>
-  <!-- ***** Header Area End ***** -->
+
 
 <div class="reservation-form">
 	<div class="container">
+<!--<<<<<<< HEAD
+		<div class="center">
+
+			<div class="col-lg-12">
+				<form id="reservation-form" name="gs" method="submit" role="search" action="#">
+
+					<div class="row">
+						<div class="col-lg-12">
+							<h4> <em>로그인</em> <em></em></h4>
+						</div>
+						<div class="col-lg-3">
+							 ID 입력칸 
+							<fieldset style="margin: auto;">
+								<label for="Name" class="form-label">ID입력</label>
+								<input type="text" name="Name" class="Name" placeholder="ID를 입력하세요" autocomplete="on"
+									required>
+							</fieldset>
+						</div>
+						<div class="col-lg-3">
+							<fieldset style="margin: auto;">
+								<label for="Number" class="form-label">패스워드 입력</label>
+								<input type="password" name="Number" class="Number" placeholder="패스워드를 입력하세요"
+									autocomplete="on" required>
+							</fieldset>
+						</div>
+
+
+
+						<div class="col-lg-3" style="margin: auto;">
+							<fieldset>
+								<button class="main-button">로그인</button>
+
+							</fieldset>
+						</div>
+						<div class="col-lg-3" style="margin: auto;">
+							<fieldset>
+								<div class="main-button">
+									<a style="width: max-content;" href="joinForm">회원가입</a>
+								</div>
+							</fieldset>
+=======-->
 		<div class="row">
 			<div class="col-lg-12">
 			</div>
 			<div class="col-lg-6" style="margin: auto;">
-				<form id="reservation-form" method="post" role="search" action="/member/login">
+				<form th:object="${loginForm}" id="reservation-form" method="post" role="search" action="/member/login">
 					<div class="row">
 						<div class="col-lg-12">
 							<h4><em>로그인</em></h4>
 						</div>
 						<div class="col-lg-12">
+						<div th:if="${error}" class="alert alert-success">아이디나 비번 똑디적어라 마
+							    <p th:text="${errorMsg}"></p>
+							</div>
+						</div>
+						<div class="col-lg-12">
 							<fieldset>
 								<label for="member_id" class="form-label">ID입력</label>
-								<input type="text" id="member_id" name="member_id" placeholder="ID를 입력하세요" autocomplete="on"
+								<input type="text" th:field="*{member_id}" placeholder="ID를 입력하세요" autocomplete="on"
 									required>
+					
 							</fieldset>
 						</div>
 						<div class="col-lg-12">
 							<fieldset>
 								<label for="password" class="form-label">패스워드 입력</label>
-								<input type="password" id="password" name="password" placeholder="패스워드를 입력하세요"
+								<input type="password" th:field="*{password}" placeholder="패스워드를 입력하세요"
 									autocomplete="on" required>
 							</fieldset>
 						</div>
@@ -112,18 +162,24 @@ https://templatemo.com/tm-580-woox-travel
 							</fieldset>
 							<br>
 						</div>
-						
+			
 						<div class="col-lg-12" style="margin: auto;">
 							<div class="main-button">
 								<a style="display: block; text-align: center;" href="/member/join">회원가입</a>
 							</div>
+
 						</div>
 					</div>
-				</form>
+				</for>
 			</div>
+
+  		</div>
+  </div>
+
 		</div>
 	</div>
 </div>
+
 
   <footer>
     <div class="container">
