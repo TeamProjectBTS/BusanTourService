@@ -304,6 +304,112 @@ https://templatemo.com/tm-580-woox-travel
   .metadata-container span {
       margin-left: 20px; /* Adjust the margin as needed */
   }
+  
+  element.style {
+	  table-layout: fixed;
+	  word-wrap: break-word;
+	  clear: both;
+  }
+  
+  table {
+	  border-collapse: collapse;
+	  border-spacing: 0;
+  }
+  
+  #i-comment-list {
+	  height: 0;
+	  overflow: hidden;
+  }
+  
+  .cmtHead {
+	  overflow: hidden;
+	  padding: 0 0 10px;
+	  width: 100%
+	  border-color= #f0f0f0;
+  }
+  
+  .comtHead h4 {
+	float: left;
+	margin: 0 10px 0 0;
+	padding: 0;
+	background: none;
+	font-size: 15px;
+  }
+  
+  .cmtHead h4 strong {
+	  position: relative;
+	  top: -1px;
+	  margin: 0 0 0 3px;
+	  font-size: 15px;
+	  font-weight: bold;
+	  color: #000;
+  }
+  
+  .commentWrite {
+	  width: 100%;
+  }
+  
+  .commentWrite {
+	  background-color: #F8F8F8;
+	  clear: both;
+  }
+  
+  .commentWrite .cmtWriteForm {
+	  padding: 20px 0;
+	  width: 100%;
+  }
+  
+  tr {
+	  display: table-row;
+	  vertical-align: inherit;
+	  border-color: inherit;
+  }
+  
+  .commentWrite .cmtWriteForm .cmtTitle strong {
+	  display: inline;
+	  float: left;
+	  margin-top: 8px;
+	  text-align: center;
+	  width: 111px;
+	  height: 26px;
+	  padding-top: 4px;
+  }
+  
+  td {
+	  display: table-cell;
+	  vertical-align: inherit;
+  }
+  
+  .cmtContent {
+	  width: 100%;
+	  margin-left: 8px;
+  }
+  
+  .cmtContent textarea {
+	  width: 570px;
+	  border-color: #ccc;
+	  font-family: inherit;
+	  outline: none;
+	  font-size: 14px;
+	  resize: vertical;
+	  min-height: 66px;
+	  max-height: 600px;
+  }
+  
+  element.style {
+	  vertical-align: bottom;
+  }
+  
+  .cmtSubmit button {
+	  width: 100%;
+	  height: 100%;
+	  border: none;
+	  background: none;
+	  font-size: 13px;
+	  text-indent: 0;
+  }
+  
+  
   </style>
   
   <!-- *** 게시판 읽기 Start *** -->
@@ -383,6 +489,61 @@ https://templatemo.com/tm-580-woox-travel
    </div>
   </div>
   <!-- *** 게시판 읽기 End *** -->
+  
+  <!-- *** 댓글 start *** -->
+  <table cellpadding="0" cellspacing="0" border="0" style="table-layout:fixed; word-wrap:break-word;clear:both;">
+   <tbod>
+	<tr>
+	 <td>
+	  <div id="powerbbsCmt2" class>
+		<div id="i-comment-list"></div>  
+	  <div class="cmtWrap">
+		<div class="cmtHead">
+		  <h4 class>
+			댓글
+			<strong id="cmtCount_1702945348"></strong>  
+		  </h4>
+		<div id="cmtFormWrap_1702945348" class="cmtBottom"> <!-- cmtBottom 안되면 board-bottom 써보기 -->
+		 <div id="cmtForm_1702945348" class="commentWrite">
+		   <form id="fmCmtF1_1702945348" name="fmCmtF1" onsubmit="return false;">
+			<div class="cmtWriteForm">
+			  <table cellspacing="0" cellpadding="0">
+				<tbody>
+				  <tr>
+					<td>
+					 <div class="cmtTitle">
+						<strong>
+						  <span onclick="location.href='${board.nickname}'" style="cursor:pointer"></span>
+						</strong> 
+					 </div>	
+					</td>
+				    <td class="cmtContentTd">
+				  	  <div class="cmtContent">
+						<textarea id="cmtComment" name="COMMENT" class="notice textareaIME" rows="3" onkeypress="PwCMT.utils.extraKeyCheck(event, this);"
+						 onfocus="this.className='';" onkeydown="PwCMT.utils.resizeTextarea(event, this);" tabindex="99" placeholder="명예훼손, 개인정보 유출, 분쟁 유발, 허위사실 유포 등의 글은 이용약관에 의해 제재는 물론 법률에 의해 처벌 받을 수 있습니다."></textarea>			
+					  </div>
+					</td>
+					<td class="cmtBttnTd" style="vertical-align: bottom;">
+					  <div class="cmtSubmit">
+						<button id="bttnCmtF1_1702045348" onclick="PwCMT.save(this.form);"
+						 tabindex="100" value alt="코멘트 등록">등록</button>  
+					  </div>	
+					</td>
+				  </tr>
+				</tbody>  
+			  </table>
+			</div>   
+		   </form>
+		 </div>
+		</div>
+		</div>  
+	  </div>
+	  </div>
+	 </td>
+	</tr>   
+   </tbod> 
+  </table>
+  <!-- *** 댓글 end *** -->
   
   <div class="visit-country" style="margin: auto;">
     <div class="container">
