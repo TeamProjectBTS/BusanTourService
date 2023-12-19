@@ -6,7 +6,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <title>부산투어서비스 자유게시판</title>
+    <title>게시글 수정</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -26,7 +26,7 @@ https://templatemo.com/tm-580-woox-travel
 -->
   </head>
 
-<body>
+<form>
 
   <!-- ***** Preloader Start ***** -->
   <div id="js-preloader" class="js-preloader">
@@ -77,14 +77,14 @@ https://templatemo.com/tm-580-woox-travel
       <div class="row">
         <div class="col-lg-12">
           <h4>Busan Tour Service</h4>
-          <h2>뭘로할까?</h2>
+          <h2>부산여행</h2>
           <div class="border-button text-center"><a href="about.html">자세히 보기</a></div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="search-form">
+  <!--<div class="search-form">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
@@ -109,7 +109,7 @@ https://templatemo.com/tm-580-woox-travel
                           <option value="미정">미정</option>
                       </select>
                   </fieldset>
-              </div>
+              </div>-->
               <!--<div class="col-lg-4">
 =======
               <div class="col-lg-3">
@@ -126,7 +126,7 @@ https://templatemo.com/tm-580-woox-travel
                   </fieldset>
 <<<<<<< HEAD:src/main/resources/templates/deals.html
               </div>-->
-              <div class="col-lg-2">                        
+              <!--<div class="col-lg-2">                        
                   <fieldset>
                       <button class="border-button">검색</button>
                   </fieldset>
@@ -136,7 +136,7 @@ https://templatemo.com/tm-580-woox-travel
         </div>
       </div>
     </div>
-  </div>
+  </div>-->
   
   <style>
   
@@ -220,145 +220,75 @@ https://templatemo.com/tm-580-woox-travel
   
   </style>
   
-  <!-- *** 게시판 리스트 Start *** -->
+  <!-- *** 게시판 읽기 Start *** -->
   <div class="bulletin-board-container">
-   <table class="table">
-    <thead>
-      <tr>
-        <th>번호</th>	  
-        <th>제목</th>	  
-        <th>닉네임</th>	  
-        <th>등록일</th>	  
-        <th>조회수</th>	  
-        <th>좋아요</th>	  
-      </tr>
-    </thead>
-    
-    <body>
-      <tr>
-        <td>1</td>
-        <td><a href="post.html">게시물 제목 1</a></td>
-        <td>닉네임1</td>
-        <td>2023-01-01</td>
-        <td>100</td>
-        <td>50</td>
+   <form action="/board/update" enctype="multipart/form-data" th:object="${board}" method="post">
+   <table>
+     <tr>
+        <th>제목</th>
+        <td>
+		  <input type="text" th:field="*{b_title}">
+		  <div class="error" th:errors="*{b_title}"></div>
+		</td>
       </tr>
       <tr>
-        <td>2</td>
-        <td><a href="post.html">게시물 제목 2</a></td>
-        <td>닉네임2</td>
-        <td>2023-01-02</td>
-        <td>80</td>
-        <td>30</td>
+        <th>내용</th>
+        <td>
+		  <textarea id="CONTENT2" th:field="*{b_contents}" class="signContent" style="float: left; resize: none; width: 100%; height: 500px;
+						margin-top: 2px; margin-bottom: 0px;"></textarea>
+		  <div class="error" th:errors="*{b_contents}"></div>	
+		</td>
       </tr>
       <tr>
-        <td>2</td>
-        <td><a href="post.html">게시물 제목 3</a></td>
-        <td>닉네임2</td>
-        <td>2023-01-03</td>
-        <td>80</td>
-        <td>30</td>
+        <th>조회수</th>
+        <td th:text="*{b_view_count}"></td>
       </tr>
       <tr>
-        <td>2</td>
-        <td><a href="post.html">게시물 제목 4</a></td>
-        <td>닉네임2</td>
-        <td>2023-01-04</td>
-        <td>80</td>
-        <td>30</td>
+        <th>좋아요</th>
+        <td th:text="*{b_like_count}"></td>
       </tr>
       <tr>
-        <td>2</td>
-        <td><a href="post.html">게시물 제목 5</a></td>
-        <td>닉네임2</td>
-        <td>2023-01-05</td>
-        <td>80</td>
-        <td>30</td>
+        <th>작성일</th>
+        <td th:text="${#temporals.format(board.wr_date, 'yyyy-MM-dd HH:mm')}"></td>
       </tr>
       <tr>
-        <td>2</td>
-        <td><a href="post.html">게시물 제목 6</a></td>
-        <td>닉네임2</td>
-        <td>2023-01-06</td>
-        <td>80</td>
-        <td>30</td>
+        <th>닉네임</th>
+        <td th:text="*{nickname}"></td>
       </tr>
       <tr>
-        <td>2</td>
-        <td><a href="post.html">게시물 제목 7</a></td>
-        <td>닉네임2</td>
-        <td>2023-01-07</td>
-        <td>80</td>
-        <td>30</td>
+        <th>첨부파일</th>
+        <td>
+          <div id="attachedFile" th:if="${file}">
+            <span th:text="${file.original_filename}"></span>
+            <input type="button" onclick="removeFile()" value="삭제">
+          </div>
+          <input type="file" name="file">
+        </td>
       </tr>
-      <tr>
-        <td>2</td>
-        <td><a href="post.html">게시물 제목 8</a></td>
-        <td>닉네임2</td>
-        <td>2023-01-08</td>
-        <td>80</td>
-        <td>30</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td><a href="post.html">게시물 제목 9</a></td>
-        <td>닉네임2</td>
-        <td>2023-01-09</td>
-        <td>80</td>
-        <td>30</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td><a href="post.html">게시물 제목 10</a></td>
-        <td>닉네임2</td>
-        <td>2023-01-10</td>
-        <td>80</td>
-        <td>30</td>
-      </tr>
-      <!-- Add more rows as needed -->
-    </body>
-   </table>
+    <input type="hidden" th:field="*{b_view_count}">
+    <input type="hidden" th:field="*{wr_date}">
+    <input type="hidden" th:field="*{nickname}">
+    <input type="hidden" th:field="*{fileRemoved}">
+    <input type="hidden" th:field="*{board_id}">
    
-   <div class="board-bottom">
-	 <form action="#" method="get">
-	 	<input type="hidden" name="query" value="list">
-	 	<input type="hidden" name="p" value="1">
-	 	<input type="hidden" name="sterm" value>
-	 	<select name="name">
-		  <option value="title">제목</option>	 
-		  <option value="content">내용</option>	 
-		  <option value="writer">닉네임</option>	 
-		  <option value="title" + "content">제목 + 내용</option>	 
-		</select>
-		<input type="text" name="keyword" id="sword" value>
-		<button type="sumit" class="search-btn board-img">
-		  <i class="fa fa-search" aria-hidden="true"></i>
-		</button>
-	 </form>
-	 	<div class="border-button">
-          <a href="/board/write">글쓰기</a>
-        </div>   
-   </div>
-   <!-- <div class="search-bar">
-	 <form id="post-search-form" name="post-search" method="get" role="search" action="#">
-		<select name="type">
-	      <option selected value="">검색 내용</option>
-          <option value="title">제목</option>
-          <option value="content">내용</option>
-          <option value="writer">닉네임</option>
-          <option value="title" + "content">제목 + 내용</option>
-		</select>
-		 <input type="text" id="post-search" name="post-search" placeholder="제목 또는 내용을 입력하세요...">
-		 <button type="submit" class="search-btn board-img">
-			<i class="fa fa-search" aria-hidden="true"></i>	 /* 돋보기 */
-		 </button>
-	 </form>
-		 <div class="border-button">
-          <a href="/board/write">글쓰기</a>
-         </div>
-   </div> -->
+     <div class="border-button" style="display:inline-block; float: right;">
+	   <a href="/board/list">목록</a>
+     </div>
+     <!-- <th:block th:if="${#authentication.name == board.member_id}"> -->
+     <div class="border-button" style="display: inline-block; float: right;">
+       <input type="submit" value="수정하기">
+     </div>
+     <div class="border-button" style="display: inline-block; float: right; margin-right: 10px;">
+	   <input type="reset" value="취소">
+     </div>
+        <!--<input type="button" th:onclick="|location.href='/board/update?board_id=${board.board_id}'|" value="수정하기">
+        <input type="button" th:onclick="|location.href='/board/delete?board_id=${board.board_id}'|" value="삭제하기">-->
+     <!-- </th:block>-->
+   
+   </table>
+   </form>
   </div>
-  <!-- *** 게시판 리스트 End *** -->
+  <!-- *** 게시판 읽기 End *** -->
 
   <div class="visit-country" style="margin: auto;">
     <div class="container">

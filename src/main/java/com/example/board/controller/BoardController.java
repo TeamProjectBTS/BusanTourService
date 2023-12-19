@@ -184,6 +184,7 @@ public class BoardController {
 //        log.info("board: {}", updateBoard);
         // validation 에 에러가 있으면 board/update.html 페이지로 돌아간다.
         if (result.hasErrors()) {
+        	log.info("error");
             return "board/update";
         }
 
@@ -198,6 +199,7 @@ public class BoardController {
         board.setB_title(updateBoard.getB_title());
         // 내용을 수정한다.
         board.setB_contents(updateBoard.getB_contents());
+        log.info("board:{}", board);
         // 수정한 Board 를 데이터베이스에 update 한다.
         boardService.updateBoard(board , updateBoard.isFileRemoved(), file);
         // 수정이 완료되면 리스트로 리다이렉트 시킨다.

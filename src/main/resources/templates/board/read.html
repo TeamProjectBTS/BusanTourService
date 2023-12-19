@@ -218,12 +218,127 @@ https://templatemo.com/tm-580-woox-travel
     text-align: center;
   }
   
+  .bd .clear {
+	  display: block;
+	  position: relative;
+	  clear: both;
+  }
+  
+  .bd .clear:after, .bd:after {
+	  content: "";
+	  display: block;
+	  clear: both;
+  }
+  
+  .bd {
+	  color: #22b3c1
+  }
+  
+  element.style {
+	  margin: 0 15px 20px;
+  }
+  
+  .rd_hd {
+	  margin: 0 0 20px!important;
+  }
+  
+  .bd, .bd button, .bd input, .bd select, .bd table,
+  .bd textarea {
+	  font-size: 13px;
+	  line-height: 1.5;
+  }
+  
+  .rd_hd .board h1 {
+	  font-size: 17px;
+	  line-height: 18px;
+  }
+  
+  .rd_hd .board h1 {
+	  text-overflow: ellipsis;
+	  margin: 0;
+  }
+  
+  h1 {
+	  display: block;
+	  margin-block-start: 0.67em;
+	  margin-block-end: 0.67em;
+	  margin-inline-start: 0px;
+	  margin-inline-end: 0px;
+	  font-weight: bold;
+  }
+  
+  .rd_hd .board .top_area {
+	  padding: 11px;
+	  border-top: 1px solid #ccc;
+	  border-bottom: 1px solid #ccc;
+	  background: #fcfcfc;
+  }
+  
+  .rd_hd .board .btm_area {
+	  margin: -12px 12px 0;
+	  padding: 0 0 18px;
+	  background: 0 0;
+  }
+  
+  .rd_hd .board .btm_area {
+	  position: static;
+	  border-bottom: 1px solid #eee;
+  }
+  
+  .rd_hd .board .side {
+	  float: none;
+	  padding: 0;
+  }
+  
+  .rd_hd .board .side {
+	  display: inline-block;
+	  padding: 9px;
+  }
+  
+  .metadata-container {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 20px;
+  }
+
+  .metadata-container span {
+      margin-left: 20px; /* Adjust the margin as needed */
+  }
   </style>
   
   <!-- *** 게시판 읽기 Start *** -->
   <div class="bulletin-board-container">
    <table th:object="${board}">
-     <tr>
+    <div class="rd_hd clear" style="margin:0 -15px 20px">
+	 <div class="board clear " style="margin: auto;">
+		 
+	  <div class="top_area ngeb" style="margin: auto;">
+		<span class="*{wr_date}" th:text="${#temporals.format(board.wr_date, 'yyyy-MM-dd HH:mm')}" style="display: inline-block; float: right;"></span>
+	   <h1 class="*{b_title}">
+		   <span class="*{b_title}"></span>
+	   </h1>
+	   <div class="clear" th:text="*{b_title}">
+		  
+	   </div>
+	  </div>
+	  <div class="metadata-container">
+		<span>조회수:
+		 <div class="side fr"  th:text="*{b_view_count}"></div>  
+	  	</span>
+	  	<span>좋아요:
+		 <div class="side fr"  th:text="*{b_like_count}"></div>  
+	  	</span>
+	  	<span>댓글:
+		 <div class="side fr"  th:text="*{b_com_count}"></div>  
+	  	</span>
+	  </div>
+	 </div>	
+	</div>
+	 <article>
+	   <div class="*{b_contents}" th:text="*{b_contents}"></div>
+	 </article>
+   
+   <!--<tr>
         <th>제목</th>
         <td th:text="*{b_title}"></td>
       </tr>
@@ -240,6 +355,10 @@ https://templatemo.com/tm-580-woox-travel
         <td th:text="*{b_like_count}"></td>
       </tr>
       <tr>
+        <th>댓글</th>
+        <td th:text="*{b_com_count}"></td>
+      </tr>
+      <tr>
         <th>작성일</th>
         <td th:text="${#temporals.format(board.wr_date, 'yyyy-MM-dd HH:mm')}"></td>
       </tr>
@@ -253,18 +372,18 @@ https://templatemo.com/tm-580-woox-travel
           <a th:if="${file}" th:text="${file.original_filename}"
              th:href="@{/board/download/{id}(id=${file.attached_file_id})}"></a>
         </td>
-      </tr>
+      </tr>-->
    </table>
    <div class="center">
      <input type="button" onclick="location.href='/board/list'" value="목록으로">
      <th:block th:if="${#authentication.name == board.member_id}">
-        <input type="button" th:onclick="|location.href='/board/update?board_id=${board.board_id}'|" value="수정하기">
-        <input type="button" th:onclick="|location.href='/board/delete?board_id=${board.board_id}'|" value="삭제하기">
+     <input type="button" th:onclick="|location.href='/board/update?board_id=${board.board_id}'|" value="수정하기">
+     <input type="button" th:onclick="|location.href='/board/delete?board_id=${board.board_id}'|" value="삭제하기">
       </th:block>
    </div>
   </div>
   <!-- *** 게시판 읽기 End *** -->
-
+  
   <div class="visit-country" style="margin: auto;">
     <div class="container">
       <div class="row">
@@ -316,7 +435,6 @@ https://templatemo.com/tm-580-woox-travel
       </div>
     </div>
   </footer>
-
 
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->
