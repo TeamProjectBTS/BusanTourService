@@ -1,19 +1,15 @@
 package com.example.board.model.tour_spot;
 
 import java.util.List;
-import java.util.Map;
+
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.springframework.http.StreamingHttpOutputMessage.Body;
-
-
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+
 
 
 @Data

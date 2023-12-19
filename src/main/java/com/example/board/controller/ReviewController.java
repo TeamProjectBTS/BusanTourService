@@ -14,6 +14,7 @@ import com.example.board.util.PageNavigator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -69,14 +70,15 @@ public class ReviewController {
     public String write(@AuthenticationPrincipal UserInfo userInfo,
                         @Validated @ModelAttribute("writeForm") ReviewWriteForm reviewWriteForm,
                         @RequestParam(required=false) List<MultipartFile> files,
+                        Model model,
                         BindingResult result) {
        
-//        log.info("board: {}", boardWriteForm);
-//        log.info("file : {}", file);
+
         log.info("userInfo : {}", userInfo);
         // validation 에러가 있으면 board/write.html 페이지를 다시 보여준다.
         if (result.hasErrors()) {
-            return "/review/write.html";
+        	model.addAttribute("error", "내용을 입력해주세요");
+            return "review/write.html";
         }
 
         // 파라미터로 받은 BoardWriteForm 객체를 Board 타입으로 변환한다.

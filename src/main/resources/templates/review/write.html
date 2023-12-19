@@ -194,16 +194,13 @@ https://templatemo.com/tm-580-woox-travel
   
   <div class="bulletin-board-container">
 	  <!-- 실제 write 부분 시작 -->
-			  <form method="post" action="/review/write" enctype="multipart/form-data" th:object="${writeForm}"
+			  <form method="post" action="write" enctype="multipart/form-data" th:object="${writeForm}"
 			   style="margin:0; padding:0;" >
-			   <tr>
-				<td>
+			   
 				<input type="file" name="file">  
-				</td>
-			  </tr>
-			    <table cellpadding="0" cellspacing="0" border="0" width="100%" style="table-layout: fixed">
-				 <!-- <tbody> -->
-				  <tr>
+				<div th:error="${error}"></div>
+				<div class="error" th:errors="${writeForm.rv_title}"></div>
+				<div class="error" th:errors="${writeForm.rv_content}"></div>
 				   <!-- <td bgcolor="#EDEDED"> -->
 					<table cellpadding="0" cellspacing="0" border="0" whidth="100%">
 					 <tbody>
@@ -215,7 +212,8 @@ https://templatemo.com/tm-580-woox-travel
 						<td>
 							<fieldset>
 								<select th:field="${writeForm.sort}" class="form-select" aria-label="Default select example" id="chooseLocation" onChange="this.form.click()">
-									<option ></option>
+									<option selected type="text" value="관광지">관광지</option>
+									<option type="text" value="음식점">음식점</option>
 								</select>
 							</fieldset>
 						</td>
@@ -240,17 +238,11 @@ https://templatemo.com/tm-580-woox-travel
 					  </tr>	 
 					 </tbody>
 					</table>
-					<tr>
-					  <td align="center">
+
 						<textarea id="CONTENT2" th:field="${writeForm.rv_content}" class="signContent" style="float: left; resize: none; width: 100%; height: 500px;
 						margin-top: 2px; margin-bottom: 0px;"></textarea>						  
-					  </td>
-					 </tr>
-					 	   
-				   <!-- </td> -->	  
-				  </tr>					 
-				 <!-- </tbody> -->	
-				</table>
+
+
 				
 			
 			   <!-- 1픽셀 라인 -->

@@ -77,12 +77,13 @@ public class BoardController {
        
 //        log.info("board: {}", boardWriteForm);
 //        log.info("file : {}", file);
-        log.info("userInfo : {}", userInfo);
+        
         // validation 에러가 있으면 board/write.html 페이지를 다시 보여준다.
         if (result.hasErrors()) {
-            return "/board/write.html";
+        	
+          return "/board/write.html";
         }
-
+        log.info("userInfo : {}", userInfo);
         // 파라미터로 받은 BoardWriteForm 객체를 Board 타입으로 변환한다.
         Board board = BoardWriteForm.toBoard(boardWriteForm);
         

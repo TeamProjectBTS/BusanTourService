@@ -349,43 +349,7 @@ https://templatemo.com/tm-580-woox-travel
 	 <article>
 	   <div class="*{b_contents}" th:text="*{b_contents}"></div>
 	 </article>
-	 
-   
-   <!--<tr>
-        <th>제목</th>
-        <td th:text="*{b_title}"></td>
-      </tr>
-      <tr>
-        <th>내용</th>
-        <td th:text="*{b_contents}"></td>
-      </tr>
-      <tr>
-        <th>조회수</th>
-        <td th:text="*{b_view_count}"></td>
-      </tr>
-      <tr>
-        <th>좋아요</th>
-        <td th:text="*{b_like_count}"></td>
-      </tr>
-      <tr>
-        <th>댓글</th>
-        <td th:text="*{b_com_count}"></td>
-      </tr>
-      <tr>
-        <th>작성일</th>
-        <td th:text="${#temporals.format(board.wr_date, 'yyyy-MM-dd HH:mm')}"></td>
-      </tr>
-      <tr>
-        <th>닉네임</th>
-        <td th:text="*{nickname}"></td>
-      </tr>
-      <tr>
-        <th>첨부파일</th>
-        <td>
-          <a th:if="${file}" th:text="${file.original_filename}"
-             th:href="@{/board/download/{id}(id=${file.attached_file_id})}"></a>
-        </td>
-      </tr>-->
+
    </table>
    <div class="center">
      <input type="button" onclick="location.href='/board/list'" value="목록으로">
@@ -399,16 +363,17 @@ https://templatemo.com/tm-580-woox-travel
   
   <!-- *** 댓글 읽기 Start *** -->
   
-  <p>
-	<div>
+  <div class="container" style="margin-top: 20px;">
+	<div  style="width: fit-content; margin: auto;">
 		<label for="reply">리플 쓰기</label>
 		<input type="button" value="등록" onclick="writeReply()">
 		<br><p></p>
-		<textarea rows="3" cols="90" id="reply" name="reply"></textarea>
+		<textarea rows="2" cols="90" id="reply" name="reply"></textarea>
 	</div>
 	<p></p>
 	<div id="replies">
 		
+	</div>
 	</div>
 	
 	<!-- *** 댓글 읽기 End ***-->
@@ -534,7 +499,7 @@ https://templatemo.com/tm-580-woox-travel
 		str += "		<th>작성일</th>";
 		str += "	</tr>";
 		if(data.length > 0) {
-			let loginMemberId = /*[[${session.loginMember.member_id}]]*/'';
+			let loginMemberId = /*[[${#authentication.name}]]*/'';
 			$(data).each(function(idx, obj){
 				if(loginMemberId == obj.member_id){
 				str += "	<tr>";
