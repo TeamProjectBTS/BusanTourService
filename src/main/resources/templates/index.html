@@ -59,10 +59,11 @@ https://templatemo.com/tm-580-woox-travel
                         <li><a style=" border-radius: 0px;" class="menu-item" href="/tour_spot/list">관광지</a></li>
                         <li><a style=" border-radius: 0px;" class="menu-item" href="/restaurant/list">음식점</a></li>
                         <li><a style=" border-radius: 0px;" class="menu-item" href="/hotel/list">숙소</a></li>
-                        <li><a style=" border-radius: 0px;" class="menu-item" href="/board/list">게시판</a></li> <!--연결안됌-->
+                        <li><a style=" border-radius: 0px;" class="menu-item" href="/board/list">게시판</a></li>
                         
 						<li sec:authorize="isAuthenticated()" class="menu-item-container" >
-							<a class="menu-item" href="/member/mypage" style="width: max-content; border-radius: 0px;">[[${loginUser.member.nickname}]]님</a>
+							<a class="menu-item" href="/member/mypage" style="width: max-content; border-radius: 0px;"
+								>[[${loginUser.member.nickname}]]님</a>
 							<div class="menu-container" style="width: max-content; text-align: center;" >
 								<a class="menu-item" href="/member/mypage" style=" border-radius: 0px;">마이페이지</a>
 								<a class="menu-item" href="/complain/list" style=" border-radius: 0px;">고객문의</a>
@@ -74,7 +75,7 @@ https://templatemo.com/tm-580-woox-travel
 							<a href="/member/login">로그인</a>
 						</li>
                     </ul>
-
+						
                     <a class='menu-trigger' >
                         <span>Menu</span>
                     </a>
@@ -227,17 +228,17 @@ https://templatemo.com/tm-580-woox-travel
 						</div>
                       </div><div class="col-lg-3 col-sm-6 col-6">
                         <h4 id="section1" style="text-align: center;">
-							<span>#지역#테마#추천</span>
+							<span>#남포동#자갈치시장#추천</span>
                         </h4>
                         <div class="main-button" style="text-align: center;">
-							<a href="about">해운대(지역)</a>
+							<a href="about" style="font-size: 16px;">중구(호텔포레 프리미어)</a>
 						</div>
                       </div><div class="col-lg-3 col-sm-6 col-6">
                         <h4 id="section1" style="text-align: center;">
-							<span>#지역#테마#추천</span>
+							<span>#진구#젊음#추천</span>
                         </h4>
                         <div class="main-button" style="text-align: center;">
-							<a href="about">해운대(지역)</a>
+							<a href="about" style="font-size: 17px;">서면(이비스 앰배서더)</a>
 						</div>
                       </div>
                     </div>
@@ -315,15 +316,13 @@ https://templatemo.com/tm-580-woox-travel
 	<div class="visit-country">
     <div class="container">
       <div class="row">
-        <div class="col-lg-5">
+        <div class="col-lg-12">
           <div class="section-heading">
-            <h2>부산에서 꼭 들러봐야 할 곳!</h2>
+            <h2 style="text-align: center;">부산에서 꼭 들러봐야 할 곳!</h2>
             <div class="row">
 	            <div class="col-lg-6" style="margin: auto;">			   
 	            </div>
 	            <div class="col-lg-6">
-					<div class="main-button" >
-			          <a href="about">더 보기</a>
 			        </div>
 				</div>
 			</div>
@@ -336,23 +335,23 @@ https://templatemo.com/tm-580-woox-travel
           <div class="items">
             <div class="row">
               <div class="col-lg-6">
-                <div class="item" style="margin: auto;">
+                <div class="item" style="margin: auto; margin-left: 10px;">
                   <div class="row">
                     <div class="col-lg-4 col-sm-5">
-                      <div class="image">
-                        <img src="assets/images/country-01.jpg" alt="">
-                      </div>
-                    </div>
+    					<div class="image" style="display: flex; justify-content: center; align-items: center; height: 191.46px;">
+       					 <img src="assets/images/tour_spot1.jpg" alt="" style="height: 191.46px; width: 191.46px;">
+    				</div>
+					</div>
                     <div class="col-lg-8 col-sm-7">
                       <div class="right-content">
-                        <h4>SWITZERLAND</h4>
-                        <span>Europe</span>
+                        <h4>해동용궁사</h4>
+                        <span>부산광역시 기장군 용궁길 86</span>
                         <!--<div class="main-button">
                           <a href="about.html">Explore More</a>
                         </div>-->
-                        <p>Woox Travel is a professional Bootstrap 5 theme HTML CSS layout for your website. You can use this layout for your commercial work.</p>
+                        <p>해동용궁사는 부산광역시 기장군 기장읍 시랑리에 있는 절이다. 바다와 가장 가까운 사찰로 알려져 있고, 대한민국의 관음성지의 하나다. 이전에는 개인 소유 사찰이었다가 2021년에 대한불교 조계종 제19교구 본사 화엄사의 말사로 등록되었다.</p>
                         <ul class="info">
-                          <li><i class="fa fa-user"></i> 8.66 Mil</li>
+                          <li><i class="fa fa-user"></i> 조회</li>
                           <li><i class="fa fa-globe"></i> 41.290 km2</li>
                           <li><i class="fa fa-home"></i> $1.100.200</li>
                         </ul>
@@ -368,8 +367,8 @@ https://templatemo.com/tm-580-woox-travel
                 <div class="item">
                   <div class="row">
                     <div class="col-lg-4 col-sm-5">
-                      <div class="image">
-                        <img src="assets/images/country-02.jpg" alt="">
+                      <div class="image" style="display: flex; justify-content: center; align-items: center;">
+        				<img src="assets/images/tour_spot2.jpg" alt="" style="height: 191.46px; width: 191.46px;">
                       </div>
                     </div>
                     <div class="col-lg-8 col-sm-7">
@@ -394,11 +393,11 @@ https://templatemo.com/tm-580-woox-travel
                 </div>
               </div>
               <div class="col-lg-6">
-                <div class="item last-item">
+                <div class="item last-item"style="margin: auto; margin-left: 10px;">
                   <div class="row">
                     <div class="col-lg-4 col-sm-5">
-                      <div class="image">
-                        <img src="assets/images/country-03.jpg" alt="">
+                      <div class="image" style="display: flex; justify-content: center; align-items: center;">
+        				<img src="assets/images/tour_spot3.jpg" alt="" style="height: 191.46px; width: 191.46px;">
                       </div>
                     </div>
                     <div class="col-lg-8 col-sm-7">
@@ -426,8 +425,8 @@ https://templatemo.com/tm-580-woox-travel
                 <div class="item last-item">
                   <div class="row">
                     <div class="col-lg-4 col-sm-5">
-                      <div class="image">
-                        <img src="assets/images/country-03.jpg" alt="">
+                      <div class="image" style="display: flex; justify-content: center; align-items: center;">
+        				<img src="assets/images/tour_spot4.jpg" alt="" style="height: 191.46px; width: 191.46px;">
                       </div>
                     </div>
                     <div class="col-lg-8 col-sm-7">
@@ -450,24 +449,24 @@ https://templatemo.com/tm-580-woox-travel
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-lg-12">
-                <ul class="page-numbers">
-                  <li><a href="#"><i class="fa fa-arrow-left"></i></a></li>
-                  <li class="active"><a href="#">1</a></li>
-                  <li><a href="#">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li><a href="#"><i class="fa fa-arrow-right"></i></a></li>
-                </ul>
-                <br>
-              </div>
+            </div>
+<div class="col-lg-12" style="text-align: center;">
+    <ul class="page-numbers" style="margin-bottom: 50px; display: inline-block; list-style: none; padding: 0;">
+        <li style="display: inline-block; margin-right: 10px;"><a href="#"><i class="fa fa-arrow-left"></i></a></li>
+        <li style="display: inline-block; margin-right: 10px;" class="active"><a href="#">관광</a></li>
+        <li style="display: inline-block; margin-right: 10px;"><a href="#">음식</a></li>
+        <li style="display: inline-block; margin-right: 10px;"><a href="#">숙소</a></li>
+        <li style="display: inline-block; margin-right: 10px;"><a href="#"><i class="fa fa-arrow-right"></i></a></li>
+    </ul>
+    <br>
+</div>
             </div>
           </div>
         </div>
         
       </div>
     </div>
-  </div>
+
 
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->

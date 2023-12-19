@@ -17,6 +17,7 @@ Table of contents
 07. testimonials
 08. contact
 09. footer
+10. main-slider
 
 --------------------------------------------- */
 /* 
@@ -900,7 +901,7 @@ Banner Style
   background-size: cover;
 }
 
-#section-1 .content-slider .slider #top- {
+#section-1 .content-slider .slider #top-banner-2 {
   background: url('../images/banner2.jpg') no-repeat center center;
   background-size: cover;
 }
@@ -2413,4 +2414,7 @@ body {
     border: 1px solid black;
     padding: 5px;
   }
+
+  
+  
 }
