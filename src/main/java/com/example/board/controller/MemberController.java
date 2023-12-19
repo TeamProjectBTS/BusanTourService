@@ -203,5 +203,19 @@ public class MemberController {
 			
 			return "member/mypage";
 		}
+		
+		@GetMapping("myboard")
+		public String myboard(@AuthenticationPrincipal UserInfo userInfo, 
+									Model model) {
+			
+			return "member/myboard";
+		}
+		
+		@GetMapping("myreview")
+		public String myreview(@AuthenticationPrincipal UserInfo userInfo, 
+									Model model) {
+			
+			return "member/myreview";
+		}
 	
 }

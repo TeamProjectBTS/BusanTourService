@@ -32,6 +32,8 @@ https://templatemo.com/tm-580-woox-travel
 	  padding-top: 5px;
 	  width: 310px;
   }
+  
+  
 </style>
 
 <body>
@@ -62,21 +64,25 @@ https://templatemo.com/tm-580-woox-travel
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                         <ul class="nav">
-                            <li><a href="/tour_spot/list">관광지</a></li>
-                            <li><a href="/restaurant/list">음식점</a></li>
-                            <li><a href="/hotel/list">숙박지</a></li>
-                            <li><a href="/board/list">게시판</a></li>
-                            <li><a href="/reservation">고객문의</a></li>
-                            <li sec:authorize="isAuthenticated()">
-							<a href="member/mypage">마이페이지</a>
+                        <li><a style=" border-radius: 0px;" class="menu-item" href="/tour_spot/list">관광지</a></li>
+                        <li><a style=" border-radius: 0px;" class="menu-item" href="/restaurant/list">음식점</a></li>
+                        <li><a style=" border-radius: 0px;" class="menu-item" href="/hotel/list">숙소</a></li>
+                        <li><a style=" border-radius: 0px;" class="menu-item" href="/board/list">게시판</a></li>
+                        
+						<li sec:authorize="isAuthenticated()" class="menu-item-container" >
+							<a class="menu-item" href="/member/mypage" style="width: max-content; border-radius: 0px;"
+								>[[${loginUser.member.nickname}]]님</a>
+							<div class="menu-container" style="width: max-content; text-align: center;" >
+								<a class="menu-item" href="/member/mypage" style=" border-radius: 0px;">마이페이지</a>
+								<a class="menu-item" href="/complain/list" style=" border-radius: 0px;">고객문의</a>
+								<a class="menu-item" href="/member/logout" style=" border-radius: 0px;">로그아웃</a>
+							</div>
 						</li>
-						<li sec:authorize="isAuthenticated()">
-							<a href="member/logout">로그아웃</a>
-						</li>
+						
 						<li sec:authorize="isAnonymous()">
-							<a href="member/login">로그인</a>
+							<a href="/member/login">로그인</a>
 						</li>
-                        </ul>
+                    </ul>
                     <a class='menu-trigger'>
                         <span>Menu</span>
                     </a>
@@ -107,70 +113,101 @@ https://templatemo.com/tm-580-woox-travel
     </div>
   </div>-->
   <!-- ***** Main Banner Area End ***** -->
-  
-    <div class="more-about" style="padding-top: 50px;">
-    <div class="container">
-      <div class="row">
-		<div class="col-lg-12">
-			<div class="section-heading">
-            <h2 th:text="${item.TITLE}"> 제목 </h2>
-            <p th:text="${item.SUBTITLE}"> 부제목 </p>
-          </div>
+
+	<div class="more-about" style="padding-top: 50px;">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8">
+					<div class="section-heading">
+						<h2 th:text="${item.TITLE}"> 제목 </h2>
+						<p>
+							<span th:text="${item.SUBTITLE}" style="text-align: left;">부제목</span>
+						</p>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<th:block th:if="${item.HOMEPAGE_URL != ''}">
+						<div class="main-button" style="margin-top: 60px;">
+							<a th:href="${item.HOMEPAGE_URL}" target="_blank">홈페이지 가기</a>
+						</div>
+					</th:block>
+				</div>
+			</div>
+	
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="row">
+						<div class="col-lg-8">
+							<div class="left-image" style="max-width: 100%; margin: auto;">
+								<img th:src="${item.MAIN_IMG_NORMAL}" alt="메인이미지">
+							</div>
+						</div>
+						<div class="col-lg-4">
+							<div class="row">
+								<div class="col-lg-12">
+	
+									<div class="info-item">
+										<h4 style="display: inline-block;">구, 군명 : &nbsp;</h4>
+										<h4 style="display: inline-block;" th:text="${item.GUGUN_NM}">구, 군명</h4>
+									</div>
+								</div>
+	
+								<div class="col-lg-12">
+									<div class="info-item">
+										<h4 style="display: inline-block;">이용료 : &nbsp;</h4>
+										<h4 th:text="${item.USAGE_AMOUNT}" style="display: inline-block;">요금</h4>
+									</div>
+								</div>
+	
+								<div class="col-lg-12">
+									<div class="info-item">
+										<div class="row">
+											<div class="col-lg-12">
+												<h4 style="display: inline-block;">주소 : &nbsp;</h4>
+												<h4 style="display: inline-block;" th:text="${item.ADDR1}">주소</h4>
+											</div>
+										</div>
+									</div>
+								</div>
+	
+								<div class="col-lg-12">
+									<div class="info-item">
+										<div class="row">
+											<div class="col-lg-12">
+												<h4 style="display: inline-block;">대중교통 이용안내 : &nbsp;</h4>
+												<h4 style="display: inline-block;" th:text="${item.TRFC_INFO}">대중교통 정보</h4>
+											</div>
+										</div>
+									</div>
+								</div>
+	
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12">
+						<span style="line-height: 35px; font-size: 15px; line-height: 1.8;"
+							th:text="${item.ITEMCNTNTS}">메인컨텐츠</span>
+					</div>
+				</div>
+			</div>
+			<br><br>
+			<div class="row">
+				<div class="col-lg-12">
+					<h1>Review</h1>
+					<div ></div>
+				</div>
+			</div>
+			
+			
 		</div>
-        <div class="col-lg-12 align-self-center" style="margin-bottom: 30px;">
-          <div class="left-image">
-            <img th:src="${item.MAIN_IMG_NORMAL}" alt="메인이미지">
-          </div>
-        </div>
-        
-        <div class="col-lg-12">
-          <div class="row">
-	  		<div class="col-lg-6">
-              <div class="info-item">
-				<h4 style="display: inline-block;">구, 군명 : &nbsp;</h4>
-                <h4 style="display: inline-block;" th:text="${item.GUGUN_NM}">구, 군명</h4>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="info-item">
-                <h4 style="display: inline-block;">이용료 : &nbsp;</h4>
-                <h4 th:text="${item.USAGE_AMOUNT}" style="display: inline-block;">요금</h4>
-              </div>
-            </div>
-            
-            <div class="col-lg-12">
-              <div class="info-item">
-                <div class="row">
-                  <div class="col-lg-12">
-                    <h4 style="display: inline-block;">주소 : &nbsp;</h4>
-                    <h4  style="display: inline-block;" th:text="${item.ADDR1}">주소</h4>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="col-lg-12">
-              <div class="info-item">
-                <div class="row">
-                  <div class="col-lg-12">
-                    <h4 style="display: inline-block;">대중교통 이용안내 : &nbsp;</h4>
-                    <h4 style="display: inline-block;" th:text="${item.TRFC_INFO}">대중교통 정보</h4>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-          </div>
-          
-          <span style="line-height: 35px; font-size: 20px; line-height: 1.8;" th:text="${item.ITEMCNTNTS}">메인컨텐츠</span>
-          
-          <div class="main-button">
-            <a th:href="${item.HOMEPAGE_URL}" target="_blank">홈페이지 가기</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+	</div>
+  
+  
+  
+  
+  
   
   <footer>
     <div class="container">

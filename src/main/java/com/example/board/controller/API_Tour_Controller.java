@@ -5,13 +5,16 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.board.config.UserInfo;
 import com.example.board.model.tour_spot.Tour_spotResponse.Body.Items.Item;
+import com.example.board.service.ReviewService;
 import com.example.board.service.T_ApiService;
 import com.example.board.util.PageNavigator;
 
@@ -25,6 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 public class API_Tour_Controller {
 	
 	private final T_ApiService t_ApiService;
+	private final ReviewService reviewService;
 	
 	//페이징 처리를 위한 상수값
   private final int countPerPage = 10;
@@ -33,6 +37,7 @@ public class API_Tour_Controller {
   
   @GetMapping("list")
   public String tour_spot_list(Model model,
+  		@AuthenticationPrincipal UserInfo userInfo,
 		  	@RequestParam(value="page", defaultValue="1") int page,
 				@RequestParam(value="searchText", defaultValue="") String searchText) {
   	
@@ -73,7 +78,7 @@ public class API_Tour_Controller {
   	model.addAttribute("items", showItems);
   	model.addAttribute("navi", navi);
     model.addAttribute("searchText", searchText);
-    
+    model.addAttribute("loginUser",userInfo);
   	return "tour_spot/list";
   }
   
@@ -85,9 +90,10 @@ public class API_Tour_Controller {
 
   @GetMapping("read")
   public String readTour(@RequestParam(value="UC_SEQ") int UC_SEQ,
+  		@AuthenticationPrincipal UserInfo userInfo,
   		Model model) {
   	
-  
+  	model.addAttribute("loginUser",userInfo);
   	List<Item> items = t_ApiService.getItems();
   	
   	for(Item item : items) {
@@ -96,6 +102,7 @@ public class API_Tour_Controller {
   		}
   	}
   	
+  	reviewService.findReviews(null, 1, countPerPage);
   	return "tour_spot/read";
   
   
