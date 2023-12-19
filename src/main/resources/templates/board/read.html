@@ -54,12 +54,24 @@ https://templatemo.com/tm-580-woox-travel
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li><a href="index.html">관광지</a></li>
-                        <li><a href="about.html">음식점</a></li>
-                        <li><a href="about.html">숙소</a></li>
-                        <li><a href="deals.html" class="active">게시판</a></li>
-                        <li><a href="reservation.html">고객문의</a></li>
-                        <li><a href="reservation.html">로그인 / 회원가입</a></li>
+                        <li><a style=" border-radius: 0px;" class="menu-item" href="/tour_spot/list">관광지</a></li>
+                        <li><a style=" border-radius: 0px;" class="menu-item" href="/restaurant/list">음식점</a></li>
+                        <li><a style=" border-radius: 0px;" class="menu-item" href="/hotel/list">숙소</a></li>
+                        <li><a style=" border-radius: 0px;" class="menu-item" href="/board/list">게시판</a></li>
+                        
+						<li sec:authorize="isAuthenticated()" class="menu-item-container" >
+							<a class="menu-item" href="/member/mypage" style="width: max-content; border-radius: 0px;"
+								>[[${loginUser.member.nickname}]]님</a>
+							<div class="menu-container" style="width: max-content; text-align: center;" >
+								<a class="menu-item" href="/member/mypage" style=" border-radius: 0px;">마이페이지</a>
+								<a class="menu-item" href="/complain/list" style=" border-radius: 0px;">고객문의</a>
+								<a class="menu-item" href="/member/logout" style=" border-radius: 0px;">로그아웃</a>
+							</div>
+						</li>
+						
+						<li sec:authorize="isAnonymous()">
+							<a href="/member/login" class="menu-item" style="width: max-content; border-radius: 0px;">로그인</a>
+						</li>
                     </ul>   
                     <a class='menu-trigger'>
                         <span>Menu</span>
@@ -337,6 +349,7 @@ https://templatemo.com/tm-580-woox-travel
 	 <article>
 	   <div class="*{b_contents}" th:text="*{b_contents}"></div>
 	 </article>
+	 
    
    <!--<tr>
         <th>제목</th>
@@ -383,6 +396,22 @@ https://templatemo.com/tm-580-woox-travel
    </div>
   </div>
   <!-- *** 게시판 읽기 End *** -->
+  
+  <!-- *** 댓글 읽기 Start *** -->
+  
+  <p>
+	<div>
+		<label for="reply">리플 쓰기</label>
+		<input type="button" value="등록" onclick="writeReply()">
+		<br><p></p>
+		<textarea rows="3" cols="90" id="reply" name="reply"></textarea>
+	</div>
+	<p></p>
+	<div id="replies">
+		
+	</div>
+	
+	<!-- *** 댓글 읽기 End ***-->
   
   <div class="visit-country" style="margin: auto;">
     <div class="container">
@@ -438,6 +467,7 @@ https://templatemo.com/tm-580-woox-travel
 
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="/vendor/jquery/jquery.min.js"></script>
   <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
   <script src="/assets/js/isotope.min.js"></script>
@@ -447,11 +477,149 @@ https://templatemo.com/tm-580-woox-travel
   <script src="/assets/js/popup.js"></script>
   <script src="/assets/js/custom.js"></script>
 
-  <script>
+  <script th:inline="javascript">
     $(".option").click(function(){
       $(".option").removeClass("active");
       $(this).addClass("active"); 
     });
+    
+    function writeReply() {
+		let board_id = /*[[${board.board_id}]]*/'';
+		let content = $("#reply").val();
+		$.ajax({
+			url: "/reply/" + board_id,
+			type: "post",
+			success: function(data){
+				console.log(data);
+				getReplies()
+			},
+			data: {
+				"content": content
+			},
+			error: function(xhr, status, error) {
+				console.log(xhr);
+				console.log(status);
+				console.log(error);
+			}
+		});
+	}
+	
+	function getReplies() {
+		let board_id = /*[[${board.board_id}]]*/'';
+		$.ajax({
+			url: "/reply/" + board_id,
+			success: function(data) {
+				console.log(data);
+				showReplies(data);
+				
+			},
+			error: function(xhr, status, error){
+				console.log(status);
+			}
+		});
+	}
+	// 페이지가 로딩되면 getReplies() 함수를 자동으로 실행한다
+	$(function(){
+		getReplies();
+	})
+	
+	function showReplies(data) {
+		$("#replies").html("");
+		let str = "";
+		str += "<table>";
+		str += "  <tr>";
+		str += "		<th>No.</th>";
+		str += "		<th>작성자</th>";
+		str += "		<th style='width: 400px'>내용</th>";
+		str += "		<th>작성일</th>";
+		str += "	</tr>";
+		if(data.length > 0) {
+			let loginMemberId = /*[[${session.loginMember.member_id}]]*/'';
+			$(data).each(function(idx, obj){
+				if(loginMemberId == obj.member_id){
+				str += "	<tr>";
+				str += "		<td class='center'>" + (idx + 1) + "</td>";
+				str += "		<td class='center' id='"+ obj.member_id + "' name='member_id'>" + obj.member_id + 
+					"</td>";
+				str += "		<td>";
+				str += "			<textarea row='2' cols='50' id='reply_" + obj.reply_id + "' name='content'>" + 
+					obj.content + "</textarea><br>";
+				str += "			<input type='button' value='수정' onclick='updateReply("+ obj.reply_id + ")'>";
+				str += "			<input type='button' value='삭제' onclick='removeReply("+ obj.reply_id + ")'>";
+				str += "		</td>";
+				str += "		<td class='center' name='created_time'>" + obj.created_time + "</td>";
+				str += "	</tr>";
+				str += "	<input type='hidden' name='board_id' id='" + obj.board_id + "'value='" + 
+					obj.board_id+ "'>";
+				str += "	<input type='hidden' name='reply_id' value='" + obj.reply_id+ "'>";
+				} else {
+				str += "	<tr>";
+				str += "		<td class='center'>" + (idx + 1) + "</td>";
+				str += "		<td class='center'>" + obj.member_id + "</td>";
+				str += "		<td>" + obj.content + "</td>";
+				str += "		<td class='center'>" + obj.created_time + "</td>";
+				str += "	</tr>";
+				}
+			});
+			
+			str += "</table>";
+			$("#replies").append(str);
+		} else {
+			str += "	<tr>";
+			str += "		<td class='center' colspan='4'>등록된 리플이 없습니다.</td>";
+			str += "	</tr>";
+			str += "</table>";
+			$("#replies").append(str);
+		}
+	}
+	
+	function updateReply(reply_id) {
+		let board_id = /*[[${board.board_id}]]*/'';
+		let content = $("#reply_" + reply_id).val();
+		let cf = confirm("리플을 수정하시겠습니까?");
+		if(cf == true) {
+			$.ajax({
+				url: "/reply/" + board_id + "/" + reply_id,
+				type: "put",
+				success: function() {
+					getReplies();
+				},
+				data: {
+					"content": content
+				},
+				error: function(xhr, status, error) {
+					console.log(xhr);
+					console.log(status);
+					console.log(error);
+				}
+			});
+		} else {
+			getReplies();
+		}
+		
+	}
+	
+	function removeReply(reply_id) {
+		
+		let board_id = /*[[${board.board_id}]]*/'';
+		let cf = confirm("리플을 삭제하시겠습니까?");
+		if(cf == true) {
+			$.ajax({
+				url: "/reply/" + board_id + "/" + reply_id,
+				type: "delete",
+				success: function(){
+					getReplies();
+				},
+				error: function(xhr, status, error) {
+					console.log(xhr);
+					console.log(status);
+					console.log(error);
+				}
+			});
+		}
+		
+	}
+    
   </script>
   </body>
 

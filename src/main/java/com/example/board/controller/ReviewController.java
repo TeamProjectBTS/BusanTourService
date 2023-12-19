@@ -60,7 +60,7 @@ public class ReviewController {
     		@AuthenticationPrincipal UserInfo userInfo) {
         
         model.addAttribute("writeForm", new ReviewWriteForm());
-        
+        model.addAttribute("loginUser", userInfo);
         return "review/write";
     }
 
@@ -96,7 +96,7 @@ public class ReviewController {
 
     // 게시글 전체 보기
     @GetMapping("list")
-    public String list(
+    public String list(@AuthenticationPrincipal UserInfo userInfo,
 	  		@RequestParam(value="page", defaultValue="1") int page,
 			 @RequestParam(value="searchText", defaultValue="") String searchText,
 	     Model model) {
@@ -114,6 +114,7 @@ public class ReviewController {
       model.addAttribute("reviews", reviews);
       model.addAttribute("navi", navi);
       model.addAttribute("searchText", searchText);
+      model.addAttribute("loginUser", userInfo);
       // board/list.html 를 찾아서 리턴한다.
       return "review/list";
     }
@@ -140,6 +141,7 @@ public class ReviewController {
         
         // 모델에 Board 객체를 저장한다.
         model.addAttribute("review", review);
+        model.addAttribute("loginUser", userInfo);
         
         // board/read.html 를 찾아서 리턴한다.
         return "review/read";
@@ -168,7 +170,7 @@ public class ReviewController {
 //        log.info("첨부파일 : {}", attachedFile);
         
         model.addAttribute("files", attachedFiles);
-        
+        model.addAttribute("loginUser", userInfo);
         // board/update.html 를 찾아서 리턴한다.
         return "review/update";
     }

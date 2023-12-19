@@ -58,10 +58,12 @@ public class BoardController {
 
     // 글쓰기 페이지 이동
     @GetMapping("write")
-    public String writeForm(Model model) {
+    public String writeForm(@AuthenticationPrincipal UserInfo userInfo,
+    		Model model) {
         
         // writeForm.html의 필드 표시를 위해 빈 BoardWriteForm 객체를 생성하여 model 에 저장한다.
         model.addAttribute("writeForm", new BoardWriteForm());
+        model.addAttribute("loginUser", userInfo);
         // board/writeForm.html 을 찾아 리턴한다.abou
         return "board/write";
     }
@@ -89,13 +91,14 @@ public class BoardController {
         board.setNickname(userInfo.getMember().getNickname());
         boardService.saveBoard(board, file);
         
+        
         // board/list 로 리다이렉트한다.
         return "redirect:/board/list";
     }
 
     // 게시글 전체 보기
     @GetMapping("list")
-    public String list(
+    public String list(@AuthenticationPrincipal UserInfo userInfo,
     		@RequestParam(value="page", defaultValue="1") int page,
     									 @RequestParam(value="searchText", defaultValue="") String searchText,
                        Model model) {
@@ -112,6 +115,7 @@ public class BoardController {
       model.addAttribute("boards", boards);
       model.addAttribute("navi", navi);
       model.addAttribute("searchText", searchText);
+      model.addAttribute("loginUser", userInfo);
 //       board/list.html 를 찾아서 리턴한다.
 
       return "board/list";
@@ -119,7 +123,8 @@ public class BoardController {
     	
     // 게시글 읽기
     @GetMapping("read")
-    public String read(@RequestParam Long board_id,
+    public String read(@AuthenticationPrincipal UserInfo userInfo,
+    				@RequestParam Long board_id,
                        Model model) {
 
         log.info("id: {}", board_id);
@@ -138,6 +143,7 @@ public class BoardController {
         
         // 모델에 Board 객체를 저장한다.
         model.addAttribute("board", board);
+        model.addAttribute("loginUser", userInfo);
         
         // board/read.html 를 찾아서 리턴한다.
         return "board/read";
@@ -149,7 +155,6 @@ public class BoardController {
                              @RequestParam Long board_id,
                              Model model) {
         
-
 //        log.info("id: {}", board_id);
 
         // board_id에 해당하는 게시글이 없거나 게시글의 작성자가 로그인한 사용자의 아이디와 다르면 수정하지 않고 리스트로 리다이렉트 시킨다.
@@ -166,6 +171,7 @@ public class BoardController {
 //        log.info("첨부파일 : {}", attachedFile);
         
         model.addAttribute("file", attachedFile);
+        model.addAttribute("loginUser", userInfo);
         
         // board/update.html 를 찾아서 리턴한다.
         return "board/update";
