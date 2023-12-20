@@ -56,24 +56,29 @@ https://templatemo.com/tm-580-woox-travel
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
 
-                    <ul class="nav">	
-                        <li><a href="/tour_spot/list">관광지</a></li>
-                        <li><a href="/restaurant/list">음식점</a></li>
-                        <li><a href="/hotel/list">숙소</a></li>
-                        <li><a href="/board/list">게시판</a></li> <!--연결안됌-->
-                        <li><a href="/complain/list">고객문의</a></li> 
+						<ul class="nav">
+                        <li><a style=" border-radius: 0px;" class="menu-item" href="/tour_spot/list">관광지</a></li>
+                        <li><a style=" border-radius: 0px;" class="menu-item" href="/restaurant/list">음식점</a></li>
+                        <li><a style=" border-radius: 0px;" class="menu-item" href="/hotel/list">숙소</a></li>
+                        <li><a style=" border-radius: 0px;" class="menu-item" href="/board/list">게시판</a></li>
+                        
+						<li sec:authorize="isAuthenticated()" class="menu-item-container" >
+							<a class="menu-item" href="/member/mypage" style="width: max-content; border-radius: 0px;"
+								>[[${loginUser.member.nickname}]]님</a>
+							<div class="menu-container" style="width: max-content; text-align: center;" >
+								<a class="menu-item" href="/member/mypage" style=" border-radius: 0px;">마이페이지</a>
+								<a class="menu-item" href="/complain/list" style=" border-radius: 0px;">고객문의</a>
+								<a class="menu-item" href="/member/logout" style=" border-radius: 0px;">로그아웃</a>
+							</div>
 
-                        <li sec:authorize="isAuthenticated()">
-							<a href="/member/mypage">마이페이지</a>
 						</li>
-						<li sec:authorize="isAuthenticated()">
-							<a href="/member/logout">로그아웃</a>
-						</li>
+						
 						<li sec:authorize="isAnonymous()">
 							<a href="/member/login">로그인</a>
 						</li>
                     </ul>
-                    
+
+
                     <a class='menu-trigger'>
                         <span>Menu</span>
                     </a>
@@ -197,51 +202,45 @@ https://templatemo.com/tm-580-woox-travel
   
   <!-- *** 게시판 리스트 Start *** -->
 <div class="bulletin-board-container">
-	<table class="table">
-		<div class="search-bar">
-			<form id="post-search-form" name="post-search" method="get" role="search" action="#">
-				<input type="text" id="post-search" name="post-search" placeholder="제목 또는 내용을 입력하세요...">
-				<button type="submit" class="search-btn board-img">
-					<i class="fa fa-search" aria-hidden="true"></i>
-				</button>
-			</form>
-			<div class="border-button">
-				<a href="/board/write">글쓰기</a>
-			</div>
-		</div>
-		<thead>
-			<tr>
-				<th>번호</th>
-				<th>제목</th>
-				<th>닉네임</th>
-				<th>등록일</th>
-				<th>조회수</th>
-				<th>좋아요</th>
-			</tr>
-		</thead>
 
-		<body>
-			<tr>
-				<td>1</td>
-				<td><a href="post.html">게시물 제목 1</a></td>
-				<td>닉네임1</td>
-				<td>2023-01-01</td>
-				<td>100</td>
-				<td>50</td>
-			</tr>
-			<tr th:each="board, boardStat: ${boards}">
-				<td th:text="${boardStat.count}" class="center"></td>
-				<td class="center"><a th:text="${board.b_title}"
-						th:href="@{/board/read(board_id=${board.board_id})}"></a></td>
-				<td th:text="${board.nickname}" class="center"></td>
-				<td th:text="${#temporals.format(board.wr_date, 'yyyy-MM-dd HH:mm')}" class="center"></td>
-				<td th:text="${board.b_view_count}" class="center"></td>
-				<td th:text="${board.b_like_count}" class="center"></td>
-			</tr>
-			<!-- Add more rows as needed -->
-		</body>
-	</table>
-	
+
+  <table class="table">
+    <div class="search-bar">
+	 <form id="post-search-form" name="post-search" method="get" role="search" action="#">
+	  <input type="text" id="post-search" name="post-search" placeholder="제목 또는 내용을 입력하세요...">
+		 <button type="submit" class="search-btn board-img">
+			<i class="fa fa-search" aria-hidden="true"></i>
+		 </button>
+	 </form>
+	  <div class="border-button">
+        <a href="/board/write">글쓰기</a>
+      </div>
+    </div>
+    <thead>
+      <tr>
+        <th>번호</th>	  
+        <th>제목</th>	  
+        <th>닉네임</th>	  
+        <th>등록일</th>	  
+        <th>조회수</th>	  
+        <th>좋아요</th>	  
+      </tr>
+    </thead>
+    
+    <body>
+      <tr th:each="board, boardStat: ${boards}">
+        <td th:text="${board.board_id}" class="center"></td>
+        <td class="center"><a th:text="${board.b_title}" th:href="@{/board/read(board_id=${board.board_id})}"></a></td>
+        <td th:text="${board.nickname}" class="center"></td>
+        <td th:text="${#temporals.format(board.wr_date, 'yyyy-MM-dd HH:mm')}" class="center"></td>
+        <td th:text="${board.b_view_count}" class="center"></td>
+        <td th:text="${board.b_like_count}" class="center"></td>
+      </tr>
+      <!-- Add more rows as needed -->
+    </body>
+  </table>
+</div>
+
    
    <!--<div class="board-bottom">
 	 <form action="#" method="get">

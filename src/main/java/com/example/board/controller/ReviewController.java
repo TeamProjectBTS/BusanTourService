@@ -60,7 +60,7 @@ public class ReviewController {
     		@AuthenticationPrincipal UserInfo userInfo) {
         
         model.addAttribute("writeForm", new ReviewWriteForm());
-        
+        model.addAttribute("loginUser", userInfo);
         return "review/write";
     }
 
@@ -90,13 +90,13 @@ public class ReviewController {
         
         
         
-        // board/list 로 리다이렉트한다.
+        // review/list 로 리다이렉트한다.
         return "redirect:/review/list";
     }
 
     // 게시글 전체 보기
     @GetMapping("list")
-    public String list(
+    public String list(@AuthenticationPrincipal UserInfo userInfo,
 	  		@RequestParam(value="page", defaultValue="1") int page,
 			 @RequestParam(value="searchText", defaultValue="") String searchText,
 	     Model model) {
@@ -109,10 +109,12 @@ public class ReviewController {
       
       // 데이터베이스에 저장된 모든 Board 객체를 리스트 형태로 받는다.
       List<Review> reviews = reviewService.findReviews(searchText, navi.getStartRecord(), navi.getCountPerPage());
+      
       // Board 리스트를 model 에 저장한다.
       model.addAttribute("reviews", reviews);
       model.addAttribute("navi", navi);
       model.addAttribute("searchText", searchText);
+      model.addAttribute("loginUser", userInfo);
       // board/list.html 를 찾아서 리턴한다.
       return "review/list";
     }
@@ -139,6 +141,7 @@ public class ReviewController {
         
         // 모델에 Board 객체를 저장한다.
         model.addAttribute("review", review);
+        model.addAttribute("loginUser", userInfo);
         
         // board/read.html 를 찾아서 리턴한다.
         return "review/read";
@@ -167,9 +170,9 @@ public class ReviewController {
 //        log.info("첨부파일 : {}", attachedFile);
         
         model.addAttribute("files", attachedFiles);
-        
+        model.addAttribute("loginUser", userInfo);
         // board/update.html 를 찾아서 리턴한다.
-        return "board/update";
+        return "review/update";
     }
 
     // 게시글 수정
@@ -184,7 +187,7 @@ public class ReviewController {
 //        log.info("board: {}", updateBoard);
         // validation 에 에러가 있으면 board/update.html 페이지로 돌아간다.
         if (result.hasErrors()) {
-            return "review/update";
+            return "/review/update.html";
         }
 
         // board_id 에 해당하는 Board 정보를 데이터베이스에서 가져온다.

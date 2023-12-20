@@ -56,12 +56,24 @@ https://templatemo.com/tm-580-woox-travel
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li><a href="index.html">관광지</a></li>
-                        <li><a href="about.html">음식점</a></li>
-                        <li><a href="about.html">숙소</a></li>
-                        <li><a href="deals.html" class="active">게시판</a></li>
-                        <li><a href="reservation.html">고객문의</a></li>
-                        <li><a href="reservation.html">로그인 / 회원가입</a></li>
+                        <li><a style=" border-radius: 0px;" class="menu-item" href="/tour_spot/list">관광지</a></li>
+                        <li><a style=" border-radius: 0px;" class="menu-item" href="/restaurant/list">음식점</a></li>
+                        <li><a style=" border-radius: 0px;" class="menu-item" href="/hotel/list">숙소</a></li>
+                        <li><a style=" border-radius: 0px;" class="menu-item" href="/board/list">게시판</a></li>
+                        
+						<li sec:authorize="isAuthenticated()" class="menu-item-container" >
+							<a class="menu-item" href="/member/mypage" style="width: max-content; border-radius: 0px;"
+								>[[${loginUser.member.nickname}]]님</a>
+							<div class="menu-container" style="width: max-content; text-align: center;" >
+								<a class="menu-item" href="/member/mypage" style=" border-radius: 0px;">마이페이지</a>
+								<a class="menu-item" href="/complain/list" style=" border-radius: 0px;">고객문의</a>
+								<a class="menu-item" href="/member/logout" style=" border-radius: 0px;">로그아웃</a>
+							</div>
+						</li>
+						
+						<li sec:authorize="isAnonymous()">
+							<a href="/member/login" class="menu-item" style="width: max-content; border-radius: 0px;">로그인</a>
+						</li>
                     </ul>   
                     <a class='menu-trigger'>
                         <span>Menu</span>
@@ -173,15 +185,6 @@ https://templatemo.com/tm-580-woox-travel
   <!-- *** 게시판 글쓰기 Start *** -->
   
   <div class="bulletin-board-container">
-	<!--<textarea name="re_content" style="position:absolute;visibility:hidden;"></textarea>
-	<table cellpadding="0" cellspacing="0" border="0" width="800" align="center" class="board-write">
-	  <from name="hidden_rewrite"></from>
-	  <input type="HIDDEN" name="re_subject" value>-->
-	  <!-- 상단 이미지 삽입부분 시작 -->
-	  <!--<tbody>
-		  <tr height="3" bgcolor="#CDCCCC">
-		  </tr>-->
-	  <!-- 상단 이미지 삽입부분 끝 -->
 	  <!-- 실제 write 부분 시작 -->
 	  	  <tr>
 			<td>
@@ -246,8 +249,8 @@ https://templatemo.com/tm-580-woox-travel
 				</form>
 			</td>	
 		  </tr>
-	  </tbody>
-	</table>
+		  </div>
+	 
 	<!--<tr>
 	  <td>
 		<input type="file" name="file">

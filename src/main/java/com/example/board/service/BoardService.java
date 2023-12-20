@@ -84,7 +84,7 @@ public class BoardService {
 	@Transactional
 	public void updateBoard(Board updateBoard, boolean isFileRemoved, MultipartFile file) {
 		Board board = boardMapper.findBoard(updateBoard.getBoard_id());
-		
+		log.info("updateBoard:{}", updateBoard);
 		if(board != null) {
 			boardMapper.updateBoard(updateBoard);
 			// 첨부파일 정보를 가져옴
