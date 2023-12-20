@@ -1,6 +1,7 @@
 package com.example.board.model.review;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import lombok.Data;
 
@@ -18,7 +19,7 @@ public class ReviewUpdateForm {
 	private Long rv_view_count; // 조회수
 	private Long rv_like_count; // 좋아요수
 	private Long rv_com_count; // 댓글수
-	private LocalDate wr_date;
+	private LocalDateTime wr_date;
 	private boolean fileRemoved;
 
 	

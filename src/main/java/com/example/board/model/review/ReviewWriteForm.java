@@ -16,11 +16,12 @@ public class ReviewWriteForm {
 	@NotEmpty
 	private String rv_content;
 	private Long star; // 별점 (기본 10점)
+	private Long UC_SEQ;
 	
 	
 	public static Review toReview(ReviewWriteForm reviewWriteForm) {
 		Review review = new Review();
-		
+		review.setUC_SEQ(reviewWriteForm.getUC_SEQ());
 		review.setSort(reviewWriteForm.getSort());
 		review.setRv_title(reviewWriteForm.getRv_title());
 		review.setRv_content(reviewWriteForm.getRv_content());

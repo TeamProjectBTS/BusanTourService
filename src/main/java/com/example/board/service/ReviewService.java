@@ -34,10 +34,8 @@ public class ReviewService {
   @Transactional
 	public void saveReview(Review review, List<MultipartFile> files) {
   	
-		if(findReview(review.getReview_id()) == null) {
 			// 데이터베이스에 저장한다.
 			reviewMapper.saveReview(review);
-		}
 		
     for(MultipartFile file : files) {
     	if(file != null && file.getSize() > 0 || !file.isEmpty()) {

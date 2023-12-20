@@ -59,7 +59,13 @@ https://templatemo.com/tm-580-woox-travel
                         <li><a style=" border-radius: 0px;" class="menu-item" href="/tour_spot/list">관광지</a></li>
                         <li><a style=" border-radius: 0px;" class="menu-item" href="/restaurant/list">음식점</a></li>
                         <li><a style=" border-radius: 0px;" class="menu-item" href="/hotel/list">숙소</a></li>
-                        <li><a style=" border-radius: 0px;" class="menu-item" href="/board/list">게시판</a></li>
+                        <li class="menu-item-container">
+							<a style=" border-radius: 0px;" class="menu-item">게시판</a>
+							<div class="menu-container" style="width: max-content; text-align: center;" >
+								<a class="menu-item" href="/board/list" style=" border-radius: 0px;">자유 게시판</a>
+								<a class="menu-item" href="/review/list" style=" border-radius: 0px;">리뷰 게시판</a>
+							</div>
+						</li>
                         
 						<li sec:authorize="isAuthenticated()" class="menu-item-container" >
 							<a class="menu-item" href="/member/mypage" style="width: max-content; border-radius: 0px;"
@@ -74,8 +80,9 @@ https://templatemo.com/tm-580-woox-travel
 						<li sec:authorize="isAnonymous()">
 							<a href="/member/login" class="menu-item" style="width: max-content; border-radius: 0px;">로그인</a>
 						</li>
-                    </ul>   
-                    <a class='menu-trigger'>
+                    </ul>
+						
+                    <a class='menu-trigger' >
                         <span>Menu</span>
                     </a>
                     <!-- ***** Menu End ***** -->
@@ -224,7 +231,7 @@ https://templatemo.com/tm-580-woox-travel
     
     <body>
         <tr th:each="review, reviewStat: ${reviews}">
-        <td th:text="${reviewStat.count}" class="center"></td>
+        <td th:text="${review.review_id}" class="center"></td>
         <td class="center"><a th:text="${review.rv_title}" th:href="@{/review/read(review_id=${review.review_id})}"></a></td>
         <td th:text="${review.nickname}" class="center"></td>
         <td th:text="${#temporals.format(review.wr_date, 'yyyy-MM-dd HH:mm')}" class="center"></td>

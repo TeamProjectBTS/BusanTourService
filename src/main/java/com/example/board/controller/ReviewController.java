@@ -58,9 +58,11 @@ public class ReviewController {
     // 글쓰기 페이지 이동
     @GetMapping("write")
     public String writeForm(Model model,
+    		@RequestParam(value="UC_SEQ") Long UC_SEQ,
     		@AuthenticationPrincipal UserInfo userInfo) {
-        
-        model.addAttribute("writeForm", new ReviewWriteForm());
+        ReviewWriteForm writeForm = new ReviewWriteForm();
+        writeForm.setUC_SEQ(UC_SEQ);
+        model.addAttribute("writeForm", writeForm);
         model.addAttribute("loginUser", userInfo);
         return "review/write";
     }
@@ -69,16 +71,17 @@ public class ReviewController {
     @PostMapping("write")
     public String write(@AuthenticationPrincipal UserInfo userInfo,
                         @Validated @ModelAttribute("writeForm") ReviewWriteForm reviewWriteForm,
+                        BindingResult result,
                         @RequestParam(required=false) List<MultipartFile> files,
-                        Model model,
-                        BindingResult result) {
+                        Model model
+                        ) {
        
 
         log.info("userInfo : {}", userInfo);
         // validation 에러가 있으면 board/write.html 페이지를 다시 보여준다.
         if (result.hasErrors()) {
-        	model.addAttribute("error", "내용을 입력해주세요");
-            return "review/write.html";
+        	model.addAttribute("loginUser",userInfo);
+            return "review/write";
         }
 
         // 파라미터로 받은 BoardWriteForm 객체를 Board 타입으로 변환한다.

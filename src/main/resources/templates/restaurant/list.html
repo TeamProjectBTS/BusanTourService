@@ -54,15 +54,21 @@ https://templatemo.com/tm-580-woox-travel
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
                     <a href="/" class="logo2">
-                        <img src="/assets/images/logo2.png" alt=""> 
+                        <img src="/assets/images/logo2.png" alt="">
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
-                       	 <ul class="nav">
+                    <ul class="nav">
                         <li><a style=" border-radius: 0px;" class="menu-item" href="/tour_spot/list">관광지</a></li>
                         <li><a style=" border-radius: 0px;" class="menu-item" href="/restaurant/list">음식점</a></li>
                         <li><a style=" border-radius: 0px;" class="menu-item" href="/hotel/list">숙소</a></li>
-                        <li><a style=" border-radius: 0px;" class="menu-item" href="/board/list">게시판</a></li>
+                        <li class="menu-item-container">
+							<a style=" border-radius: 0px;" class="menu-item">게시판</a>
+							<div class="menu-container" style="width: max-content; text-align: center;" >
+								<a class="menu-item" href="/board/list" style=" border-radius: 0px;">자유 게시판</a>
+								<a class="menu-item" href="/review/list" style=" border-radius: 0px;">리뷰 게시판</a>
+							</div>
+						</li>
                         
 						<li sec:authorize="isAuthenticated()" class="menu-item-container" >
 							<a class="menu-item" href="/member/mypage" style="width: max-content; border-radius: 0px;"
@@ -72,15 +78,14 @@ https://templatemo.com/tm-580-woox-travel
 								<a class="menu-item" href="/complain/list" style=" border-radius: 0px;">고객문의</a>
 								<a class="menu-item" href="/member/logout" style=" border-radius: 0px;">로그아웃</a>
 							</div>
-
 						</li>
 						
 						<li sec:authorize="isAnonymous()">
-							<a href="/member/login">로그인</a>
+							<a href="/member/login" class="menu-item" style="width: max-content; border-radius: 0px;">로그인</a>
 						</li>
                     </ul>
-
-                    <a class='menu-trigger'>
+						
+                    <a class='menu-trigger' >
                         <span>Menu</span>
                     </a>
                     <!-- ***** Menu End ***** -->

@@ -1,6 +1,10 @@
 package com.example.board.model.review;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 import com.example.board.model.board.Board;
 import com.example.board.model.board.BoardUpdateForm;
@@ -9,9 +13,9 @@ import lombok.Data;
 
 @Data
 public class Review {
-	
+	@Id 
 	private Long review_id;
-	private int UC_SEQ; // 
+	private Long UC_SEQ; // 
 	private String member_id;
 	private String nickname;
 	private String sort; // 관광지, 음식점, 호텔 중 택1
@@ -21,7 +25,7 @@ public class Review {
 	private Long rv_view_count; // 조회수
 	private Long rv_like_count; // 좋아요수
 	private Long rv_com_count; // 댓글수
-	private LocalDate wr_date;
+	private LocalDateTime wr_date;
 	
 	public void addRv_view_count() {
 		this.rv_view_count++;
