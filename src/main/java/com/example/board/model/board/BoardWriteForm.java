@@ -9,7 +9,7 @@ import lombok.Data;
 
 @Data
 public class BoardWriteForm {
-	@NotEmpty
+	@NotEmpty(message="엿먹어")
 	private String b_title; //글 제목
 	@NotEmpty
 	private String b_contents; //내용

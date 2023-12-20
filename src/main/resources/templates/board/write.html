@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="/assets/css/owl.css">
     <link rel="stylesheet" href="/assets/css/animate.css">
     <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <!--
 
 TemplateMo 580 Woox Travel
@@ -153,69 +155,132 @@ https://templatemo.com/tm-580-woox-travel
     margin-top: 20px;
   }
 
-  .page-numbers li {
+    .page-numbers li {
     display: inline-block;
     margin: 0 5px;
   }
 
-  .call-to-action {
+    .call-to-action {
     position: fixed;
     bottom: 20px;
     right: 20px;
   }
 
-  .call-to-action .border-button {
+    .call-to-action .border-button {
     text-align: center;
   }
   
+    .bd .itx_wrp {
+	  position: relative;
+  }
+  
+    element.style {
+	  visibility: visible;
+  }
+  
+    .bd .itx_wrp
+    label {
+	  position: absolute;
+	  top: -4px;
+	  left: 8px;
+  }
+  
+  .itx_wrp {
+  text-align: center;
+}
+
+.itx_wrp label {
+  position: static; /* 가운데 정렬을 위해 position 속성을 변경 */
+  display: block; /* inline으로 설정돼 있을 경우 block으로 변경 */
+  margin: 0 auto; /* 수평 가운데 정렬 */
+}
+
+.itx_wrp input {
+  width: 700px;
+  border: 1px #C4CAD1 solid;
+  font-size: 12pt;
+  padding-top: 6px;
+  margin: 0 auto; /* 수평 가운데 정렬 */
+  display: block; /* inline으로 설정돼 있을 경우 block으로 변경 */
+}
+
+.xefu-btn {
+	display: inline-block;
+	margin: 0;
+	padding: 0 12px!important;
+	height: 24px!important;
+	border: 1px solid #bbb;
+	border-radius: 2px;
+	text-decoration: none!important;
+	text-align: center;
+	vertical-align: top;
+	line-height: 24px!important;
+	font-family: inherit;
+	font-size: 15px;
+	color: #333;
+	cursor: pointer;
+	box-shadow: inset 0 1px 0 rgba(255,255,255,.2),
+				0 1px 2px rgba(0,0,0,.05);
+	background-color: #f5f5f5;
+	background-image: -webkit-linear-gradient(top,#fff,#e6e6e6);
+	background-repeat: repeat-x;
+}
+
+.xefu-act-selectfile {
+	overflow: hidden!important;
+}
+
+.xefu-btn>a, xefu-btn>button, .xefu-btn>input, .xefu-btn>span {
+	display: inline-block;
+	margin: 0 -12px!important;
+	padding: 0 12px!important;
+	overflow: visible;
+	width: auto;
+	height: 24px;
+	border: 0;
+	vertical-align: top;
+	text-decoration: none!important;
+	line-height: 24px;
+	font-family: inherit;
+	font-size: 13px;
+	color: #333;
+	cursor: pointer;
+	background: 0 0;
+}
+
+.fileinput-button input {
+	position: absolute;
+	top: 0;
+	right: 0;
+	opacity: 0;
+	direction: ltr;
+}
   </style>
   
   <!-- *** 게시판 글쓰기 Start *** -->
   
   <div class="bulletin-board-container">
-	<!--<textarea name="re_content" style="position:absolute;visibility:hidden;"></textarea>
-	<table cellpadding="0" cellspacing="0" border="0" width="800" align="center" class="board-write">
-	  <from name="hidden_rewrite"></from>
-	  <input type="HIDDEN" name="re_subject" value>-->
-	  <!-- 상단 이미지 삽입부분 시작 -->
-	  <!--<tbody>
-		  <tr height="3" bgcolor="#CDCCCC">
-		  </tr>-->
-	  <!-- 상단 이미지 삽입부분 끝 -->
 	  <!-- 실제 write 부분 시작 -->
 	  	  <tr>
 			<td>
 			  <form method="post" action="/board/write" enctype="multipart/form-data" th:object="${writeForm}"
 			   style="margin:0; padding:0;" >
-			   <tr>
-				<td>
-				<input type="file" name="file">  
-				</td>
-			  </tr>
 			    <table cellpadding="0" cellspacing="0" border="0" width="100%" style="table-layout: fixed">
-				 <!-- <tbody> -->
-				  <tr>
-				   <!-- <td bgcolor="#EDEDED"> -->
+				 <tbody>
 					<table cellpadding="0" cellspacing="0" border="0" whidth="100%">
-					 <tbody>
-					  <tr style="height:40px;">
-						<td align="center" style="width:60px;">제목 :</td>
-						<td style="padding:0 5px 0 0;">
-						  <input type="text" th:field="${writeForm.b_title}" style="width:700px;border:1 #C4CAD1 solid;font-size:9pt;padding-top: 3px;">	
-						</td>  
-					  </tr>	 
-					 </tbody>
+					  <span class="itx_wrp"> 
+					   <label for="postTitle" style="visibility: visible;"></label>
+					   <input type="text" th:field="${writeForm.b_title}" style="width:700px;border: 2px #C4CAD1 solid;font-size:12pt;padding-top: 6px;" placeholder="제목">	
+					  </span> 
 					</table>
 					<tr>
 					  <td align="center">
 						<textarea id="CONTENT2" th:field="${writeForm.b_contents}" class="signContent" style="float: left; resize: none; width: 100%; height: 500px;
-						margin-top: 2px; margin-bottom: 0px;"></textarea>						  
+						margin-top: 2px; margin-bottom: 0px; border: 2px #C4CAD1 solid" placeholder="※ 정보통신망에서 불법촬영물등을 유통할 경우 「전기통신사업법」 제22조의 5 제1항에 따른 삭제.접속차단 등 유통방지에 필요한 조치가 취해지며 「성폭력처벌법」 제14조 「청소년성보호법」 제11조에 따라 형사처벌을 받을수 있습니다."></textarea>						  
 					  </td>
-					 </tr>	   
-				   <!-- </td> -->	  
-				 <!-- </tbody> -->	
+					</tr>  
+				 </tbody>
 				</table>
-				
 			
 			   <!-- 1픽셀 라인 -->
 			   <!-- <div id="bbs-poll-setting" class="bbs-poll-setting" data-has-poll="0" data-admin="0">
@@ -224,11 +289,23 @@ https://templatemo.com/tm-580-woox-travel
 			   </div> -->
 			   <table cellspacing="0" cellpadding="0" border="0" width="100%">
 				 <tbody>
-					<!--<tr height="1">
-					  <td width="100%" bgcolor="#22B3C1"></td>
-					</tr>-->
 				 </tbody>  
 			   </table>
+			   <tr>
+		        <th>이미지 첨부</th>
+		        <td>
+		          <input type="file" name="file">
+		        </td>
+		       </tr>
+			   <!--<tr>
+				<td>
+				 <span class="xefu-btn fileinput-button xefu-act-selectfile">
+				   <span>이미지 첨부</span>
+				   <input id="xe-fileupload" type="file" class="fileupload-processing" value="이미지 첨부"
+				   		  name="Filedata" data-auto-upload="true"> 
+				 </span>
+				</td>
+			   </tr>-->
 			   <div class="row" style="margin-top: 50px;">
 			    <div class="col-lg-12">
 			   	 <div class="border-button" style="display:inline-block; float: right;">
@@ -245,8 +322,8 @@ https://templatemo.com/tm-580-woox-travel
 				</form>
 			</td>	
 		  </tr>
-	  </tbody>
-	</table>
+		  </div>
+	 
 	<!--<tr>
 	  <td>
 		<input type="file" name="file">
@@ -326,6 +403,16 @@ https://templatemo.com/tm-580-woox-travel
       $(this).addClass("active"); 
     });
   </script>
+  
+  <script>
+	  $(document).ready(function() {
+	    $('#xe-fileupload').change(function() {
+	      var fileName = $(this).val().split('\\').pop();
+	      $(this).siblings('span').text(fileName);
+	    });
+	  });
+  </script>
+  
   </body>
 
 </html> 

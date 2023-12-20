@@ -31,6 +31,48 @@ reset
 --------------------------------------------- 
 */
 
+.logo2{
+	  padding-top: 5px;
+	  width: 310px;
+  }
+  /* 메뉴를 감싸는 컨테이너 */
+    .menu-container {
+      display: none;
+      position: absolute;
+      background-color: #22b3c1;/* 메뉴 배경색 */
+      color: #fff; /* 메뉴 텍스트 색상 */
+      border-radius: 5px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    /* 호버링 시 메뉴 보이게 하기 */
+    .menu-item-container:hover .menu-container {
+      display: block;
+    }
+
+    /* 메뉴 항목 스타일 */
+    .menu-item {
+      padding: 10px;
+      text-decoration: none;
+      color: #fff; /* 메뉴 항목 텍스트 색상 */
+      display: block;
+      background-color: #22b3c1; /* 메뉴 항목 배경색 */
+    }
+
+    /* 메뉴 항목에 호버링 효과 추가 */
+    .menu-item:hover {
+      background-color: #555; /* 호버링 시 배경색 변경 */
+    }
+
+    /* 가장 윗단의 링크 스타일 수정 */
+    .menu-item-container {
+      display: inline-block;
+      background-color: #22b3c1; /* 첫 번째 링크 배경색 변경 */
+    }
+  
+
+
 .search-form-a {
       position: absolute;
       top: 50%;
@@ -2379,3 +2421,4 @@ body {
     padding: 5px;
   }
 }
+

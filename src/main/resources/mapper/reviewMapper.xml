@@ -29,8 +29,8 @@
   <select id="findReviews" resultType="review">
     select * from review 
     <if test="_parameter != null">
-    	where rv_title like '%' || #{searchText} || '%' 
-    	or nickname like '%' || #{searchText} || '%'
+    	where rv_title like '%' || #{searchTextReview} || '%' 
+    	or nickname like '%' || #{searchTextReview} || '%'
     </if>
     order by 
     	wr_date desc
@@ -86,10 +86,22 @@
   <select id="getTotal" resultType="int">
   	select count(*) from review
   	<if test="_parameter != null">
-  		where rv_title like '%' || #{searchText} || '%' 
-  		or nickname like '%' || #{searchText} || '%'
+  		where rv_title like '%' || #{searchTextReview} || '%' 
+  		or nickname like '%' || #{searchTextReview} || '%'
   	</if>
   </select>
+  
+  <select id="getTotalInReview" resultType="int">
+  	select count(*) from review
+  	<if test="_parameter != null">
+  		where UC_SEQ = #{UC_SEQ} and
+  		(rv_title like '%' || #{searchTextReview} || '%' 
+  		or nickname like '%' || #{searchTextReview} || '%')
+  		 
+  	</if>
+  </select>
+  
+  
   
   <delete id="removeReviewAttachedFile">
   	delete review_attached_file where attached_file_id = #{attached_file_id}
