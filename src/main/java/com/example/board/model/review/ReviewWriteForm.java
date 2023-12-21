@@ -9,6 +9,8 @@ import lombok.Data;
 
 @Data
 public class ReviewWriteForm {
+	
+	private String info_place;
 	@NotBlank
 	private String sort; // 관광지, 음식점, 호텔 중 택1
 	@NotEmpty
@@ -26,6 +28,7 @@ public class ReviewWriteForm {
 		review.setRv_title(reviewWriteForm.getRv_title());
 		review.setRv_content(reviewWriteForm.getRv_content());
 		review.setStar(reviewWriteForm.getStar());
+		review.setInfo_place(reviewWriteForm.getInfo_place());
 		
 		return review;
 	}

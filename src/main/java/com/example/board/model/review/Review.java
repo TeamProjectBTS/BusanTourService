@@ -16,6 +16,7 @@ public class Review {
 	@Id 
 	private Long review_id;
 	private Long UC_SEQ; // 
+	private String info_place;
 	private String member_id;
 	private String nickname;
 	private String sort; // 관광지, 음식점, 호텔 중 택1
