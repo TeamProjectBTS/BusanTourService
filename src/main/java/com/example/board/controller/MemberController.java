@@ -206,7 +206,5 @@ public class MemberController {
 //		log.info("회원가입 잘 됨 : {}", member);
 //		return "redirect:/";
 //	}
-
-	
 	
 }
