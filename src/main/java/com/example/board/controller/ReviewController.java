@@ -14,6 +14,7 @@ import com.example.board.util.PageNavigator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -60,7 +61,7 @@ public class ReviewController {
     		@AuthenticationPrincipal UserInfo userInfo) {
         
         model.addAttribute("writeForm", new ReviewWriteForm());
-        
+        model.addAttribute("loginUser", userInfo);
         return "review/write";
     }
 
@@ -69,14 +70,15 @@ public class ReviewController {
     public String write(@AuthenticationPrincipal UserInfo userInfo,
                         @Validated @ModelAttribute("writeForm") ReviewWriteForm reviewWriteForm,
                         @RequestParam(required=false) List<MultipartFile> files,
+                        Model model,
                         BindingResult result) {
        
-//        log.info("board: {}", boardWriteForm);
-//        log.info("file : {}", file);
+
         log.info("userInfo : {}", userInfo);
         // validation 에러가 있으면 board/write.html 페이지를 다시 보여준다.
         if (result.hasErrors()) {
-            return "/review/write.html";
+        	model.addAttribute("error", "내용을 입력해주세요");
+            return "review/write.html";
         }
 
         // 파라미터로 받은 BoardWriteForm 객체를 Board 타입으로 변환한다.
@@ -96,7 +98,7 @@ public class ReviewController {
 
     // 게시글 전체 보기
     @GetMapping("list")
-    public String list(
+    public String list(@AuthenticationPrincipal UserInfo userInfo,
 	  		@RequestParam(value="page", defaultValue="1") int page,
 			 @RequestParam(value="searchText", defaultValue="") String searchText,
 	     Model model) {
@@ -114,6 +116,7 @@ public class ReviewController {
       model.addAttribute("reviews", reviews);
       model.addAttribute("navi", navi);
       model.addAttribute("searchText", searchText);
+      model.addAttribute("loginUser", userInfo);
       // board/list.html 를 찾아서 리턴한다.
       return "review/list";
     }
@@ -140,6 +143,7 @@ public class ReviewController {
         
         // 모델에 Board 객체를 저장한다.
         model.addAttribute("review", review);
+        model.addAttribute("loginUser", userInfo);
         
         // board/read.html 를 찾아서 리턴한다.
         return "review/read";
@@ -168,7 +172,7 @@ public class ReviewController {
 //        log.info("첨부파일 : {}", attachedFile);
         
         model.addAttribute("files", attachedFiles);
-        
+        model.addAttribute("loginUser", userInfo);
         // board/update.html 를 찾아서 리턴한다.
         return "review/update";
     }

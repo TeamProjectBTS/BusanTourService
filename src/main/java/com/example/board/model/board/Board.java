@@ -18,7 +18,7 @@ public class Board {
     b_com_count int default 0, -- 댓글 카운트
     wr_date date DEFAULT sysdate -- 글 작성시간 (현재시간 가져오기)
 	 * */
-
+	
 	private Long board_id; //게시물 아이디
 	private String b_title; //글 제목
 	private String b_contents; //내용

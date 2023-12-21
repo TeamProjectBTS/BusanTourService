@@ -4,14 +4,16 @@ import java.time.LocalDateTime;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
 @Data
 public class BoardWriteForm {
 	@NotEmpty(message="엿먹어")
+	@NotEmpty(message="제목을 입력해주세요")
 	private String b_title; //글 제목
-	@NotEmpty
+	@NotEmpty(message="내용을 입력해주세요")
 	private String b_contents; //내용
 	
 	public static Board toBoard(BoardWriteForm boardWriteForm) {

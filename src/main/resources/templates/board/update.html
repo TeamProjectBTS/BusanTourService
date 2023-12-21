@@ -54,12 +54,24 @@ https://templatemo.com/tm-580-woox-travel
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li><a href="index.html">관광지</a></li>
-                        <li><a href="about.html">음식점</a></li>
-                        <li><a href="about.html">숙소</a></li>
-                        <li><a href="deals.html" class="active">게시판</a></li>
-                        <li><a href="reservation.html">고객문의</a></li>
-                        <li><a href="reservation.html">로그인 / 회원가입</a></li>
+                        <li><a style=" border-radius: 0px;" class="menu-item" href="/tour_spot/list">관광지</a></li>
+                        <li><a style=" border-radius: 0px;" class="menu-item" href="/restaurant/list">음식점</a></li>
+                        <li><a style=" border-radius: 0px;" class="menu-item" href="/hotel/list">숙소</a></li>
+                        <li><a style=" border-radius: 0px;" class="menu-item" href="/board/list">게시판</a></li>
+                        
+						<li sec:authorize="isAuthenticated()" class="menu-item-container" >
+							<a class="menu-item" href="/member/mypage" style="width: max-content; border-radius: 0px;"
+								>[[${loginUser.member.nickname}]]님</a>
+							<div class="menu-container" style="width: max-content; text-align: center;" >
+								<a class="menu-item" href="/member/mypage" style=" border-radius: 0px;">마이페이지</a>
+								<a class="menu-item" href="/complain/list" style=" border-radius: 0px;">고객문의</a>
+								<a class="menu-item" href="/member/logout" style=" border-radius: 0px;">로그아웃</a>
+							</div>
+						</li>
+						
+						<li sec:authorize="isAnonymous()">
+							<a href="/member/login" class="menu-item" style="width: max-content; border-radius: 0px;">로그인</a>
+						</li>
                     </ul>   
                     <a class='menu-trigger'>
                         <span>Menu</span>
@@ -85,6 +97,16 @@ https://templatemo.com/tm-580-woox-travel
   </div>
   
   <style>
+	  
+	  .border-button input:hover {
+		  background-color: red;
+		  transition: 0.5s;
+	  }
+	  
+	  .border-button input#um:hover {
+		  background-color: #22b3c1;
+		  color: white;
+	  }
   
   .bulletin-board-container {
       max-width: 1300px;
@@ -258,8 +280,6 @@ https://templatemo.com/tm-580-woox-travel
   
   <div class="bulletin-board-container">
 	  <!-- 실제 write 부분 시작 -->
-	  	  <tr>
-			<td>
 			  <form method="post" th:action="@{/board/update(board_id=${updateBoard.board_id})}" enctype="multipart/form-data" th:object="${updateBoard}"
 			   style="margin:0; padding:0;" >
 			    <table cellpadding="0" cellspacing="0" border="0" width="100%" style="table-layout: fixed">
@@ -281,41 +301,16 @@ https://templatemo.com/tm-580-woox-travel
 				  </tr>					 
 				 <!-- </tbody> -->	
 				</table>
-			  
-			  <!-- 1픽셀 라인 -->
-			   <!-- <div id="bbs-poll-setting" class="bbs-poll-setting" data-has-poll="0" data-admin="0">
-				 <div class="top ipoll-1ucydmo" style="order: 1;">
-				 </div>   
-			   </div> -->
-			   <table cellspacing="0" cellpadding="0" border="0" width="100%">
-				 <tbody>
-				 </tbody>  
-			   </table>
-			   <tr>
-		        <th>이미지 첨부</th>
-		        <td>
-		          <input type="file" name="file">
-		        </td>
-		       </tr>
-			   <!--<tr>
-				<td>
-				 <span class="xefu-btn fileinput-button xefu-act-selectfile">
-				   <span>이미지 첨부</span>
-				   <input id="xe-fileupload" type="file" class="fileupload-processing" value="이미지 첨부"
-				   		  name="Filedata" data-auto-upload="true"> 
-				 </span>
-				</td>
-			   </tr>-->
-			   <div class="row" style="margin-top: 50px;">
-			    <div class="col-lg-12">
-			   	 <div class="border-button" style="display:inline-block; float: right;">
-				   <a href="/board/list">목록</a>
-			     </div>
-			     <div class="border-button" style="display: inline-block; float: right;">
-	                <input type="submit" value="작성완료">
-	             </div>
-			     <div class="border-button" style="display: inline-block; float: right; margin-right: 10px;">
+			   <div class="row">
+			    <div class="col-lg-12" style="margin-top: 20px;">
+			   	 <div class="border-button" style="display: inline-block; float: right; ">
 				    <input type="reset" value="취소">
+			     </div>
+			     <div class="border-button" style="display: inline-block; float: right; margin-right: 10px;">
+	                <input id="um" type="submit" value="작성완료">
+	             </div>
+			     <div class="border-button" style="display:inline-block; float: right; margin-right: 10px;">
+				   <a href="/board/list">목록</a>
 			     </div>
 			     </div>
 			    </div>
@@ -328,8 +323,7 @@ https://templatemo.com/tm-580-woox-travel
 			    <input type="hidden" th:field="${updateBoard.fileRemoved}">
 			    <input type="hidden" th:field="${updateBoard.wr_date}">
 				</form>
-			</td>	
-		  </tr>
+			
 		  </div>
 	 
 	<!--<tr>
@@ -410,6 +404,8 @@ https://templatemo.com/tm-580-woox-travel
       $(".option").removeClass("active");
       $(this).addClass("active"); 
     });
+    
+    
   </script>
   </body>
 

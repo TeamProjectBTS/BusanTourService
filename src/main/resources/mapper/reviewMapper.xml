@@ -9,6 +9,7 @@
     </selectKey>
     insert into review(
       review_id,
+      UC_SEQ,
       member_id,
       nickname,
       sort,
@@ -17,6 +18,7 @@
       star
     ) values (
       #{review_id},
+      #{UC_SEQ},
       #{member_id},
       #{nickname},
       #{sort},
@@ -43,6 +45,7 @@
   <update id="updateReview">
     update review
     <set>
+        <if test="UC_SEQ != null">UC_SEQ = #{UC_SEQ},</if>
         <if test="title != null">rv_title = #{rv_title},</if>
         <if test="contents != null">rv_contents = #{rv_contents},</if>
         <if test="rv_view_count != null">rv_view_count = #{rv_view_count}</if>
@@ -58,7 +61,7 @@
   
   <insert id="saveFile">
   	<selectKey keyProperty="attached_file_id" resultType="long" order="BEFORE">
-  		select seq_board.nextval from dual
+  		select seq_busanguide.nextval from dual
   	</selectKey>
   	insert into review_attached_file (
   		attached_file_id,
