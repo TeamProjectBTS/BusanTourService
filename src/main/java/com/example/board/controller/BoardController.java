@@ -34,6 +34,8 @@ import java.net.MalformedURLException;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
+import javax.validation.Valid;
+
 @Slf4j
 @RequestMapping("board")
 @RequiredArgsConstructor
@@ -72,17 +74,20 @@ public class BoardController {
     @PostMapping("write")
     public String write(@AuthenticationPrincipal UserInfo userInfo,
                         @Validated @ModelAttribute("writeForm") BoardWriteForm boardWriteForm,
+                        BindingResult result,
                         @RequestParam(required=false) MultipartFile file,
-                        BindingResult result) {
+                        Model model
+                        ) {
        
-//        log.info("board: {}", boardWriteForm);
+        log.info("board: {}", boardWriteForm);
 //        log.info("file : {}", file);
         
         // validation 에러가 있으면 board/write.html 페이지를 다시 보여준다.
         if (result.hasErrors()) {
-        	
-          return "/board/write.html";
+        	model.addAttribute("loginUser",userInfo);
+          return "board/write";
         }
+        
         log.info("userInfo : {}", userInfo);
         // 파라미터로 받은 BoardWriteForm 객체를 Board 타입으로 변환한다.
         Board board = BoardWriteForm.toBoard(boardWriteForm);
@@ -90,6 +95,7 @@ public class BoardController {
         // board 객체에 로그인한 사용자의 아이디를 추가한다.
         board.setMember_id(userInfo.getMember().getMember_id());
         board.setNickname(userInfo.getMember().getNickname());
+        
         boardService.saveBoard(board, file);
         
         
@@ -100,9 +106,9 @@ public class BoardController {
     // 게시글 전체 보기
     @GetMapping("list")
     public String list(@AuthenticationPrincipal UserInfo userInfo,
-    		@RequestParam(value="page", defaultValue="1") int page,
-    									 @RequestParam(value="searchText", defaultValue="") String searchText,
-                       Model model) {
+    	 @RequestParam(value="page", defaultValue="1") int page,
+			 @RequestParam(value="searchText", defaultValue="") String searchText,
+	     Model model) {
     	log.info("검색어 : {}", searchText);
     	
     	int total = boardService.getTotal(searchText);
@@ -126,7 +132,7 @@ public class BoardController {
     @GetMapping("read")
     public String read(@AuthenticationPrincipal UserInfo userInfo,
     				@RequestParam Long board_id,
-                       Model model) {
+            Model model) {
 
         log.info("id: {}", board_id);
         

@@ -48,16 +48,18 @@ https://templatemo.com/tm-580-woox-travel
             <div class="col-12">
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
-                    <a href="/" class="logo2">
-                        <img src="assets/images/logo2.png" alt="">
-                    </a>
+                    	<a href="/" class="logo2">
+							<img src="/assets/images/logo2.png" alt="로고">
+						</a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
                         <li><a style=" border-radius: 0px;" class="menu-item" href="/tour_spot/list">관광지</a></li>
                         <li><a style=" border-radius: 0px;" class="menu-item" href="/restaurant/list">음식점</a></li>
                         <li><a style=" border-radius: 0px;" class="menu-item" href="/hotel/list">숙소</a></li>
-                        <li><a style=" border-radius: 0px;" class="menu-item" href="/board/list">게시판</a></li>
+                        <li>
+							<a class="menu-item" href="/board/list" style=" border-radius: 0px;">자유 게시판</a>
+						</li>
                         
 						<li sec:authorize="isAuthenticated()" class="menu-item-container" >
 							<a class="menu-item" href="/member/mypage" style="width: max-content; border-radius: 0px;"
@@ -73,6 +75,7 @@ https://templatemo.com/tm-580-woox-travel
 							<a href="/member/login" class="menu-item" style="width: max-content; border-radius: 0px;">로그인</a>
 						</li>
                     </ul> 
+                    
                     <a class='menu-trigger'>
                         <span>Menu</span>
                     </a>

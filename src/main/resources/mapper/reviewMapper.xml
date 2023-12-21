@@ -3,7 +3,7 @@
 		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.board.repository.ReviewMapper">
-  <insert id="saveBoard">
+  <insert id="saveReview">
     <selectKey keyProperty="review_id" resultType="long" order="BEFORE">
       select seq_busanguide.nextval from dual
     </selectKey>
@@ -14,7 +14,7 @@
       nickname,
       sort,
       rv_title,
-      rv_contents,
+      rv_content,
       star
     ) values (
       #{review_id},
@@ -23,7 +23,7 @@
       #{nickname},
       #{sort},
       #{rv_title},
-      #{rv_contents},
+      #{rv_content},
       #{star}
     )
   </insert>
@@ -40,6 +40,10 @@
 
   <select id="findReview" resultType="review">
     select * from review where review_id = #{review_id}
+  </select>
+  
+  <select id="findReviewByUC_SEQ" resultType="review">
+    select * from review where UC_SEQ = #{UC_SEQ}
   </select>
 
   <update id="updateReview">
@@ -78,11 +82,11 @@
   	)
   </insert>
   
-  <select id="findFilesByReviewId" resultType="file">
+  <select id="findFilesByReviewId" resultType="reviewfile">
   	select * from review_attached_file where review_id = #{review_id}
   </select>
   
-  <select id="findFilesByReviewAttachedFileId" resultType="file">
+  <select id="findFilesByReviewAttachedFileId" resultType="reviewfile">
   	select * from review_attached_file where attached_file_id = #{attached_file_id}
   </select>
   

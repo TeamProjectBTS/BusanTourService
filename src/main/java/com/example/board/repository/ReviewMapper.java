@@ -13,9 +13,10 @@ import com.example.board.model.review.ReviewAttachedFile;
 
 @Mapper
 public interface ReviewMapper {
-	void saveReview(Review board);
+	void saveReview(Review review);
 	List<Review> findReviews(@Param("searchTextReview") String searchTextReview, RowBounds rowBounds);
 	Review findReview(Long review_id);
+	List<Review> findReviewsByUC_SEQ(Long UC_SEQ);
 	void updateReview(Review updateReview);
 	void removeReview(Long review_id);
 	void saveFile(ReviewAttachedFile attachedFile);

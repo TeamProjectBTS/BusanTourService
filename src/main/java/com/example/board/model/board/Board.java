@@ -1,5 +1,6 @@
 package com.example.board.model.board;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import lombok.Data;

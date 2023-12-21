@@ -27,14 +27,6 @@ https://templatemo.com/tm-580-woox-travel
 -->
   </head>
 
-<style>
-  .logo2{
-	  padding-top: 5px;
-	  width: 310px;
-  }
-  
-  
-</style>
 
 <body>
 
@@ -63,12 +55,13 @@ https://templatemo.com/tm-580-woox-travel
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
-                        <ul class="nav">
-
+                    <ul class="nav">
                         <li><a style=" border-radius: 0px;" class="menu-item" href="/tour_spot/list">관광지</a></li>
                         <li><a style=" border-radius: 0px;" class="menu-item" href="/restaurant/list">음식점</a></li>
                         <li><a style=" border-radius: 0px;" class="menu-item" href="/hotel/list">숙소</a></li>
-                        <li><a style=" border-radius: 0px;" class="menu-item" href="/board/list">게시판</a></li>
+                        <li>
+							<a class="menu-item" href="/board/list" style=" border-radius: 0px;">자유 게시판</a>
+						</li>
                         
 						<li sec:authorize="isAuthenticated()" class="menu-item-container" >
 							<a class="menu-item" href="/member/mypage" style="width: max-content; border-radius: 0px;"
@@ -78,18 +71,17 @@ https://templatemo.com/tm-580-woox-travel
 								<a class="menu-item" href="/complain/list" style=" border-radius: 0px;">고객문의</a>
 								<a class="menu-item" href="/member/logout" style=" border-radius: 0px;">로그아웃</a>
 							</div>
-
 						</li>
 						
 						<li sec:authorize="isAnonymous()">
-							<a href="/member/login">로그인</a>
-
+							<a href="/member/login" class="menu-item" style="width: max-content; border-radius: 0px;">로그인</a>
 						</li>
                     </ul>
-                    <a class='menu-trigger'>
+						
+                    <a class='menu-trigger' >
                         <span>Menu</span>
                     </a>
-
+                    
                     <!-- ***** Menu End ***** -->
                 </nav>
             </div>
@@ -143,7 +135,7 @@ https://templatemo.com/tm-580-woox-travel
 							<div class="thumb" >
 								<!--<img src="/assets/images/deals-01.jpg" style="display: inline-block;">-->
 								<div class="text" style="display: inline-block; position: absolute;">
-									<h4>파크 하얏트<br><span><i class="fa fa-users"></i> 조회수</span></h4>
+									<h4>롯데월드<br><span><i class="fa fa-users"></i> 조회수</span></h4>
 									<h6>가격<br><span>/person</span></h6>
 									<div class="line-dec"></div>
 									<ul>
@@ -161,7 +153,7 @@ https://templatemo.com/tm-580-woox-travel
 						
 						<span class="item"  style="width: auto;">
 									<span class="thumb">
-									<img src="/assets/images/deals-01.jpg" style="padding: 0%; width: 300px; height: 420px; position: fixed;" >
+									<img src="/assets/images/tour_spot_banner1.jpg" style="padding: 0%; width: 350px; height: 420px; position: fixed;" >
 									</span>
 								</span>
 						
@@ -169,7 +161,7 @@ https://templatemo.com/tm-580-woox-travel
 							<div class="thumb" style="object-fit: cover;">
 								<!--<img src="/assets/images/deals-02.jpg" alt="">-->
 								<div class="text" style>
-									<h4>시그니엘 호텔<br><span><i class="fa fa-users"></i> 조회수 </span></h4>
+									<h4>오륙도 스카이워크<br><span><i class="fa fa-users"></i> 조회수 </span></h4>
 									<h6>가격<br><span>/person</span></h6>
 									<div class="line-dec"></div>
 									<ul>
@@ -187,7 +179,7 @@ https://templatemo.com/tm-580-woox-travel
 						
 						<span class="item">
 									<span class="thumb">
-									<img src="/assets/images/deals-01.jpg" style="padding: 0%; width: 300px; height: 420px; position: fixed;" >
+									<img src="/assets/images/tour_spot_banner2.jpg" style="padding: 0%; width: 350px; height: 420px; position: fixed;" >
 									</span>
 								</span>
 
@@ -195,7 +187,7 @@ https://templatemo.com/tm-580-woox-travel
 							<div class="thumb">
 								<img src="assets/images/slider3.jpg" alt="">
 								<div class="text">
-									<h4>아난티 앳 부산 코브 <br><span><i class="fa fa-users"></i> 조회수</span></h4>
+									<h4>태종대 <br><span><i class="fa fa-users"></i> 조회수</span></h4>
 									<h6>가격<br><span>/person</span></h6>
 									<div class="line-dec"></div>
 									<ul>
@@ -213,11 +205,11 @@ https://templatemo.com/tm-580-woox-travel
 						
 						<span class="item">
 									<span class="thumb">
-									<img src="/assets/images/deals-01.jpg" style="padding: 0%; width: 300px; height: 420px; position: fixed;" >
+									<img src="/assets/images/tour_spot_banner3" style="padding: 0%; width: 350px; height: 420px; position: fixed;" >
 									</span>
 								</span>
 
-						<div class="item">
+							<div class="item">
 							<div class="thumb">
 								<img src="assets/images/offers-01.jpg" alt="">
 								<div class="text">
@@ -442,7 +434,7 @@ https://templatemo.com/tm-580-woox-travel
           <li>
 			<th:block th:if="${navi.currentPage - navi.pagePerGroup > 0}">
 				<a th:href="@{/tour_spot/list(page=${navi.currentPage - navi.pagePerGroup}, searchText=${searchText})}">
-					<i class="fa fa-arrow-left-rotate"></i>
+					<i class="fa fa-arrow-left-bracket"></i>
 				</a>
     		</th:block>
 		  </li>

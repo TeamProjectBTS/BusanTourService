@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="/assets/css/owl.css">
     <link rel="stylesheet" href="/assets/css/animate.css">
     <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap">
 <!--
 
 TemplateMo 580 Woox Travel
@@ -55,12 +56,13 @@ https://templatemo.com/tm-580-woox-travel
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
-
-						<ul class="nav">
+                    <ul class="nav">
                         <li><a style=" border-radius: 0px;" class="menu-item" href="/tour_spot/list">관광지</a></li>
                         <li><a style=" border-radius: 0px;" class="menu-item" href="/restaurant/list">음식점</a></li>
                         <li><a style=" border-radius: 0px;" class="menu-item" href="/hotel/list">숙소</a></li>
-                        <li><a style=" border-radius: 0px;" class="menu-item" href="/board/list">게시판</a></li>
+                        <li>
+							<a class="menu-item" href="/board/list" style=" border-radius: 0px;">자유 게시판</a>
+						</li>
                         
 						<li sec:authorize="isAuthenticated()" class="menu-item-container" >
 							<a class="menu-item" href="/member/mypage" style="width: max-content; border-radius: 0px;"
@@ -70,13 +72,15 @@ https://templatemo.com/tm-580-woox-travel
 								<a class="menu-item" href="/complain/list" style=" border-radius: 0px;">고객문의</a>
 								<a class="menu-item" href="/member/logout" style=" border-radius: 0px;">로그아웃</a>
 							</div>
+
 						</li>
 						
 						<li sec:authorize="isAnonymous()">
-							<a href="/member/login">로그인</a>
+							<a href="/member/login" class="menu-item" style="width: max-content; border-radius: 0px;">로그인</a>
 						</li>
                     </ul>
-                    <a class='menu-trigger'>
+                    <a class='menu-trigger' >
+
                         <span>Menu</span>
                     </a>
                     <!-- ***** Menu End ***** -->
@@ -86,20 +90,46 @@ https://templatemo.com/tm-580-woox-travel
     </div>
   </header>
   <!-- ***** Header Area End ***** -->
+<style>
 
-  <div class="page-heading">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <h4>Busan Tour Service</h4>
-          <h2>부산여행</h2>
-<!--          <div class="border-button text-center"><a href="about.html">자세히 보기</a></div>
--->        </div>
-      </div>
-    </div>
-  </div>
+  body {
+      font-family: 'Noto Sans KR', sans-serif; /* 한글 폰트를 'Noto Sans KR'로 설정, fallback은 sans-serif로 설정 */
+    }
+			h2{
+            font-weight: bold; /* 굵은 글꼴 적용 */
+            text-shadow: 5px 5px 5px rgb(0, 0, 0); /* 그림자 설정 */
+        	}
+        	h4{
+            font-weight: bold; /* 굵은 글꼴 적용 */
+            text-shadow: 5px 5px 5px rgb(0, 0, 0); /* 그림자 설정 */
+        	}
+
+
+  .asd{
+            border-right: 1px solid rgb(192, 192, 192); 
+             
+  }
   
-  <style>
+  .amazing-deals .item2{
+  background-color: #f7f7f7;
+  border-radius: 25px;
+  padding-right: 100px;
+  margin-bottom: 30px;
+  width: 400px;
+   border-bottom: 2px solid rgb(95, 95, 95);
+}
+  .amazing-deals .item3{
+  margin:auto;
+  background-color: #f7f7f7;
+  border-radius: 25px;
+  margin-bottom: 30px;
+  width: 1200px;
+  height: 60px;
+  padding-right: 30px;
+  padding-left: 30px;
+   border-bottom: 2px solid #333;
+}
+
   
   .bulletin-board-container {
       max-width: 1300px;
@@ -241,62 +271,63 @@ https://templatemo.com/tm-580-woox-travel
   }
   </style>
   
+  
+  <div class="page-heading">
+      <div class="row">
+		  <h4 style="color: rgb(225, 225, 225);">부산여행</h4>
+          <h2 style="color: rgb(225, 225, 225);">자유게시판</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
   <!-- *** 게시판 리스트 Start *** -->
-<div class="bulletin-board-container">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>번호</th>	  
-        <th>제목</th>	  
-        <th>닉네임</th>	  
-        <th>등록일</th>	  
-        <th>조회수</th>	  
-        <th>좋아요</th>	  
-      </tr>
-    </thead>
-    
-    <body>
-      <tr th:each="board, boardStat: ${boards}">
-        <td th:text="${board.board_id}" class="center"></td>
-        <td class="center">
-		  <a th:text="${board.b_title}" th:href="@{/board/read(board_id=${board.board_id})}">
-			<i style="font-size:16px;" class="fa fa-file-text-o">
-			 ::before	
-			</i>
-		  </a>
-		</td>
-        <td th:text="${board.nickname}" class="center"></td>
-        <td th:text="${#temporals.format(board.wr_date, 'yyyy-MM-dd HH:mm')}" class="center"></td>
-        <td th:text="${board.b_view_count}" class="center"></td>
-        <td th:text="${board.b_like_count}" class="center"></td>
-      </tr>
-      <!-- Add more rows as needed -->
-    </body>
-    <div class="search-bar">
-	 <form id="post-search-form" name="post-search" method="get" role="search" action="#">
-	  <input type="text" id="post-search" name="post-search" placeholder="제목 또는 내용을 입력하세요...">
-		 <button type="submit" class="search-btn board-img">
-			<i class="fa fa-search" aria-hidden="true"></i>
-		 </button>
-	 </form>
-    </div>
-  </table>
-  <div class="border-button">
-      <a href="/board/write">글쓰기</a>
-    </div>
+	<div class="amazing-deals">
+			<div class="row" style="display: grid; place-items: center; height: 30vh;">
+							<div class="col-lg-12">
+								<div class="col-lg-3" style="margin-left: 150px;">
+									<div class="item2">
+										<h3 style="padding: 10px; text-align: center; width: 140%;">자유게시판</h3>
+									</div>
+									<br>
+								</div>
+
+
+							<div class="item3" style="margin:auto;">
+								<div class="row" style="--bs-gutter-y: 1.5rem;">
+								
+								
+										<div class="col-lg-1 asd" id="container">
+										<h6 style="text-align: center; margin:0;">번호</h6>
+									</div>
+
+									<div class="col-lg-4 asd" id="container">
+										<h6 style="text-align: center; margin:0;">제목</h6>
+									</div>
+									
+									<div class="col-lg-3 asd" id="container">
+										<h6 style="text-align: center;">닉네임</h6>
+									</div>
+									
+									<div class="col-lg-2 asd" id="container">
+										<h6 style="text-align: center;">등록일</h6>
+									</div>
+									
+									<div class="col-lg-1 asd" id="container">
+										<h6 style="text-align: center;">조회수</h6>
+									</div>
+									
+									<div class="col-lg-1 asd" id="container" style="border-right: none;">
+										<h6 style="text-align: center;">좋아요</h6>
+									</div>
+								</div>
+							</div>
+							<br><br>
+						</div>		
 </div>
-   
-   <!--<div class="board-bottom">
-	 <form action="#" method="get">
-	 	<input type="hidden" name="query" value="list">
-	 	<input type="hidden" name="p" value="1">
-	 	<input type="hidden" name="sterm" value>
-		<input type="text" name="keyword" id="sword" placeholder="제목 또는 내용을 입력하세요...">
-		<button type="sumit" class="search-btn board-img">
-		  <i class="fa fa-search" aria-hidden="true"></i>
-		</button>
-	 </form>
-  </div>-->
+</div>
+
   <!-- *** 게시판 리스트 End *** -->
 
   <div class="visit-country" style="margin: auto;" id="navigator">
@@ -322,24 +353,6 @@ https://templatemo.com/tm-580-woox-travel
     </div>
   </div>
 				
-			
-	
-  <!--<div class="call-to-action">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8">
-          <h2>Are You Looking To Travel ?</h2>
-          <h4>Make A Reservation By Clicking The Button</h4>
-        </div>
-        <div class="col-lg-4">
-          <div class="border-button">
-            <a href="reservation.html">Book Yours Now</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>-->
-
   <footer>
     <div class="container">
       <div class="row">

@@ -20,7 +20,7 @@ public class HotelController {
 	@GetMapping("list")
 	public String hotelList(@AuthenticationPrincipal UserInfo userInfo, 
 							Model model) {
-		model.addAttribute("loginUser", userInfo);
+		model.addAttribute("loginUser",userInfo);
 		return "hotel/list";
 	}
 	

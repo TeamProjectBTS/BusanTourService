@@ -20,7 +20,7 @@ public class RestaurantController {
 	@GetMapping("list")
 	public String restaurantList(@AuthenticationPrincipal UserInfo userInfo, 
 								Model model) {
-		model.addAttribute("loginUser", userInfo);
+		model.addAttribute("loginUser",userInfo);
 		return "restaurant/list";
 	}
 	
