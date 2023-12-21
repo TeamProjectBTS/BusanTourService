@@ -194,9 +194,6 @@ public class MemberController {
 	
 
 
-	
-
-
 		@GetMapping("mypage")
 		public String mypage(@AuthenticationPrincipal UserInfo userInfo, 
 									Model model) {

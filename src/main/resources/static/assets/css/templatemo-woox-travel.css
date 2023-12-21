@@ -18,7 +18,7 @@ Table of contents
 08. contact
 09. footer
 10. main-slider
-
+11 - silder container
 --------------------------------------------- */
 /* 
 ---------------------------------------------
@@ -32,6 +32,32 @@ reset
 --------------------------------------------- 
 */
 
+.slider-container {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .page-numbers {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .page-numbers li {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .active a {
+            color: #333;
+            background-color: yellow;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        
+        
 .logo2{
 	  padding-top: 5px;
 	  width: 310px;
@@ -1122,7 +1148,7 @@ Visit Country Style
 
 .visit-country ul.page-numbers li:first-child a,
 .visit-country ul.page-numbers li:last-child a {
-  border: none;
+  /*border: none;*/
 }
 
 
@@ -1870,7 +1896,7 @@ body .options .option .label .icon {
   background-color: white;
   color: var(--defaultBackground);
 }
-body .options .option .label .info {
+body .options .option .label {
   display: flex;
   flex-direction: column;
   justify-content: center;
