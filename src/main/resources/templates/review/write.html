@@ -235,7 +235,7 @@ https://templatemo.com/tm-580-woox-travel
   
   <div class="bulletin-board-container">
 	  <!-- 실제 write 부분 시작 -->
-			  <form method="post" action="/review/write" enctype="multipart/form-data" th:object="${writeForm}"
+			  <form method="post" th:action="@{/review/write(UC_SEQ=${writeForm.UC_SEQ})}" enctype="multipart/form-data" th:object="${writeForm}"
 			   style="margin:0; padding:0;" >
 			   
 				<input type="file" name="files" id="fileInput" accept="image/*" multiple onchange="previewImages()">

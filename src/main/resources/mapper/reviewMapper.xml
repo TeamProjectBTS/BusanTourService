@@ -41,6 +41,10 @@
   <select id="findReview" resultType="review">
     select * from review where review_id = #{review_id}
   </select>
+  
+  <select id="findReviewByUC_SEQ" resultType="review">
+    select * from review where UC_SEQ = #{UC_SEQ}
+  </select>
 
   <update id="updateReview">
     update review

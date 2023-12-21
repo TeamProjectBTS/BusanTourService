@@ -51,6 +51,7 @@ public class Review {
 		reviewUpdateForm.setRv_like_count(review.getRv_like_count());
 		reviewUpdateForm.setRv_com_count(review.getRv_com_count());
 		reviewUpdateForm.setWr_date(review.getWr_date());
+		reviewUpdateForm.setInfo_place(review.getInfo_place());
 		
 		return reviewUpdateForm;
 	}

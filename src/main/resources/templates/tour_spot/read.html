@@ -195,103 +195,106 @@ https://templatemo.com/tm-580-woox-travel
 					</div>
 				</div>
 			</div>
+			
 			<br><br>
-			<div class="row">
-				<div class="col-lg-12">
-					<h1>Review</h1>
-<div class="search-form" style="margin-top: 50px;">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12" style="margin: auto;">
-          <form id="search-form" name="gs" method="submit" role="search" action="#" 
-          	style="border-radius: 20px;">
-            <div class="row">
-              <div class="col-lg-3">
-                  <fieldset>
-                      <select name="Location" class="form-select" aria-label="Default select example" id="chooseLocation" onChange="this.form.click()">
-                          <option selected>Destinations</option>
-                          <option type="checkbox" name="option1" value="Italy">Italy</option>
-                          <option value="France">France</option>
-                          <option value="Switzerland">Switzerland</option>
-                          <option value="Thailand">Thailand</option>
-                          <option value="Australia">Australia</option>
-                          <option value="India">India</option>
-                          <option value="Indonesia">Indonesia</option>
-                          <option value="Malaysia">Malaysia</option>
-                          <option value="Singapore">Singapore</option>
-                      </select>
-                  </fieldset>
-              </div>
-              <div class="col-lg-3">
-                  <fieldset>
-                      <select name="Price" class="form-select" aria-label="Default select example" id="choosePrice" onChange="this.form.click()">
-                          <option selected>Price Range</option>
-                          <option value="100">$100 - $250</option>
-                          <option value="250">$250 - $500</option>
-                          <option value="500">$500 - $1,000</option>
-                          <option value="1000">$1,000 - $2,500</option>
-                          <option value="2500+">$2,500+</option>
-                      </select>
-                  </fieldset>
-              </div>
-              <div class="col-lg-3" style="margin: auto;">
-                  <fieldset >
-                      <input class="input" type="text" name="searchTextReview" style="width: 100%;">
-                  </fieldset>
-              </div>
-              <div class="col-lg-3">                        
-                  <fieldset >
-                      <button class="border-button">검색하기</button>
-                  </fieldset>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>					
+			
+<div class="row">
+	<div class="col-lg-12">
+		<h1>Review</h1>
+		<div class="search-form" style="margin-top: 50px;">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12" style="margin: auto;">
+						<form id="search-form" name="gs" method="submit" role="search" action="#"
+							style="border-radius: 20px;">
+							<div class="row">
+								<div class="col-lg-3">
+									<fieldset>
+										<select name="Location" class="form-select" aria-label="Default select example"
+											id="chooseLocation" onChange="this.form.click()">
+											<option selected>Destinations</option>
+											<option type="checkbox" name="option1" value="Italy">Italy</option>
+											<option value="France">France</option>
+											<option value="Switzerland">Switzerland</option>
+											<option value="Thailand">Thailand</option>
+											<option value="Australia">Australia</option>
+											<option value="India">India</option>
+											<option value="Indonesia">Indonesia</option>
+											<option value="Malaysia">Malaysia</option>
+											<option value="Singapore">Singapore</option>
+										</select>
+									</fieldset>
+								</div>
+								<div class="col-lg-3">
+									<fieldset>
+										<select name="Price" class="form-select" aria-label="Default select example"
+											id="choosePrice" onChange="this.form.click()">
+											<option selected>Price Range</option>
+											<option value="100">$100 - $250</option>
+											<option value="250">$250 - $500</option>
+											<option value="500">$500 - $1,000</option>
+											<option value="1000">$1,000 - $2,500</option>
+											<option value="2500+">$2,500+</option>
+										</select>
+									</fieldset>
+								</div>
+								<div class="col-lg-3" style="margin: auto;">
+									<fieldset>
+										<input class="input" type="text" name="searchTextReview" style="width: 100%;">
+									</fieldset>
+								</div>
+								<div class="col-lg-3">
+									<fieldset>
+										<button class="border-button">검색하기</button>
+									</fieldset>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 
-					
-<div class="bulletin-board-container">
-  <table class="table">
-    <div class="search-bar">
-	 <form method="submit" role="search" action="#">
-	  <input type="text" th:field="${searchTextReview}" placeholder="제목 또는 내용을 입력하세요...">
-		 <button type="submit" class="search-btn board-img">
-			<i class="fa fa-search" aria-hidden="true"></i>
-		 </button>
-	 </form>
-	  <div class="border-button">
-        <a th:href="@{/review/write(UC_SEQ=${item.UC_SEQ})}">리뷰 남기기</a>
-      </div>
-    </div>
-    <thead>
-      <tr>
-        <th>번호</th>	  
-        <th>제목</th>	  
-        <th>닉네임</th>	  
-        <th>등록일</th>	  
-        <th>조회수</th>	  
-        <th>좋아요</th>
-        <th>댓글수</th>
-      </tr>
-    </thead>
-    <body>
-      <tr th:each="review: ${reviews}">
-        <td th:text="${review.review_id}" class="center"></td>
-        <td class="center"><a th:text="${review.rv_title}" th:href="@{/review/read(review_id=${review.review_id})}"></a></td>
-        <td th:text="${review.nickname}" class="center"></td>
-        <td th:text="${#temporals.format(review.wr_date, 'yyyy-MM-dd HH:mm')}" class="center"></td>
-        <td th:text="${review.rv_view_count}" class="center"></td>
-        <td th:text="${review.rv_like_count}" class="center"></td>
-        <td th:text="${review.rv_com_count}" class="center"></td>
-      </tr>
-      <!-- Add more rows as needed -->
-    </body>
-  </table>
-</div>
 
-</div>
+		<div class="bulletin-board-container">
+			<table class="table">
+				<div class="search-bar">
+					<form method="submit" role="search" action="#">
+						<input type="text" th:field="${searchTextReview}" placeholder="제목 또는 내용을 입력하세요...">
+						<button type="submit" class="search-btn board-img">
+							<i class="fa fa-search" aria-hidden="true"></i>
+						</button>
+					</form>
+					<div class="border-button">
+						<a th:href="@{/review/write(UC_SEQ=${item.UC_SEQ})}">리뷰 남기기</a>
+					</div>
+				</div>
+				<thead>
+					<tr>
+						<th>번호</th>
+						<th>제목</th>
+						<th>닉네임</th>
+						<th>등록일</th>
+						<th>좋아요</th>
+						<th>댓글수</th>
+					</tr>
+				</thead>
+
+				<body>
+					<tr th:each="review: ${reviews}">
+						<td th:text="${review.review_id}" class="center"></td>
+						<td class="center" th:text="${review.rv_title}"></td>
+						<td th:text="${review.nickname}" class="center"></td>
+						<td th:text="${#temporals.format(review.wr_date, 'yyyy-MM-dd HH:mm')}" class="center"></td>
+						<td th:text="${review.rv_like_count}" class="center"></td>
+						<td th:text="${review.rv_com_count}" class="center"></td>
+					</tr>
+					<!-- Add more rows as needed -->
+				</body>
+			</table>
+		</div>
+
+	</div>
 </div>
 
 </div>
