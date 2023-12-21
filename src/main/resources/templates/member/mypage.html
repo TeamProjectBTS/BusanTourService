@@ -5,6 +5,25 @@
 <style>
 	/* 스타일은 여기에 작성합니다. */
 
+  body {
+      font-family: 'Noto Sans KR', sans-serif; /* 한글 폰트를 'Noto Sans KR'로 설정, fallback은 sans-serif로 설정 */
+    }
+
+	.category:hover{
+		color : #22b3c1;
+		background-color: white;
+		transition: 0.3s;
+	}
+
+	.category{
+		 padding: 10px;
+      text-decoration: none;
+      color: #fff; /* 메뉴 항목 텍스트 색상 */
+      display: block;
+      background-color: #22b3c1; /* 메뉴 항목 배경색 */
+	}
+
+
    input[type="file"] {
       border: 1px solid rgb(0, 0, 0); /* 외곽선 색상 및 굵기 설정 */
       padding: 1px; /* 내부 여백 설정 */
@@ -192,7 +211,7 @@
 	<link rel="stylesheet" href="/assets/css/owl.css">
 	<link rel="stylesheet" href="/assets/css/animate.css">
 	<link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
-
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap">
 
 </head>
 
@@ -246,11 +265,10 @@
 							<a href="/member/login" class="menu-item" style="width: max-content; border-radius: 0px;">로그인</a>
 						</li>
                     </ul>
-						
-                    <a class='menu-trigger' >
-                        <span>Menu</span>
-                    </a>
-                    <!-- ***** Menu End ***** -->
+						<a class='menu-trigger'>
+							<span>Menu</span>
+						</a>
+						<!-- ***** Menu End ***** -->
 					</nav>
 				</div>
 			</div>
@@ -267,7 +285,7 @@
 
 	<div class="amazing-deals">
 		<div style="margin: auto; width: 70%;" class="container">
-			<h1>내가쓴 리뷰</h1>
+			<h1>마이페이지</h1>
 			<br>
 
 			<div class="col-lg-12">
@@ -305,7 +323,7 @@
 						<div class="row">
 							<div class="col-lg-12">
 								<div class="main-button">
-									<a style="width: 100%; text-align: center;" href="#">내 즐겨찾기 목록</a>
+									<a style="width: 100%; text-align: center;" href="/member/myfavorite">내 즐겨찾기 목록</a>
 								</div>
 							</div>
 						</div>
@@ -313,7 +331,7 @@
 						<div class="row">
 							<div class="col-lg-12">
 								<div class="main-button">
-									<a style="width: 100%; text-align: center;" href="#">내 좋아요 목록</a>
+									<a style="width: 100%; text-align: center;" href="/member/mylike">내 좋아요 목록</a>
 								</div>
 							</div>
 						</div>
@@ -367,6 +385,7 @@
 									</div>
 									<div class="col-lg-7">
 										<input type="button" value="확인">
+										
 									</div>
 								</div>
 							</div>

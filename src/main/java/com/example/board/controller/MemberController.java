@@ -198,8 +198,10 @@ public class MemberController {
 
 
 		@GetMapping("mypage")
-		public String mypage(//@AuthenticationPrincipal UserInfo userInfo, 
+		public String mypage(@AuthenticationPrincipal UserInfo userInfo, 
 									Model model) {
+			model.addAttribute("loginUser",userInfo);
+			
 			
 			return "member/mypage";
 		}
@@ -207,15 +209,29 @@ public class MemberController {
 		@GetMapping("myboard")
 		public String myboard(@AuthenticationPrincipal UserInfo userInfo, 
 									Model model) {
-			
+			model.addAttribute("loginUser",userInfo);
 			return "member/myboard";
 		}
 		
 		@GetMapping("myreview")
 		public String myreview(@AuthenticationPrincipal UserInfo userInfo, 
 									Model model) {
-			
+			model.addAttribute("loginUser",userInfo);
 			return "member/myreview";
+		}
+		
+		@GetMapping("myfavorite")
+		public String myfavorite(@AuthenticationPrincipal UserInfo userInfo, 
+									Model model) {
+			model.addAttribute("loginUser",userInfo);
+			return "member/myfavorite";
+		}
+		
+		@GetMapping("mylike")
+		public String mylike(@AuthenticationPrincipal UserInfo userInfo, 
+									Model model) {
+			model.addAttribute("loginUser",userInfo);
+			return "member/mylike";
 		}
 	
 }
