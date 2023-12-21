@@ -225,32 +225,31 @@
 						<!-- ***** Logo End ***** -->
 						<!-- ***** Menu Start ***** -->
 						<ul class="nav">
-
-							<li><a href="/tour_spot/list">관광지</a></li>
-							<li><a href="/restaurant/list">음식점</a></li>
-							<li><a href="/hotel/list">숙소</a></li>
-							<li><a href="/board/list">게시판</a></li>
-							<li><a href="/complain/list">고객문의</a></li>
-
-							<li sec:authorize="isAuthenticated()">
-
-								<a sec:authentication="principal.member.nickname" href="/member/mypage"
-									id="hoverButton"></a>
-								<div id="menu" class="menu">
-									<a href="#" style="color: black;">마이페이지</a>
-									<a href="#" style="color: black;">고객문의</a>
-									<a href="#" style="color: black;">로그아웃</a>
-								</div>
-							</li>
-
-							<li sec:authorize="isAuthenticated()">
-								<a href="/member/logout">로그아웃</a>
-							</li>
-
-							<li sec:authorize="isAnonymous()">
-								<a href="/member/login">로그인</a>
-							</li>
-						</ul>
+                        <li><a style=" border-radius: 0px;" class="menu-item" href="/tour_spot/list">관광지</a></li>
+                        <li><a style=" border-radius: 0px;" class="menu-item" href="/restaurant/list">음식점</a></li>
+                        <li><a style=" border-radius: 0px;" class="menu-item" href="/hotel/list">숙소</a></li>
+                        <li class="menu-item-container">
+							<a style=" border-radius: 0px;" class="menu-item">게시판</a>
+							<div class="menu-container" style="width: max-content; text-align: center;" >
+								<a class="menu-item" href="/board/list" style=" border-radius: 0px;">자유 게시판</a>
+								<a class="menu-item" href="/review/list" style=" border-radius: 0px;">리뷰 게시판</a>
+							</div>
+						</li>
+                        
+						<li sec:authorize="isAuthenticated()" class="menu-item-container" >
+							<a class="menu-item" href="/member/mypage" style="width: max-content; border-radius: 0px;"
+								>[[${loginUser.member.nickname}]]님</a>
+							<div class="menu-container" style="width: max-content; text-align: center;" >
+								<a class="menu-item" href="/member/mypage" style=" border-radius: 0px;">마이페이지</a>
+								<a class="menu-item" href="/complain/list" style=" border-radius: 0px;">고객문의</a>
+								<a class="menu-item" href="/member/logout" style=" border-radius: 0px;">로그아웃</a>
+							</div>
+						</li>
+						
+						<li sec:authorize="isAnonymous()">
+							<a href="/member/login" class="menu-item" style="width: max-content; border-radius: 0px;">로그인</a>
+						</li>
+                    </ul>
 						<a class='menu-trigger'>
 							<span>Menu</span>
 						</a>
@@ -309,7 +308,7 @@
 						<div class="row">
 							<div class="col-lg-12">
 								<div class="main-button">
-									<a style="width: 100%; text-align: center;" href="#">내 즐겨찾기 목록</a>
+									<a style="width: 100%; text-align: center;" href="/member/myfavorite">내 즐겨찾기 목록</a>
 								</div>
 							</div>
 						</div>
@@ -317,7 +316,7 @@
 						<div class="row">
 							<div class="col-lg-12">
 								<div class="main-button">
-									<a style="width: 100%; text-align: center;" href="#">내 좋아요 목록</a>
+									<a style="width: 100%; text-align: center;" href="/member/mylike">내 좋아요 목록</a>
 								</div>
 							</div>
 						</div>
@@ -325,7 +324,7 @@
 						<div class="row">
 							<div class="col-lg-12">
 								<div class="main-button">
-									<a style="width: 100%; text-align: center;" href="#">내 글 목록</a>
+									<a style="width: 100%; text-align: center;" href="/member/myboard">내 글 목록</a>
 								</div>
 							</div>
 						</div>
