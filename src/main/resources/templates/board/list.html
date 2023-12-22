@@ -92,6 +92,7 @@ https://templatemo.com/tm-580-woox-travel
   <!-- ***** Header Area End ***** -->
 <style>
 
+
   body {
       font-family: 'Noto Sans KR', sans-serif; /* 한글 폰트를 'Noto Sans KR'로 설정, fallback은 sans-serif로 설정 */
     }
@@ -240,22 +241,49 @@ https://templatemo.com/tm-580-woox-travel
   
   <!-- *** 게시판 리스트 Start *** -->
 	<div class="amazing-deals">
-			<div class="row" style="display: grid; place-items: center; height: 30vh;">
+			<div class="row" style="display: grid; place-items: center;">
 							<div class="col-lg-12">
-								<div class="col-lg-3" style="margin-left: 150px;">
+							<div class="row">
+								<div class="col-lg-3" style="margin-left: 350px;">
 									<div class="item2">
 										<h3 style="padding: 10px; text-align: center; width: 140%;">자유게시판</h3>
 									</div>
+									
 									<br>
 								</div>
-
-
-							<div class="item3" style="margin:auto;">
+								<div class="col-lg-1"></div>
+								<div class="col-lg-3">
+									<div class="border-button" style="margin-top: 10px; margin: auto; width: 550px;">
+										<form method="submit" action="#" style="display: inline;">
+										<fieldset style="display: inline-block;">
+											<input class="text" type="text" th:field="${searchText}" 
+											style="width: 300px; font-size: x-large; color: black;">
+										</fieldset>
+										
+										<fieldset style="display: inline-block;"> 
+											<div >
+											<button style="border: none; background-color: white; margin: 5px;" >
+												<i class="fa fa-search fa-2x fa-flip" style="margin: 5px;" ></i>
+											</button>
+											</div>
+										</fieldset>
+										
+										</form>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<div style="display: inline;">
+										<a class="item" href="/board/write" style="margin: auto; display: inline-block;  overflow: visible;">글쓰기</a>
+										</div>
+										
+									</div>
+								</div>
+								<br><br>
+							</div>
+							
+							<div class="item3" style="display: block;">
 								<div class="row" style="--bs-gutter-y: 1.5rem;">
 								
-								
 										<div class="col-lg-1 asd" id="container">
-										<h6 style="text-align: center; margin:0;">번호</h6>
+										<h6 style="text-align: center; margin:0;">글번호</h6>
 									</div>
 
 									<div class="col-lg-4 asd" id="container">
@@ -279,6 +307,41 @@ https://templatemo.com/tm-580-woox-travel
 									</div>
 								</div>
 							</div>
+							
+							
+							<div class="item3" th:each="board : ${boards}" style="display: block;">
+								<a th:href="@{/board/read(board_id=${board.board_id})}">
+								<div class="row" style="--bs-gutter-y: 1.5rem; padding-top: 10px;">
+								
+										<div class="col-lg-1 asd" id="container" style="margin: auto;">
+										<h6 style="text-align: center; margin-top: 10px;" th:text="${board.board_id}">번호</h6>
+									</div>
+
+									<div class="col-lg-4 asd" id="container" style="margin: auto;">
+										<h6  style="text-align: left; margin-top: 10px; display: inline-block;" th:text="${board.b_title}">제목</h6>
+										&nbsp;&nbsp;<h6 class="fa fa-reply" th:text="|  (${board.b_com_count})|"></h6>
+									</div>
+									
+									<div class="col-lg-3 asd" id="container" style="margin: auto;">
+										<h6  style="text-align: center; margin-top: 10px; display: inline-block;" th:text="${board.nickname}">닉네임</h6>
+									</div>
+									
+									<div class="col-lg-2 asd" id="container" style="margin: auto;">
+										<h6 style="text-align: center; margin-top: 10px; display: inline-block;" th:text="|${#temporals.format(board.wr_date, 'yyyy-MM-dd HH:mm:s')}|">등록일</h6>
+									</div>
+									
+									<div class="col-lg-1 asd" id="container" style="margin: auto;">
+										<h6 style="text-align: center; margin-top: 10px; display: inline-block;" th:text="${board.b_view_count}">조회수</h6>
+									</div>
+									
+									<div class="col-lg-1 asd" id="container" style="border-right: none; margin: auto;">
+										<h6 style="text-align: center; margin-top: 10px; display: inline-block;" th:text="${board.b_like_count}">좋아요</h6>
+									</div>
+								</div>
+								</a>
+							</div>
+							</a>
+							
 							<br><br>
 						</div>		
 </div>
@@ -337,6 +400,15 @@ https://templatemo.com/tm-580-woox-travel
       $(".option").removeClass("active");
       $(this).addClass("active"); 
     });
+    
+    function addHoverClass() {
+            document.getElementById("myElement").classList.add("fa-flip");
+        }
+
+        function removeHoverClass() {
+            document.getElementById("myElement").classList.remove("fa-flip");
+        }
+    
   </script>
   </body>
 

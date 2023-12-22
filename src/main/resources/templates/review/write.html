@@ -272,10 +272,11 @@ https://templatemo.com/tm-580-woox-travel
 							</fieldset>
 						</td>
 						
+						<td > </td>
 					<td>
 					<fieldset>
                       <select th:field="${writeForm.star}" class="form-select" aria-label="Default select example" id="chooseLocation" onChange="this.form.click()">
-                          <option selected type="number" value="10">10점</option>
+                          <option selected type="number" value="10" onchange="viewStar()">10점</option>
                           <option type="number" value="9">9점</option>
                           <option type="number" value="8">8점</option>
                           <option type="number" value="7">7점</option>

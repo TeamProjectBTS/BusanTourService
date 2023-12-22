@@ -19,7 +19,7 @@ public class BoardUpdateForm {
     private Long b_view_count;
     private Long b_like_count;
     private Long b_com_count;
-    private LocalDate wr_date;
+    private LocalDateTime wr_date;
     private boolean fileRemoved;
     
     public static Board toBoard(BoardUpdateForm updateBoard) {

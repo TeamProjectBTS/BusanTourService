@@ -24,7 +24,6 @@ public class MemberService {
   private final PasswordEncoder passwordEncoder;
   
   public Member findMember(String member_id) {
-  	
   	return memberMapper.findMember(member_id);
   }
   
@@ -42,6 +41,9 @@ public class MemberService {
 		memberMapper.saveMember(member);
 	}
 	
+  public Member findMemberByNick(String nickname) {
+  	return memberMapper.findMemberByNick(nickname);
+  }
 
 	
 	

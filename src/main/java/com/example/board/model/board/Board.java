@@ -28,7 +28,7 @@ public class Board {
 	private Long b_view_count; //뷰 카운트
 	private Long b_like_count; //좋아요 카운트
 	private Long b_com_count; //댓글 카운트
-	private LocalDate wr_date; //작성일
+	private LocalDateTime wr_date; //작성일
 	
 	public void addB_view_count() {
 		this.b_view_count++;
