@@ -350,6 +350,10 @@
 .fa-inverse {
   color: var(--fa-inverse, #fff); }
 
+/*.rating svg:nth-child(-n+3) {
+	color:#F05522;
+}*/
+
 /* Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen
 readers do not read off random characters that represent icons */
 .fa-0::before {

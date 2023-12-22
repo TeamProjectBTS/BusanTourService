@@ -229,6 +229,21 @@ https://templatemo.com/tm-580-woox-travel
     text-align: center;
   }
   
+  .fa-star::before {
+  content: "\f005"; }
+
+.fa-star-and-crescent::before {
+  content: "\f699"; }
+
+.fa-star-half::before {
+  content: "\f089"; }
+
+.fa-star-half-stroke::before {
+  content: "\f5c0"; }
+
+.fa-star-half-alt::before {
+  content: "\f5c0"; }
+  
   </style>
   
   <!-- *** 게시판 글쓰기 Start *** -->
@@ -287,14 +302,36 @@ https://templatemo.com/tm-580-woox-travel
                           <option type="number" value="2">2점</option>
                           <option type="number" value="1">1점</option>
                       </select>
-                      <select name="fa fa-star-half-alt" id="fa fa-star-half-alt">
-						  <option value="1">★☆☆☆☆</option>
-						  <option value="2">★★☆☆☆</option>
-						  <option value="3">★★★☆☆</option>
-						  <option value="4">★★★★☆</option>
-						  <option value="5">★★★★★</option>
-					  </select>
                   	</fieldset>
+                  	</td>
+                  	<div class="review">
+					  <div class="rating" data-rate="3">
+						<i class="fas fa-star"></i>  
+						<i class="fas fa-star"></i>  
+						<i class="fas fa-star"></i>  
+						<i class="fas fa-star"></i>  
+						<i class="fas fa-star"></i>  
+					  </div>
+					  <div class="rating" data-rate="5"> </div>		
+					  <div class="rating" data-rate="2"> </div>
+					</div>
+					
+					<div class="make_star">
+					  <select name="" id="makeStar">
+						 <option value="1">1점</option> 
+						 <option value="2">2점</option> 
+						 <option value="3">3점</option> 
+						 <option value="4">4점</option> 
+						 <option value="5">5점</option> 
+					  </select>
+					  <div class="rateing" data-rate="3">
+						 <i class="fas fa-star"></i> 
+						 <i class="fas fa-star"></i> 
+						 <i class="fas fa-star"></i> 
+						 <i class="fas fa-star"></i> 
+						 <i class="fas fa-star"></i> 
+					  </div>	
+					</div>
 					</td>
 					
 					  </tr>	 
@@ -387,7 +424,7 @@ https://templatemo.com/tm-580-woox-travel
   <script src="/assets/js/popup.js"></script>
   <script src="/assets/js/custom.js"></script>
 
-  <script>
+  <script th:inline="javascript">
     $(".option").click(function(){
       $(".option").removeClass("active");
       $(this).addClass("active"); 
@@ -493,36 +530,25 @@ function updatePreview() {
     }
 }
     
+    $(function() {
+    var rating = $('.rating');
+
+    rating.each(function(){
+        var targetScore = $(this).attr('data-rate');
+        $(this).find('svg:nth-child(-n+' + targetScore + ')').css({color:'#F05522'});    
+    });
+
+    var userScore = $('#makeStar');
+    userScore.change(function(){
+        var userScoreNum = $(this).val(); 
+        console.log(userScoreNum);
+        $('.rating svg').css({color:'#000'});
+        $('.rating svg:nth-child(-n+' + userScoreNum + ')').css({color:'#F05522'});    
+    });
+});
+    
   </script>
   
-   <!-- 별점 연결 스크립트 -->	
-	<script>
-  function updateStars() {
-    var selectedScore = document.getElementById('chooseLocation').value;
-    var starsElement = document.getElementById('stars');
-
-    starsElement.innerHTML = ''; // 초기화
-
-    var fullStars = Math.floor(selectedScore / 2);
-    var halfStar = selectedScore % 2 === 1;
-
-    for (var i = 0; i < fullStars; i++) {
-      var starIcon = document.createElement('i');
-      starIcon.classList.add('fas', 'fa-star');
-      starsElement.appendChild(starIcon);
-    }
-
-    if (halfStar) {
-      var halfStarIcon = document.createElement('i');
-      halfStarIcon.classList.add('fas', 'fa-star-half-alt');
-      starsElement.appendChild(halfStarIcon);
-    }
-  }
-
-  document.getElementById('chooseLocation').addEventListener('change', updateStars);
-</script>
-
-
   </body>
 
 </html> 
