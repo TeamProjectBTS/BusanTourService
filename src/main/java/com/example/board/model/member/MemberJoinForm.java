@@ -38,7 +38,6 @@ public class MemberJoinForm {
 	@Size(min = 6, max = 20 , message = "비밀번호는 6~20사이로 입력해주세요.")
 	private String password;
 	
-	
 	@Pattern(regexp = "^[a-zA-Z0-9]{4,20}$",  message="닉네임은 영문 및 숫자 4~20자로만 가능합니다.")
 	@NotEmpty(message = "닉네임을 입력해주세요")
 	private String nickname;

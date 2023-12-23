@@ -17,85 +17,92 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.example.board.config.UserInfo;
 import com.example.board.model.board.Board;
-import com.example.board.model.board.Reply;
+import com.example.board.model.board.Comments;
 import com.example.board.model.member.Member;
 import com.example.board.repository.BoardMapper;
-import com.example.board.repository.ReplyMapper;
+import com.example.board.repository.CommentsMapper;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@RequestMapping("reply")
+@RequestMapping("comments")
 @RequiredArgsConstructor
 @Slf4j
-public class ReplyRestController {
+public class CommentsRestController {
 	
-	private final ReplyMapper replyMapper;
+	private final CommentsMapper commentsMapper;
 	private final BoardMapper boardMapper;
 	
 	// 리플 등록
 	@PostMapping("{board_id}") 
-	public ResponseEntity<String> writeReply(@AuthenticationPrincipal UserInfo userInfo,
-																					@ModelAttribute Reply reply,
+	public ResponseEntity<String> writeComment(@AuthenticationPrincipal UserInfo userInfo,
+																					@ModelAttribute Comments comment,
 																					@PathVariable Long board_id) {
-		log.info("reply : {}", reply);
 		
-		reply.setMember_id(userInfo.getMember().getMember_id());
-		reply.setBoard_id(board_id);
-		replyMapper.saveReply(reply);
+		
+		comment.setMember_id(userInfo.getMember().getMember_id());
+		comment.setBoard_id(board_id);
+		comment.setNickname(userInfo.getMember().getNickname());
+		log.info("comment : {}", comment);
+		
+		commentsMapper.saveComment(comment);
 		
 		return ResponseEntity.ok("등록 성공");
 	}
 	
 	// 리플 읽기
-	@GetMapping("{board_id}/{reply_id}")
-	public ResponseEntity<Reply> findReply(@PathVariable Long board_id,
-																				@PathVariable Long reply_id){
-		Reply reply = replyMapper.findReply(reply_id);
+	@GetMapping("{board_id}/{comment_id}")
+	public ResponseEntity<Comments> findComment(@PathVariable Long board_id,
+																				@PathVariable Long comment_id){
+		Comments comment = commentsMapper.findComment(comment_id);
 		
-		return ResponseEntity.ok(reply);
+		return ResponseEntity.ok(comment);
 	}
 	
 	// 리플 목록
 	@GetMapping("{board_id}")
-	public ResponseEntity<List<Reply>> findReplies(@PathVariable Long board_id,
+	public ResponseEntity<List<Comments>> findComments(@PathVariable Long board_id,
 																								Model model){
-		List<Reply> replies = replyMapper.findReplies(board_id);
-		
-		return ResponseEntity.ok(replies);
-	}
-	
-	// 리플 수정
-	@PutMapping("{board_id}/{reply_id}")
-	public ResponseEntity<Reply> updateReply(@AuthenticationPrincipal UserInfo userInfo,
-																					@PathVariable Long board_id,
-																					@PathVariable Long reply_id,
-																					@ModelAttribute Reply reply){
-		Reply findReply = replyMapper.findReply(reply_id);
-		// 수정권한이 있는지 체크	
-		if(userInfo.getMember().getMember_id().equals(findReply.getMember_id())) {
-			// 리플 수정
-			reply.setMember_id(userInfo.getMember().getMember_id());
-			reply.setBoard_id(board_id);
-			reply.setReply_id(reply_id);
-			replyMapper.updateReply(reply);
+		List<Comments> comments = commentsMapper.findComments(board_id);
+		for(Comments comment : comments) {
+			log.info("comments : {}", comment);
 		}
 		
 		
-		return ResponseEntity.ok(reply);
+		return ResponseEntity.ok(comments);
+	}
+	
+	// 리플 수정
+	@PutMapping("{board_id}/{comment_id}")
+	public ResponseEntity<Comments> updateComment(@AuthenticationPrincipal UserInfo userInfo,
+																					@PathVariable Long board_id,
+																					@PathVariable Long comment_id,
+																					@ModelAttribute Comments comment){
+		Comments findReply = commentsMapper.findComment(comment_id);
+		// 수정권한이 있는지 체크	
+		if(userInfo.getMember().getMember_id().equals(findReply.getMember_id())) {
+			// 리플 수정
+			comment.setMember_id(userInfo.getMember().getMember_id());
+			comment.setBoard_id(board_id);
+			comment.setComment_id(comment_id);
+			comment.setNickname(userInfo.getMember().getNickname());
+			commentsMapper.updateComment(comment);
+		}
+		
+		return ResponseEntity.ok(comment);
 	}
 	
 	// 리플 삭제
-	@DeleteMapping("{board_id}/{reply_id}")
+	@DeleteMapping("{board_id}/{comment_id}")
 	public ResponseEntity<String> removeReply(@AuthenticationPrincipal UserInfo userInfo,
 																						@PathVariable Long board_id,
-																						@PathVariable Long reply_id) {
-		Reply reply = replyMapper.findReply(reply_id);
+																						@PathVariable Long comment_id) {
+		Comments reply = commentsMapper.findComment(comment_id);
 		// 삭제 권한이 있는지 체크
 		if(userInfo.getMember().getMember_id().equals(reply.getMember_id())) {
 			
-			replyMapper.removeReply(reply_id);
+			commentsMapper.removeComment(comment_id);
 		}
 		//
 		
