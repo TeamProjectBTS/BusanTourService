@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <title>로그인 페이지</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="/assets/css/fontawesome.css">
+    <link rel="stylesheet" href="/assets/css/templatemo-woox-travel.css">
+    <link rel="stylesheet" href="/assets/css/owl.css">
+    <link rel="stylesheet" href="/assets/css/animate.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+<!--
+
+TemplateMo 580 Woox Travel
+
+https://templatemo.com/tm-580-woox-travel
+
+-->
+  </head>
+
+<body>
+
+  <!-- ***** Preloader Start ***** -->
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Preloader End ***** -->
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="/" class="logo2">
+                        <img src="/assets/images/logo2.png" alt="">
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                        <li><a style=" border-radius: 0px;" class="menu-item" href="/tour_spot/list">관광지</a></li>
+                        <li><a style=" border-radius: 0px;" class="menu-item" href="/restaurant/list">음식점</a></li>
+                        <li><a style=" border-radius: 0px;" class="menu-item" href="/hotel/list">숙소</a></li>
+                        <li>
+							<a class="menu-item" href="/board/list" style=" border-radius: 0px;">자유 게시판</a>
+						</li>
+                        
+						<li sec:authorize="isAuthenticated()" class="menu-item-container" >
+							<a class="menu-item" href="/member/mypage" style="width: max-content; border-radius: 0px;"
+								>[[${loginUser.member.nickname}]]님</a>
+							<div class="menu-container" style="width: max-content; text-align: center;" >
+								<a class="menu-item" href="/member/mypage" style=" border-radius: 0px;">마이페이지</a>
+								<a class="menu-item" href="/complain/list" style=" border-radius: 0px;">고객문의</a>
+								<a class="menu-item" href="/member/logout" style=" border-radius: 0px;">로그아웃</a>
+							</div>
+						</li>
+						
+						<li sec:authorize="isAnonymous()">
+							<a href="/member/login" class="menu-item" style="width: max-content; border-radius: 0px;">로그인</a>
+						</li>
+                    </ul>
+						
+                    <a class='menu-trigger' >
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+  </header>
+
+
+<div class="reservation-form">
+	<div class="container">
+<!--<<<<<<< HEAD
+		<div class="center">
+
+			<div class="col-lg-12">
+				<form id="reservation-form" name="gs" method="submit" role="search" action="#">
+
+					<div class="row">
+						<div class="col-lg-12">
+							<h4> <em>로그인</em> <em></em></h4>
+						</div>
+						<div class="col-lg-3">
+							 ID 입력칸 
+							<fieldset style="margin: auto;">
+								<label for="Name" class="form-label">ID입력</label>
+								<input type="text" name="Name" class="Name" placeholder="ID를 입력하세요" autocomplete="on"
+									required>
+							</fieldset>
+						</div>
+						<div class="col-lg-3">
+							<fieldset style="margin: auto;">
+								<label for="Number" class="form-label">패스워드 입력</label>
+								<input type="password" name="Number" class="Number" placeholder="패스워드를 입력하세요"
+									autocomplete="on" required>
+							</fieldset>
+						</div>
+
+
+
+						<div class="col-lg-3" style="margin: auto;">
+							<fieldset>
+								<button class="main-button">로그인</button>
+
+							</fieldset>
+						</div>
+						<div class="col-lg-3" style="margin: auto;">
+							<fieldset>
+								<div class="main-button">
+									<a style="width: max-content;" href="joinForm">회원가입</a>
+								</div>
+							</fieldset>
+=======-->
+		<div class="row">
+			<div class="col-lg-12">
+			</div>
+			<div class="col-lg-6" style="margin: auto;">
+				<form th:object="${loginForm}" id="reservation-form" method="post" role="search" action="/member/login">
+					<div class="row">
+						<div class="col-lg-12">
+							<h4><em>로그인</em></h4>
+						</div>
+						<div class="col-lg-12">
+						<div th:if="${error}" class="alert alert-success">아이디나 비번 똑디적어라 마
+							    <p th:text="${errorMsg}"></p>
+							</div>
+						</div>
+						<div class="col-lg-12">
+							<fieldset>
+								<label for="member_id" class="form-label">ID입력</label>
+								<input type="text" th:field="*{member_id}" placeholder="ID를 입력하세요" autocomplete="on"
+									required>
+					
+							</fieldset>
+						</div>
+						<div class="col-lg-12">
+							<fieldset>
+								<label for="password" class="form-label">패스워드 입력</label>
+								<input type="password" th:field="*{password}" placeholder="패스워드를 입력하세요"
+									autocomplete="on" required>
+							</fieldset>
+						</div>
+						<div class="col-lg-12" style="margin: auto;">
+							<fieldset>
+								<button type="submit" class="main-button">로그인</button>
+							</fieldset>
+							<br>
+						</div>
+			
+						<div class="col-lg-12" style="margin: auto;">
+							<div class="main-button">
+								<a style="display: block; text-align: center;" href="/member/join">회원가입</a>
+							</div>
+
+						</div>
+					</div>
+				</for>
+			</div>
+
+  		</div>
+  </div>
+
+		</div>
+	</div>
+</div>
+
+
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <p>2023.11.30 <a href="#">BusanTourService</a> All rights reserved. 
+          
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="/vendor/jquery/jquery.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+  <script src="/assets/js/isotope.min.js"></script>
+  <script src="/assets/js/owl-carousel.js"></script>
+  <script src="/assets/js/wow.js"></script>
+  <script src="/assets/js/tabs.js"></script>
+  <script src="/assets/js/popup.js"></script>
+  <script src="/assets/js/custom.js"></script>
+
+  <script>
+    $(".option").click(function(){
+      $(".option").removeClass("active");
+      $(this).addClass("active"); 
+    });
+  </script>
+
+  </body>
+
+</html>

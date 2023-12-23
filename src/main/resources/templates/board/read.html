@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <title>부산투어서비스 자유게시판</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="/assets/css/fontawesome.css">
+    <link rel="stylesheet" href="/assets/css/templatemo-woox-travel.css">
+    <link rel="stylesheet" href="/assets/css/owl.css">
+    <link rel="stylesheet" href="/assets/css/animate.css">
+    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+<!--
+
+TemplateMo 580 Woox Travel
+
+https://templatemo.com/tm-580-woox-travel
+
+-->
+  </head>
+
+<body>
+
+  <!-- ***** Preloader Start ***** -->
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Preloader End ***** -->
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="/" class="logo2">
+                        <img src="/assets/images/logo2.png" alt="">
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                        <li><a style=" border-radius: 0px;" class="menu-item" href="/tour_spot/list">관광지</a></li>
+                        <li><a style=" border-radius: 0px;" class="menu-item" href="/restaurant/list">음식점</a></li>
+                        <li><a style=" border-radius: 0px;" class="menu-item" href="/hotel/list">숙소</a></li>
+                        <li>
+							<a class="menu-item" href="/board/list" style=" border-radius: 0px;">자유 게시판</a>
+						</li>
+                        
+						<li sec:authorize="isAuthenticated()" class="menu-item-container" >
+							<a class="menu-item" href="/member/mypage" style="width: max-content; border-radius: 0px;"
+								>[[${loginUser.member.nickname}]]님</a>
+							<div class="menu-container" style="width: max-content; text-align: center;" >
+								<a class="menu-item" href="/member/mypage" style=" border-radius: 0px;">마이페이지</a>
+								<a class="menu-item" href="/complain/list" style=" border-radius: 0px;">고객문의</a>
+								<a class="menu-item" href="/member/logout" style=" border-radius: 0px;">로그아웃</a>
+							</div>	
+						</li>
+						
+						<li sec:authorize="isAnonymous()">
+							<a href="/member/login" class="menu-item" style="width: max-content; border-radius: 0px;">로그인</a>
+						</li>
+                    </ul>
+						
+                    <a class='menu-trigger' >
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <div class="page-heading">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h4>Busan Tour Service</h4>
+          <h2>부산여행</h2>
+          <div class="border-button text-center"><a href="about.html">자세히 보기</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+	  
+	body {
+      font-family: 'Noto Sans KR', sans-serif; /* 한글 폰트를 'Noto Sans KR'로 설정, fallback은 sans-serif로 설정 */
+    }
+    
+	h2{
+    font-weight: bold; /* 굵은 글꼴 적용 */
+    text-shadow: 5px 5px 5px rgb(0, 0, 0); /* 그림자 설정 */
+	}
+	h4{
+    font-weight: bold; /* 굵은 글꼴 적용 */
+    text-shadow: 5px 5px 5px rgb(0, 0, 0); /* 그림자 설정 */
+	}
+
+
+	.asd{
+		border-right: 1px solid rgb(192, 192, 192); 
+	             
+	}
+  
+	  .amazing-deals .item2{
+	  background-color: #f7f7f7;
+	  border-radius: 25px;
+	  padding-right: 100px;
+	  margin-bottom: 30px;
+	  width: 400px;
+	   border-bottom: 2px solid rgb(95, 95, 95);
+	}
+	
+	  .amazing-deals .item3{
+	  margin:auto;
+	  background-color: #f7f7f7;
+	  border-radius: 25px;
+	  margin-bottom: 30px;
+	  width: 1200px;
+	  height: 60px;
+	  padding-right: 30px;
+	  padding-left: 30px;
+	   border-bottom: 2px solid #333;
+	}
+  
+  .bulletin-board-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+    .bulletin-board-container table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+  }
+
+    .bulletin-board-container th,
+    .bulletin-board-container td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: center;
+  }
+
+    .search-bar {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+  }
+
+    .search-bar input[type="text"] {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+  }
+
+    .search-bar button {
+      padding: 10px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+  }
+
+    .search-bar label {
+      margin-right: 10px
+  }
+    
+	.border-button {
+      text-align: right;
+  }
+ 
+    .border-button a {
+    margin-left: 10px;
+  }
+ 
+    .page-numbers {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .page-numbers li {
+    display: inline-block;
+    margin: 0 5px;
+  }
+
+  .call-to-action {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .call-to-action .border-button {
+    text-align: center;
+  }
+  
+  .bd .clear {
+	  display: block;
+	  position: relative;
+	  clear: both;
+  }
+  
+  .bd .clear:after, .bd:after {
+	  content: "";
+	  display: block;
+	  clear: both;
+  }
+  
+  .bd {
+	  color: #22b3c1
+  }
+  
+  element.style {
+	  margin: 0 15px 20px;
+  }
+  
+  .rd_hd {
+	  margin: 0 0 20px!important;
+  }
+  
+  .bd, .bd button, .bd input, .bd select, .bd table,
+  .bd textarea {
+	  font-size: 13px;
+	  line-height: 1.5;
+  }
+  
+  .rd_hd .board h1 {
+	  font-size: 17px;
+	  line-height: 18px;
+  }
+  
+  .rd_hd .board h1 {
+	  text-overflow: ellipsis;
+	  margin: 0;
+  }
+  
+  h1 {
+	  display: block;
+	  margin-block-start: 0.67em;
+	  margin-block-end: 0.67em;
+	  margin-inline-start: 0px;
+	  margin-inline-end: 0px;
+	  font-weight: bold;
+  }
+  
+  .rd_hd .board .top_area {
+	  padding: 11px;
+	  border-top: 1px solid #ccc;
+	  border-bottom: 1px solid #ccc;
+	  background: #fcfcfc;
+  }
+  
+  .rd_hd .board .btm_area {
+	  margin: -12px 12px 0;
+	  padding: 0 0 18px;
+	  background: 0 0;
+  }
+  
+  .rd_hd .board .btm_area {
+	  position: static;
+	  border-bottom: 1px solid #eee;
+  }
+  
+  .rd_hd .board .side {
+	  float: none;
+	  padding: 0;
+  }
+  
+  .rd_hd .board .side {
+	  display: inline-block;
+	  padding: 9px;
+  }
+  
+  .metadata-container {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 20px;
+  }
+
+  .metadata-container span {
+      margin-left: 20px; /* Adjust the margin as needed */
+  }
+  
+	.board-img {
+	  background-color: #22b3c1;
+	  color: #fff;
+	  display: block;
+	  margin: 20px auto;
+	  text-align: center;
+	  padding: 10px 15px;
+	}
+  
+  </style>
+  
+  <!-- *** 게시판 읽기 Start *** -->
+  <div class="bulletin-board-container">
+   <table th:object="${board}">
+    <div class="rd_hd clear" style="margin:0 -15px 20px">
+	 <div class="board clear " style="margin: auto;">
+		 
+	  <div class="top_area ngeb" style="margin: auto;">
+		<span class="*{wr_date}" th:text="${#temporals.format(board.wr_date, 'yyyy-MM-dd HH:mm')}" style="display: inline-block; float: right;"></span>
+	   <h1 class="*{b_title}">
+		   <span class="*{b_title}"></span>
+	   </h1>
+	   <div class="clear" th:text="*{b_title}">
+		  
+	   </div>
+	  </div>
+	  <div class="metadata-container">
+		<span>조회수:
+		 <div class="side fr"  th:text="*{b_view_count}"></div>  
+	  	</span>
+	  	<span>좋아요:
+		 <div class="side fr"  th:text="*{b_like_count}"></div>  
+	  	</span>
+	  	<span>댓글:
+		 <div class="side fr"  th:text="*{b_com_count}"></div>  
+	  	</span>
+	  </div>
+	 </div>	
+	</div>
+	 <article>
+	   <div class="*{b_contents}" th:text="*{b_contents}"></div>
+	 </article>
+
+   </table>
+   
+   <!-- 좋아요 버튼 start -->
+	 <button type="submit" class="board-img" style="border: 0px rgb(255, 255, 255) solid">
+	  <span>  
+	   <i class="fa fa-heart" aria-hidden="true"></i>
+		0
+	   </span> 
+	 </button>
+   <!-- 좋아요 버튼 end-->
+  
+   
+   <div class="center">
+     <input type="button" onclick="location.href='/board/list'" value="목록으로">
+     <th:block th:if="${#authentication.name == board.member_id}">
+     <input type="button" th:onclick="|location.href='/board/update?board_id=${board.board_id}'|" value="수정하기">
+     <input type="button" th:onclick="|location.href='/board/delete?board_id=${board.board_id}'|" value="삭제하기">
+      </th:block>
+   </div>
+  </div>
+  <!-- *** 게시판 읽기 End *** -->
+  
+  <!-- *** 댓글 읽기 Start *** -->
+
+  <div class="container" style="margin-top: 20px;">
+	<div  style="width: fit-content; margin: auto;">
+		<label for="comment">리플 쓰기</label>
+		<input type="button" value="등록" onclick="writeReply()">
+		<br><p></p>
+		<textarea rows="2" cols="90" id="comment" name="comment"></textarea>
+	</div>
+	<p></p>
+
+	<div class="amazing-deals" style="margin-top: 50px;">
+			<div class="row" style="display: grid; place-items: center;">
+							<div class="col-lg-12">	
+	<div class="row">
+		<div class="col-lg-12">
+			<div id="comments"></div>
+		</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	
+	<!-- *** 댓글 읽기 End ***-->
+  
+  <div class="visit-country" style="margin: auto;">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="items">
+            <div class="row">
+              
+              <div class="col-lg-12">
+                <ul class="page-numbers">
+                  <li><a href="#"><i class="fa fa-arrow-left"></i></a></li>
+                  <li><a href="#">1</a></li>
+                  <li class="active"><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#"><i class="fa fa-arrow-right"></i></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <p>Copyright © 2036 <a href="#">WoOx Travel</a> Company. All rights reserved. 
+          <br>Design: <a href="https://templatemo.com" target="_blank" title="free CSS templates">TemplateMo</a></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  </body>
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+ 
+  <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+  <script src="/assets/js/isotope.min.js"></script>
+  <script src="/assets/js/owl-carousel.js"></script>
+  <script src="/assets/js/tabs.js"></script>
+  <script src="/assets/js/popup.js"></script>
+  <script src="/assets/js/custom.js"></script>
+
+  <script th:inline="javascript">
+    $(".option").click(function(){
+      $(".option").removeClass("active");
+      $(this).addClass("active"); 
+    });
+    
+    function writeReply() {
+		let board_id = /*[[${board.board_id}]]*/'';
+		let content = $("#comment").val();
+		$.ajax({
+			url: "/comments/" + board_id,
+			type: "post",
+			success: function(data){
+				
+				console.log(data);
+				getReplies()
+			},
+			data: {
+				"content": content
+			},
+			error: function(xhr, status, error) {
+				console.log(xhr);
+				console.log(status);
+				console.log(error);
+			}
+		});
+	}
+	
+	function getReplies() {
+		let board_id = /*[[${board.board_id}]]*/'';
+		$.ajax({
+		    url: "/comments/" + board_id,
+		    type: "get",
+		    success: function(data) {
+		        console.log("댓글 가져옴");
+		        console.log(data);
+		        showReplies(data);
+		    },
+		    error: function(xhr, status, error) {
+		        console.log("오류 발생");
+		        console.log(xhr);
+		        console.log(status);
+		        console.log(error);
+		    }
+		});
+
+	}
+	
+	
+	
+	// 페이지가 로딩되면 getReplies() 함수를 자동으로 실행한다
+	$(function(){
+		getReplies();
+	})
+	
+	function showReplies(data) {
+		$("#comments").html("");
+		let str = "";
+		
+		if(data.length > 0) {
+			let loginMemberId = /*[[${loginUser.member.member_id}]]*/'';
+			$(data).each(function(idx, obj){
+				if(obj.member_id == loginMemberId) {
+					str += "<div class='item3' style='display: block;'>"
+					str += 		"<div class='row' style='--bs-gutter-y: 1.5rem; padding-top: 10px;'>"
+					str += 			"<div class='col-lg-2 asd' id='container' style='margin: auto;'>"
+					str += 			"<h6 style='text-align: center; margin-top: 10px; display: inline-block;'>" + obj.nickname + "</h6>"
+					str += 		"</div>"
+					str += 		"<div class='col-lg-7 asd' id='container' style='margin: auto;'>"
+					str += 			"<h6 style='text-align: center; margin-top: 10px; display: inline-block;'>" + obj.content + "</h6>"
+					str += 			"<input type='button' value='삭제' onclick='removeReply(" + obj.comment_id + ")'>"
+					str += 		"</div>"
+					str += 		"<div class='col-lg-3 asd' id='container' style='margin: auto; border-right: 0px'>"
+					str += 			"<h6 style='text-align: center; margin-top: 10px; display: inline-block;'>" + obj.wr_date + "</h6>"
+					str += 		"</div>"
+					str += 	"</div>"
+					str += "</div>"
+				} else {
+					str += "<div class='item3' style='display: block;'>"
+					str += 		"<div class='row' style='--bs-gutter-y: 1.5rem; padding-top: 10px;'>"
+					str += 			"<div class='col-lg-2 asd' id='container' style='margin: auto;'>"
+					str += 			"<h6 style='text-align: center; margin-top: 10px; display: inline-block;'>" + obj.nickname + "</h6>"
+					str += 		"</div>"
+					str += 		"<div class='col-lg-7 asd' id='container' style='margin: auto;'>"
+					str += 			"<h6 style='text-align: center; margin-top: 10px; display: inline-block;'>" + obj.content + "</h6>"
+					str += 		"</div>"
+					str += 		"<div class='col-lg-3 asd' id='container' style='margin: auto; border-right: 0px'>"
+					str += 			"<h6 style='text-align: center; margin-top: 10px; display: inline-block;'>" + obj.wr_date + "</h6>"
+					str += 		"</div>"
+					str += 	"</div>"
+					str += "</div>"
+				}
+				
+			});
+			
+			$("#comments").append(str);
+		} else {
+			
+			str += "<div class='item3' style='display: block;'>"
+			str += 	"<div class='row' style='--bs-gutter-y: 1.5rem; padding-top: 10px;'>"
+			str += 		"<div class='col-lg-12 asd'><h6>등록된 댓글이 없습니다.</h6></div>"
+			str += 	"</div>"
+			str += "</div>"
+			
+			$("#comments").append(str);
+		}
+	}
+	
+	function updateReply(comment_id) {
+		let board_id = /*[[${board.board_id}]]*/'';
+		let content = $("#comment_" + comment_id).val();
+		let cf = confirm("리플을 수정하시겠습니까?");
+		if(cf == true) {
+			$.ajax({
+				url: "/comments/" + board_id + "/" + comment_id,
+				type: "put",
+				success: function() {
+					getReplies();
+				},
+				data: {
+					"content": content
+				},
+				error: function(xhr, status, error) {
+					console.log(xhr);
+					console.log(status);
+					console.log(error);
+				}
+			});
+		} else {
+			getReplies();
+		}
+		
+	}
+	
+	function removeReply(comment_id) {
+		
+		let board_id = /*[[${board.board_id}]]*/'';
+		let cf = confirm("리플을 삭제하시겠습니까?");
+		if(cf == true) {
+			$.ajax({
+				url: "/comments/" + board_id + "/" + comment_id,
+				type: "delete",
+				success: function(){
+					getReplies();
+				},
+				error: function(xhr, status, error) {
+					console.log(xhr);
+					console.log(status);
+					console.log(error);
+				}
+			});
+		}
+		
+	}
+    
+  </script>
+
+
+</html> 

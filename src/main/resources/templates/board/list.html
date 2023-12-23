@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+
+    <title>부산투어서비스 자유게시판</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="/assets/css/fontawesome.css">
+    <link rel="stylesheet" href="/assets/css/templatemo-woox-travel.css">
+    <link rel="stylesheet" href="/assets/css/owl.css">
+    <link rel="stylesheet" href="/assets/css/animate.css">
+    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap">
+<!--
+
+TemplateMo 580 Woox Travel
+
+https://templatemo.com/tm-580-woox-travel
+
+-->
+  </head>
+
+<body>
+
+  <!-- ***** Preloader Start ***** -->
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Preloader End ***** -->
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="/" class="logo2">
+                        <img src="/assets/images/logo2.png" alt="">
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                        <li><a style=" border-radius: 0px;" class="menu-item" href="/tour_spot/list">관광지</a></li>
+                        <li><a style=" border-radius: 0px;" class="menu-item" href="/restaurant/list">음식점</a></li>
+                        <li><a style=" border-radius: 0px;" class="menu-item" href="/hotel/list">숙소</a></li>
+                        <li>
+							<a class="menu-item" href="/board/list" style=" border-radius: 0px;">자유 게시판</a>
+						</li>
+                        
+						<li sec:authorize="isAuthenticated()" class="menu-item-container" >
+							<a class="menu-item" href="/member/mypage" style="width: max-content; border-radius: 0px;"
+								>[[${loginUser.member.nickname}]]님</a>
+							<div class="menu-container" style="width: max-content; text-align: center;" >
+								<a class="menu-item" href="/member/mypage" style=" border-radius: 0px;">마이페이지</a>
+								<a class="menu-item" href="/complain/list" style=" border-radius: 0px;">고객문의</a>
+								<a class="menu-item" href="/member/logout" style=" border-radius: 0px;">로그아웃</a>
+							</div>
+
+						</li>
+						
+						<li sec:authorize="isAnonymous()">
+							<a href="/member/login" class="menu-item" style="width: max-content; border-radius: 0px;">로그인</a>
+						</li>
+                    </ul>
+                    <a class='menu-trigger' >
+
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+<style>
+
+
+  body {
+      font-family: 'Noto Sans KR', sans-serif; /* 한글 폰트를 'Noto Sans KR'로 설정, fallback은 sans-serif로 설정 */
+    }
+			h2{
+            font-weight: bold; /* 굵은 글꼴 적용 */
+            text-shadow: 5px 5px 5px rgb(0, 0, 0); /* 그림자 설정 */
+        	}
+        	h4{
+            font-weight: bold; /* 굵은 글꼴 적용 */
+            text-shadow: 5px 5px 5px rgb(0, 0, 0); /* 그림자 설정 */
+        	}
+
+
+  .asd{
+            border-right: 1px solid rgb(192, 192, 192); 
+             
+  }
+  
+  .amazing-deals .item2{
+  background-color: #f7f7f7;
+  border-radius: 25px;
+  padding-right: 100px;
+  margin-bottom: 30px;
+  width: 400px;
+   border-bottom: 2px solid rgb(95, 95, 95);
+}
+  .amazing-deals .item3{
+  margin:auto;
+  background-color: #f7f7f7;
+  border-radius: 25px;
+  margin-bottom: 30px;
+  width: 1200px;
+  height: 60px;
+  padding-right: 30px;
+  padding-left: 30px;
+   border-bottom: 2px solid #333;
+}
+
+  
+  .bulletin-board-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+    .bulletin-board-container table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+  }
+
+    .bulletin-board-container th,
+    .bulletin-board-container td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: center;
+  }
+
+    .search-bar {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+  }
+
+    .search-bar input[type="text"] {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+  }
+
+    .search-bar button {
+      padding: 10px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+  }
+
+    .search-bar label {
+      margin-right: 10px
+  }
+    
+	.board-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+	.board-bottom form {
+    display: flex;
+    align-items: center;
+  }
+
+	.board-bottom select,
+	.board-bottom input[type="text"] {
+    margin-right: 10px; 
+  }
+	
+	.border-button {
+      text-align: right;
+  }
+ 
+    .border-button a {
+    margin-left: 10px;
+  }
+ 
+    .page-numbers {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .page-numbers li {
+    display: inline-block;
+    margin: 0 5px;
+  }
+
+  .call-to-action {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .call-to-action .border-button {
+    text-align: center;
+  }
+  
+  </style>
+  
+  
+  <div class="page-heading">
+      <div class="row">
+		  <h4 style="color: rgb(225, 225, 225);">부산여행</h4>
+          <h2 style="color: rgb(225, 225, 225);">자유게시판</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  <!-- *** 게시판 리스트 Start *** -->
+	<div class="amazing-deals">
+			<div class="row" style="display: grid; place-items: center;">
+							<div class="col-lg-12">
+							<div class="row">
+								<div class="col-lg-3" style="margin-left: 350px;">
+									<div class="item2">
+										<h3 style="padding: 10px; text-align: center; width: 140%;">자유게시판</h3>
+									</div>
+									
+									<br>
+								</div>
+								<div class="col-lg-1"></div>
+								<div class="col-lg-3">
+									<div class="border-button" style="margin-top: 10px; margin: auto; width: 550px;">
+										<form method="get" action="/board/list" style="display: inline;">
+										<fieldset style="display: inline-block;">
+											<input class="text" type="text" name="searchText" 
+											style="width: 300px; font-size: larger; color: black;">
+										</fieldset>
+										
+										<fieldset style="display: inline-block;"> 
+											<div >
+											<button style="border: none; background-color: white; margin: 5px;" >
+												<i class="fa fa-search fa-2x fa-flip" style="margin: 5px;" ></i>
+											</button>
+											</div>
+										</fieldset>
+										
+										</form>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<div style="display: inline;">
+										<a class="item" href="/board/write" style="margin: auto; display: inline-block;  overflow: visible;">글쓰기</a>
+										</div>
+										
+									</div>
+								</div>
+								<br><br>
+							</div>
+							
+							<div class="item3" style="display: block;">
+								<div class="row" style="--bs-gutter-y: 1.5rem;">
+								
+										<div class="col-lg-1 asd" id="container">
+										<h6 style="text-align: center; margin:0;">글번호</h6>
+									</div>
+
+									<div class="col-lg-4 asd" id="container">
+										<h6 style="text-align: center; margin:0;">제목</h6>
+									</div>
+									
+									<div class="col-lg-3 asd" id="container">
+										<h6 style="text-align: center;">닉네임</h6>
+									</div>
+									
+									<div class="col-lg-2 asd" id="container">
+										<h6 style="text-align: center;">등록일</h6>
+									</div>
+									
+									<div class="col-lg-1 asd" id="container">
+										<h6 style="text-align: center;">조회수</h6>
+									</div>
+									
+									<div class="col-lg-1 asd" id="container" style="border-right: none;">
+										<h6 style="text-align: center;">좋아요</h6>
+									</div>
+								</div>
+							</div>
+							
+							
+							<div class="item3" th:each="board : ${boards}" style="display: block;">
+								<a th:href="@{/board/read(board_id=${board.board_id})}">
+								<div class="row" style="--bs-gutter-y: 1.5rem; padding-top: 10px;">
+								
+										<div class="col-lg-1 asd" id="container" style="margin: auto;">
+										<h6 style="text-align: center; margin-top: 10px;" th:text="${board.board_id}">번호</h6>
+									</div>
+
+									<div class="col-lg-4 asd" id="container" style="margin: auto;">
+										<h6  style="text-align: left; margin-top: 10px; display: inline-block;" th:text="${board.b_title}">제목</h6>
+										&nbsp;&nbsp;<h6 class="fa fa-reply" th:text="|  (${board.b_com_count})|"></h6>
+									</div>
+									
+									<div class="col-lg-3 asd" id="container" style="margin: auto;">
+										<h6  style="text-align: center; margin-top: 10px; display: inline-block;" th:text="${board.nickname}">닉네임</h6>
+									</div>
+									
+									<div class="col-lg-2 asd" id="container" style="margin: auto;">
+										<h6 style="text-align: center; margin-top: 10px; display: inline-block;" th:text="|${#temporals.format(board.wr_date, 'yyyy-MM-dd HH:mm:s')}|">등록일</h6>
+									</div>
+									
+									<div class="col-lg-1 asd" id="container" style="margin: auto;">
+										<h6 style="text-align: center; margin-top: 10px; display: inline-block;" th:text="${board.b_view_count}">조회수</h6>
+									</div>
+									
+									<div class="col-lg-1 asd" id="container" style="border-right: none; margin: auto;">
+										<h6 style="text-align: center; margin-top: 10px; display: inline-block;" th:text="${board.b_like_count}">좋아요</h6>
+									</div>
+								</div>
+								</a>
+							</div>
+							</a>
+							
+							<br><br>
+						</div>		
+</div>
+</div>
+
+  <!-- *** 게시판 리스트 End *** -->
+
+  <div class="visit-country" style="margin: auto;">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="items">
+            <div class="row">
+              
+              <div class="col-lg-12">
+                <ul class="page-numbers">
+                  <li><a href="#"><i class="fa fa-arrow-left"></i></a></li>
+                  <li><a href="#">1</a></li>
+                  <li class="active"><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#"><i class="fa fa-arrow-right"></i></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+				
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <p>Copyright © 2036 <a href="#">워싱시</a> Company. All rights reserved. 
+          <br>Design: <a href="https://templatemo.com" target="_blank" title="free CSS templates">TemplateMo</a></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="/vendor/jquery/jquery.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+  <script src="/assets/js/isotope.min.js"></script>
+  <script src="/assets/js/owl-carousel.js"></script>
+  <script src="/assets/js/wow.js"></script>
+  <script src="/assets/js/tabs.js"></script>
+  <script src="/assets/js/popup.js"></script>
+  <script src="/assets/js/custom.js"></script>
+
+  <script>
+    $(".option").click(function(){
+      $(".option").removeClass("active");
+      $(this).addClass("active"); 
+    });
+    
+    function addHoverClass() {
+            document.getElementById("myElement").classList.add("fa-flip");
+        }
+
+        function removeHoverClass() {
+            document.getElementById("myElement").classList.remove("fa-flip");
+        }
+    
+  </script>
+  </body>
+
+</html> 
