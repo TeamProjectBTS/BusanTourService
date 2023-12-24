@@ -433,13 +433,6 @@ https://templatemo.com/tm-580-woox-travel
                   </div>
                 </div>
             </div>
-<div class="slider-container">
-    <ul class="page-numbers">      
-        <li><a href="#" class="page-link" data-page="1">관광</a></li>
-        <li><a href="#" class="page-link" data-page="2">음식</a></li>
-        <li><a href="#" class="page-link" data-page="3">숙소</a></li>
-    </ul>
-</div>
             </div>
           </div>
         </div>
@@ -474,60 +467,6 @@ https://templatemo.com/tm-580-woox-travel
     $('nav .controls label').click(function() {
       clearInterval(bannerTimer);
       bannerTimer = setInterval(bannerSwitcher, 5000)
-    });
-    
-      $(document).ready(function() {
-        $('.page-numbers li a.page-link').click(function(e) {
-            e.preventDefault();
-
-            var currentActive = $('.page-numbers li.active');
-            currentActive.removeClass('active');
-
-            var target = $(this).parent();
-            target.addClass('active');
-            updatePageName(target.find('.page-link').data('page'));
-        });
-
-        $('.page-numbers li a.arrow-link').click(function(e) {
-            e.preventDefault();
-
-            var currentActive = $('.page-numbers li.active');
-            var target;
-
-            if ($(this).data('target') === 'left') {
-                target = currentActive.prev();
-                if (target.length === 0) {
-                    target = $('.page-numbers li:last-child');
-                }
-            } else if ($(this).data('target') === 'right') {
-                target = currentActive.next();
-            }
-
-            if (target.length > 0) {
-                currentActive.removeClass('active');
-                target.addClass('active');
-                updatePageName(target.find('.page-link').data('page'));
-            }
-        });
-
-        function updatePageName(pageNumber) {
-            var pageName = '';
-            switch (pageNumber) {
-                case 1:
-                    pageName = '관광';
-                    break;
-                case 2:
-                    pageName = '음식';
-                    break;
-                case 3:
-                    pageName = '숙소';
-                    break;
-                default:
-                    pageName = '';
-                    break;
-            }
-            $('.page-name').text(pageName);
-        }
     });
   </script>
 
