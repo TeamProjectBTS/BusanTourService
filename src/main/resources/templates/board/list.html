@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+	<link rel="icon" href="/assets/images/pabicon.png" >
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 
@@ -96,14 +96,17 @@ https://templatemo.com/tm-580-woox-travel
   body {
       font-family: 'Noto Sans KR', sans-serif; /* 한글 폰트를 'Noto Sans KR'로 설정, fallback은 sans-serif로 설정 */
     }
-			h2{
-            font-weight: bold; /* 굵은 글꼴 적용 */
-            text-shadow: 5px 5px 5px rgb(0, 0, 0); /* 그림자 설정 */
-        	}
-        	h4{
-            font-weight: bold; /* 굵은 글꼴 적용 */
-            text-shadow: 5px 5px 5px rgb(0, 0, 0); /* 그림자 설정 */
-        	}
+    
+    
+	h2{
+	font-weight: bold; /* 굵은 글꼴 적용 */
+	text-shadow: 5px 5px 5px rgb(0, 0, 0); /* 그림자 설정 */
+	}
+	
+	h4{
+	font-weight: bold; /* 굵은 글꼴 적용 */
+	text-shadow: 5px 5px 5px rgb(0, 0, 0); /* 그림자 설정 */
+	}
 
 
   .asd{
@@ -273,14 +276,14 @@ https://templatemo.com/tm-580-woox-travel
   </style>
   
   
-  <div class="page-heading">
-      <div class="row">
-		  <h4 style="color: rgb(225, 225, 225);">부산여행</h4>
-          <h2 style="color: rgb(225, 225, 225);">자유게시판</h2>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="page-heading">
+	<div class="row">
+		<h4 style="color: rgb(225, 225, 225);">부산여행</h4>
+		<h2 style="color: rgb(225, 225, 225);">자유게시판</h2>
+	</div>
+</div>
+</div>
+</div>
   
   
   <!-- *** 게시판 리스트 Start *** -->
@@ -300,8 +303,8 @@ https://templatemo.com/tm-580-woox-travel
 									<div class="border-button" style="margin-top: 10px; margin: auto; width: 550px;">
 										<form method="submit" action="#" style="display: inline;">
 										<fieldset style="display: inline-block;">
-											<input class="text" type="text" th:field="${searchText}" 
-											style="width: 300px; font-size: x-large; color: black;">
+											<input class="text" type="text" name="searchText" 
+											style="width: 300px; font-size: larger; color: black;">
 										</fieldset>
 										
 										<fieldset style="display: inline-block;"> 
