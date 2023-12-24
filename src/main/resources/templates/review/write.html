@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+	<link rel="icon" href="/assets/images/pabicon.png" >
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <title>부산투어서비스 자유게시판</title>
@@ -54,14 +54,29 @@ https://templatemo.com/tm-580-woox-travel
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li><a href="index.html">관광지</a></li>
-                        <li><a href="about.html">음식점</a></li>
-                        <li><a href="about.html">숙소</a></li>
-                        <li><a href="deals.html" class="active">게시판</a></li>
-                        <li><a href="reservation.html">고객문의</a></li>
-                        <li><a href="reservation.html">로그인 / 회원가입</a></li>
-                    </ul>   
-                    <a class='menu-trigger'>
+                        <li><a style=" border-radius: 0px;" class="menu-item" href="/tour_spot/list">관광지</a></li>
+                        <li><a style=" border-radius: 0px;" class="menu-item" href="/restaurant/list">음식점</a></li>
+                        <li><a style=" border-radius: 0px;" class="menu-item" href="/hotel/list">숙소</a></li>
+                        <li>
+							<a class="menu-item" href="/board/list" style=" border-radius: 0px;">자유 게시판</a>
+						</li>
+                        
+						<li sec:authorize="isAuthenticated()" class="menu-item-container" >
+							<a class="menu-item" href="/member/mypage" style="width: max-content; border-radius: 0px;"
+								>[[${loginUser.member.nickname}]]님</a>
+							<div class="menu-container" style="width: max-content; text-align: center;" >
+								<a class="menu-item" href="/member/mypage" style=" border-radius: 0px;">마이페이지</a>
+								<a class="menu-item" href="/complain/list" style=" border-radius: 0px;">고객문의</a>
+								<a class="menu-item" href="/member/logout" style=" border-radius: 0px;">로그아웃</a>
+							</div>
+						</li>
+						
+						<li sec:authorize="isAnonymous()">
+							<a href="/member/login" class="menu-item" style="width: max-content; border-radius: 0px;">로그인</a>
+						</li>
+                    </ul>
+						
+                    <a class='menu-trigger' >
                         <span>Menu</span>
                     </a>
                     <!-- ***** Menu End ***** -->
@@ -85,6 +100,44 @@ https://templatemo.com/tm-580-woox-travel
   </div>
   
   <style>
+	  
+	  
+	  #previewContainer {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .previewImage {
+            max-width: fit-content;
+            max-height: 300px;
+            margin: 5px;
+        }
+
+        #fileTable {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        #fileTable th, #fileTable td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            
+        }
+
+        #fileTable th {
+            background-color: #f2f2f2;
+        }
+
+        .deleteButton {
+            cursor: pointer;
+            color: red;
+            font-weight: bold;
+        }
+
+        .fileNameDisplayItem {
+            margin-bottom: 5px;
+        }
 	  
 	  .border-button input:hover {
 		  background-color: red;
@@ -181,27 +234,26 @@ https://templatemo.com/tm-580-woox-travel
   <!-- *** 게시판 글쓰기 Start *** -->
   
   <div class="bulletin-board-container">
-	<!--<textarea name="re_content" style="position:absolute;visibility:hidden;"></textarea>
-	<table cellpadding="0" cellspacing="0" border="0" width="800" align="center" class="board-write">
-	  <from name="hidden_rewrite"></from>
-	  <input type="HIDDEN" name="re_subject" value>-->
-	  <!-- 상단 이미지 삽입부분 시작 -->
-	  <!--<tbody>
-		  <tr height="3" bgcolor="#CDCCCC">
-		  </tr>-->
-	  <!-- 상단 이미지 삽입부분 끝 -->
 	  <!-- 실제 write 부분 시작 -->
-	  	  
-			  <form method="post" action="/review/write" enctype="multipart/form-data" th:object="${writeForm}"
+			  <form method="post" th:action="@{/review/write(UC_SEQ=${writeForm.UC_SEQ})}" enctype="multipart/form-data" th:object="${writeForm}"
 			   style="margin:0; padding:0;" >
-			   <tr>
-				<td>
-				<input type="file" name="file">  
-				</td>
-			  </tr>
-			    <table cellpadding="0" cellspacing="0" border="0" width="100%" style="table-layout: fixed">
-				 <!-- <tbody> -->
-				  <tr>
+			   
+				<input type="file" name="files" id="fileInput" accept="image/*" multiple onchange="previewImages()">
+				<div id="previewContainer"></div>
+				
+				<table id="fileTable" style="width: 50%;">
+				    <thead>
+				        <tr>
+				            <th style="text-align: center; width: 20%;">파일 번호</th>
+				            <th style="text-align: center;">파일명</th>
+				            <th style="text-align: center; width: 20%;">삭제</th>
+				        </tr>
+				    </thead>
+				    <tbody id="fileTableBody"></tbody>
+				</table>
+				
+				<div style="color: red;" th:errors="${writeForm.rv_title}"></div>
+				<div style="color: red;" th:errors="${writeForm.rv_content}"></div>
 				   <!-- <td bgcolor="#EDEDED"> -->
 					<table cellpadding="0" cellspacing="0" border="0" whidth="100%">
 					 <tbody>
@@ -213,14 +265,18 @@ https://templatemo.com/tm-580-woox-travel
 						<td>
 							<fieldset>
 								<select th:field="${writeForm.sort}" class="form-select" aria-label="Default select example" id="chooseLocation" onChange="this.form.click()">
-									<option ></option>
+									<option selected type="text" value="관광지">관광지</option>
+									<option type="text" value="음식점">음식점</option>
+									<option type="text" value="쇼핑">쇼핑</option>
 								</select>
 							</fieldset>
 						</td>
-						<td>
-							 <fieldset>
+						
+						<td > </td>
+					<td>
+					<fieldset>
                       <select th:field="${writeForm.star}" class="form-select" aria-label="Default select example" id="chooseLocation" onChange="this.form.click()">
-                          <option selected type="number" value="10">10점</option>
+                          <option selected type="number" value="10" onchange="viewStar()">10점</option>
                           <option type="number" value="9">9점</option>
                           <option type="number" value="8">8점</option>
                           <option type="number" value="7">7점</option>
@@ -230,35 +286,17 @@ https://templatemo.com/tm-580-woox-travel
                           <option type="number" value="3">3점</option>
                           <option type="number" value="2">2점</option>
                           <option type="number" value="1">1점</option>
-                          
                       </select>
-                  </fieldset>
-						 </td>
-						  
+                  	</fieldset>
+					</td>
+					
 					  </tr>	 
 					 </tbody>
 					</table>
-					<tr>
-					  <td align="center">
-						<textarea id="CONTENT2" th:field="${writeForm.rv_content}" class="signContent" style="float: left; resize: none; width: 100%; height: 500px;
-						margin-top: 2px; margin-bottom: 0px;"></textarea>						  
-					  </td>
-					 </tr>
-					 	   
-				   <!-- </td> -->	  
-				  </tr>					 
-				 <!-- </tbody> -->	
-				</table>
-				
-			
-			   <!-- 1픽셀 라인 -->
-			   <!-- <div id="bbs-poll-setting" class="bbs-poll-setting" data-has-poll="0" data-admin="0">
-				 <div class="top ipoll-1ucydmo" style="order: 1;">
-				 </div>   
-			   </div> -->
-			   <table cellspacing="0" cellpadding="0" border="0" width="100%">
-				   
-			   </table>
+					
+				<textarea id="CONTENT2" th:field="${writeForm.rv_content}" class="signContent" style="float: left; resize: none; width: 100%; height: 500px;
+						margin-top: 2px; margin-bottom: 0px;"></textarea>	
+											  
 			   <div class="row" style="margin-top: 50px;">
 			    <div class="col-lg-12">
 			   	 <div class="border-button" style="display: inline-block; float: right; ">
@@ -272,17 +310,10 @@ https://templatemo.com/tm-580-woox-travel
 			     </div>
 			     </div>
 			    </div>
+			    <input type="hidden" th:field="${writeForm.UC_SEQ}">
 				</form>
-			
-	  </tbody>
-	</table>
-	<!--<tr>
-	  <td>
-		<input type="file" name="file">
-	  </td>
-	</tr>-->
-	
-  
+			</div>
+
   <!-- *** 게시판 글쓰기 End *** -->
 
   <div class="visit-country" style="margin: auto;">
@@ -354,6 +385,107 @@ https://templatemo.com/tm-580-woox-travel
       $(".option").removeClass("active");
       $(this).addClass("active"); 
     });
+    
+    let uploadedFiles = [];
+let fileTableBody = document.getElementById('fileTableBody');
+let previewContainer = document.getElementById('previewContainer');
+let fileNameDisplay = document.getElementById('fileNameDisplay');
+
+function previewImages() {
+    let fileInput = document.getElementById('fileInput');
+
+    // 이미지 개수를 최대 5개로 제한
+    if (fileInput.files.length > 5) {
+        alert('이미지는 최대 5개까지 업로드할 수 있습니다.');
+        // 초과한 파일은 삭제
+        let excessFilesCount = fileInput.files.length - 5;
+        Array.from(fileInput.files).splice(0, excessFilesCount);
+    }
+
+    // 미리보기 및 파일명 추가
+    for (let i = 0; i < fileInput.files.length; i++) {
+        let file = fileInput.files[i];
+        uploadedFiles.push(file);
+
+        let reader = new FileReader();
+
+        reader.onload = function(e) {
+            // 미리보기 추가
+            let preview = document.createElement('img');
+            preview.src = e.target.result;
+            preview.alt = '미리보기';
+            preview.className = 'previewImage';
+            previewContainer.appendChild(preview);
+
+            // 파일명 추가
+            let fileNameDisplayItem = document.createElement('p');
+            fileNameDisplayItem.textContent = '업로드된 파일 ' + uploadedFiles.length + ': ' + file.name;
+            fileNameDisplayItem.className = 'fileNameDisplayItem';
+            fileNameDisplay.appendChild(fileNameDisplayItem);
+        };
+
+        reader.readAsDataURL(file);
+    }
+
+    // 파일 목록 업데이트
+    updateFileList();
+}
+
+function updateFileList() {
+    fileTableBody.innerHTML = '';
+
+    for (let i = 0; i < uploadedFiles.length; i++) {
+        let fileName = uploadedFiles[i].name;
+
+        let row = fileTableBody.insertRow();
+        let cell1 = row.insertCell(0);
+        let cell2 = row.insertCell(1);
+        let cell3 = row.insertCell(2);
+
+        cell1.textContent = i + 1;
+        cell2.textContent = fileName;
+
+        let deleteButton = document.createElement('span');
+        deleteButton.textContent = '삭제';
+        deleteButton.className = 'deleteButton';
+        deleteButton.onclick = function() {
+            deleteFile(i);
+        };
+
+        cell3.appendChild(deleteButton);
+    }
+}
+
+function deleteFile(index) {
+    uploadedFiles.splice(index, 1);
+
+    // 이미지 및 파일 목록 업데이트
+    updateFileList();
+    updatePreview();
+}
+
+function updatePreview() {
+    // 미리보기 초기화
+    previewContainer.innerHTML = '';
+
+    // 미리보기 및 파일명 추가
+    for (let i = 0; i < uploadedFiles.length; i++) {
+        let file = uploadedFiles[i];
+        let reader = new FileReader();
+
+        reader.onload = function(e) {
+            // 미리보기 추가
+            let preview = document.createElement('img');
+            preview.src = e.target.result;
+            preview.alt = '미리보기';
+            preview.className = 'previewImage';
+            previewContainer.appendChild(preview);
+        };
+
+        reader.readAsDataURL(file);
+    }
+}
+    
   </script>
   </body>
 

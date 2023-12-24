@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -64,19 +65,12 @@ public class MemberController {
 		//회원가입 처리
 		log.info("joinForm:{}", joinForm);
 		log.info("result:{}", result);
-		
+		log.info("nickname size : {}", joinForm.getNickname().length() );
 		// validation 에 에러가 있으면 가입시키지 않고 member/joinForm.html 페이지로 돌아간다.
 		if(result.hasErrors()) {
-			return "/member/joinForm";
+			
+			return "member/joinForm";
 		}
-		
-//		// 이메일 주소에 '@' 문자가 포함되어 있는지 확인한다.
-//    if (!joinForm.getEmail().contains("@")) {
-//        // BindingResult 객체에 GlobalError 를 추가한다.
-//        result.reject("emailError", "이메일 형식이 잘못되었습니다.");
-//        // member/joinForm.html 페이지를 리턴한다.
-//        return "member/joinForm";
-//    }
 		
     // 사용자로부터 입력받은 아이디로 데이터베이스에서 Member 를 검색한다.
     Member member = memberService.findMember(joinForm.getMember_id());
@@ -84,18 +78,25 @@ public class MemberController {
     if (member != null) {
         log.info("이미 가입된 아이디 입니다.");
         // BindingResult 객체에 GlobalError 를 추가한다.
-        result.reject("duplicate ID", "이미 가입된 아이디 입니다.");
+        result.reject("duplicate_ID", "이미 가입된 아이디 입니다.");
         // member/joinForm.html 페이지를 리턴한다.
-        return "/member/joinForm";
+        return "member/joinForm";
     }
     
-//    if () {
-//        log.info("이미 가입된 아이디 입니다.");
-//        // BindingResult 객체에 GlobalError 를 추가한다.
-//        result.reject("duplicate ID", "이미 가입된 아이디 입니다.");
-//        // member/joinForm.html 페이지를 리턴한다.
-//        return "member/joinForm";
-//    }
+    if(memberService.findMemberByNick(joinForm.getNickname()) != null) {
+    	log.info("닉네임 중복");
+    	result.reject("duplicate_nickname", "중복된 닉네임 입니다.");
+    	return "member/joinForm";
+    }
+    
+    byte[] bytes = joinForm.getNickname().getBytes(java.nio.charset.StandardCharsets.UTF_8);
+    int byteSize = bytes.length;
+    
+    if(byteSize > 20) {
+    	log.info("크기 20바이트 이상");
+    	result.reject("over20Bytes", "닉네임은 한글 6자, 영문 20자까지 가능합니다.");
+    	return "member/joinForm";
+    }
     
     // MemberJoinForm 객체를 Member 타입으로 변환하여 데이터베이스에 저장한다.
     memberService.saveMember(MemberJoinForm.toMember(joinForm));
@@ -192,19 +193,37 @@ public class MemberController {
     return "redirect:/";
 	}
 	
-//	@GetMapping("test")
-//	public String testMemberSave() {
-//		log.info("실행시작 잘 됨");
-//		Member member = new Member();
-//		member.setMember_id("aaaaaa");
-//		member.setPassword("aaaaaa");
-//		member.setNickname("엄준식");
-//		member.setName("엄준식");
-//		member.setEmail("umjoon@naver.com");
-//		member.setPhone("01012341234");
-//		memberService.saveMember(member);
-//		log.info("회원가입 잘 됨 : {}", member);
-//		return "redirect:/";
-//	}
+
+
+		@GetMapping("mypage")
+		public String mypage(@AuthenticationPrincipal UserInfo userInfo, 
+									Model model) {
+			model.addAttribute("loginUser",userInfo);
+			
+			
+			return "member/mypage";
+		}
+		
+		@GetMapping("myboard")
+		public String myboard(@AuthenticationPrincipal UserInfo userInfo, 
+									Model model) {
+			model.addAttribute("loginUser",userInfo);
+			return "member/myboard";
+		}
+		
+		@GetMapping("myreview")
+		public String myreview(@AuthenticationPrincipal UserInfo userInfo, 
+									Model model) {
+			model.addAttribute("loginUser",userInfo);
+			return "member/myreview";
+		}
+		
+	
+		@GetMapping("mylike")
+		public String mylike(@AuthenticationPrincipal UserInfo userInfo, 
+									Model model) {
+			model.addAttribute("loginUser",userInfo);
+			return "member/mylike";
+		}
 	
 }

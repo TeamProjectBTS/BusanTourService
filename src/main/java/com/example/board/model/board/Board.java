@@ -1,6 +1,7 @@
 package com.example.board.model.board;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import lombok.Data;
 
@@ -18,7 +19,7 @@ public class Board {
     b_com_count int default 0, -- 댓글 카운트
     wr_date date DEFAULT sysdate -- 글 작성시간 (현재시간 가져오기)
 	 * */
-
+	
 	private Long board_id; //게시물 아이디
 	private String b_title; //글 제목
 	private String b_contents; //내용
@@ -27,7 +28,7 @@ public class Board {
 	private Long b_view_count; //뷰 카운트
 	private Long b_like_count; //좋아요 카운트
 	private Long b_com_count; //댓글 카운트
-	private LocalDate wr_date; //작성일
+	private LocalDateTime wr_date; //작성일
 	
 	public void addB_view_count() {
 		this.b_view_count++;

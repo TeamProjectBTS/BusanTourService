@@ -6,14 +6,17 @@ import com.example.board.model.review.Review;
 import com.example.board.model.review.ReviewAttachedFile;
 import com.example.board.model.review.ReviewUpdateForm;
 import com.example.board.model.review.ReviewWriteForm;
+import com.example.board.model.tour_spot.Tour_spotResponse.Body.Items.Item;
 import com.example.board.repository.ReviewMapper;
 import com.example.board.service.ReviewService;
+import com.example.board.service.T_ApiService;
 import com.example.board.util.FileService;
 import com.example.board.util.PageNavigator;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -30,6 +33,7 @@ import org.springframework.web.util.UriUtils;
 
 import java.net.MalformedURLException;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -42,6 +46,9 @@ public class ReviewController {
     private final ReviewMapper reviewMapper;
     private final FileService fileService;
     private final ReviewService reviewService;
+    private final T_ApiService t_ApiService;
+
+  	
     @Value("${file.upload.path}")
     private String uploadPath;
     
@@ -57,10 +64,12 @@ public class ReviewController {
     // 글쓰기 페이지 이동
     @GetMapping("write")
     public String writeForm(Model model,
+    		@RequestParam(value="UC_SEQ") Long UC_SEQ,
     		@AuthenticationPrincipal UserInfo userInfo) {
-        
-        model.addAttribute("writeForm", new ReviewWriteForm());
-        
+        ReviewWriteForm writeForm = new ReviewWriteForm();
+        writeForm.setUC_SEQ(UC_SEQ);
+        model.addAttribute("writeForm", writeForm);
+        model.addAttribute("loginUser", userInfo);
         return "review/write";
     }
 
@@ -68,15 +77,20 @@ public class ReviewController {
     @PostMapping("write")
     public String write(@AuthenticationPrincipal UserInfo userInfo,
                         @Validated @ModelAttribute("writeForm") ReviewWriteForm reviewWriteForm,
+                        @RequestParam(value="UC_SEQ") Long UC_SEQ,
+                    		@RequestParam(value="page", defaultValue="1") int page,
+                  			@RequestParam(value="searchTextReview", defaultValue="") String searchTextReview,
+                        BindingResult result,
                         @RequestParam(required=false) List<MultipartFile> files,
-                        BindingResult result) {
+                        Model model
+                        ) {
        
-//        log.info("board: {}", boardWriteForm);
-//        log.info("file : {}", file);
+
         log.info("userInfo : {}", userInfo);
         // validation 에러가 있으면 board/write.html 페이지를 다시 보여준다.
         if (result.hasErrors()) {
-            return "/review/write.html";
+        	model.addAttribute("loginUser",userInfo);
+            return "review/write?UC_SEQ=" + UC_SEQ;
         }
 
         // 파라미터로 받은 BoardWriteForm 객체를 Board 타입으로 변환한다.
@@ -88,61 +102,35 @@ public class ReviewController {
         
       	reviewService.saveReview(review, files);
         
+      	List<Item> items = t_ApiService.getItems();
+      	
+      	for(Item item : items) {
+      		if(item.getUC_SEQ().equals(UC_SEQ)) {
+      			model.addAttribute("item", item);
+      		}
+      	}
+      	
+      	int total = reviewService.getTotalInReview(UC_SEQ, searchTextReview);
+      	
+        PageNavigator navi = new PageNavigator(countPerPage, pagePerGroup, page, total);
         
         
-        // review/list 로 리다이렉트한다.
-        return "redirect:/review/list";
-    }
-
-    // 게시글 전체 보기
-    @GetMapping("list")
-    public String list(
-	  		@RequestParam(value="page", defaultValue="1") int page,
-			 @RequestParam(value="searchText", defaultValue="") String searchText,
-	     Model model) {
-    	log.info("검색어 : {}", searchText);
-
-    	int total = reviewService.getTotal(searchText);
-    	
-      PageNavigator navi = new PageNavigator(countPerPage, pagePerGroup, page, total);
-      log.info("페이지 정보 : {}", navi);
-      
-      // 데이터베이스에 저장된 모든 Board 객체를 리스트 형태로 받는다.
-      List<Review> reviews = reviewService.findReviews(searchText, navi.getStartRecord(), navi.getCountPerPage());
-      
-      // Board 리스트를 model 에 저장한다.
-      model.addAttribute("reviews", reviews);
-      model.addAttribute("navi", navi);
-      model.addAttribute("searchText", searchText);
-      // board/list.html 를 찾아서 리턴한다.
-      return "review/list";
-    }
-    	
-    // 게시글 읽기
-    @GetMapping("read")
-    public String read(@RequestParam Long review_id,
-    		@AuthenticationPrincipal UserInfo userInfo,
-                       Model model) {
-
-        log.info("id: {}", review_id);
-        
-        // board_id 에 해당하는 게시글을 데이터베이스에서 찾는다.
-        Review review = reviewService.readReview(review_id);
-        // board_id에 해당하는 게시글이 없으면 리스트로 리다이렉트 시킨다.
-        if (review == null || review_id == null) {
-            log.info("게시글 없음");
-            return "redirect:/review/list";
+        // 데이터베이스에 저장된 모든 Board 객체를 리스트 형태로 받는다.
+        List<Review> reviews = new ArrayList<>(); 
+        for(Review review2 : reviewService.findReviews(searchTextReview, navi.getStartRecord(), navi.getCountPerPage())) {
+        	if(review.getUC_SEQ() == UC_SEQ) {
+        		reviews.add(review2);
+        	}
         }
         
-        List<ReviewAttachedFile> attachedFiles = reviewService.findFilesByReviewId(review_id);
-//        log.info("첨부파일 : {}", attachedFile);
-        model.addAttribute("files", attachedFiles);
+      	model.addAttribute("reviews", reviews);
+      	model.addAttribute("navi", navi);
+        model.addAttribute("searchTextReview", searchTextReview);
+      	model.addAttribute("loginUser",userInfo);
         
-        // 모델에 Board 객체를 저장한다.
-        model.addAttribute("review", review);
         
-        // board/read.html 를 찾아서 리턴한다.
-        return "review/read";
+        // review/read 로 리다이렉트한다.
+        return "/tour_spot/read?UC_SEQ=" + review.getUC_SEQ();
     }
 
     // 게시글 수정 페이지 이동
@@ -158,7 +146,7 @@ public class ReviewController {
         Review review = reviewService.findReview(review_id);
         if (review_id == null || !review.getMember_id().equals(userInfo.getMember().getMember_id())) {
             log.info("수정 권한 없음");
-            return "redirect:/review/list";
+            return "redirect:/tour_spot/list";
         }
         
         // model 에 board 객체를 저장한다.
@@ -168,7 +156,7 @@ public class ReviewController {
 //        log.info("첨부파일 : {}", attachedFile);
         
         model.addAttribute("files", attachedFiles);
-        
+        model.addAttribute("loginUser", userInfo);
         // board/update.html 를 찾아서 리턴한다.
         return "review/update";
     }
@@ -178,13 +166,16 @@ public class ReviewController {
     public String update(@AuthenticationPrincipal UserInfo userInfo,
                          @RequestParam Long review_id,
                          @Validated @ModelAttribute("review") ReviewUpdateForm updateReview,
+                         BindingResult result,
                          @RequestParam(required=false) List<MultipartFile> files,
-                         BindingResult result) {
+                         Model model
+                         ) {
         
 
 //        log.info("board: {}", updateBoard);
         // validation 에 에러가 있으면 board/update.html 페이지로 돌아간다.
         if (result.hasErrors()) {
+        	model.addAttribute("loginUser", userInfo);
             return "review/update";
         }
 
@@ -202,7 +193,7 @@ public class ReviewController {
         // 수정한 Board 를 데이터베이스에 update 한다.
         reviewService.updateReview(review , updateReview.isFileRemoved(), files);
         // 수정이 완료되면 리스트로 리다이렉트 시킨다.
-        return "redirect:/review/list";
+        return "redirect:/member/myreview";
     }
 
     // 게시글 삭제
@@ -234,27 +225,6 @@ public class ReviewController {
         return "redirect:/review/list";
     }
     
-    @GetMapping("download/{id}")
-    public ResponseEntity<Resource> download(@PathVariable Long attached_file_id) throws MalformedURLException {
-    	// 첨부파일 아이디로 첨부파일 정보를 가져온다
-    	ReviewAttachedFile attachedFile = reviewService.findFileByAttachedFileId(attached_file_id);
-    	
-    	// 다운로드 하려는 파일의 절대경로 값을 만든다
-    	String fullPath = uploadPath + "/" + attachedFile.getSaved_filename();
-    	
-    	UrlResource resource = new UrlResource("file:" + fullPath);
-    	
-    	// 한글 파일명이 깨지지 않도록 UTF_8로 파일명을 인코딩한다
-    	String encodingFileName = UriUtils.encode(attachedFile.getOriginal_filename(), 
-    																						StandardCharsets.UTF_8);
-    	
-    	// 응답헤더에 담을 Content Disposition 값을 생성한다
-    	String contentDisposition = "attachment; filename=\""+ encodingFileName + "\"";
-    	
-    	return ResponseEntity.ok()
-    			.header(HttpHeaders.CONTENT_DISPOSITION, contentDisposition)
-    			.body(resource);
-    }
     
     
     

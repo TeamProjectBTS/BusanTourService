@@ -3,9 +3,9 @@ server:
     session:
       tracking-modes: cookie
   port: 9000
-  error:
-    whitelabel:
-      enabled: true
+#  error:
+#    whitelabel:
+#      enabled: true
 #    include-exception: true
 #    include-message: always
 #    include-stacktrace: always    

@@ -5,7 +5,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+	<link rel="icon" href="/assets/images/pabicon.png" >
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <title>부산 관광지 정보</title>
@@ -55,11 +55,13 @@ https://templatemo.com/tm-580-woox-travel
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
-                        <ul class="nav">
+                    <ul class="nav">
                         <li><a style=" border-radius: 0px;" class="menu-item" href="/tour_spot/list">관광지</a></li>
                         <li><a style=" border-radius: 0px;" class="menu-item" href="/restaurant/list">음식점</a></li>
                         <li><a style=" border-radius: 0px;" class="menu-item" href="/hotel/list">숙소</a></li>
-                        <li><a style=" border-radius: 0px;" class="menu-item" href="/board/list">게시판</a></li>
+                        <li>
+							<a class="menu-item" href="/board/list" style=" border-radius: 0px;">자유 게시판</a>
+						</li>
                         
 						<li sec:authorize="isAuthenticated()" class="menu-item-container" >
 							<a class="menu-item" href="/member/mypage" style="width: max-content; border-radius: 0px;"
@@ -72,10 +74,11 @@ https://templatemo.com/tm-580-woox-travel
 						</li>
 						
 						<li sec:authorize="isAnonymous()">
-							<a href="/member/login">로그인</a>
+							<a href="/member/login" class="menu-item" style="width: max-content; border-radius: 0px;">로그인</a>
 						</li>
                     </ul>
-                    <a class='menu-trigger'>
+						
+                    <a class='menu-trigger' >
                         <span>Menu</span>
                     </a>
                     <!-- ***** Menu End ***** -->
@@ -198,15 +201,15 @@ https://templatemo.com/tm-580-woox-travel
 						
 						<span class="item">
 									<span class="thumb">
-									<img src="/assets/images/tour_spot_banner3" style="padding: 0%; width: 350px; height: 420px; position: fixed;" >
+									<img src="/assets/images/tour_spot_banner3.jpg" style="padding: 0%; width: 350px; height: 420px; position: fixed;" >
 									</span>
 								</span>
 
 							<div class="item">
 							<div class="thumb">
-								<img src="assets/images/offers-01.jpg" alt="">
+								<img src="assets/images/tour_spot_banner4.jpg" alt="">
 								<div class="text">
-									<h4>파크하얏트<br><span><i class="fa fa-users"></i> 조회수</span></h4>
+									<h4>황령산 전망대<br><span><i class="fa fa-users"></i> 조회수</span></h4>
 									<h6>가격<br><span>/person</span></h6>
 									<div class="line-dec"></div>
 									<ul>
@@ -224,7 +227,7 @@ https://templatemo.com/tm-580-woox-travel
 						
 						<span class="item">
 									<span class="thumb">
-									<img src="/assets/images/deals-01.jpg" style="padding: 0%; width: 300px; height: 420px; position: fixed;" >
+									<img src="/assets/images/tour_spot_banner4.jpg" style="padding: 0%; width: 300px; height: 420px; position: fixed;" >
 									</span>
 								</span>
 
@@ -232,7 +235,7 @@ https://templatemo.com/tm-580-woox-travel
 							<div class="thumb">
 								<img src="assets/images/offers-02.jpg" alt="">
 								<div class="text">
-									<h4>롯데부산 호텔<br><span><i class="fa fa-users"></i> 조회수</span></h4>
+									<h4>신세계 스파랜드<br><span><i class="fa fa-users"></i> 조회수</span></h4>
 									<h6>가격<br><span>/person</span></h6>
 									<div class="line-dec"></div>
 									<ul>
@@ -250,7 +253,7 @@ https://templatemo.com/tm-580-woox-travel
 						
 						<span class="item">
 									<span class="thumb">
-									<img src="/assets/images/deals-01.jpg" style="padding: 0%; width: 300px; height: 420px; position: fixed;" >
+									<img src="/assets/images/tour_spot_banner5.jpg" style="padding: 0%; width: 300px; height: 420px; position: fixed;" >
 									</span>
 								</span>
 
@@ -373,11 +376,7 @@ https://templatemo.com/tm-580-woox-travel
       <div class="row">
         <div class="col-lg-6 offset-lg-3">
           <div class="section-heading text-center" style="margin: auto;">
-<<<<<<< HEAD
             <h2 style="margin-top: 30px ;">부산 추천 명소들을 확인하세요</h2>
-=======
-            
->>>>>>> sub/sungmin
           </div>
         </div>
     <div class="visit-country" style="margin-top: 50px;">

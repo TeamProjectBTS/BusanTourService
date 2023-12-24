@@ -12,6 +12,8 @@
         <typeAlias type="com.example.board.model.review.Review" alias="review"/>
         <typeAlias type="com.example.board.model.tour_spot.Tour_spot" alias="tour_spot"/>
         <typeAlias type="com.example.board.model.board.AttachedFile" alias="file"/>
+        <typeAlias type="com.example.board.model.review.ReviewAttachedFile" alias="reviewfile"/>
+        <typeAlias type="com.example.board.model.board.Comments" alias="comments"/>
     </typeAliases>
 
 </configuration>

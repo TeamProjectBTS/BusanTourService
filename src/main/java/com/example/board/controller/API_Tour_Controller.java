@@ -87,8 +87,8 @@ public class API_Tour_Controller {
   @GetMapping("read")
   public String readTour(@AuthenticationPrincipal UserInfo userInfo,
   		@RequestParam(value="UC_SEQ") Long UC_SEQ,
-  		@RequestParam(value="page", defaultValue="1",required=false) int page,
-			@RequestParam(value="searchTextReview", defaultValue="", required=false) String searchTextReview,
+  		@RequestParam(value="page", defaultValue="1") int page,
+			@RequestParam(value="searchTextReview", defaultValue="") String searchTextReview,
   		Model model) {
   	
   	List<Item> items = t_ApiService.getItems();
@@ -100,24 +100,27 @@ public class API_Tour_Controller {
   	}
   	
   	int total = reviewService.getTotalInReview(UC_SEQ, searchTextReview);
-  	
+
     PageNavigator navi = new PageNavigator(countPerPage, pagePerGroup, page, total);
-    log.info("페이지 정보 : {}", navi);
+
     
     // 데이터베이스에 저장된 모든 Board 객체를 리스트 형태로 받는다.
     List<Review> reviews = new ArrayList<>(); 
     for(Review review : reviewService.findReviews(searchTextReview, navi.getStartRecord(), navi.getCountPerPage())) {
-    	if(review.getUC_SEQ() == UC_SEQ) {
+    	if(review.getUC_SEQ().equals(UC_SEQ)) {
     		reviews.add(review);
+    		log.info("review : {}", review);
     	}
     }
+    
+    
     
   	model.addAttribute("reviews", reviews);
   	model.addAttribute("navi", navi);
     model.addAttribute("searchTextReview", searchTextReview);
   	model.addAttribute("loginUser",userInfo);
   	return "tour_spot/read";
-  }
+  
   
   
 	
@@ -125,4 +128,7 @@ public class API_Tour_Controller {
 	
 	
 }
+  
+}
+
 

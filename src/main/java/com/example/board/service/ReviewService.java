@@ -34,10 +34,8 @@ public class ReviewService {
   @Transactional
 	public void saveReview(Review review, List<MultipartFile> files) {
   	
-		if(findReview(review.getReview_id()) == null) {
 			// 데이터베이스에 저장한다.
 			reviewMapper.saveReview(review);
-		}
 		
     for(MultipartFile file : files) {
     	if(file != null && file.getSize() > 0 || !file.isEmpty()) {
@@ -91,6 +89,10 @@ public class ReviewService {
 
 	public Review findReview(Long review_id) {
 		return reviewMapper.findReview(review_id);
+	}
+	
+	public List<Review> findReviewsByUC_SEQ(Long UC_SEQ) {
+		return reviewMapper.findReviewsByUC_SEQ(UC_SEQ);
 	}
 	
 	//
