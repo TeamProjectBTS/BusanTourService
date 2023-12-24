@@ -58,9 +58,11 @@ public class ReviewController {
     // 글쓰기 페이지 이동
     @GetMapping("write")
     public String writeForm(Model model,
+    		@RequestParam(value="UC_SEQ") Long UC_SEQ,
     		@AuthenticationPrincipal UserInfo userInfo) {
-        
-        model.addAttribute("writeForm", new ReviewWriteForm());
+        ReviewWriteForm writeForm = new ReviewWriteForm();
+        writeForm.setUC_SEQ(UC_SEQ);
+        model.addAttribute("writeForm", writeForm);
         model.addAttribute("loginUser", userInfo);
         return "review/write";
     }
@@ -69,16 +71,17 @@ public class ReviewController {
     @PostMapping("write")
     public String write(@AuthenticationPrincipal UserInfo userInfo,
                         @Validated @ModelAttribute("writeForm") ReviewWriteForm reviewWriteForm,
+                        BindingResult result,
                         @RequestParam(required=false) List<MultipartFile> files,
-                        Model model,
-                        BindingResult result) {
+                        Model model
+                        ) {
        
 
         log.info("userInfo : {}", userInfo);
         // validation 에러가 있으면 board/write.html 페이지를 다시 보여준다.
         if (result.hasErrors()) {
-        	model.addAttribute("error", "내용을 입력해주세요");
-            return "review/write.html";
+        	model.addAttribute("loginUser",userInfo);
+            return "review/write";
         }
 
         // 파라미터로 받은 BoardWriteForm 객체를 Board 타입으로 변환한다.
@@ -94,59 +97,6 @@ public class ReviewController {
         
         // review/list 로 리다이렉트한다.
         return "redirect:/review/list";
-    }
-
-    // 게시글 전체 보기
-    @GetMapping("list")
-    public String list(@AuthenticationPrincipal UserInfo userInfo,
-	  		@RequestParam(value="page", defaultValue="1") int page,
-			 @RequestParam(value="searchText", defaultValue="") String searchText,
-	     Model model) {
-    	log.info("검색어 : {}", searchText);
-
-    	int total = reviewService.getTotal(searchText);
-    	
-      PageNavigator navi = new PageNavigator(countPerPage, pagePerGroup, page, total);
-      log.info("페이지 정보 : {}", navi);
-      
-      // 데이터베이스에 저장된 모든 Board 객체를 리스트 형태로 받는다.
-      List<Review> reviews = reviewService.findReviews(searchText, navi.getStartRecord(), navi.getCountPerPage());
-      
-      // Board 리스트를 model 에 저장한다.
-      model.addAttribute("reviews", reviews);
-      model.addAttribute("navi", navi);
-      model.addAttribute("searchText", searchText);
-      model.addAttribute("loginUser", userInfo);
-      // board/list.html 를 찾아서 리턴한다.
-      return "review/list";
-    }
-    	
-    // 게시글 읽기
-    @GetMapping("read")
-    public String read(@RequestParam Long review_id,
-    		@AuthenticationPrincipal UserInfo userInfo,
-                       Model model) {
-
-        log.info("id: {}", review_id);
-        
-        // board_id 에 해당하는 게시글을 데이터베이스에서 찾는다.
-        Review review = reviewService.readReview(review_id);
-        // board_id에 해당하는 게시글이 없으면 리스트로 리다이렉트 시킨다.
-        if (review == null || review_id == null) {
-            log.info("게시글 없음");
-            return "redirect:/review/list";
-        }
-        
-        List<ReviewAttachedFile> attachedFiles = reviewService.findFilesByReviewId(review_id);
-//        log.info("첨부파일 : {}", attachedFile);
-        model.addAttribute("files", attachedFiles);
-        
-        // 모델에 Board 객체를 저장한다.
-        model.addAttribute("review", review);
-        model.addAttribute("loginUser", userInfo);
-        
-        // board/read.html 를 찾아서 리턴한다.
-        return "review/read";
     }
 
     // 게시글 수정 페이지 이동
@@ -238,27 +188,6 @@ public class ReviewController {
         return "redirect:/review/list";
     }
     
-    @GetMapping("download/{id}")
-    public ResponseEntity<Resource> download(@PathVariable Long attached_file_id) throws MalformedURLException {
-    	// 첨부파일 아이디로 첨부파일 정보를 가져온다
-    	ReviewAttachedFile attachedFile = reviewService.findFileByAttachedFileId(attached_file_id);
-    	
-    	// 다운로드 하려는 파일의 절대경로 값을 만든다
-    	String fullPath = uploadPath + "/" + attachedFile.getSaved_filename();
-    	
-    	UrlResource resource = new UrlResource("file:" + fullPath);
-    	
-    	// 한글 파일명이 깨지지 않도록 UTF_8로 파일명을 인코딩한다
-    	String encodingFileName = UriUtils.encode(attachedFile.getOriginal_filename(), 
-    																						StandardCharsets.UTF_8);
-    	
-    	// 응답헤더에 담을 Content Disposition 값을 생성한다
-    	String contentDisposition = "attachment; filename=\""+ encodingFileName + "\"";
-    	
-    	return ResponseEntity.ok()
-    			.header(HttpHeaders.CONTENT_DISPOSITION, contentDisposition)
-    			.body(resource);
-    }
     
     
     

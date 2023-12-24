@@ -220,13 +220,7 @@ public class MemberController {
 			return "member/myreview";
 		}
 		
-		@GetMapping("myfavorite")
-		public String myfavorite(@AuthenticationPrincipal UserInfo userInfo, 
-									Model model) {
-			model.addAttribute("loginUser",userInfo);
-			return "member/myfavorite";
-		}
-		
+	
 		@GetMapping("mylike")
 		public String mylike(@AuthenticationPrincipal UserInfo userInfo, 
 									Model model) {

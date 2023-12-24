@@ -206,7 +206,7 @@
 	<link rel="stylesheet" href="/assets/css/owl.css">
 	<link rel="stylesheet" href="/assets/css/animate.css">
 	<link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
-
+	<link rel="icon" href="/assets/images/pabicon.png" >
 
 </head>
 
@@ -238,16 +238,12 @@
 						</a>
 						<!-- ***** Logo End ***** -->
 						<!-- ***** Menu Start ***** -->
-						<ul class="nav">
+                    <ul class="nav">
                         <li><a style=" border-radius: 0px;" class="menu-item" href="/tour_spot/list">관광지</a></li>
                         <li><a style=" border-radius: 0px;" class="menu-item" href="/restaurant/list">음식점</a></li>
                         <li><a style=" border-radius: 0px;" class="menu-item" href="/hotel/list">숙소</a></li>
-                        <li class="menu-item-container">
-							<a style=" border-radius: 0px;" class="menu-item">게시판</a>
-							<div class="menu-container" style="width: max-content; text-align: center;" >
-								<a class="menu-item" href="/board/list" style=" border-radius: 0px;">자유 게시판</a>
-								<a class="menu-item" href="/review/list" style=" border-radius: 0px;">리뷰 게시판</a>
-							</div>
+                        <li>
+							<a class="menu-item" href="/board/list" style=" border-radius: 0px;">자유 게시판</a>
 						</li>
                         
 						<li sec:authorize="isAuthenticated()" class="menu-item-container" >
@@ -264,6 +260,7 @@
 							<a href="/member/login" class="menu-item" style="width: max-content; border-radius: 0px;">로그인</a>
 						</li>
                     </ul>
+                    
 						<a class='menu-trigger'>
 							<span>Menu</span>
 						</a>
@@ -319,13 +316,7 @@
 						</div>
 
 
-						<div class="row">
-							<div class="col-lg-12">
-								<div class="main-button">
-									<a style="width: 100%; text-align: center;" href="/member/myfavorite">내 즐겨찾기 목록</a>
-								</div>
-							</div>
-						</div>
+			
 
 						<div class="row">
 							<div class="col-lg-12">

@@ -5,7 +5,7 @@
 	<link rel="icon" href="/">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+	<link rel="icon" href="/assets/images/pabicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <title>부산투어서비스</title>
@@ -26,10 +26,44 @@ TemplateMo 580 Woox Travel
 https://templatemo.com/tm-580-woox-travel
 
 -->
+
+
   </head>
+	
+	
+	
+
+	<style>
+		
+			.font{
+	font-weight: bold; /* 굵은 글꼴 적용 */
+	text-shadow: 5px 5px 5px rgb(0, 0, 0); /* 그림자 설정 */
+	}
+	
+	h4{
+	font-weight: bold; /* 굵은 글꼴 적용 */
+	text-shadow: 5px 5px 5px rgb(0, 0, 0); /* 그림자 설정 */
+	}
+		
+			
+		 .border-botton3  {
+			background-color: white;
+			color:aquamarine;
+		}
+		
+		 .border-botton3:hover {
+			background-color: aquamarine;
+			color:white;
+			transition:0.5s;
+		}
+		
+		
+	</style>
+
+
 
 <body>
-
+	
   <!-- ***** Preloader Start ***** -->
   <div id="js-preloader" class="js-preloader">
     <div class="preloader-inner">
@@ -59,12 +93,8 @@ https://templatemo.com/tm-580-woox-travel
                         <li><a style=" border-radius: 0px;" class="menu-item" href="/tour_spot/list">관광지</a></li>
                         <li><a style=" border-radius: 0px;" class="menu-item" href="/restaurant/list">음식점</a></li>
                         <li><a style=" border-radius: 0px;" class="menu-item" href="/hotel/list">숙소</a></li>
-                        <li class="menu-item-container">
-							<a style=" border-radius: 0px;" class="menu-item">게시판</a>
-							<div class="menu-container" style="width: max-content; text-align: center;" >
-								<a class="menu-item" href="/board/list" style=" border-radius: 0px;">자유 게시판</a>
-								<a class="menu-item" href="/review/list" style=" border-radius: 0px;">리뷰 게시판</a>
-							</div>
+                        <li>
+							<a class="menu-item" href="/board/list" style=" border-radius: 0px;">자유 게시판</a>
 						</li>
                         
 						<li sec:authorize="isAuthenticated()" class="menu-item-container" >
@@ -104,12 +134,12 @@ https://templatemo.com/tm-580-woox-travel
 	<div class="slider">
 		<div id="top-banner-1" class="banner">
 			<div class="banner-inner-wrapper header-text">
-				<div class="main-caption">
+				<div class="main-caption font">
 					<h2 sec:authorize="isAuthenticated()">[[${loginUser.member.nickname}]]님 어서오세요!</h2>
-					<h2 sec:authorize="isAnonymous()">부산에 오신것을 환영합니다! Welcome to Busan! ようこそプサンへ！</h2>
+					<h2 sec:authorize="isAnonymous()">부산에 오신것을 환영합니다! Welcome to Busan!</h2>
 					<h2>이런 장소는 어떠신가요? :)</h2>
 					<h1>부산의 지역별 관광명소</h1>
-					<div class="border-button"><a href="tour_spot/list">둘러보기</a></div>
+					<div class="border-button3"><a href="tour_spot/list">둘러보기</a></div>
 				</div>
 
             <div class="container">
@@ -157,7 +187,8 @@ https://templatemo.com/tm-580-woox-travel
         
         <div id="top-banner-2" class="banner"> <!--이미지 오류-->
           <div class="banner-inner-wrapper header-text">
-            <div class="main-caption">
+            <div class="main-caption font">
+				<h2 sec:authorize="isAuthenticated()">[[${loginUser.member.nickname}]]님 어서오세요!</h2>
               <h2>이런 장소는 어떠신가요? :)</h2>
               <h1>부산 명물 먹거리와 맛집</h1>
               <div class="border-button"><a href="about.html">둘러보기</a></div>
@@ -207,10 +238,11 @@ https://templatemo.com/tm-580-woox-travel
         
         <div id="top-banner-3" class="banner">
           <div class="banner-inner-wrapper header-text">
-            <div class="main-caption">
-              <h2>이런 장소는 어떠신가요? :)</h2>
-              <h1>편안한 잠자리</h1>
-              <div class="border-button"><a href="about.html">둘러보기</a></div>
+            <div class="main-caption font">
+				<h2 sec:authorize="isAuthenticated()">[[${loginUser.member.nickname}]]님 어서오세요!</h2>
+              <h2>이런 장소는 어떠신가요?</h2>
+              <h1>부산 쇼핑공간</h1>
+              <div class="border-button"><a href="#">둘러보기</a></div>
             </div>
             <div class="container">
               <div class="row">
@@ -326,6 +358,15 @@ https://templatemo.com/tm-580-woox-travel
         <div class="col-lg-12">
           <div class="section-heading">
             <h2 style="text-align: center;">부산에서 꼭 들러봐야 할 곳!</h2>
+            <div class="fa fa-star fa-xl" ></div>
+            <div class="fa fa-star-half"></div>
+            <div class="fa fa-star-half-stroke"></div>
+            <div class="fa fa-search-location fa-xl fa-pulse fa-1"></div>
+            <div class="fa fa-star-half-alt fa-fade"></div>
+            <div class="fa fa-star-of-david fa-spin"></div>
+            <div class="fa fa-star-of-life fa-beat-fade"></div>
+            <div class="fa fa-search fa-xl fa-flip"></div>
+            
             <div class="row">
 	            <div class="col-lg-6" style="margin: auto;">			   
 	            </div>

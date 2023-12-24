@@ -13,7 +13,7 @@ import com.example.board.model.review.ReviewAttachedFile;
 
 @Mapper
 public interface ReviewMapper {
-	void saveReview(Review board);
+	void saveReview(Review review);
 	List<Review> findReviews(@Param("searchTextReview") String searchTextReview, RowBounds rowBounds);
 	Review findReview(Long review_id);
 	void updateReview(Review updateReview);

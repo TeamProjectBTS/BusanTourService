@@ -1914,10 +1914,9 @@ Deals Page Style
 
 .page-heading {
   background-image: url(../images/heading-bg.jpg);
-  background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
-  padding: 260px 0px 190px 0px;
+  padding: 100px 0px 60px 0px;
   text-align: center;
 }
 
@@ -2008,6 +2007,9 @@ Deals Page Style
   border-bottom-left-radius: 23px;
   overflow: hidden;
 }
+
+
+
 
 .amazing-deals .item {
   background-color: #f7f7f7;
