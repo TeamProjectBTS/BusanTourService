@@ -113,6 +113,8 @@ public class API_Tour_Controller {
     	}
     }
     
+    
+    
   	model.addAttribute("reviews", reviews);
   	model.addAttribute("navi", navi);
     model.addAttribute("searchTextReview", searchTextReview);
