@@ -91,6 +91,10 @@ public class ReviewService {
 		return reviewMapper.findReview(review_id);
 	}
 	
+	public List<Review> findReviewsByUC_SEQ(Long UC_SEQ) {
+		return reviewMapper.findReviewsByUC_SEQ(UC_SEQ);
+	}
+	
 	//
 	@Transactional
 	public void updateReview(Review updateReview, boolean isFileRemoved, List<MultipartFile> files) {

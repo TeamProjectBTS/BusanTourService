@@ -3,6 +3,7 @@ package com.example.board.model.member;
 import java.time.LocalDate;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -11,6 +12,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 
@@ -35,10 +37,12 @@ public class MemberJoinForm {
 	private String member_id;
 	@Size(min = 6, max = 20 , message = "비밀번호는 6~20사이로 입력해주세요.")
 	private String password;
-	@NotBlank(message = "닉네임을 입력해주세요")
+	
+	@Pattern(regexp = "^[a-zA-Z0-9]{4,20}$",  message="닉네임은 영문 및 숫자 4~20자로만 가능합니다.")
+	@NotEmpty(message = "닉네임을 입력해주세요")
 	private String nickname;
 	@NotEmpty(message = "이름을 입력해주세요")
-	@Pattern(regexp = "^[ㄱ-ㅎ가-힣]{2,5}$",message="닉네임은 특수문자를 제외한 2~5자리여야 합니다.")
+	@Pattern(regexp = "^[가-힣]{2,5}$",message="이름은 특수문자를 제외한 한글 2~5자리여야 합니다.")
 	private String name;
 	@NotEmpty(message = "이메일을 입력해주세요")
 	@Email

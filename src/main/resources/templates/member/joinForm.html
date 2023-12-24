@@ -100,12 +100,18 @@ https://templatemo.com/tm-580-woox-travel
             <div class="row">
               <div class="col-lg-12">
                 <h4>회원가입</h4>
+                <div style="width: fit-content;" class="alert alert-success" th:if="${#fields.hasGlobalErrors()}">
+						  <div th:each="err : ${#fields.globalErrors()}">
+							  <div th:text="${err}"></div>
+						  </div>
+					  </div>
               </div>
               <div class="col-lg-6">
                   <fieldset>
                       <label for="member_id" class="form-label">&nbsp;&nbsp;&nbsp;&nbsp; ID입력</label>
                       <input type="text" th:field="*{member_id}" class="UserID" placeholder="6~20자의 ID" autocomplete="on" required>
-                  	  <!--<div th:errorClass="error" th:errors="*{member_id}"></div>-->
+                  	  
+					 
              		<div class="alert alert-success" th:errors="*{member_id}"></div>
                   </fieldset>
               </div>
@@ -122,9 +128,9 @@ https://templatemo.com/tm-580-woox-travel
               <div class="col-lg-6">
                   <fieldset>
                       <label for="nickname" class="form-label">&nbsp;&nbsp;&nbsp;&nbsp; 닉네임 입력</label>
-                      <input type="text" th:field="*{nickname}" placeholder="닉네임 입력" autocomplete="on" required>
-                       <div class="alert alert-danger" th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}"></div>
-
+                      <input type="text" th:field="*{nickname}" placeholder="한글은 6자, 영문은 20자까지 가능" autocomplete="on" required>
+                       <div class="alert alert-success" th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}"></div>
+					  
                   </fieldset>
               </div>
               
@@ -140,7 +146,7 @@ https://templatemo.com/tm-580-woox-travel
                 <fieldset>
                     <label for="name" class="form-label">&nbsp;&nbsp;&nbsp;&nbsp; 이름 입력</label>
                     <input type="text" th:field="*{name}" placeholder="ex)홍길동" autocomplete="on" required>
-                     <div  th:errors="*{name}"></div>
+                     <div class="alert alert-success" th:errors="*{name}"></div>
                 </fieldset>
               </div>
               

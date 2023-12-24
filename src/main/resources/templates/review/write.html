@@ -235,7 +235,7 @@ https://templatemo.com/tm-580-woox-travel
   
   <div class="bulletin-board-container">
 	  <!-- 실제 write 부분 시작 -->
-			  <form method="post" action="/review/write" enctype="multipart/form-data" th:object="${writeForm}"
+			  <form method="post" th:action="@{/review/write(UC_SEQ=${writeForm.UC_SEQ})}" enctype="multipart/form-data" th:object="${writeForm}"
 			   style="margin:0; padding:0;" >
 			   
 				<input type="file" name="files" id="fileInput" accept="image/*" multiple onchange="previewImages()">
@@ -272,10 +272,11 @@ https://templatemo.com/tm-580-woox-travel
 							</fieldset>
 						</td>
 						
+						<td > </td>
 					<td>
 					<fieldset>
                       <select th:field="${writeForm.star}" class="form-select" aria-label="Default select example" id="chooseLocation" onChange="this.form.click()">
-                          <option selected type="number" value="10">10점</option>
+                          <option selected type="number" value="10" onchange="viewStar()">10점</option>
                           <option type="number" value="9">9점</option>
                           <option type="number" value="8">8점</option>
                           <option type="number" value="7">7점</option>

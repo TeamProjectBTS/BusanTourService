@@ -68,7 +68,7 @@ https://templatemo.com/tm-580-woox-travel
 								<a class="menu-item" href="/member/mypage" style=" border-radius: 0px;">마이페이지</a>
 								<a class="menu-item" href="/complain/list" style=" border-radius: 0px;">고객문의</a>
 								<a class="menu-item" href="/member/logout" style=" border-radius: 0px;">로그아웃</a>
-							</div>
+							</div>	
 						</li>
 						
 						<li sec:authorize="isAnonymous()">
@@ -99,61 +99,47 @@ https://templatemo.com/tm-580-woox-travel
     </div>
   </div>
 
-  <!--<div class="search-form">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <form id="search-form" name="gs" method="submit" role="search" action="#">
-            <div class="row">
-              <div class="col-lg-2">
-                <h4>카테고리:</h4>
-              </div>
-              <div class="col-lg-4">
-
-                  <fieldset>
-                      <select name="Location" class="form-select" aria-label="Default select example" id="chooseLocation" onChange="this.form.click()">
-                          <option selected>대표 관광지</option>
-                          <option type="checkbox" name="option1" value="광안리">광안리</option>
-                          <option value="해운대">해운대</option>
-                          <option value="미정">미정</option>
-                          <option value="미정">미정</option>
-                          <option value="미정">미정</option>
-                          <option value="미정">미정</option>
-                          <option value="미정">미정</option>
-                          <option value="미정">미정</option>
-                          <option value="미정">미정</option>
-                      </select>
-                  </fieldset>
-              </div>-->
-              <!--<div class="col-lg-4">
-=======
-              <div class="col-lg-3">
->>>>>>> sub/sungmin:src/main/resources/templates/board/list.html
-                  <fieldset>
-                      <select name="Price" class="form-select" aria-label="Default select example" id="choosePrice" onChange="this.form.click()">
-                          <option selected>Price Range</option>
-                          <option value="100">$100 - $250</option>
-                          <option value="250">$250 - $500</option>
-                          <option value="500">$500 - $1,000</option>
-                          <option value="1000">$1,000 - $2,500</option>
-                          <option value="2500+">$2,500+</option>
-                      </select>
-                  </fieldset>
-<<<<<<< HEAD:src/main/resources/templates/deals.html
-              </div>-->
-              <!--<div class="col-lg-2">                        
-                  <fieldset>
-                      <button class="border-button">검색</button>
-                  </fieldset>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>-->
-  
   <style>
+	  
+	body {
+      font-family: 'Noto Sans KR', sans-serif; /* 한글 폰트를 'Noto Sans KR'로 설정, fallback은 sans-serif로 설정 */
+    }
+    
+	h2{
+    font-weight: bold; /* 굵은 글꼴 적용 */
+    text-shadow: 5px 5px 5px rgb(0, 0, 0); /* 그림자 설정 */
+	}
+	h4{
+    font-weight: bold; /* 굵은 글꼴 적용 */
+    text-shadow: 5px 5px 5px rgb(0, 0, 0); /* 그림자 설정 */
+	}
+
+
+	.asd{
+		border-right: 1px solid rgb(192, 192, 192); 
+	             
+	}
+  
+	  .amazing-deals .item2{
+	  background-color: #f7f7f7;
+	  border-radius: 25px;
+	  padding-right: 100px;
+	  margin-bottom: 30px;
+	  width: 400px;
+	   border-bottom: 2px solid rgb(95, 95, 95);
+	}
+	
+	  .amazing-deals .item3{
+	  margin:auto;
+	  background-color: #f7f7f7;
+	  border-radius: 25px;
+	  margin-bottom: 30px;
+	  width: 1200px;
+	  height: 60px;
+	  padding-right: 30px;
+	  padding-left: 30px;
+	   border-bottom: 2px solid #333;
+	}
   
   .bulletin-board-container {
       max-width: 1300px;
@@ -365,17 +351,26 @@ https://templatemo.com/tm-580-woox-travel
   <!-- *** 게시판 읽기 End *** -->
   
   <!-- *** 댓글 읽기 Start *** -->
-  
+
   <div class="container" style="margin-top: 20px;">
 	<div  style="width: fit-content; margin: auto;">
-		<label for="reply">리플 쓰기</label>
+		<label for="comment">리플 쓰기</label>
 		<input type="button" value="등록" onclick="writeReply()">
 		<br><p></p>
-		<textarea rows="2" cols="90" id="reply" name="reply"></textarea>
+		<textarea rows="2" cols="90" id="comment" name="comment"></textarea>
 	</div>
 	<p></p>
-	<div id="replies">
-		
+
+	<div class="amazing-deals" style="margin-top: 50px;">
+			<div class="row" style="display: grid; place-items: center;">
+							<div class="col-lg-12">	
+	<div class="row">
+		<div class="col-lg-12">
+			<div id="comments"></div>
+		</div>
+	</div>
+	</div>
+	</div>
 	</div>
 	</div>
 	
@@ -403,24 +398,7 @@ https://templatemo.com/tm-580-woox-travel
       </div>
     </div>
   </div>
-				
-			
-	
-  <!--<div class="call-to-action">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8">
-          <h2>Are You Looking To Travel ?</h2>
-          <h4>Make A Reservation By Clicking The Button</h4>
-        </div>
-        <div class="col-lg-4">
-          <div class="border-button">
-            <a href="reservation.html">Book Yours Now</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>-->
+  
 
   <footer>
     <div class="container">
@@ -432,15 +410,14 @@ https://templatemo.com/tm-580-woox-travel
       </div>
     </div>
   </footer>
-
+  </body>
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script src="/vendor/jquery/jquery.min.js"></script>
+ 
   <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
   <script src="/assets/js/isotope.min.js"></script>
   <script src="/assets/js/owl-carousel.js"></script>
-  <script src="/assets/js/wow.js"></script>
   <script src="/assets/js/tabs.js"></script>
   <script src="/assets/js/popup.js"></script>
   <script src="/assets/js/custom.js"></script>
@@ -453,11 +430,12 @@ https://templatemo.com/tm-580-woox-travel
     
     function writeReply() {
 		let board_id = /*[[${board.board_id}]]*/'';
-		let content = $("#reply").val();
+		let content = $("#comment").val();
 		$.ajax({
-			url: "/reply/" + board_id,
+			url: "/comments/" + board_id,
 			type: "post",
 			success: function(data){
+				
 				console.log(data);
 				getReplies()
 			},
@@ -475,79 +453,90 @@ https://templatemo.com/tm-580-woox-travel
 	function getReplies() {
 		let board_id = /*[[${board.board_id}]]*/'';
 		$.ajax({
-			url: "/reply/" + board_id,
-			success: function(data) {
-				console.log(data);
-				showReplies(data);
-				
-			},
-			error: function(xhr, status, error){
-				console.log(status);
-			}
+		    url: "/comments/" + board_id,
+		    type: "get",
+		    success: function(data) {
+		        console.log("댓글 가져옴");
+		        console.log(data);
+		        showReplies(data);
+		    },
+		    error: function(xhr, status, error) {
+		        console.log("오류 발생");
+		        console.log(xhr);
+		        console.log(status);
+		        console.log(error);
+		    }
 		});
+
 	}
+	
+	
+	
 	// 페이지가 로딩되면 getReplies() 함수를 자동으로 실행한다
 	$(function(){
 		getReplies();
 	})
 	
 	function showReplies(data) {
-		$("#replies").html("");
+		$("#comments").html("");
 		let str = "";
-		str += "<table>";
-		str += "  <tr>";
-		str += "		<th>No.</th>";
-		str += "		<th>작성자</th>";
-		str += "		<th style='width: 400px'>내용</th>";
-		str += "		<th>작성일</th>";
-		str += "	</tr>";
+		
 		if(data.length > 0) {
-			let loginMemberId = /*[[${#authentication.name}]]*/'';
+			let loginMemberId = /*[[${loginUser.member.member_id}]]*/'';
 			$(data).each(function(idx, obj){
-				if(loginMemberId == obj.member_id){
-				str += "	<tr>";
-				str += "		<td class='center'>" + (idx + 1) + "</td>";
-				str += "		<td class='center' id='"+ obj.member_id + "' name='member_id'>" + obj.member_id + 
-					"</td>";
-				str += "		<td>";
-				str += "			<textarea row='2' cols='50' id='reply_" + obj.reply_id + "' name='content'>" + 
-					obj.content + "</textarea><br>";
-				str += "			<input type='button' value='수정' onclick='updateReply("+ obj.reply_id + ")'>";
-				str += "			<input type='button' value='삭제' onclick='removeReply("+ obj.reply_id + ")'>";
-				str += "		</td>";
-				str += "		<td class='center' name='created_time'>" + obj.created_time + "</td>";
-				str += "	</tr>";
-				str += "	<input type='hidden' name='board_id' id='" + obj.board_id + "'value='" + 
-					obj.board_id+ "'>";
-				str += "	<input type='hidden' name='reply_id' value='" + obj.reply_id+ "'>";
+				if(obj.member_id == loginMemberId) {
+					str += "<div class='item3' style='display: block;'>"
+					str += 		"<div class='row' style='--bs-gutter-y: 1.5rem; padding-top: 10px;'>"
+					str += 			"<div class='col-lg-2 asd' id='container' style='margin: auto;'>"
+					str += 			"<h6 style='text-align: center; margin-top: 10px; display: inline-block;'>" + obj.nickname + "</h6>"
+					str += 		"</div>"
+					str += 		"<div class='col-lg-7 asd' id='container' style='margin: auto;'>"
+					str += 			"<h6 style='text-align: center; margin-top: 10px; display: inline-block;'>" + obj.content + "</h6>"
+					str += 			"<input type='button' value='삭제' onclick='removeReply(" + obj.comment_id + ")'>"
+					str += 		"</div>"
+					str += 		"<div class='col-lg-3 asd' id='container' style='margin: auto; border-right: 0px'>"
+					str += 			"<h6 style='text-align: center; margin-top: 10px; display: inline-block;'>" + obj.wr_date + "</h6>"
+					str += 		"</div>"
+					str += 	"</div>"
+					str += "</div>"
 				} else {
-				str += "	<tr>";
-				str += "		<td class='center'>" + (idx + 1) + "</td>";
-				str += "		<td class='center'>" + obj.member_id + "</td>";
-				str += "		<td>" + obj.content + "</td>";
-				str += "		<td class='center'>" + obj.created_time + "</td>";
-				str += "	</tr>";
+					str += "<div class='item3' style='display: block;'>"
+					str += 		"<div class='row' style='--bs-gutter-y: 1.5rem; padding-top: 10px;'>"
+					str += 			"<div class='col-lg-2 asd' id='container' style='margin: auto;'>"
+					str += 			"<h6 style='text-align: center; margin-top: 10px; display: inline-block;'>" + obj.nickname + "</h6>"
+					str += 		"</div>"
+					str += 		"<div class='col-lg-7 asd' id='container' style='margin: auto;'>"
+					str += 			"<h6 style='text-align: center; margin-top: 10px; display: inline-block;'>" + obj.content + "</h6>"
+					str += 		"</div>"
+					str += 		"<div class='col-lg-3 asd' id='container' style='margin: auto; border-right: 0px'>"
+					str += 			"<h6 style='text-align: center; margin-top: 10px; display: inline-block;'>" + obj.wr_date + "</h6>"
+					str += 		"</div>"
+					str += 	"</div>"
+					str += "</div>"
 				}
+				
 			});
 			
-			str += "</table>";
-			$("#replies").append(str);
+			$("#comments").append(str);
 		} else {
-			str += "	<tr>";
-			str += "		<td class='center' colspan='4'>등록된 리플이 없습니다.</td>";
-			str += "	</tr>";
-			str += "</table>";
-			$("#replies").append(str);
+			
+			str += "<div class='item3' style='display: block;'>"
+			str += 	"<div class='row' style='--bs-gutter-y: 1.5rem; padding-top: 10px;'>"
+			str += 		"<div class='col-lg-12 asd'><h6>등록된 댓글이 없습니다.</h6></div>"
+			str += 	"</div>"
+			str += "</div>"
+			
+			$("#comments").append(str);
 		}
 	}
 	
-	function updateReply(reply_id) {
+	function updateReply(comment_id) {
 		let board_id = /*[[${board.board_id}]]*/'';
-		let content = $("#reply_" + reply_id).val();
+		let content = $("#comment_" + comment_id).val();
 		let cf = confirm("리플을 수정하시겠습니까?");
 		if(cf == true) {
 			$.ajax({
-				url: "/reply/" + board_id + "/" + reply_id,
+				url: "/comments/" + board_id + "/" + comment_id,
 				type: "put",
 				success: function() {
 					getReplies();
@@ -567,13 +556,13 @@ https://templatemo.com/tm-580-woox-travel
 		
 	}
 	
-	function removeReply(reply_id) {
+	function removeReply(comment_id) {
 		
 		let board_id = /*[[${board.board_id}]]*/'';
 		let cf = confirm("리플을 삭제하시겠습니까?");
 		if(cf == true) {
 			$.ajax({
-				url: "/reply/" + board_id + "/" + reply_id,
+				url: "/comments/" + board_id + "/" + comment_id,
 				type: "delete",
 				success: function(){
 					getReplies();
@@ -589,6 +578,6 @@ https://templatemo.com/tm-580-woox-travel
 	}
     
   </script>
-  </body>
+
 
 </html> 
