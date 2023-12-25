@@ -109,7 +109,7 @@ public class API_Shopping_Controller {
     for(Review review : reviewService.findReviews(searchTextReview, navi.getStartRecord(), navi.getCountPerPage())) {
     	if(review.getUC_SEQ().equals(UC_SEQ)) {
     		reviews.add(review);
-    		log.info("review : {}", review);
+//    		log.info("review : {}", review);
     	}
     }
     
