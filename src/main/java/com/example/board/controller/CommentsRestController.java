@@ -37,8 +37,8 @@ public class CommentsRestController {
 	// 리플 등록
 	@PostMapping("{board_id}") 
 	public ResponseEntity<String> writeComment(@AuthenticationPrincipal UserInfo userInfo,
-																					@ModelAttribute Comments comment,
-																					@PathVariable Long board_id) {
+		@ModelAttribute Comments comment,
+		@PathVariable Long board_id) {
 		
 		
 		comment.setMember_id(userInfo.getMember().getMember_id());
@@ -54,7 +54,7 @@ public class CommentsRestController {
 	// 리플 읽기
 	@GetMapping("{board_id}/{comment_id}")
 	public ResponseEntity<Comments> findComment(@PathVariable Long board_id,
-																				@PathVariable Long comment_id){
+		@PathVariable Long comment_id){
 		Comments comment = commentsMapper.findComment(comment_id);
 		
 		return ResponseEntity.ok(comment);
@@ -63,11 +63,11 @@ public class CommentsRestController {
 	// 리플 목록
 	@GetMapping("{board_id}")
 	public ResponseEntity<List<Comments>> findComments(@PathVariable Long board_id,
-																								Model model){
+		Model model){
 		List<Comments> comments = commentsMapper.findComments(board_id);
-		for(Comments comment : comments) {
-			log.info("comments : {}", comment);
-		}
+//		for(Comments comment : comments) {
+//			log.info("comments : {}", comment);
+//		}
 		
 		
 		return ResponseEntity.ok(comments);
@@ -76,9 +76,9 @@ public class CommentsRestController {
 	// 리플 수정
 	@PutMapping("{board_id}/{comment_id}")
 	public ResponseEntity<Comments> updateComment(@AuthenticationPrincipal UserInfo userInfo,
-																					@PathVariable Long board_id,
-																					@PathVariable Long comment_id,
-																					@ModelAttribute Comments comment){
+		@PathVariable Long board_id,
+		@PathVariable Long comment_id,
+		@ModelAttribute Comments comment){
 		Comments findReply = commentsMapper.findComment(comment_id);
 		// 수정권한이 있는지 체크	
 		if(userInfo.getMember().getMember_id().equals(findReply.getMember_id())) {
@@ -96,8 +96,8 @@ public class CommentsRestController {
 	// 리플 삭제
 	@DeleteMapping("{board_id}/{comment_id}")
 	public ResponseEntity<String> removeReply(@AuthenticationPrincipal UserInfo userInfo,
-																						@PathVariable Long board_id,
-																						@PathVariable Long comment_id) {
+		@PathVariable Long board_id,
+		@PathVariable Long comment_id) {
 		Comments reply = commentsMapper.findComment(comment_id);
 		// 삭제 권한이 있는지 체크
 		if(userInfo.getMember().getMember_id().equals(reply.getMember_id())) {

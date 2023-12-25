@@ -14,6 +14,7 @@
         <typeAlias type="com.example.board.model.board.AttachedFile" alias="file"/>
         <typeAlias type="com.example.board.model.review.ReviewAttachedFile" alias="reviewfile"/>
         <typeAlias type="com.example.board.model.board.Comments" alias="comments"/>
+        <typeAlias type="com.example.board.model.member.Like" alias="like"/>
     </typeAliases>
 
 </configuration>

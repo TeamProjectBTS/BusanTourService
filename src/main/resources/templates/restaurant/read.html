@@ -291,8 +291,8 @@ https://templatemo.com/tm-580-woox-travel
 	
 								<div class="col-lg-12">
 									<div class="info-item">
-										<h4 style="display: inline-block;">이용료 : &nbsp;</h4>
-										<h4 th:text="${item.USAGE_AMOUNT}" style="display: inline-block;">요금</h4>
+										<h4 style="display: inline-block;">이용시간 : &nbsp;</h4>
+										<h4 th:text="${item.USAGE_DAY_WEEK_AND_TIME}" style="display: inline-block;">요금</h4>
 									</div>
 								</div>
 	
@@ -302,17 +302,21 @@ https://templatemo.com/tm-580-woox-travel
 											<div class="col-lg-12">
 												<h4 style="display: inline-block;">주소 : &nbsp;</h4>
 												<h4 style="display: inline-block;" th:text="${item.ADDR1}">주소</h4>
+												<th:block th:if="${item.ADDR2 != ''}">
+												<h4>상세 : &nbsp;</h4>
+												<h4 th:text="${item.ADDR2}"></h4>
+												</th:block>
 											</div>
 										</div>
 									</div>
 								</div>
 	
-								<div class="col-lg-12">
+								<div class="col-lg-12" th:if="${RPRSNTV_MENU != ''}">
 									<div class="info-item">
 										<div class="row">
 											<div class="col-lg-12">
-												<h4 style="display: inline-block;">대중교통 이용안내 : &nbsp;</h4>
-												<h4 style="display: inline-block;" th:text="${item.TRFC_INFO}">대중교통 정보</h4>
+												<h4 style="display: inline-block;">대표메뉴 : &nbsp;</h4>
+												<h4 style="display: inline-block;" th:text="${item.RPRSNTV_MENU}">대표 메뉴</h4>
 											</div>
 										</div>
 									</div>
@@ -336,7 +340,7 @@ https://templatemo.com/tm-580-woox-travel
 </div>
 </div>
 
-<!-- *** 게시판 리스트 Start *** -->
+<!-- *** 리뷰 리스트 Start *** -->
 	<div class="amazing-deals" style="margin-top: 20px;">
 			<div class="row" >
 							<div class="col-lg-12" style="display: inline-block;">	
@@ -352,7 +356,7 @@ https://templatemo.com/tm-580-woox-travel
 								<div class="col-lg-1"></div>
 								<div class="col-lg-3">
 									<div class="border-button" style="margin-top: 10px; margin: auto; width: 550px;">
-										<form method="get" th:action="@{/tour_spot/read(UC_SEQ=${item.UC_SEQ})}" style="display: inline;">
+										<form method="get" th:action="@{/restaurant/read(UC_SEQ=${item.UC_SEQ})}" style="display: inline;">
 										<fieldset style="display: inline-block;">
 											<input class="text" type="text" name="searchText" 
 											style="width: 300px; font-size: larger; color: black;">
@@ -425,7 +429,7 @@ https://templatemo.com/tm-580-woox-travel
 		  <!-- 이전 그룹이 없을 경우 보여주지 않음 -->
           <li>
 			<th:block th:if="${navi.currentPage - navi.pagePerGroup > 0}">
-				<a th:href="@{/tour_spot/read(page=${navi.currentPage - navi.pagePerGroup}, searchText=${searchText})}">
+				<a th:href="@{/restaurant/read(page=${navi.currentPage - navi.pagePerGroup}, searchText=${searchText})}">
 					<i class="fa fa-arrow-left-rotate"></i>
 				</a>
     		</th:block>
@@ -434,7 +438,7 @@ https://templatemo.com/tm-580-woox-travel
 		  <!-- 이전 페이지가 없을 경우 보여주지 않음 -->
           <li>
 			<th:block th:if="${navi.currentPage - 1 > 0}">
-		    	<a th:href="@{/tour_spot/read(page=${navi.currentPage - 1}, searchText=${searchText})}">
+		    	<a th:href="@{/restaurant/read(page=${navi.currentPage - 1}, searchText=${searchText})}">
 					<i class="fa fa-arrow-left"></i>
 				</a>
 		    </th:block>
@@ -444,10 +448,10 @@ https://templatemo.com/tm-580-woox-travel
 			<th:block th:if="${navi.endPageGroup ne 0}">
 		      <th:block th:each="counter : ${#numbers.sequence(navi.startPageGroup, navi.endPageGroup)}">
 				  <li class="active" th:if="${navi.currentPage == counter}">
-		          	<a th:href="@{/tour_spot/read(page=${counter}, searchText=${searchText})}" th:text="${counter}"></a>&nbsp;
+		          	<a th:href="@{/restaurant/read(page=${counter}, searchText=${searchText})}" th:text="${counter}"></a>&nbsp;
 		          </li>
 		          <li th:unless="${navi.currentPage == counter}">
-		          	<a th:href="@{/tour_spot/read(page=${counter}, searchText=${searchText})}" th:text="${counter}"></a>&nbsp;
+		          	<a th:href="@{/restaurant/read(page=${counter}, searchText=${searchText})}" th:text="${counter}"></a>&nbsp;
 		          </li>
 		      </th:block>
 		    </th:block>
@@ -455,7 +459,7 @@ https://templatemo.com/tm-580-woox-travel
           <!-- 다음 페이지가 없을 경우 보여주지 않음 -->
 			<th:block th:if="${navi.currentPage < navi.totalPageCount}">
 				<li>
-			    	<a th:href="@{/tour_spot/read(page=${navi.currentPage + 1}, searchText=${searchText})}">
+			    	<a th:href="@{/restaurant/read(page=${navi.currentPage + 1}, searchText=${searchText})}">
 						<i class="fa fa-arrow-right"></i>
 					</a>
 				</li>
@@ -465,7 +469,7 @@ https://templatemo.com/tm-580-woox-travel
           
 			<th:block th:if="${navi.currentPage + navi.pagePerGroup <= navi.totalPageCount + 1}">
 				<li>
-			    	<a th:href="@{/tour_spot/read(page=${navi.currentPage + navi.pagePerGroup}, searchText=${searchText})}">
+			    	<a th:href="@{/restaurant/read(page=${navi.currentPage + navi.pagePerGroup}, searchText=${searchText})}">
 						<i class="fa fa-arrow-right-to-bracket"></i>
 					</a>
 				</li>

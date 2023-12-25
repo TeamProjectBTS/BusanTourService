@@ -8,20 +8,16 @@
 	<link rel="icon" href="/assets/images/pabicon.png" >
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <title>숙소 정보</title>
+    <title>부산 관광지 정보</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-
     <!-- Additional CSS Files -->
     <link rel="stylesheet" href="/assets/css/fontawesome.css">
     <link rel="stylesheet" href="/assets/css/templatemo-woox-travel.css">
     <link rel="stylesheet" href="/assets/css/owl.css">
     <link rel="stylesheet" href="/assets/css/animate.css">
-
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
-
 <!--
 
 TemplateMo 580 Woox Travel
@@ -30,6 +26,7 @@ https://templatemo.com/tm-580-woox-travel
 
 -->
   </head>
+
 
 <body>
 
@@ -61,7 +58,7 @@ https://templatemo.com/tm-580-woox-travel
                     <ul class="nav">
                         <li><a style=" border-radius: 0px;" class="menu-item" href="/tour_spot/list">관광지</a></li>
                         <li><a style=" border-radius: 0px;" class="menu-item" href="/restaurant/list">음식점</a></li>
-                        <li><a style=" border-radius: 0px;" class="menu-item" href="/hotel/list">숙소</a></li>
+                        <li><a style=" border-radius: 0px;" class="menu-item" href="/shopping/list">쇼핑</a></li>
                         <li>
 							<a class="menu-item" href="/board/list" style=" border-radius: 0px;">자유 게시판</a>
 						</li>
@@ -79,52 +76,9 @@ https://templatemo.com/tm-580-woox-travel
 						<li sec:authorize="isAnonymous()">
 							<a href="/member/login" class="menu-item" style="width: max-content; border-radius: 0px;">로그인</a>
 						</li>
-
                     </ul>
-                    <a class='menu-trigger'>
-                        <span>Menu</span>
-                    </a>
-                    <!-- ***** Menu End ***** -->
-                </nav>
-            </div>
-        </div>
-    </div>
-</header>
-  <!-- ***** Header Area End ***** -->
-
-  <!-- ***** Main Banner Area Start ***** -->
-  <header class="header-area header-sticky">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <nav class="main-nav">
-                    <!-- ***** Logo Start ***** -->
-                    <a href="/" class="logo2">
-                        <img src="/assets/images/logo2.png" alt="">
-                    </a>
-                    <!-- ***** Logo End ***** -->
-                    <!-- ***** Menu Start ***** -->
-                        <ul class="nav">
-                        <li><a style=" border-radius: 0px;" class="menu-item" href="/tour_spot/list">관광지</a></li>
-                        <li><a style=" border-radius: 0px;" class="menu-item" href="/restaurant/list">음식점</a></li>
-                        <li><a style=" border-radius: 0px;" class="menu-item" href="/hotel/list">숙소</a></li>
-                        <li><a style=" border-radius: 0px;" class="menu-item" href="/board/list">게시판</a></li>
-                        
-						<li sec:authorize="isAuthenticated()" class="menu-item-container" >
-							<a class="menu-item" href="/member/mypage" style="width: max-content; border-radius: 0px;"
-								>[[${loginUser.member.nickname}]]님</a>
-							<div class="menu-container" style="width: max-content; text-align: center;" >
-								<a class="menu-item" href="/member/mypage" style=" border-radius: 0px;">마이페이지</a>
-								<a class="menu-item" href="/complain/list" style=" border-radius: 0px;">고객문의</a>
-								<a class="menu-item" href="/member/logout" style=" border-radius: 0px;">로그아웃</a>
-							</div>
-						</li>
 						
-						<li sec:authorize="isAnonymous()">
-							<a href="/member/login">로그인</a>
-						</li>
-                    </ul>
-                    <a class='menu-trigger'>
+                    <a class='menu-trigger' >
                         <span>Menu</span>
                     </a>
                     <!-- ***** Menu End ***** -->
@@ -135,8 +89,26 @@ https://templatemo.com/tm-580-woox-travel
 </header>
   <!-- ***** Header Area End ***** -->
 
+<!--<div class="thumb" >					
+	<div class="text">
+		<h4>파크 하얏트<br><span><i class="fa fa-users"></i> 조회수</span></h4>
+		<h6>가격<br><span>/person</span></h6>
+		<div class="line-dec"></div>
+		<ul>
+			<li>숙소 정보</li>
+			<li><i class="fa fa-taxi"></i> 5 Days Trip > Hotel Included</li>
+			<li><i class="fa fa-plane"></i> Airplane Bill Included</li>
+			<li><i class="fa fa-building"></i> Daily Places Visit</li>
+		</ul>
+		<div class="main-button">
+			<a href="reservation.html">더 자세한 정보보기</a>
+		</div>
+	</div>
+</div>-->
+
+
   <!-- ***** Main Banner Area Start ***** -->
-  <div class="about-main-content" style="padding: 0%; padding-top: 0%;">
+<div class="about-main-content" style="padding: 0%; padding-top: 0%;">
 
 	<div class="weekly-offers" style="margin-top: 10px; padding-bottom: 50px;">
 		<div class="container">
@@ -152,7 +124,7 @@ https://templatemo.com/tm-580-woox-travel
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="container">
-						<h1 style="font-size: 52px;">Restaurant</h2>
+						<h1 style="font-size: 52px;">Tour Spots</h2>
 					</div>
 					<br>
 					
@@ -162,7 +134,7 @@ https://templatemo.com/tm-580-woox-travel
 							<div class="thumb" >
 								<!--<img src="/assets/images/deals-01.jpg" style="display: inline-block;">-->
 								<div class="text" style="display: inline-block; position: absolute;">
-									<h4>파크 하얏트<br><span><i class="fa fa-users"></i> 조회수</span></h4>
+									<h4>롯데월드<br><span><i class="fa fa-users"></i> 조회수</span></h4>
 									<h6>가격<br><span>/person</span></h6>
 									<div class="line-dec"></div>
 									<ul>
@@ -180,7 +152,7 @@ https://templatemo.com/tm-580-woox-travel
 						
 						<span class="item"  style="width: auto;">
 									<span class="thumb">
-									<img src="/assets/images/deals-01.jpg" style="padding: 0%; width: 300px; height: 420px; position: fixed;" >
+									<img src="/assets/images/tour_spot_banner1.jpg" style="padding: 0%; width: 350px; height: 420px; position: fixed;" >
 									</span>
 								</span>
 						
@@ -188,7 +160,7 @@ https://templatemo.com/tm-580-woox-travel
 							<div class="thumb" style="object-fit: cover;">
 								<!--<img src="/assets/images/deals-02.jpg" alt="">-->
 								<div class="text" style>
-									<h4>시그니엘 호텔<br><span><i class="fa fa-users"></i> 조회수 </span></h4>
+									<h4>오륙도 스카이워크<br><span><i class="fa fa-users"></i> 조회수 </span></h4>
 									<h6>가격<br><span>/person</span></h6>
 									<div class="line-dec"></div>
 									<ul>
@@ -206,15 +178,14 @@ https://templatemo.com/tm-580-woox-travel
 						
 						<span class="item">
 									<span class="thumb">
-									<img src="/assets/images/deals-01.jpg" style="padding: 0%; width: 300px; height: 420px; position: fixed;" >
+									<img src="/assets/images/tour_spot_banner2.jpg" style="padding: 0%; width: 350px; height: 420px; position: fixed;" >
 									</span>
 								</span>
 
 						<div class="item">
 							<div class="thumb">
-								<img src="assets/images/slider3.jpg" alt="">
 								<div class="text">
-									<h4>아난티 앳 부산 코브 <br><span><i class="fa fa-users"></i> 조회수</span></h4>
+									<h4>태종대 <br><span><i class="fa fa-users"></i> 조회수</span></h4>
 									<h6>가격<br><span>/person</span></h6>
 									<div class="line-dec"></div>
 									<ul>
@@ -232,13 +203,13 @@ https://templatemo.com/tm-580-woox-travel
 						
 						<span class="item">
 									<span class="thumb">
-									<img src="/assets/images/deals-01.jpg" style="padding: 0%; width: 300px; height: 420px; position: fixed;" >
+									<img src="/assets/images/tour_spot_banner3.jpg" style="padding: 0%; width: 350px; height: 420px; position: fixed;" >
 									</span>
 								</span>
 
-						<div class="item">
+							<div class="item">
 							<div class="thumb">
-								<img src="assets/images/offers-01.jpg" alt="">
+								<img src="" alt="">
 								<div class="text">
 									<h4>파크하얏트<br><span><i class="fa fa-users"></i> 조회수</span></h4>
 									<h6>가격<br><span>/person</span></h6>
@@ -264,7 +235,7 @@ https://templatemo.com/tm-580-woox-travel
 
 						<div class="item">
 							<div class="thumb">
-								<img src="assets/images/offers-02.jpg" alt="">
+								<img src="" alt="">
 								<div class="text">
 									<h4>롯데부산 호텔<br><span><i class="fa fa-users"></i> 조회수</span></h4>
 									<h6>가격<br><span>/person</span></h6>
@@ -290,7 +261,7 @@ https://templatemo.com/tm-580-woox-travel
 
 						<div class="item">
 							<div class="thumb">
-								<img src="assets/images/offers-03.jpg" alt="">
+								<img src="" alt="">
 								<div class="text">
 									<h4>아쿠아 펠리스<br><span><i class="fa fa-users"></i> 조회수 </span></h4>
 									<h6>가격<br><span>/person</span></h6>
@@ -317,7 +288,7 @@ https://templatemo.com/tm-580-woox-travel
 
 						<div class="item">
 							<div class="thumb">
-								<img src="assets/images/offers-03.jpg" alt="">
+								<img src="" alt="">
 								<div class="text">
 									<h4>그랜드 조선 부산<br><span><i class="fa fa-users"></i> 조회수 </span></h4>
 									<h6>가격<br><span>/person</span></h6>
@@ -352,11 +323,11 @@ https://templatemo.com/tm-580-woox-travel
 <div class="search-form" style="margin-top: 50px;">
     <div class="container">
       <div class="row">
-        <div class="col-lg-10" style="margin: auto;">
+        <div class="col-lg-12" style="margin: auto;">
           <form id="search-form" name="gs" method="submit" role="search" action="#" 
           	style="border-radius: 20px;">
             <div class="row">
-              <div class="col-lg-3">
+              <div class="col-lg-4">
                   <fieldset>
                       <select name="Location" class="form-select" aria-label="Default select example" id="chooseLocation" onChange="this.form.click()">
                           <option selected>Destinations</option>
@@ -372,24 +343,13 @@ https://templatemo.com/tm-580-woox-travel
                       </select>
                   </fieldset>
               </div>
-              <div class="col-lg-3">
-                  <fieldset>
-                      <select name="Price" class="form-select" aria-label="Default select example" id="choosePrice" onChange="this.form.click()">
-                          <option selected>Price Range</option>
-                          <option value="100">$100 - $250</option>
-                          <option value="250">$250 - $500</option>
-                          <option value="500">$500 - $1,000</option>
-                          <option value="1000">$1,000 - $2,500</option>
-                          <option value="2500+">$2,500+</option>
-                      </select>
-                  </fieldset>
-              </div>
-              <div class="col-lg-3" style="margin: auto;">
+              
+              <div class="col-lg-4" style="margin: auto;">
                   <fieldset >
-                      <input class="input" type="text" style="width: 100%;">
+                      <input class="input" type="text" name="searchText" style="width: 100%;">
                   </fieldset>
               </div>
-              <div class="col-lg-3">                        
+              <div class="col-lg-4">                        
                   <fieldset >
                       <button class="border-button">검색하기</button>
                   </fieldset>
@@ -399,20 +359,119 @@ https://templatemo.com/tm-580-woox-travel
         </div>
       </div>
     </div>
+  </div>
+
 
   <div class="best-locations" style="margin: auto;">
     <div class="container">
       <div class="row">
         <div class="col-lg-6 offset-lg-3">
           <div class="section-heading text-center" style="margin: auto;">
-            <h2 style="margin-top: 30px ;">부산 추천 명소들을 확인하세요</h2>
+            <h2 style="margin-top: 30px ;">부산 추천 맛집들을 확인하세요</h2>
           </div>
         </div>
-            </div>
-         </div>
-        </div>
-        
+    <div class="visit-country" style="margin-top: 50px;">
+    <div class="container">
+        <div class="row">
+        <div class="col-lg-12" style="margin: auto;">
+          <div class="items">
+            <div class="row">
+              <div class="col-lg-6" th:each="item : ${items}" style="padding-top: 30px;">
+				<a th:href="@{/restaurant/read(UC_SEQ=${item.UC_SEQ})}">
+					 
+                <div class="item" style="margin: auto;">
+                  <div class="row">
+                    <div class="col-lg-4 col-sm-5">
+                      <div class="image">
+                        <img th:src="@{${item.MAIN_IMG_THUMB}}" alt="">
+                      </div>
+                    </div>
+                    <div class="col-lg-8 col-sm-7">
+                      <div class="right-content">
+                        <h4 th:text="${item.TITLE}">장소</h4>
+                        <span th:text="${item.PLACE}">제목</span>
+                        <!--<div class="main-button">
+                          <a href="about.html">Explore More</a>
+                        </div>-->
+                        <p th:text="${item.RPRSNTV_MENU}"> 부제목 </p>
+                        <ul class="info">
+                          <li style="width: 24%;" th:text="${item.GUGUN_NM}"> 구, 군 이름</li>
+                          <li style="width: 74%;" th:text="${item.CNTCT_TEL}">전화번호</li>
 
+                        </ul>
+                        <!--<div class="text-button">
+                          <a href="about.html">Need Directions ? <i class="fa fa-arrow-right"></i></a>
+                        </div>-->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </a>
+              </div>
+              
+          	</div>
+      	  </div>
+  		</div>
+  	  </div>
+  	  </div>
+  	  <br>
+  	  <div class="col-lg-12">
+        <ul class="page-numbers" style="margin-bottom: 50px;">
+		  <!-- 이전 그룹이 없을 경우 보여주지 않음 -->
+          <li>
+			<th:block th:if="${navi.currentPage - navi.pagePerGroup > 0}">
+				<a th:href="@{/restaurant/list(page=${navi.currentPage - navi.pagePerGroup}, searchText=${searchText})}">
+					<i class="fa fa-arrow-left-bracket"></i>
+				</a>
+    		</th:block>
+		  </li>
+		  
+		  <!-- 이전 페이지가 없을 경우 보여주지 않음 -->
+          <li>
+			<th:block th:if="${navi.currentPage - 1 > 0}">
+		    	<a th:href="@{/restaurant/list(page=${navi.currentPage - 1}, searchText=${searchText})}">
+					<i class="fa fa-arrow-left"></i>
+				</a>
+		    </th:block>
+		  </li>
+		  
+		  <!-- 현재페이지 -->
+			<th:block th:if="${navi.endPageGroup ne 0}">
+		      <th:block th:each="counter : ${#numbers.sequence(navi.startPageGroup, navi.endPageGroup)}">
+				  <li class="active" th:if="${navi.currentPage == counter}">
+		          	<a th:href="@{/restaurant/list(page=${counter}, searchText=${searchText})}" th:text="${counter}"></a>&nbsp;
+		          </li>
+		          <li th:unless="${navi.currentPage == counter}">
+		          	<a th:href="@{/restaurant/list(page=${counter}, searchText=${searchText})}" th:text="${counter}"></a>&nbsp;
+		          </li>
+		      </th:block>
+		    </th:block>
+		  
+          <!-- 다음 페이지가 없을 경우 보여주지 않음 -->
+			<th:block th:if="${navi.currentPage < navi.totalPageCount}">
+				<li>
+			    	<a th:href="@{/restaurant/list(page=${navi.currentPage + 1}, searchText=${searchText})}">
+						<i class="fa fa-arrow-right"></i>
+					</a>
+				</li>
+		    </th:block>
+		  
+		  <!-- 다음 그룹이 없을 경우 보여주지 않음 -->
+          
+			<th:block th:if="${navi.currentPage + navi.pagePerGroup <= navi.totalPageCount + 1}">
+				<li>
+			    	<a th:href="@{/restaurant/list(page=${navi.currentPage + navi.pagePerGroup}, searchText=${searchText})}">
+						<i class="fa fa-arrow-right-to-bracket"></i>
+					</a>
+				</li>
+		    </th:block>
+		  
+        </ul>
+        
+      </div>
+  	  
+  	  </div>
+        
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->
   <script src="/vendor/jquery/jquery.min.js"></script>
@@ -435,4 +494,3 @@ https://templatemo.com/tm-580-woox-travel
   </body>
 
 </html>
-

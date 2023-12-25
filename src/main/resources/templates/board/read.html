@@ -56,7 +56,7 @@ https://templatemo.com/tm-580-woox-travel
                     <ul class="nav">
                         <li><a style=" border-radius: 0px;" class="menu-item" href="/tour_spot/list">관광지</a></li>
                         <li><a style=" border-radius: 0px;" class="menu-item" href="/restaurant/list">음식점</a></li>
-                        <li><a style=" border-radius: 0px;" class="menu-item" href="/hotel/list">숙소</a></li>
+                        <li><a style=" border-radius: 0px;" class="menu-item" href="/shopping/list">쇼핑</a></li>
                         <li>
 							<a class="menu-item" href="/board/list" style=" border-radius: 0px;">자유 게시판</a>
 						</li>
@@ -100,6 +100,11 @@ https://templatemo.com/tm-580-woox-travel
   </div>
 
   <style>
+	  
+	  .liked {
+      background-color: #22b3c1;
+      color: white;
+    }
 	  
 	body {
       font-family: 'Noto Sans KR', sans-serif; /* 한글 폰트를 'Noto Sans KR'로 설정, fallback은 sans-serif로 설정 */
@@ -360,11 +365,22 @@ https://templatemo.com/tm-580-woox-travel
      </div>
       </th:block>
       <div class="border-button" style="display: inline-block;">
-     <input type="button" onclick="/board/list" value="목록으로">
+     <input type="button" onclick="location.href='/board/list'" value="목록으로">
      </div>
    </div>
+   <!-- 좋아요 버튼 start -->
+   <p style="text-align: center;">
+	 <button onclick="" id="toggleButton" style="border: 1px #22b3c1 solid;  color: #22b3c1; width: 100px; height: 50px;">
+	  <span>  
+	   <i class="fa fa-heart" style="display: inline-block; color: hotpink;"> <h6 style="display: inline-block;" th:text="${board.b_like_count}"></h6></i>
+	   </span> 
+	 </button>
+   </p>
+   <!-- 좋아요 버튼 end-->
   </div>
   <!-- *** 게시판 읽기 End *** -->
+  
+  
   
   <!-- *** 댓글 읽기 Start *** -->
 
@@ -498,6 +514,7 @@ https://templatemo.com/tm-580-woox-travel
 	// 페이지가 로딩되면 getReplies() 함수를 자동으로 실행한다
 	$(function(){
 		getReplies();
+		likedOrNot();
 	})
 	
 	function showReplies(data) {
@@ -599,6 +616,96 @@ https://templatemo.com/tm-580-woox-travel
 		}
 		
 	}
+	
+	let toggleButton = document.getElementById('toggleButton');
+	toggleButton.addEventListener('click', function() {
+    
+	let isToggled = document.getElementsByClassName('liked').item(0);
+    // 토글 상태에 따라 클래스를 추가 또는 제거하여 스타일을 변경합니다.
+    if (isToggled === null) {
+      saveLike();
+    } else {
+      deleteLike();
+    }
+
+    // 토글 상태를 콘솔에 출력합니다.
+    console.log('토글 상태:', isToggled);
+  	});
+	
+	function likedOrNot() {
+		// 버튼 요소를 가져옵니다.
+	  let toggleButton = document.getElementById('toggleButton');
+	
+	  let board_id = /*[[${board.board_id}]]*/'';
+	  let member_id = /*[[${loginUser.member.member_id}]]*/'';
+		$.ajax({
+			url: "/like/" + board_id + "/" + member_id,
+			type: "get",
+			success: function(data) {
+				console.log("data: " + data);
+			    if (data) {
+			      toggleButton.classList.add('liked');
+			    } else {
+			      toggleButton.classList.remove('liked');
+			    }
+			
+			    // 토글 상태를 콘솔에 출력합니다.
+			    console.log('토글 상태:', data);
+			  
+			},
+			error: function(xhr, status, error) {
+				console.log(xhr);
+				console.log(status);
+				console.log(error);
+			}
+		});
+	  
+	}
+	
+	function saveLike() {
+		let board_id = /*[[${board.board_id}]]*/'';
+		let member_id = /*[[${loginUser.member.member_id}]]*/'';
+		
+		$.ajax({
+			url: "/like/"+ board_id + "/" + member_id,
+			type: "post",
+			success: function() {
+				likedOrNot();
+				window.location.href = "/board/read?board_id=" + board_id;
+			},
+			error: function(xhr, status, error) {
+				console.log(xhr);
+				console.log(status);
+				console.log(error);
+			}
+			
+		});
+	}
+	
+	function deleteLike() {
+		let board_id = /*[[${board.board_id}]]*/'';
+		let member_id = /*[[${loginUser.member.member_id}]]*/'';
+		
+		$.ajax({
+			url: "/like/"+ board_id + "/" + member_id,
+			type: "delete",
+			success: function() {
+				likedOrNot();
+				window.location.href = "/board/read?board_id=" + board_id;
+			},
+			error: function(xhr, status, error) {
+				console.log(xhr);
+				console.log(status);
+				console.log(error);
+			}
+			
+		});
+	}
+	
+	function getLikeOfBoard() {
+		
+	}
+
     
   </script>
 
