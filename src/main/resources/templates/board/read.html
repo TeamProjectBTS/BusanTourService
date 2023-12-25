@@ -198,6 +198,12 @@ https://templatemo.com/tm-580-woox-travel
     .border-button a {
     margin-left: 10px;
   }
+  
+  .border-button input:hover {
+	  background-color: #22b3c1;
+	  color: white;
+	  transition: 0.5s;
+  }
  
     .page-numbers {
     text-align: center;
@@ -323,13 +329,16 @@ https://templatemo.com/tm-580-woox-travel
 	   </div>
 	  </div>
 	  <div class="metadata-container">
-		<span>조회수:
+		<span class="fa fa-write"> 작성자 : 
+		 <div class="side fr"  th:text="*{nickname}"></div>  
+	  	</span>
+		<span class="fa fa-eye"> 
 		 <div class="side fr"  th:text="*{b_view_count}"></div>  
 	  	</span>
-	  	<span>좋아요:
+	  	<span class="fa fa-heart">
 		 <div class="side fr"  th:text="*{b_like_count}"></div>  
 	  	</span>
-	  	<span>댓글:
+	  	<span class="fa fa-reply">
 		 <div class="side fr"  th:text="*{b_com_count}"></div>  
 	  	</span>
 	  </div>
@@ -340,12 +349,19 @@ https://templatemo.com/tm-580-woox-travel
 	 </article>
 
    </table>
-   <div class="center">
-     <input type="button" onclick="location.href='/board/list'" value="목록으로">
+   <div class="center" style="text-align: right;">
+	 
      <th:block th:if="${#authentication.name == board.member_id}">
+	 <div class="border-button" style="display: inline-block;"> 
      <input type="button" th:onclick="|location.href='/board/update?board_id=${board.board_id}'|" value="수정하기">
+     </div>
+     <div class="border-button" style="display: inline-block;">
      <input type="button" th:onclick="|location.href='/board/delete?board_id=${board.board_id}'|" value="삭제하기">
+     </div>
       </th:block>
+      <div class="border-button" style="display: inline-block;">
+     <input type="button" onclick="/board/list" value="목록으로">
+     </div>
    </div>
   </div>
   <!-- *** 게시판 읽기 End *** -->
@@ -354,10 +370,12 @@ https://templatemo.com/tm-580-woox-travel
 
   <div class="container" style="margin-top: 20px;">
 	<div  style="width: fit-content; margin: auto;">
-		<label for="comment">리플 쓰기</label>
-		<input type="button" value="등록" onclick="writeReply()">
-		<br><p></p>
-		<textarea rows="2" cols="90" id="comment" name="comment"></textarea>
+		<div class="border-button" style="display: inline-block; margin-bottom: 10px;">
+		<input type="button" value="댓글 등록" onclick="writeReply()">
+		</div>
+		<div >
+		<textarea rows="2" cols="90" id="comment" name="comment" ></textarea>
+		</div>
 	</div>
 	<p></p>
 
@@ -448,6 +466,11 @@ https://templatemo.com/tm-580-woox-travel
 				console.log(error);
 			}
 		});
+		
+		$.ajax({
+			url: "redirect:/board/read?board_id=" + board_id
+		});
+		
 	}
 	
 	function getReplies() {
@@ -522,7 +545,7 @@ https://templatemo.com/tm-580-woox-travel
 			
 			str += "<div class='item3' style='display: block;'>"
 			str += 	"<div class='row' style='--bs-gutter-y: 1.5rem; padding-top: 10px;'>"
-			str += 		"<div class='col-lg-12 asd'><h6>등록된 댓글이 없습니다.</h6></div>"
+			str += 		"<div class='col-lg-12 asd' style='margin: auto; border-right: none;'><h6 style='margin: auto;'>등록된 댓글이 없습니다.</h6></div>"
 			str += 	"</div>"
 			str += "</div>"
 			

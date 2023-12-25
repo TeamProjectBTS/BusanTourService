@@ -338,10 +338,11 @@ https://templatemo.com/tm-580-woox-travel
 
 <!-- *** 게시판 리스트 Start *** -->
 	<div class="amazing-deals" style="margin-top: 20px;">
-			<div class="row" style="display: grid; place-items: center;">
-							<div class="col-lg-12">	
+			<div class="row" >
+							<div class="col-lg-12" style="display: inline-block;">	
 							<div class="row">
-								<div class="col-lg-3" style="margin-left: 350px;">
+								<div class="col-lg-2" style="width: 18.5%;"></div>
+								<div class="col-lg-3" >
 									<div class="item2">
 										<h3 style="padding: 10px; text-align: center; width: 140%;">사용자 리뷰</h3>
 									</div>
@@ -366,8 +367,8 @@ https://templatemo.com/tm-580-woox-travel
 										</fieldset>
 										
 										</form>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<div style="display: inline;">
+										
+										<div style="display: inline; text-align: right; width: 300px;">
 										<a class="item" th:href="@{/review/write(UC_SEQ=${item.UC_SEQ})}" style="margin: auto; display: inline-block;  overflow: visible;">리뷰 남기기</a>
 										</div>
 										
@@ -376,37 +377,7 @@ https://templatemo.com/tm-580-woox-travel
 								<br><br>
 							</div>
 							
-							<!--<div class="item3" style="display: block;">
-								<div class="row" style="--bs-gutter-y: 1.5rem;">
-								
-										<div class="col-lg-1 asd" id="container">
-										<h6 style="text-align: center; margin:0;">글번호</h6>
-									</div>
-
-									<div class="col-lg-4 asd" id="container">
-										<h6 style="text-align: center; margin:0;">제목</h6>
-									</div>
-									
-									<div class="col-lg-3 asd" id="container">
-										<h6 style="text-align: center;">닉네임</h6>
-									</div>
-									
-									<div class="col-lg-2 asd" id="container">
-										<h6 style="text-align: center;">등록일</h6>
-									</div>
-									
-									<div class="col-lg-1 asd" id="container">
-										<h6 style="text-align: center;">조회수</h6>
-									</div>
-									
-									<div class="col-lg-1 asd" id="container" style="border-right: none;">
-										<h6 style="text-align: center;">좋아요</h6>
-									</div>
-								</div>
-							</div>-->
-							
-							
-							<div class="item3" th:each="review : ${reviews}" style="display: block;">
+							<div class="item3" th:each="review : ${reviews}" style="display: block; height: auto; padding-bottom: 10px;">
 								
 								<div class="row" style="--bs-gutter-y: 1.5rem; padding-top: 10px;">
 								
@@ -424,11 +395,14 @@ https://templatemo.com/tm-580-woox-travel
 									</div>
 									
 									<div class="col-lg-2 asd" id="container" style="border-right: none; margin: auto;">
+										<h6 class="fa fa-heart"></h6>&nbsp;&nbsp;
 										<h6 style="text-align: center; margin-top: 10px; display: inline-block;" th:text="${review.rv_like_count}">좋아요</h6>
+										&nbsp;&nbsp;
+										<input type="button" value="좋아요">
 									</div>
 									
 									<div class="col-lg-12 asd" id="container" style="border-right: none; margin: auto;">
-										<h6 style="text-align: center; margin-top: 10px; display: inline-block;" th:text="${review.rv_content}">내용</h6>
+										<h5 style="text-align: center; margin-top: 10px; display: inline-block;" th:text="${review.rv_content}">내용</h5>
 									</div>
 									
 									<!--<div class="col-lg-12 asd" id="container" style="border-right: none; margin: auto;">
@@ -438,7 +412,7 @@ https://templatemo.com/tm-580-woox-travel
 								</div>
 								
 							</div>
-							</a>
+							
 							
 							<br><br>
 						</div>		
