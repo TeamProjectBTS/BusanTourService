@@ -354,8 +354,8 @@ https://templatemo.com/tm-580-woox-travel
 
   <div class="container" style="margin-top: 20px;">
 	<div  style="width: fit-content; margin: auto;">
-		<label for="comment">리플 쓰기</label>
-		<input type="button" value="등록" onclick="writeReply()">
+		<label for="comment">리플 쓰기</label>&nbsp;
+		<input type="button" value="등록" onclick="writeReply()"><br>
 		<br><p></p>
 		<textarea rows="2" cols="90" id="comment" name="comment"></textarea>
 	</div>
@@ -492,10 +492,10 @@ https://templatemo.com/tm-580-woox-travel
 					str += 		"</div>"
 					str += 		"<div class='col-lg-7 asd' id='container' style='margin: auto;'>"
 					str += 			"<h6 style='text-align: center; margin-top: 10px; display: inline-block;'>" + obj.content + "</h6>"
-					str += 			"<input type='button' value='삭제' onclick='removeReply(" + obj.comment_id + ")'>"
 					str += 		"</div>"
 					str += 		"<div class='col-lg-3 asd' id='container' style='margin: auto; border-right: 0px'>"
-					str += 			"<h6 style='text-align: center; margin-top: 10px; display: inline-block;'>" + obj.wr_date + "</h6>"
+					str += 			"<h6 style='text-align: center; margin-top: 10px; display: inline-block;'>" + obj.wr_date + "</h6>&nbsp;&nbsp;&nbsp;&nbsp;"
+					str += 			"<input type='button' value='삭제' onclick='removeReply(" + obj.comment_id + ")'>"
 					str += 		"</div>"
 					str += 	"</div>"
 					str += "</div>"
