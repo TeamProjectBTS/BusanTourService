@@ -15,6 +15,7 @@ import com.example.board.model.review.ReviewAttachedFile;
 public interface ReviewMapper {
 	void saveReview(Review review);
 	List<Review> findReviews(@Param("searchTextReview") String searchTextReview, RowBounds rowBounds);
+	List<Review> findReviewsByMember_id(String member_id);
 	Review findReview(Long review_id);
 	List<Review> findReviewsByUC_SEQ(Long UC_SEQ);
 	void updateReview(Review updateReview);

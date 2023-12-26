@@ -5,6 +5,54 @@
 <style>
 	/* 스타일은 여기에 작성합니다. */
 
+	 .fa-search:hover {
+		 color: #22b3c1;
+		 transition: 0.5s;
+	 }
+
+  body {
+      font-family: 'Noto Sans KR', sans-serif; /* 한글 폰트를 'Noto Sans KR'로 설정, fallback은 sans-serif로 설정 */
+    }
+    
+    
+	h2{
+	font-weight: bold; /* 굵은 글꼴 적용 */
+	text-shadow: 5px 5px 5px rgb(0, 0, 0); /* 그림자 설정 */
+	}
+	
+	h4{
+	font-weight: bold; /* 굵은 글꼴 적용 */
+	text-shadow: 5px 5px 5px rgb(0, 0, 0); /* 그림자 설정 */
+	}
+
+
+  .asd{
+            border-right: 1px solid rgb(192, 192, 192); 
+             
+  }
+  
+  .amazing-deals .item2{
+  background-color: #f7f7f7;
+  border-radius: 25px;
+  padding-right: 100px;
+  margin-bottom: 30px;
+  width: 400px;
+   border-bottom: 2px solid rgb(95, 95, 95);
+}
+  .amazing-deals .item3{
+  margin:auto;
+  background-color: #f7f7f7;
+  border-radius: 25px;
+  margin-bottom: 30px;
+  width: 1200px;
+  height: 60px;
+  padding-right: 30px;
+  padding-left: 30px;
+   border-bottom: 2px solid #333;
+}
+
+  
+
 	body {
 		font-family: 'Noto Sans KR', sans-serif;
 		/* 한글 폰트를 'Noto Sans KR'로 설정, fallback은 sans-serif로 설정 */
@@ -333,9 +381,9 @@
 
 							<div style=" margin:auto;" class="row">
 
-								<div>
+								<div style="text-align: center;">
 									<img  th:src="@{'/uploaded/img/' + ${loginUser.member.attached_filename}}"
-									id="img" style="border-radius: 50%; height: 150px; width: 150px;">
+									id="img" style="border-radius: 50%; height: 150px; width: 150px; margin: auto;">
 								</div>
 								<div style="text-align:center; margin:auto; margin-top: 10px;">
 									<h6>[[${loginUser.member.nickname}]]님</h6>
@@ -398,7 +446,7 @@
 												<form action="/uploadProfilePicture" method="post" enctype="multipart/form-data">
 													<input style="width: 60%;" type="file" name="file" accept="image/*" onchange="setImg(this);">
 												<div class="border-button" style="display: inline-block;">
-												<button type="submit" value="프로필 사진 등록">프로필 사진 등록</button>
+												<input type="submit" value="프로필 사진 등록"></input>
 												</div>
 												</form>
 												

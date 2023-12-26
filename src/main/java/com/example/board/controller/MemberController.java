@@ -1,6 +1,8 @@
 package com.example.board.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -22,12 +24,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.board.config.UserInfo;
+import com.example.board.model.board.Board;
 import com.example.board.model.member.LoginForm;
 import com.example.board.model.member.Member;
 import com.example.board.model.member.MemberJoinForm;
 import com.example.board.model.member.MemberUpdateForm;
+import com.example.board.model.review.Review;
+import com.example.board.repository.LikeMapper;
 import com.example.board.repository.MemberMapper;
+import com.example.board.service.BoardService;
 import com.example.board.service.MemberService;
+import com.example.board.service.ReviewService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -40,6 +47,9 @@ public class MemberController {
 
 	// 데이터베이스 접근을 위한 MemberMapper 필드 선언
 	private final MemberService memberService;
+	private final BoardService boardService;
+	private final ReviewService reviewService;
+	private final LikeMapper likeMapper;
 
 	// 회원가입 페이지 이동
 	@GetMapping("join")
@@ -231,18 +241,29 @@ public class MemberController {
 
 	@GetMapping("myboard")
 	public String myboard(@AuthenticationPrincipal UserInfo userInfo, Model model) {
+		List<Board> findBoards = boardService.findBoardsByMember_id(userInfo.getMember().getMember_id());
 		model.addAttribute("loginUser", userInfo);
+		model.addAttribute("boards", findBoards);
 		return "member/myboard";
 	}
 
 	@GetMapping("myreview")
 	public String myreview(@AuthenticationPrincipal UserInfo userInfo, Model model) {
+		List<Review> findReviews = reviewService.findReviewsByMember_id(userInfo.getMember().getMember_id());
 		model.addAttribute("loginUser", userInfo);
+		model.addAttribute("reviews",findReviews);
 		return "member/myreview";
 	}
 
-	@GetMapping("mylike")
+	@GetMapping("myLikedBoard")
 	public String mylike(@AuthenticationPrincipal UserInfo userInfo, Model model) {
+		
+		List<Long> likedBoardIdsByMemberId = likeMapper.getLikedBoardIdsByMemberId(userInfo.getMember().getMember_id());
+		List<Board> boards = new ArrayList();
+		for(Long board_id : likedBoardIdsByMemberId) {
+			boards.add(boardService.findBoard(board_id));
+		}
+		model.addAttribute("boards", boards);
 		model.addAttribute("loginUser", userInfo);
 		return "member/mylike";
 	}

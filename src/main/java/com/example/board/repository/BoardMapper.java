@@ -12,6 +12,7 @@ import com.example.board.model.board.Board;
 public interface BoardMapper {
 	void saveBoard(Board board);
 	List<Board> findBoards(String searchText, RowBounds rowBounds);
+	List<Board> findBoardsByMember_id(String member_id);
 	Board findBoard(Long board_id);
 	void updateBoard(Board updateBoard);
 	void removeBoard(Long board_id);

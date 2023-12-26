@@ -37,6 +37,12 @@
     order by 
     	wr_date desc
   </select>
+  
+  <select id="findReviewsByMember_id" resultType="review">
+    select * from review 
+    where member_id = #{member_id}
+    order by wr_date desc
+  </select>
 
   <select id="findReview" resultType="review">
     select * from review where review_id = #{review_id}

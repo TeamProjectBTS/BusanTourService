@@ -5,6 +5,54 @@
 <style>
 	/* 스타일은 여기에 작성합니다. */
 
+	 .fa-search:hover {
+		 color: #22b3c1;
+		 transition: 0.5s;
+	 }
+
+  body {
+      font-family: 'Noto Sans KR', sans-serif; /* 한글 폰트를 'Noto Sans KR'로 설정, fallback은 sans-serif로 설정 */
+    }
+    
+    
+	h2{
+	font-weight: bold; /* 굵은 글꼴 적용 */
+	text-shadow: 5px 5px 5px rgb(0, 0, 0); /* 그림자 설정 */
+	}
+	
+	h4{
+	font-weight: bold; /* 굵은 글꼴 적용 */
+	text-shadow: 5px 5px 5px rgb(0, 0, 0); /* 그림자 설정 */
+	}
+
+
+  .asd{
+            border-right: 1px solid rgb(192, 192, 192); 
+             
+  }
+  
+  .amazing-deals .item2{
+  background-color: #f7f7f7;
+  border-radius: 25px;
+  padding-right: 100px;
+  margin-bottom: 30px;
+  width: 400px;
+   border-bottom: 2px solid rgb(95, 95, 95);
+}
+  .amazing-deals .item3{
+  margin:auto;
+  background-color: #f7f7f7;
+  border-radius: 25px;
+  margin-bottom: 30px;
+  width: 100%;
+  height: 60px;
+  padding-right: 30px;
+  padding-left: 30px;
+   border-bottom: 2px solid #333;
+}
+
+  
+
 .category:hover{
 		color : #22b3c1;
 		background-color: white;
@@ -29,10 +77,8 @@
     
 
 	#container {
-      display: flex;			
       justify-content: center;
       align-items: center;
-      height: 10vh;
     }
 
 	
@@ -211,7 +257,7 @@
 </head>
 
 
-<div>
+
 
 	<!-- ***** Preloader Start ***** -->
 	<div id="js-preloader" class="js-preloader">
@@ -339,21 +385,18 @@
 
 
 					<div class="col-lg-9">
-						<form id="search-form" name="gs" method="submit" role="search" action="#"
-															style="border-radius: 20px;">
-						
-						<div class="row">
-							<div class="col-lg-6"style="display: flex; justify-content: center; align-items: center;">
+						<div class="col-lg-12">
+						<div class="row" style="display: inline;">
+							<div class="col-lg-6" style="display: inline-flex; justify-content: center; align-items: center;">
 								<a class="category" href="/member/myboard" style=" border-radius: 20px; width: 70%; text-align: center;">내가쓴 자유게시판 글</a>
 							</div>
-							<div class="col-lg-6" style="display: flex; justify-content: center; align-items: center;">
+							<div class="col-lg-6" style="display: inline-flex; justify-content: center; align-items: center;">
 								<a class="category" href="/member/myreview" style=" border-radius: 20px; width: 70%; text-align: center;">내가 쓴 리뷰 글</a>
 							</div>
 							
-							<br><br><br><br>
-							
 						</div>
-			
+						</div>
+							<br>
 
 						<div class="row">
 							<div class="col-lg-12">
@@ -364,40 +407,63 @@
 								</div>
 
 
-							<div class="item" style="margin:auto;">
-								<div class="row">
-									<div class="col-lg-1" id="container">
-										<div style="text-align: center; padding: 10px; margin: auto; ">
-											<h6>번호</h6>
-										</div>
+							<div class="item3" style="display: block;">
+								<div class="row" style="--bs-gutter-y: 1.5rem; padding-top: 10px;">
+								
+									<div class="col-lg-1 asd" id="container" style="margin: auto;">
+										<h6 style="text-align: center; margin-top: 10px;" >No</h6>
 									</div>
 
-									<div class="col-lg-4" id="container">
-										<h6>제목</h6>
+									<div class="col-lg-5 asd" id="container" style="margin: auto;  text-align: center;">
+										<h6  style="text-align: left; margin-top: 10px; display: inline-block;" >제목</h6>
+										
 									</div>
 									
-									<div class="col-lg-3" id="container">
-										<h6>닉네임</h6>
+									<div class="col-lg-3 asd" id="container" style="margin: auto; text-align: center;">
+										<h6  style="text-align: center; margin-top: 10px; display: inline-block;">닉네임</h6>
 									</div>
 									
-									<div class="col-lg-2" id="container">
-										<h6>등록일</h6>
+									<div class="col-lg-3 asd" id="container" style="margin: auto; border-right: none; text-align: center;">
+										<h6 style="text-align: center; margin-top: 10px; display: inline-block;">등록일</h6>
 									</div>
 									
-									<div class="col-lg-1" id="container">
-										<h6>조회수</h6>
+								</div>
+							</div>
+							
+							<div class="item3" th:each="board : ${boards}" style="display: block;">
+								<a th:href="@{/board/read(board_id=${board.board_id})}">
+								<div class="row" style="--bs-gutter-y: 1.5rem; padding-top: 10px;">
+								
+									<div class="col-lg-1 asd" id="container" style="margin: auto;">
+										<h6 style="text-align: center; margin-top: 10px;" th:text="${board.board_id}">번호</h6>
+									</div>
+
+									<div class="col-lg-4 asd" id="container" style="margin: auto;">
+										<h6  style="text-align: left; margin-top: 10px; display: inline-block;" th:text="${board.b_title}">제목</h6>
+										&nbsp;&nbsp;<h6 class="fa fa-reply" th:text="|  (${board.b_com_count})|"></h6>
 									</div>
 									
-									<div class="col-lg-1" id="container">
-										<h6>좋아요</h6>
+									<div class="col-lg-3 asd" id="container" style="margin: auto;">
+										<h6  style="text-align: center; margin-top: 10px; display: inline-block;" th:text="${board.nickname}">닉네임</h6>
+									</div>
+									
+									<div class="col-lg-2 asd" id="container" style="margin: auto;">
+										<h6 style="text-align: center; margin-top: 10px; display: inline-block;" th:text="|${#temporals.format(board.wr_date, 'yyyy-MM-dd HH:mm:s')}|">등록일</h6>
+									</div>
+									
+									<div class="col-lg-1 asd" id="container" style="margin: auto;">
+										<h6 style="text-align: center; margin-top: 10px; display: inline-block;" th:text="${board.b_view_count}">조회수</h6>
+									</div>
+									
+									<div class="col-lg-1 asd" id="container" style="border-right: none; margin: auto;">
+										<h6 style="text-align: center; margin-top: 10px; display: inline-block;" th:text="${board.b_like_count}">좋아요</h6>
 									</div>
 								</div>
+								</a>
 							</div>
 							<br><br>
 						</div>		
-						
-						
-						</div></form>
+						</div>
 					</div>
 
 						
