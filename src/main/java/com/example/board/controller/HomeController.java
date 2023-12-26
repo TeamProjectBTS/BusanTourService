@@ -29,7 +29,7 @@ public class HomeController {
 		return "/admin/index";
 	}
 	
-	@GetMapping("error") 
+	@GetMapping("{error}") 
 	public String error(@AuthenticationPrincipal UserInfo userInfo, Model model) {
 		
 		

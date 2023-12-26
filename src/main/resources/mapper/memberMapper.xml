@@ -31,7 +31,68 @@
     select * from member where nickname = #{nickname}
   </select>
   
+  <update id="updateMember">
+  	update member
+  	<set>
+  		<if test="password != null">password = #{password},</if>
+  		<if test="nickname != null">nickname = #{nickname},</if>
+  		<if test="phone != null">phone = #{phone},</if>
+  		<if test="email != null">email = #{email}</if>
+  	</set>
+  	where member_id = #{member_id}
+  	 </update>
+  	 
+  	   <update id="updateBoard">
+  	  	update board
+  	<set>
+  		<if test="nickname != null">nickname = #{nickname},</if>
+  	</set>
+  	where member_id = #{member_id}
+  	</update>
+  	
+  	  <update id="updateReview">
+  	  	update review
+  	<set>
+  		<if test="nickname != null">nickname = #{nickname},</if>
+  	</set>
+  	where member_id = #{member_id}
+  	  </update>
+  	  
+  	 <update id="updateComments">
+  	  	update comments
+  	<set>
+  		<if test="nickname != null">nickname = #{nickname},</if>
+  	</set>
+  	where member_id = #{member_id}
+   </update>
   
+  <insert id="memberSaveFile">
+  	<selectKey keyProperty="attached_file_id" resultType="long" order="BEFORE">
+  		select seq_busanguide.nextval from dual
+  	</selectKey>
+  	insert into member_attached_file (
+  		attached_file_id,
+  		member_id,
+  		original_filename,
+  		saved_filename,
+  		file_size
+  	) values (
+  		#{attached_file_id},
+  		#{member_id},
+  		#{original_filename},
+  		#{saved_filename},
+  		#{file_size}
+  	)
+  </insert>
+  
+  
+  <update id="updateMemberProfile">
+  	update member
+  	<set>
+  		<if test="attached_filename != null">attached_filename = #{attached_filename}</if>
+  	</set>
+  	where member_id = #{member_id}
+  	 </update>
   
 </mapper>
 
