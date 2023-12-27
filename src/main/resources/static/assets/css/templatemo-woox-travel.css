@@ -19,6 +19,12 @@ Table of contents
 09. footer
 10. main-slider
 11 - silder container
+<<<<<<< HEAD
+=======
+12 - board, search
+13 - main box 
+14- banner-box-write
+>>>>>>> parent of 0567e35 (main2 > 3)
 --------------------------------------------- */
 /* 
 ---------------------------------------------
@@ -31,6 +37,37 @@ font & reset css
 reset
 --------------------------------------------- 
 */
+<<<<<<< HEAD
+=======
+.main-box{
+	margin: auto;
+		background-color: rgb(245, 245, 245);
+		border-radius: 25px;
+		margin-bottom: 20px;
+		width: 800px;
+		height: 80px;
+		padding-right: 30px;
+		padding-left: 30px;
+		border-bottom: 2px solid #333;
+}
+
+.main-box-write{
+	text-align: center; 
+	color: rgb(0, 128, 255);
+}
+
+.main-box img{
+	width: 50px;
+  	height: 50px;
+ 	margin-right: 20px;
+}
+
+.banner-box-write{
+	font-size: 3px;
+}
+
+
+>>>>>>> parent of 0567e35 (main2 > 3)
 
 .slider-container {
             text-align: center;

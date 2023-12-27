@@ -25,7 +25,20 @@ TemplateMo 580 Woox Travel
 https://templatemo.com/tm-580-woox-travel
 
 -->
+<<<<<<< HEAD
   </head>
+=======
+<style>
+	li img {
+		width: 25px;
+		height: 25px;
+		
+	}
+</style>
+
+
+</head>
+>>>>>>> parent of 0567e35 (main2 > 3)
 
 
 <body>
@@ -113,14 +126,287 @@ https://templatemo.com/tm-580-woox-travel
 	<div class="weekly-offers" style="margin-top: 10px; padding-bottom: 50px;">
 		<div class="container">
 			<div class="row">
+<<<<<<< HEAD
 				<div class="col-lg-6">
 					<div class="section-heading text-center">
+=======
+				<div class="col-12">
+					<nav class="main-nav">
+						<!-- ***** Logo Start ***** -->
+						<a href="/" class="logo2">
+							<img src="/assets/images/logo2.png" alt="">
+						</a>
+						<!-- ***** Logo End ***** -->
+						<!-- ***** Menu Start ***** -->
+						<ul class="nav">
+							<li><a style=" border-radius: 0px;" class="menu-item" href="/tour_spot/list">관광지</a></li>
+							<li><a style=" border-radius: 0px;" class="menu-item" href="/restaurant/list">음식점</a></li>
+							<li><a style=" border-radius: 0px;" class="menu-item" href="/shopping/list">쇼핑</a></li>
+							<li>
+								<a class="menu-item" href="/board/list" style=" border-radius: 0px;">자유 게시판</a>
+							</li>
+
+							<li sec:authorize="isAuthenticated()" class="menu-item-container">
+								<a class="menu-item" href="/member/mypage"
+									style="width: max-content; border-radius: 0px;">[[${loginUser.member.nickname}]]님</a>
+								<div class="menu-container" style="width: max-content; text-align: center;">
+									<a class="menu-item" href="/member/mypage" style=" border-radius: 0px;">마이페이지</a>
+									<a class="menu-item" href="/complain/list" style=" border-radius: 0px;">고객문의</a>
+									<a class="menu-item" href="/member/logout" style=" border-radius: 0px;">로그아웃</a>
+								</div>
+							</li>
+
+							<li sec:authorize="isAnonymous()">
+								<a href="/member/login" class="menu-item"
+									style="width: max-content; border-radius: 0px;">로그인</a>
+							</li>
+						</ul>
+
+						<a class='menu-trigger'>
+							<span>Menu</span>
+						</a>
+						<!-- ***** Menu End ***** -->
+					</nav>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- ***** Header Area End ***** -->
+
+	<!-- ***** Main Banner Area Start ***** -->
+	<div class="about-main-content" style="padding: 0%; padding-top: 0%;">
+
+		<div class="weekly-offers" style="margin-top: 10px; padding-bottom: 40px; margin-bottom: 50px;">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="section-heading text-center">
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="container">
+							<h1 style="font-size: 52px;">Tour Spots</h2>
+						</div>
+						<br>
+
+						<div class="owl-weekly-offers owl-carousel"
+							style="width: fit-content; box-sizing: content-box;">
+
+							<div class="item">
+								<div class="thumb"style="object-fit: cover;">
+									<div class="text">
+										<h4>롯데월드</h4>										
+										<div class="line-dec"></div>
+										<ul>
+											<li>정보</li>
+											<li><img src="/assets/images/banner-box-icon1.png" style="padding: 0px;">부산광역시 기장군 동부산관광로 42</li>
+  											<li><img src="/assets/images/banner-box-icon2.png" style="padding: 0px;">1661-2000</li>										
+										</ul>
+										<div class="main-button">
+											<a href="/tour_spot/read?UC_SEQ=1310">더 자세한 정보보기</a>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<span class="item" style="width: auto;">
+								<span class="thumb">
+									<img src="/assets/images/tour_spot_banner1.jpg"
+										style="padding: 0%; width: 350px; height: 420px; position: fixed;">
+								</span>
+							</span>
+
+							<div class="item">
+								<div class="thumb" style="object-fit: cover;">
+									<div class="text">
+										<h4>오륙도 스카이워크</h4>										
+										<div class="line-dec"></div>
+										<ul>
+											<li>정보</li>
+											<li><img src="/assets/images/banner-box-icon1.png" style="padding: 0px;">부산광역시 남구 오륙도로 137</li>
+  											<li><img src="/assets/images/banner-box-icon2.png" style="padding: 0px;">051-607-6395</li>										
+										</ul>
+										<div class="main-button">
+											<a href="/tour_spot/read?UC_SEQ=278">더 자세한 정보보기</a>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<span class="item">
+								<span class="thumb">
+									<img src="/assets/images/tour_spot_banner2.jpg"
+										style="padding: 0%; width: 350px; height: 420px; position: fixed;">
+								</span>
+							</span>
+
+							<div class="item">
+								<div class="thumb">
+									<div class="text">
+										<h4>태종대</h4>										
+										<div class="line-dec"></div>
+										<ul>
+											<li>정보</li>
+											<li><img src="/assets/images/banner-box-icon1.png" style="padding: 0px;">부산광역시 영도구 전망로 24</li>
+  											<li><img src="/assets/images/banner-box-icon2.png" style="padding: 0px;">051-405-2004</li>										
+										</ul>
+										<div class="main-button">
+											<a href="/tour_spot/read?UC_SEQ=258">더 자세한 정보보기</a>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<span class="item">
+								<span class="thumb">
+									<img src="/assets/images/tour_spot_banner3.jpg"
+										style="padding: 0%; width: 350px; height: 420px; position: fixed;">
+								</span>
+							</span>
+
+							<div class="item">
+								<div class="thumb">
+									<img src="assets/images/tour_spot_banner4.jpg" alt="">
+									<div class="text">
+										<h4>황령산 전망대</h4>										
+										<div class="line-dec"></div>
+										<ul>
+											<li>정보</li>
+											<li><img src="/assets/images/banner-box-icon1.png" style="padding: 0px;">부산광역시 연제구 연산제2동 2039-1</li>
+  											<li><img src="/assets/images/banner-box-icon2.png" style="padding: 0px;">051-780-2152</li>										
+										</ul>
+										<div class="main-button">
+											<a href="/tour_spot/read?UC_SEQ=371">더 자세한 정보보기</a>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<span class="item">
+								<span class="thumb">
+									<img src="/assets/images/tour_spot_banner4.jpg"
+										style="padding: 0%; width: 350px; height: 420px; position: fixed;">
+								</span>
+							</span>
+
+							<div class="item">
+								<div class="thumb">
+									<img src="" alt="">
+									<div class="text">
+										<h4>신세계 스파랜드</h4>									
+										<div class="line-dec"></div>
+										<ul>
+											<li>정보</li>
+											<li><img src="/assets/images/banner-box-icon1.png" style="padding: 0px;">부산광역시 해운대구 센텀남대로 35</li>
+  											<li><img src="/assets/images/banner-box-icon2.png" style="padding: 0px;">051-745-2900</li>										
+										</ul>
+										<div class="main-button">
+											<a href="https://www.shinsegae.com/store/entertainment/centum-spaland.do?storeCd=SC00008"
+												target="_blank">더 자세한 정보보기</a>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<span class="item">
+								<span class="thumb">
+									<img src="/assets/images/tour_spot_banner5.jpg"
+										style="padding: 0%; width: 350px; height: 420px; position: fixed;">
+								</span>
+							</span>
+
+							<div class="item">
+								<div class="thumb">
+									<img src="" alt="">
+									<div class="text">
+										<h4>강서구 대저생태 공원</h4>										
+										<div class="line-dec"></div>
+										<ul>
+											<li>정보</li>
+											 <li><img src="/assets/images/banner-box-icon1.png" style="padding: 0px;">부산광역시 강서구 대저1동 2314-11</li>
+  											<li><img src="/assets/images/banner-box-icon2.png" style="padding: 0px;">051-971-6011</li>																				
+										</ul>
+
+										<div class="main-button">
+											<a href="/tour_spot/read?UC_SEQ=1673">더 자세한 정보보기</a>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<span class="item">
+								<span class="thumb">
+									<img src="/assets/images/tour_spot_banner6.jpg"
+										style="padding: 0%; width: 350px; height: 420px; position: fixed;">
+								</span>
+							</span>
+
+							<div class="item">
+								<div class="thumb">
+									<img src="" alt="">
+									<div class="text">
+										<h4>달맞이길</h4>										
+										<div class="line-dec"></div>
+										<ul>
+											<li>정보</li>											
+  <li><img src="/assets/images/banner-box-icon1.png" style="padding: 0px;"> 부산광역시 해운대구 중2동</li>
+  <li><img src="/assets/images/banner-box-icon2.png" style="padding: 0px;"> 051-7495-710</li>
+</ul>																				
+										<div class="main-button">
+											<a href="https://www.haeundae.go.kr/tour/board/view.do?boardId=BBS_0000103&menuCd=DOM_000000301001000000&dataSid=3000151"
+												target="_blank">더 자세한 정보보기</a>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<span class="item">
+								<span class="thumb">
+									<img src="/assets/images/tour_spot_banner7.jpg"
+										style="padding: 0%; width: 350px; height: 420px; position: fixed;">
+								</span>
+							</span>
+
+						</div>
+>>>>>>> parent of 0567e35 (main2 > 3)
 					</div>
 				</div>
 			</div>
 		</div>
 
+<<<<<<< HEAD
 		<div class="container-fluid">
+=======
+	<!--search -->
+	<div class="border-button" style="text-align: center; margin-top: 10px; margin: auto; width: 530px;">
+		<form method="submit" action="#" style="display: inline;">
+			<fieldset style="display: inline-block;">
+				<input class="text" type="text" name="searchText"
+					style="width: 300px; font-size: larger; color: black;">
+			</fieldset>
+
+			<fieldset style="display: inline-block;">
+				<div>
+					<button style="border: none; background-color: white; margin: 5px;">
+						<i class="fa fa-search fa-2x fa-flip" style="margin: 5px;"></i>
+					</button>
+				</div>
+			</fieldset>
+
+		</form>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		
+
+	</div>
+	<!--search end-->
+
+	<div class="best-locations" style="margin: auto;">
+		<div class="container">
+>>>>>>> parent of 0567e35 (main2 > 3)
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="container">
