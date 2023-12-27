@@ -58,6 +58,11 @@ public class BoardService {
 		return boardMapper.findBoards(searchText, rowBounds);
 	}
 	
+	public List<Board> findBoardsByMember_id(String member_id/*, int startRecord, int countPerPage*/) {
+//		RowBounds rowBounds = new RowBounds(startRecord, countPerPage);
+		return boardMapper.findBoardsByMember_id(member_id/*, rowBounds*/);
+	}
+	
 //	public Board findBoard(Long board_id) {
 //		return boardMapper.findBoard(board_id);
 //	}
