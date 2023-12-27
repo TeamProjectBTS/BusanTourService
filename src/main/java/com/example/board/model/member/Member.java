@@ -16,6 +16,19 @@ public class Member {
 	private RoleType role;
 	
 	
+	public static MemberUpdateForm toUpdateMember (Member member) {
+		MemberUpdateForm memberUpdateForm = new MemberUpdateForm();
+		    memberUpdateForm.setPassword(member.getPassword());
+		    memberUpdateForm.setNickname(member.getNickname());
+		    memberUpdateForm.setPhone(member.getPhone());
+		    memberUpdateForm.setEmail(member.getEmail());
+		
+		return memberUpdateForm;
+	}
 	
-	
+	public static MemberProfileUpdateForm toMemberProfileUpdateForm (Member member) {
+		MemberProfileUpdateForm memberProfileUpdateForm = new MemberProfileUpdateForm();
+		memberProfileUpdateForm.setAttached_filename(member.getAttached_filename());
+		return memberProfileUpdateForm;
+	}
 }

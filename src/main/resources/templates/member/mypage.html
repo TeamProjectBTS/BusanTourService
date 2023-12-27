@@ -1,46 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 
 <style>
 	/* 스타일은 여기에 작성합니다. */
 
-  body {
-      font-family: 'Noto Sans KR', sans-serif; /* 한글 폰트를 'Noto Sans KR'로 설정, fallback은 sans-serif로 설정 */
-    }
+	body {
+		font-family: 'Noto Sans KR', sans-serif;
+		/* 한글 폰트를 'Noto Sans KR'로 설정, fallback은 sans-serif로 설정 */
+	}
 
-	.category:hover{
-		color : #22b3c1;
+	.category:hover {
+		color: #22b3c1;
 		background-color: white;
 		transition: 0.3s;
 	}
 
-	.category{
-		 padding: 10px;
-      text-decoration: none;
-      color: #fff; /* 메뉴 항목 텍스트 색상 */
-      display: block;
-      background-color: #22b3c1; /* 메뉴 항목 배경색 */
+	.category {
+		padding: 10px;
+		text-decoration: none;
+		color: #fff;
+		/* 메뉴 항목 텍스트 색상 */
+		display: block;
+		background-color: #22b3c1;
+		/* 메뉴 항목 배경색 */
 	}
 
 
-   input[type="file"] {
-      border: 1px solid rgb(0, 0, 0); /* 외곽선 색상 및 굵기 설정 */
-      padding: 1px; /* 내부 여백 설정 */
-      border-radius: 5px; /* 둥근 테두리 설정 */
-      outline: none; /* 클릭 시 생기는 파란색 외곽선 제거 */
-      /* 다른 스타일을 적용할 수도 있습니다. */
-}
-    
+	input[type="file"] {
+		border: 1px solid rgb(0, 0, 0);
+		/* 외곽선 색상 및 굵기 설정 */
+		padding: 1px;
+		/* 내부 여백 설정 */
+		border-radius: 5px;
+		/* 둥근 테두리 설정 */
+		outline: none;
+		/* 클릭 시 생기는 파란색 외곽선 제거 */
+		/* 다른 스타일을 적용할 수도 있습니다. */
+	}
+
 
 	#container {
-      display: flex;			
-      justify-content: center;
-      align-items: center;
-      height: 10vh;
-    }
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 10vh;
+	}
 
-	
+
 
 
 	#fancy-box {
@@ -96,8 +103,9 @@
 	}
 
 	input[type="submit"]:hover {
-		background-color: rgb(19, 232, 216);
+		background-color: #22b3c1;
 		transition: 0.3s;
+		color: white;
 	}
 
 
@@ -189,33 +197,34 @@
 	.menu a:hover {
 		background-color: #ddd;
 	}
-	
-	
-	  .amazing-deals .item2{
-  background-color: #f7f7f7;
-  border-radius: 23px;
-  padding-right: 30px;
-  margin-bottom: 30px;
-   border-bottom: 2px solid rgb(95, 95, 95);
-}
-  .amazing-deals .item3{
-  margin:auto;
-  background-color: #f7f7f7;
-  border-radius: 25px;
-  margin-bottom: 30px;
-  width: 1200px;
-  height: 60px;
-  padding-right: 30px;
-  padding-left: 30px;
-   border-bottom: 2px solid #333;
-}
 
-.amazing-deals .item {
-  background-color: #f7f7f7;
-  border-radius: 23px;
-  padding-right: 30px;
-  margin-bottom: 30px;
-}
+
+	.amazing-deals .item2 {
+		background-color: #f7f7f7;
+		border-radius: 23px;
+		padding-right: 30px;
+		margin-bottom: 30px;
+		border-bottom: 2px solid rgb(95, 95, 95);
+	}
+
+	.amazing-deals .item3 {
+		margin: auto;
+		background-color: #f7f7f7;
+		border-radius: 25px;
+		margin-bottom: 30px;
+		width: 1200px;
+		height: 60px;
+		padding-right: 30px;
+		padding-left: 30px;
+		border-bottom: 2px solid #333;
+	}
+
+	.amazing-deals .item {
+		background-color: #f7f7f7;
+		border-radius: 23px;
+		padding-right: 30px;
+		margin-bottom: 30px;
+	}
 </style>
 
 
@@ -228,10 +237,11 @@
 		rel="stylesheet">
 
 	<title>마이 페이지</title>
+	<meta charset="UTF-8" />
 
 	<!-- Bootstrap core CSS -->
 	<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+	
 	<!-- Additional CSS Files -->
 	<link rel="stylesheet" href="/assets/css/fontawesome.css">
 	<link rel="stylesheet" href="/assets/css/templatemo-woox-travel.css">
@@ -239,7 +249,7 @@
 	<link rel="stylesheet" href="/assets/css/animate.css">
 	<link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap">
-	<link rel="icon" href="/assets/images/pabicon.png" >
+	<link rel="icon" href="/assets/images/pabicon.png">
 </head>
 
 
@@ -273,7 +283,7 @@
                     <ul class="nav">
                         <li><a style=" border-radius: 0px;" class="menu-item" href="/tour_spot/list">관광지</a></li>
                         <li><a style=" border-radius: 0px;" class="menu-item" href="/restaurant/list">음식점</a></li>
-                        <li><a style=" border-radius: 0px;" class="menu-item" href="/hotel/list">숙소</a></li>
+                        <li><a style=" border-radius: 0px;" class="menu-item" href="/shopping/list">쇼핑</a></li>
                         <li>
 							<a class="menu-item" href="/board/list" style=" border-radius: 0px;">자유 게시판</a>
 						</li>
@@ -283,7 +293,7 @@
 								>[[${loginUser.member.nickname}]]님</a>
 							<div class="menu-container" style="width: max-content; text-align: center;" >
 								<a class="menu-item" href="/member/mypage" style=" border-radius: 0px;">마이페이지</a>
-								<a class="menu-item" href="/complain/list" style=" border-radius: 0px;">고객문의</a>
+								<!--<a class="menu-item" href="/complain/list" style=" border-radius: 0px;">고객문의</a>-->
 								<a class="menu-item" href="/member/logout" style=" border-radius: 0px;">로그아웃</a>
 							</div>
 						</li>
@@ -316,25 +326,25 @@
 			<br>
 
 			<div class="col-lg-12">
-				<div class="row" >
+				<div class="row">
 
 					<div class="col-lg-3">
-						<div class="row" id="box" style="margin:auto;">
-							
-								<div style="height: 150px; margin:auto;" class="row">
-									
-									<div style="height: 130px; ">
-										<img src="/assets/images/banner2.jpg">	</div>	
-										<div style="text-align:center; margin:auto; ">
-										<h6>[[${loginUser.member.nickname}]]님</h6>
-										</div>
-								
+						<div class="row" id="box">
+
+							<div style=" margin:auto;" class="row">
+
+								<div>
+									<img  th:src="@{'/uploaded/img/' + ${loginUser.member.attached_filename}}"
+									id="img" style="border-radius: 50%; height: 150px; width: 150px;">
+								</div>
+								<div style="text-align:center; margin:auto; margin-top: 10px;">
+									<h6>[[${loginUser.member.nickname}]]님</h6>
+								</div>
 							</div>
-						
 						</div>
 
 
-<br>
+						<br>
 
 						<div class="row">
 							<div class="col-lg-12">
@@ -345,7 +355,7 @@
 						</div>
 
 
-						
+
 
 						<div class="row">
 							<div class="col-lg-12">
@@ -372,7 +382,7 @@
 							<div class="col-lg-12">
 								<!--	<form id="search-form" name="gs" method="submit" role="search" action="#"
 															style="border-radius: 20px;">-->
-						
+
 								<div class="col-lg-12">
 									<div class="row">
 										<div class="col-lg-5">
@@ -380,154 +390,167 @@
 												<h4 style="padding: 10px; text-align: center;">프로필사진 등록</h4>
 											</div>
 										</div>
+										
 										<div class="col-lg-7">
-											<div class="row">
-													<input type="file">
+											
+												<div class="border-button">
+												
+												<form action="/uploadProfilePicture" method="post" enctype="multipart/form-data">
+													<input style="width: 60%;" type="file" name="file" accept="image/*" onchange="setImg(this);">
+												<div class="border-button" style="display: inline-block;">
+												<button type="submit" value="프로필 사진 등록">프로필 사진 등록</button>
+												</div>
+												</form>
+												
+												</div>
+											
+											</div>
+											</div>
 											</div>
 										</div>
 									</div>
-								</div>
-							</div>
-						
-						</div>
-						<br><br>
+							
 
+						<form action="/member/mypage" method="post" th:object="${mypage}">
+							<input type="hidden" th:field="*{member_id}">
+							<div class="row">
 
-						<div class="row">
-
-							<div class="col-lg-12">
-								<div class="row">
-									<div class="col-lg-5">
-										<div style="padding-right: 0%;" class="item2">
-											<h4 style="padding: 10px; text-align: center;">비밀번호 변경</h4>
+								<div class="col-lg-12">
+									<div class="row">
+										<div class="col-lg-5">
+											<div style="padding-right: 0%;" class="item2">
+												<h4 style="padding: 10px; text-align: center;">비밀번호 변경</h4>
+											</div>
 										</div>
-									</div>
-									<div class="col-lg-7">
-										<input type="button" value="확인">
 										
 									</div>
 								</div>
 							</div>
-						</div>
-						
-						<div class="row" style="text-align: center;">
-						<div class="col-lg-12">
-							<div class="item">
-						<div class="row">
-						
-							<div class="col-lg-6" id="container">
-								<input style="width:80%; text-align: center;" type="password"
-									placeholder="새로운 비밀번호를 입력해주세요">
+
+							<div class="row" style="text-align: center;">
+								<div class="col-lg-12">
+									<div class="item">
+										<div class="row">
+
+											<div class="col-lg-6" id="container">
+												<input style="width:80%; text-align: center;" th:field="*{password}"
+													type="password" placeholder="새로운 비밀번호를 입력해주세요">
+											</div>
+											
+											<div class="col-lg-6" id="container">
+												<input style="width:80%; text-align: center;" 
+													type="password" placeholder="한번 더 입력해주세요">
+											</div>
+
+										</div>
+									</div>
+								</div>
 							</div>
 
-							<div class="col-lg-6" id="container">
-								<ruby style="color: black; "></ruby>
-								<input style="width: 80%; text-align: center; display: block;"  type="password"
-									placeholder="한 번 더 입력해주세요">
-						</div>
-						</div>
-								</div><br>
+
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="col-lg-5">
+										<div style="padding-right: 0%;" class="item2">
+											<h4 style="padding: 10px; text-align: center;">닉네임 변경</h4>
+										</div>
+									</div>
+
+									<div class="item">
+										<div class="row">
+											<div class="col-lg-6" style="margin: auto;">
+												<div style="text-align: center; padding: 10px; margin: auto;"
+													class="item">
+													<ruby style="color: black; padding: 10px; text-align: center;">현재
+														닉네임: [[${loginUser.member.nickname}]]</ruby>
+												</div>
+											</div>
+
+											<div class="col-lg-6" id="container">
+												<input style="width:80%; text-align: center;" th:field="*{nickname}"
+													type="text" placeholder="변경할 닉네임">
+											</div>
+										</div>
+									</div>
+								</div>
+
+
+
+
+								<div class="col-lg-12">
+									<div class="col-lg-5">
+										<div style="padding-right: 0%;" class="item2">
+											<h4 style="padding: 10px; text-align: center;">전화번호 변경</h4>
+										</div>
+									</div>
+									<div class="item">
+										<div class="row">
+											<div class="col-lg-6" style="margin:auto;">
+												<div style="text-align: center; padding: 10px; margin:auto"
+													class="item">
+													<ruby style="color: black; padding: 10px; text-align: center;">현재
+														전화번호 : [[${loginUser.member.phone}]]</ruby>
+												</div>
+											</div>
+											<div class="col-lg-6" id="container">
+												<input style="width: 80%; text-align: center;" th:field="*{phone}"
+													type="text" placeholder="변경할 전화번호">
+											</div>
+										</div>
+									</div>
+								</div>
+
+
+
+
+								<div class="col-lg-12">
+									<div class="col-lg-5">
+										<div style="padding-right: 0%;" class="item2">
+											<h4 style="padding: 10px; text-align: center;">이메일 변경</h4>
+										</div>
+									</div>
+									<div class="item">
+										<div class="row">
+											<div class="col-lg-6" style="margin: auto;">
+												<div style="text-align: center; padding: 10px; margin: auto;"
+													class="item">
+													<ruby style="color: black; padding: 10px; text-align: center;">현재
+														이메일 : [[${loginUser.member.email}]]</ruby>
+												</div>
+											</div>
+											<div class="col-lg-6" id="container">
+												<input style="width: 80%; text-align: center;" th:field="*{email}"
+													type="text" placeholder="변경할 이메일">
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>	
-						</div>
-
-
-						<div class="row">
-							<div class="col-lg-12">
-								<div class="col-lg-5">
-									<div style="padding-right: 0%;" class="item2">
-										<h4 style="padding: 10px; text-align: center;">닉네임 변경</h4>
-									</div>
-								</div>
-
-							<div class="item">
-								<div class="row">
-									<div class="col-lg-6" style="margin: auto;">
-										<div style="text-align: center; padding: 10px; margin: auto;" class="item">
-											<ruby style="color: black; padding: 10px; text-align: center;">현재 닉네임:OO</ruby>
-										</div>
-									</div>
-
-									<div class="col-lg-6" id="container">
-										<input style="width:80%; text-align: center;" type="text" placeholder="변경할 닉네임">
-									</div>
-								</div>
-							</div><br><br>
-						</div>		
-						
 							
-						
-						
-							<div class="col-lg-12">
-								<div class="col-lg-5">
-									<div style="padding-right: 0%;" class="item2">
-										<h4 style="padding: 10px; text-align: center;">전화번호 변경</h4>
-									</div>
-								</div>
-							<div class="item">
-								<div class="row">
-									<div class="col-lg-6" style="margin:auto;">
-										<div style="text-align: center; padding: 10px; margin:auto" class="item">
-											<ruby style="color: black; padding: 10px; text-align: center;">현재 전화번호 :OO</ruby>
-										</div>
-									</div>
-									<div class="col-lg-6" id="container">
-										<input style="width: 80%; text-align: center;" type="text"	placeholder="변경할 전화번호">
-									</div>
-								</div>
-							 </div>	<br><br>
-							</div>
-						
-
-
-						
-							<div class="col-lg-12">
-								<div class="col-lg-5">
-									<div style="padding-right: 0%;" class="item2">
-										<h4 style="padding: 10px; text-align: center;">이메일 변경</h4>
-									</div>
-								</div>
-								<div class="item">
-								<div class="row">
-									<div class="col-lg-6" style="margin: auto;" >
-										<div style="text-align: center; padding: 10px; margin: auto;" class="item">
-											<ruby style="color: black; padding: 10px; text-align: center;">현재 이메일 :
-												OO</ruby>
-										</div>
-									</div>
-									<div class="col-lg-6" id="container">
-										<input style="width: 80%; text-align: center;" type="text"
-											placeholder="변경할 이메일">
-									</div>
-								</div>
-							</div>
-							</div>
-						</div>
-				</div>
-							<br><br><br><br><br>
-
-						
-						</form>
+	<div style="display: flex; justify-content: center; align-items: center; height: 10vh; ">
+	
+	<div class="border-button">
+		<input type="submit" style="width: 130px; height: 50px;" value="수정하기"></input>
+	</div>
+	
+	
+	
+	</div>
+	</form>
 					</div>
+					<br><br><br><br><br>
+
+
 				</div>
 			</div>
 		</div>
-
-
-	<br>
-	<div style="display: flex; justify-content: center; align-items: center; height: 10vh; ">
-		<form>
-			<fieldset>
-				<div class="main-button">
-					<input type="submit" value="수정하기" style="width: 130px; height: 50px;">
-				</div>
-			</fieldset>
-		</form>
 	</div>
+
+
+
 	<br><br>
 </div>
-</div>
-</div>
-</div>
+
 
 
 
@@ -561,7 +584,17 @@
 		menu.style.display = 'none';
 	}
 
-
+	function setImg(input) {
+          if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+              document.getElementById('img').src = e.target.result;
+            };
+            reader.readAsDataURL(input.files[0]);
+          } else {
+            document.getElementById('img').src = "";
+          }
+        }
 
 
 

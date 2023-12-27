@@ -6,8 +6,10 @@ import com.example.board.model.board.AttachedFile;
 import com.example.board.model.board.Board;
 import com.example.board.model.board.BoardUpdateForm;
 import com.example.board.model.board.BoardWriteForm;
+import com.example.board.model.board.Comments;
 import com.example.board.model.member.Member;
 import com.example.board.repository.BoardMapper;
+import com.example.board.repository.CommentsMapper;
 import com.example.board.service.BoardService;
 import com.example.board.util.FileService;
 import com.example.board.util.PageNavigator;
@@ -45,6 +47,7 @@ public class BoardController {
     // 데이터베이스 접근을 위한 BoardMapper 필드 선언
     private final BoardMapper boardMapper;
     private final FileService fileService;
+    private final CommentsMapper commentsMapper;
     private final BoardService boardService;
     @Value("${file.upload.path}")
     private String uploadPath;
@@ -144,7 +147,18 @@ public class BoardController {
             return "redirect:/board/list";
         }
         
+        
+        
+        
         AttachedFile attachedFile = boardService.findFileByBoardId(board_id);
+        List<Comments> comments = commentsMapper.findComments(board_id);
+        Long com_number = (long)comments.size();
+        
+        board.setB_com_count(com_number);
+        
+        boardService.updateBoard(board, false, null);
+        model.addAttribute("com_number", com_number);
+        
 //        log.info("첨부파일 : {}", attachedFile);
         model.addAttribute("file", attachedFile);
         

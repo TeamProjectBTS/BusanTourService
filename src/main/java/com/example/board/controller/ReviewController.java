@@ -8,7 +8,9 @@ import com.example.board.model.review.ReviewUpdateForm;
 import com.example.board.model.review.ReviewWriteForm;
 import com.example.board.model.tour_spot.Tour_spotResponse.Body.Items.Item;
 import com.example.board.repository.ReviewMapper;
+import com.example.board.service.R_ApiService;
 import com.example.board.service.ReviewService;
+import com.example.board.service.S_ApiService;
 import com.example.board.service.T_ApiService;
 import com.example.board.util.FileService;
 import com.example.board.util.PageNavigator;
@@ -47,6 +49,8 @@ public class ReviewController {
     private final FileService fileService;
     private final ReviewService reviewService;
     private final T_ApiService t_ApiService;
+    private final R_ApiService r_ApiService;
+    private final S_ApiService s_ApiService;
 
   	
     @Value("${file.upload.path}")
@@ -68,8 +72,39 @@ public class ReviewController {
     		@AuthenticationPrincipal UserInfo userInfo) {
         ReviewWriteForm writeForm = new ReviewWriteForm();
         writeForm.setUC_SEQ(UC_SEQ);
+        boolean flag = true;
+        
+        while(flag) {
+	        for(Item item : t_ApiService.getItems()) {
+	        	if(item.getUC_SEQ().equals(UC_SEQ)) {
+	        		writeForm.setSort("tour_spot");
+	        		model.addAttribute(writeForm);
+	        		flag = false;
+	        	}
+	        }
+	        
+	        for(com.example.board.model.restaurant.RestaurantResponse.Body.Items.Item item : r_ApiService.getItems()) {
+	        	if(item.getUC_SEQ().equals(UC_SEQ)) {
+	        		writeForm.setSort("restaurant");
+	        		model.addAttribute(writeForm);
+	        		flag = false;
+	        	}
+	        }
+	        
+	        for(com.example.board.model.shopping.ShoppingResponse.Body.Items.Item item : s_ApiService.getItems()) {
+	        	if(item.getUC_SEQ().equals(UC_SEQ)) {
+	        		writeForm.setSort("shopping");
+	        		model.addAttribute(writeForm);
+	        		flag = false;
+	        	}
+	        }
+	        
+	        break;
+        }
+        
         model.addAttribute("writeForm", writeForm);
         model.addAttribute("loginUser", userInfo);
+        
         return "review/write";
     }
 
@@ -104,9 +139,26 @@ public class ReviewController {
         
       	List<Item> items = t_ApiService.getItems();
       	
-      	for(Item item : items) {
-      		if(item.getUC_SEQ().equals(UC_SEQ)) {
-      			model.addAttribute("item", item);
+      	if(review.getSort().equals("tour_spot")) {
+	      	for(Item item : items) {
+	      		if(item.getUC_SEQ().equals(UC_SEQ)) {
+	      			model.addAttribute("item", item);
+	      			break;
+	      		}
+	      	}
+      	} else if(review.getSort().equals("restaurant")) {
+      		for(com.example.board.model.restaurant.RestaurantResponse.Body.Items.Item item : r_ApiService.getItems()) {
+      			if(item.getUC_SEQ().equals(UC_SEQ)) {
+      				model.addAttribute("item", item);
+      				break;
+      			}
+      		}
+      	} else if(review.getSort().equals("shopping")) {
+      		for(com.example.board.model.shopping.ShoppingResponse.Body.Items.Item item : s_ApiService.getItems()) {
+      			if(item.getUC_SEQ().equals(UC_SEQ)) {
+      				model.addAttribute("item", item);
+      				break;
+      			}
       		}
       	}
       	
@@ -128,8 +180,17 @@ public class ReviewController {
         model.addAttribute("searchTextReview", searchTextReview);
       	model.addAttribute("loginUser",userInfo);
         
-        // review/read 로 리다이렉트한다.
-        return "/tour_spot/read?UC_SEQ=" + review.getUC_SEQ();
+        if(review.getSort().equals("tour_spot")) {
+        	return "redirect:/tour_spot/read?UC_SEQ=" + review.getUC_SEQ();
+        } else if(review.getSort().equals("restaurant")) {
+        	return "redirect:/restaurant/read?UC_SEQ=" + review.getUC_SEQ();
+        } else if (review.getSort().equals("shopping")) {
+        	return "redirect:/shopping/read?UC_SEQ=" + review.getUC_SEQ();
+        } else {
+        	return "redirect:/";
+        }
+        
+        
     }
 
     // 게시글 수정 페이지 이동

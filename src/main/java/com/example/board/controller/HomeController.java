@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.board.config.UserInfo;
-import com.example.board.model.member.MemberJoinForm;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -28,6 +27,15 @@ public class HomeController {
 		model.addAttribute("adminUser", userInfo);
 		
 		return "/admin/index";
+	}
+	
+	@GetMapping("{error}") 
+	public String error(@AuthenticationPrincipal UserInfo userInfo, Model model) {
+		
+		
+		model.addAttribute("loginUser",userInfo);
+		
+		return "error";
 	}
 	
 }

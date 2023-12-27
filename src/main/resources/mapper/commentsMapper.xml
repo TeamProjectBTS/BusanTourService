@@ -5,22 +5,22 @@
 <mapper namespace="com.example.board.repository.CommentsMapper">
   <!-- 리플 등록 -->
   <insert id="saveComment">
-  <selectKey keyProperty="comment_id" resultType="long" order="BEFORE">
-  	select seq_busanguide.nextval from dual
-  </selectKey>
-  	insert into comments(
+	  <selectKey keyProperty="comment_id" resultType="long" order="BEFORE">
+	  	select seq_busanguide.nextval from dual
+	  </selectKey>
+	  insert into comments(
   		comment_id,
   		board_id,
   		member_id,
   		nickname,
   		content
-  	) values (
-  		#{comment_id},
-  		#{board_id},
-  		#{member_id},
-  		#{nickname},
-  		#{content}
-  	)
+	  ) values (
+		#{comment_id},
+ 		#{board_id},
+ 		#{member_id},
+ 		#{nickname},
+ 		#{content}
+	  )
   </insert>
   
   <!-- 리플 읽기 -->

@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.board.repository.LikeMapper">
+
+	<!-- 각 게시판 좋아요 등록 -->
+  <insert id="saveBoardLike">
+  	<selectKey keyProperty="like_id" resultType="long" order="BEFORE">
+  		select seq_busanguide.nextval from dual
+  	</selectKey>
+	INSERT INTO like_ (
+	  like_id,
+	  member_id,
+	  board_id
+	) VALUES (
+	  #{like_id},
+	  #{member_id},
+	  #{board_id}
+	)
+  </insert>
+  
+  <insert id="saveReviewLike">
+  	<selectKey keyProperty="like_id" resultType="long" order="BEFORE">
+  		select seq_busanguide.nextval from dual
+  	</selectKey>
+	INSERT INTO like_ (
+	  like_id,
+	  member_id,
+	  review_id
+	) VALUES (
+	  #{like_id},
+	  #{member_id},
+	  #{review_id}
+	)
+  </insert>
+  
+  <insert id="saveTour_spotLike">
+  	<selectKey keyProperty="like_id" resultType="long" order="BEFORE">
+  		select seq_busanguide.nextval from dual
+  	</selectKey>
+	INSERT INTO like_ (
+	  like_id,
+	  member_id,
+	  t_UC_SEQ
+	) VALUES (
+	  #{like_id},
+	  #{member_id},
+	  #{t_UC_SEQ}
+	)
+  </insert>
+  
+  <insert id="saveRestaurantLike">
+  	<selectKey keyProperty="like_id" resultType="long" order="BEFORE">
+  		select seq_busanguide.nextval from dual
+  	</selectKey>
+	INSERT INTO like_ (
+	  like_id,
+	  member_id,
+	  r_UC_SEQ
+	) VALUES (
+	  #{like_id},
+	  #{member_id},
+	  #{r_UC_SEQ}
+	)
+  </insert>
+  
+  <insert id="saveShoppingLike">
+  	<selectKey keyProperty="like_id" resultType="long" order="BEFORE">
+  		select seq_busanguide.nextval from dual
+  	</selectKey>
+	INSERT INTO like_ (
+	  like_id,
+	  member_id,
+	  s_UC_SEQ
+	) VALUES (
+	  #{like_id},
+	  #{member_id},
+	  #{s_UC_SEQ}
+	)
+  </insert>
+  
+  <!--  -->
+  
+  <select id="findMemberByLikeId" resultType="member">
+    select * from like_ where like_id = #{like_id}
+  </select>
+  
+  <select id="findMembersByBoardId" resultType="member">
+    select * from like_ where board_id = #{board_id}
+  </select>
+  
+  <!-- 좋아요한 각 아이디 출력 -->
+  <select id="getLikedBoardIdsByMemberId" resultType="long">
+  	select board_id from like_ where member_id = #{member_id}
+  </select>
+  
+  <select id="getLikedReivewIdsByMemberId" resultType="long">
+  	select review_id from like_ where member_id = #{member_id}
+  </select>
+  
+  <select id="getLikedt_UC_SEQByMemberId" resultType="long">
+  	select t_UC_SEQ from like_ where member_id = #{member_id}
+  </select>
+  
+  <select id="getLikedr_UC_SEQByMemberId" resultType="long">
+  	select t_UC_SEQ from like_ where member_id = #{member_id}
+  </select>
+  
+  <select id="getLikeds_UC_SEQByMemberId" resultType="long">
+  	select s_UC_SEQ from like_ where member_id = #{member_id}
+  </select>
+  
+  
+  
+  <!-- 각 좋아요 갯수 출력 -->
+  <select id="getLikeNumberByBoardId" resultType="int">
+  	select count(*) from like_ where board_id = #{board_id}
+  </select>
+  
+  <select id="getLikeNumberByReviewId" resultType="int">
+  	select count(*) from like_ where review_id = #{review_id}
+  </select>
+  
+  <select id="getLikeNumberByt_UC_SEQ" resultType="int">
+  	select count(*) from like_ where t_UC_SEQ = #{t_UC_SEQ}
+  </select>
+  
+  <select id="getLikeNumberByr_UC_SEQ" resultType="int">
+  	select count(*) from like_ where r_UC_SEQ = #{r_UC_SEQ}
+  </select>
+  
+  <select id="getLikeNumberBys_UC_SEQ" resultType="int">
+  	select count(*) from like_ where s_UC_SEQ = #{s_UC_SEQ}
+  </select>
+  
+   <!-- 각 게시판 좋아요 삭제 -->
+  <delete id="deleteLikeFromBoard">
+  	delete from like_ 
+  	where 
+  		board_id = #{board_id} and member_id = #{member_id}
+  </delete>
+  
+  <delete id="deleteLikeFromReview">
+  	delete from like_ 
+  	where 
+  		review_id = #{review_id} and member_id = #{member_id}
+  </delete>
+  
+  <delete id="deleteLikeFromTour_spot">
+  	delete from like_ 
+  	where 
+  		t_UC_SEQ = #{t_UC_SEQ} and member_id = #{member_id}
+  </delete>
+  
+  <delete id="deleteLikeFromRestaurant">
+  	delete from like_ 
+  	where 
+  		r_UC_SEQ = #{r_UC_SEQ} and member_id = #{member_id}
+  </delete>
+  
+  <delete id="deleteLikeFromShopping">
+  	delete from like_ 
+  	where 
+  		s_UC_SEQ = #{s_UC_SEQ} and member_id = #{member_id}
+  </delete>
+  
+  <select id="getLikeByBoardAndMemberId" resultType="like">
+  	select * from like_
+  	where
+  		board_id = #{board_id} and member_id = #{member_id}
+  </select>
+  
+  <select id="getLikeByReviewAndMemberId" resultType="like">
+  	select * from like_
+  	where
+  		review_id = #{review_id} and member_id = #{member_id}
+  </select>
+  
+  <select id="getLikeByt_UC_SEQAndMemberId" resultType="like">
+  	select * from like_
+  	where
+  		t_UC_SEQ = #{t_UC_SEQ} and member_id = #{member_id}
+  </select>
+  
+  <select id="getLikeByr_UC_SEQAndMemberId" resultType="like">
+  	select * from like_
+  	where
+  		r_UC_SEQ = #{r_UC_SEQ} and member_id = #{member_id}
+  </select>
+  
+  <select id="getLikeBys_UC_SEQAndMemberId" resultType="like">
+  	select * from like_
+  	where
+  		s_UC_SEQ = #{s_UC_SEQ} and member_id = #{member_id}
+  </select>
+  
+  <delete id="deleteBoardLike">
+  	delete from like_
+  	where board_id = #{board_id} and member_id = #{member_id}
+  </delete>
+  
+  <delete id="deleteReviewLike">
+  	delete from like_
+  	where review_id = #{review_id} and member_id = #{member_id}
+  </delete>
+  
+  <delete id="deleteRestaurantLike">
+  	delete from like_
+  	where board_id = #{board_id} and member_id = #{member_id}
+  </delete>
+  
+  <delete id="deleteTour_spotLike">
+  	delete from like_
+  	where board_id = #{board_id} and member_id = #{member_id}
+  </delete>
+  
+  <delete id="deleteShoppingLike">
+  	delete from like_
+  	where board_id = #{board_id} and member_id = #{member_id}
+  </delete>
+  
+  
+  
+  
+  
+</mapper>
+
+
+
+
+
+

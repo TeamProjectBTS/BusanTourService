@@ -35,18 +35,22 @@ import lombok.Data;
 public class MemberJoinForm {
 	@Size(min = 6, max = 20, message = "아이디는 6~20사이로 입력해주세요.")
 	private String member_id;
+	
 	@Size(min = 6, max = 20 , message = "비밀번호는 6~20사이로 입력해주세요.")
 	private String password;
 	
-	@Pattern(regexp = "^[a-zA-Z0-9]{4,20}$",  message="닉네임은 영문 및 숫자 4~20자로만 가능합니다.")
+	@Pattern(regexp = "^[ㄱ-ㅎ가-힣]{1,6}$", message="닉네임은 한글 6자까지 가능합니다.")
 	@NotEmpty(message = "닉네임을 입력해주세요")
 	private String nickname;
+	
 	@NotEmpty(message = "이름을 입력해주세요")
-	@Pattern(regexp = "^[가-힣]{2,5}$",message="이름은 특수문자를 제외한 한글 2~5자리여야 합니다.")
+	@Pattern(regexp = "^[가-힣]{2,5}$", message="이름은 특수문자를 제외한 한글 2~5자리여야 합니다.")
 	private String name;
+	
 	@NotEmpty(message = "이메일을 입력해주세요")
 	@Email
 	private String email;
+	
 	@NotEmpty(message = "전화번호를 입력해주세요")
 	@Pattern(regexp = "^01(?:0|1|[6-9])(?:\\d{3}|\\d{4})\\d{4}$", message="전화번호를 정확히 입력해주세요")
 	private String phone;
