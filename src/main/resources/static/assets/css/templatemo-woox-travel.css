@@ -20,6 +20,8 @@ Table of contents
 10. main-slider
 11 - silder container
 12 - board, search
+13 - main box 
+14- banner-box-write
 --------------------------------------------- */
 /* 
 ---------------------------------------------
@@ -32,6 +34,33 @@ font & reset css
 reset
 --------------------------------------------- 
 */
+.main-box{
+	margin: auto;
+		background-color: rgb(245, 245, 245);
+		border-radius: 25px;
+		margin-bottom: 20px;
+		width: 800px;
+		height: 80px;
+		padding-right: 30px;
+		padding-left: 30px;
+		border-bottom: 2px solid #333;
+}
+
+.main-box-write{
+	text-align: center; 
+	color: rgb(0, 128, 255);
+}
+
+.main-box img{
+	width: 50px;
+  	height: 50px;
+ 	margin-right: 20px;
+}
+
+.banner-box-write{
+	font-size: 3px;
+}
+
 
 
 .slider-container {
@@ -1030,7 +1059,7 @@ Visit Country Style
 */
 
 .visit-country {
-  margin-top: 100px;
+  margin-top: 0px;
 }
 
 .visit-country .side-bar-map {
@@ -1382,7 +1411,7 @@ About Page Style
 
 .weekly-offers {
   padding-bottom: 120px;
-  margin-top: 120px;
+  margin-top: 10px;
   border-bottom: 1px solid #eee;
 }
 
