@@ -92,15 +92,11 @@
   
   <!-- 좋아요한 각 아이디 출력 -->
   <select id="getLikedBoardIdsByMemberId" resultType="long">
-  	select board_id from like_ 
-  	where member_id = #{member_id} and board_id is not null 
-  	order by board_id desc
+  	select board_id from like_ where member_id = #{member_id}
   </select>
   
-  <select id="getLikedReviewIdsByMemberId" resultType="long">
-  	select review_id from like_ 
-  	where member_id = #{member_id} and review_id is not null 
-  	order by review_id desc
+  <select id="getLikedReivewIdsByMemberId" resultType="long">
+  	select review_id from like_ where member_id = #{member_id}
   </select>
   
   <select id="getLikedt_UC_SEQByMemberId" resultType="long">
@@ -108,7 +104,7 @@
   </select>
   
   <select id="getLikedr_UC_SEQByMemberId" resultType="long">
-  	select r_UC_SEQ from like_ where member_id = #{member_id}
+  	select t_UC_SEQ from like_ where member_id = #{member_id}
   </select>
   
   <select id="getLikeds_UC_SEQByMemberId" resultType="long">

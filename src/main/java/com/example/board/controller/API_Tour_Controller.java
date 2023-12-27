@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.board.config.UserInfo;
 import com.example.board.model.review.Review;
-import com.example.board.model.review.ReviewAttachedFile;
 import com.example.board.model.tour_spot.Tour_spotResponse.Body.Items.Item;
 import com.example.board.service.ReviewService;
 import com.example.board.service.T_ApiService;
@@ -104,16 +103,13 @@ public class API_Tour_Controller {
 
     PageNavigator navi = new PageNavigator(countPerPage, pagePerGroup, page, total);
 
-    List<List<ReviewAttachedFile>> eachFileLists = new ArrayList<>();
+    
     // 데이터베이스에 저장된 모든 Board 객체를 리스트 형태로 받는다.
     List<Review> reviews = new ArrayList<>(); 
     for(Review review : reviewService.findReviews(searchTextReview, navi.getStartRecord(), navi.getCountPerPage())) {
     	if(review.getUC_SEQ().equals(UC_SEQ)) {
     		reviews.add(review);
 //    		log.info("review : {}", review);
-    		List<ReviewAttachedFile> findFilesByReviewId = reviewService.findFilesByReviewId(review.getReview_id());
-    		eachFileLists.add(findFilesByReviewId);
-    		log.info("findFilesByReviewId : {}",findFilesByReviewId);
     	}
     }
     
@@ -123,7 +119,6 @@ public class API_Tour_Controller {
   	model.addAttribute("navi", navi);
     model.addAttribute("searchTextReview", searchTextReview);
   	model.addAttribute("loginUser",userInfo);
-  	model.addAttribute("eachFileLists", eachFileLists);
   	return "tour_spot/read";
   
   
