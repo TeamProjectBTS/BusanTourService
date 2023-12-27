@@ -328,7 +328,7 @@
 
 	<div class="amazing-deals">
 		<div style="margin: auto; width: 70%;" class="container">
-			<h1>내가 쓴 게시글 목록</h1>
+			<h1>내가 좋아한 리뷰 목록</h1>
 			<br>
 
 			<div class="col-lg-12">
@@ -355,13 +355,19 @@
 							</div>
 						</div>
 
+
+
+
 						<div class="row">
 							<div class="col-lg-12">
 								<div class="main-button">
-									<a style="width: 100%; text-align: center;" href="/member/mypage">나의 정보 수정</a>
+									<a style="width: 100%; text-align: center;" href="/member/mypage">나의 정보수정</a>
 								</div>
 							</div>
 						</div>
+
+
+			
 
 						<div class="row">
 							<div class="col-lg-12">
@@ -387,10 +393,10 @@
 						<div class="col-lg-12">
 						<div class="row" style="display: inline;">
 							<div class="col-lg-6" style="display: inline-flex; justify-content: center; align-items: center;">
-								<a class="category" href="/member/myboard" style=" border-radius: 20px; width: 70%; text-align: center;">내가 쓴 게시글</a>
+								<a class="category" href="/member/myLikedBoard" style=" border-radius: 20px; width: 70%; text-align: center;">내가 좋아한 게시글</a>
 							</div>
 							<div class="col-lg-6" style="display: inline-flex; justify-content: center; align-items: center;">
-								<a class="category" href="/member/myreview" style=" border-radius: 20px; width: 70%; text-align: center;">내가 쓴 리뷰</a>
+								<a class="category" href="/member/myLikedReview" style=" border-radius: 20px; width: 70%; text-align: center;">내가 좋아한 리뷰</a>
 							</div>
 							
 						</div>
@@ -401,7 +407,7 @@
 							<div class="col-lg-12">
 								<div class="col-lg-5">
 									<div class="item3" style="display: block;">
-										<h4 style="padding: 10px; text-align: center;">내가 쓴 게시글</h4>
+										<h4 style="padding: 10px; text-align: center;">내가 좋아한 리뷰</h4>
 								</div>
 								</div>
 
@@ -430,33 +436,85 @@
 							</div>
 							</div>
 							
-							<div class="col-lg-12" th:each="board : ${boards}" style="display: block;">
+							<div class="col-lg-12" th:each="review : ${reviews}" style="display: block;">
 							<div class="item3" >
-								<a th:href="@{/board/read(board_id=${board.board_id})}">
+								<th:block th:if="${review.sort == 'tour_spot'}">
+								<a th:href="@{/tour_spot/read(UC_SEQ=${review.UC_SEQ})}">
 								<div class="row" style="--bs-gutter-y: 1.5rem; padding-top: 10px; padding-bottom: 10px;">
 								
 									<div class="col-lg-1 asd" id="container" style="margin: auto;">
-										<h6 style="text-align: center; margin-top: 10px;" th:text="${board.board_id}">번호</h6>
+										<h6 style="text-align: center; margin-top: 10px;" th:text="${review.review_id}">번호</h6>
 									</div>
 
 									<div class="col-lg-5 asd" id="container" style="margin: auto; display: block;">
-										<h6  style="text-align: left; margin-top: 10px; word-wrap: break-word; display: inline;" th:text="${board.b_title}">제목</h6>
-										&nbsp;&nbsp;<h6 class="fa fa-eye" style="text-align: left; margin-top: 10px; display: inline-block;" th:text="|  (${board.b_view_count})|"></h6>
-										&nbsp;&nbsp;<h6 class="fa fa-heart" style="text-align: left; margin-top: 10px; display: inline-block;" th:text="|  (${board.b_like_count})|"></h6>
-										&nbsp;&nbsp;<h6 class="fa fa-reply" style="text-align: left; margin-top: 10px; display: inline-block;" th:text="|  (${board.b_com_count})|"></h6>
+										<h6  style="text-align: left; margin-top: 10px; word-wrap: break-word; display: inline;" th:text="${review.rv_title}">제목</h6>
+										<!--&nbsp;&nbsp;<h6 class="fa fa-eye" style="text-align: left; margin-top: 10px; display: inline-block;" th:text="|  (${review.rv_view_count})|"></h6>-->
+										&nbsp;&nbsp;<h6 class="fa fa-heart" style="text-align: left; margin-top: 10px; display: inline-block;" th:text="|  (${review.rv_like_count})|"></h6>
+										<!--&nbsp;&nbsp;<h6 class="fa fa-reply" style="text-align: left; margin-top: 10px; display: inline-block;" th:text="|  (${review.rv_com_count})|"></h6>-->
 									</div>
 									
 									<div class="col-lg-3 asd" id="container" style="margin: auto;">
-										<h6  style="text-align: center; margin-top: 10px; display: inline-block;" th:text="${board.nickname}">닉네임</h6>
+										<h6  style="text-align: center; margin-top: 10px; display: inline-block;" th:text="${review.nickname}">닉네임</h6>
 									</div>
 									
 									<div class="col-lg-3 asd" id="container" style="margin: auto;  border-right: 0px;">
-										<h6 style="text-align: center; margin-top: 10px; display: inline-block;" th:text="|${#temporals.format(board.wr_date, 'yyyy-MM-dd HH:mm:s')}|">등록일</h6>
+										<h6 style="text-align: center; margin-top: 10px; display: inline-block;" th:text="|${#temporals.format(review.wr_date, 'yyyy-MM-dd HH:mm:s')}|">등록일</h6>
 									</div>
-									
-									
 								</div>
 								</a>
+								</th:block>
+								
+								<th:block th:if="${review.sort == 'restaurant'}">
+								<a th:href="@{/restaurant/read(UC_SEQ=${review.UC_SEQ})}">
+								<div class="row" style="--bs-gutter-y: 1.5rem; padding-top: 10px; padding-bottom: 10px;">
+								
+									<div class="col-lg-1 asd" id="container" style="margin: auto;">
+										<h6 style="text-align: center; margin-top: 10px;" th:text="${review.review_id}">번호</h6>
+									</div>
+
+									<div class="col-lg-5 asd" id="container" style="margin: auto; display: block;">
+										<h6  style="text-align: left; margin-top: 10px; word-wrap: break-word; display: inline;" th:text="${review.rv_title}">제목</h6>
+										<!--&nbsp;&nbsp;<h6 class="fa fa-eye" style="text-align: left; margin-top: 10px; display: inline-block;" th:text="|  (${review.rv_view_count})|"></h6>-->
+										&nbsp;&nbsp;<h6 class="fa fa-heart" style="text-align: left; margin-top: 10px; display: inline-block;" th:text="|  (${review.rv_like_count})|"></h6>
+										<!--&nbsp;&nbsp;<h6 class="fa fa-reply" style="text-align: left; margin-top: 10px; display: inline-block;" th:text="|  (${review.rv_com_count})|"></h6>-->
+									</div>
+									
+									<div class="col-lg-3 asd" id="container" style="margin: auto;">
+										<h6  style="text-align: center; margin-top: 10px; display: inline-block;" th:text="${review.nickname}">닉네임</h6>
+									</div>
+									
+									<div class="col-lg-3 asd" id="container" style="margin: auto;  border-right: 0px;">
+										<h6 style="text-align: center; margin-top: 10px; display: inline-block;" th:text="|${#temporals.format(review.wr_date, 'yyyy-MM-dd HH:mm:s')}|">등록일</h6>
+									</div>
+								</div>
+								</a>
+								</th:block>
+								
+								<th:block th:if="${review.sort == 'shopping'}">
+								<a th:href="@{/shopping/read(UC_SEQ=${review.UC_SEQ})}">
+								<div class="row" style="--bs-gutter-y: 1.5rem; padding-top: 10px; padding-bottom: 10px;">
+								
+									<div class="col-lg-1 asd" id="container" style="margin: auto;">
+										<h6 style="text-align: center; margin-top: 10px;" th:text="${review.review_id}">번호</h6>
+									</div>
+
+									<div class="col-lg-5 asd" id="container" style="margin: auto; display: block;">
+										<h6  style="text-align: left; margin-top: 10px; word-wrap: break-word; display: inline;" th:text="${review.rv_title}">제목</h6>
+										<!--&nbsp;&nbsp;<h6 class="fa fa-eye" style="text-align: left; margin-top: 10px; display: inline-block;" th:text="|  (${review.rv_view_count})|"></h6>-->
+										&nbsp;&nbsp;<h6 class="fa fa-heart" style="text-align: left; margin-top: 10px; display: inline-block;" th:text="|  (${review.rv_like_count})|"></h6>
+										<!--&nbsp;&nbsp;<h6 class="fa fa-reply" style="text-align: left; margin-top: 10px; display: inline-block;" th:text="|  (${review.rv_com_count})|"></h6>-->
+									</div>
+									
+									<div class="col-lg-3 asd" id="container" style="margin: auto;">
+										<h6  style="text-align: center; margin-top: 10px; display: inline-block;" th:text="${review.nickname}">닉네임</h6>
+									</div>
+									
+									<div class="col-lg-3 asd" id="container" style="margin: auto;  border-right: 0px;">
+										<h6 style="text-align: center; margin-top: 10px; display: inline-block;" th:text="|${#temporals.format(review.wr_date, 'yyyy-MM-dd HH:mm:s')}|">등록일</h6>
+									</div>
+								</div>
+								</a>
+								</th:block>
 							</div>
 							</div>
 							
@@ -468,7 +526,7 @@
 		  <!-- 이전 그룹이 없을 경우 보여주지 않음 -->
           <li>
 			<th:block th:if="${navi.currentPage - navi.pagePerGroup > 0}">
-				<a th:href="@{/member/myboard(page=${navi.currentPage - navi.pagePerGroup}, searchText=${searchText})}">
+				<a th:href="@{/member/myLikedReview(page=${navi.currentPage - navi.pagePerGroup}, searchText=${searchText})}">
 					<i class="fa fa-arrow-left-bracket"></i>
 				</a>
     		</th:block>
@@ -477,7 +535,7 @@
 		  <!-- 이전 페이지가 없을 경우 보여주지 않음 -->
           <li>
 			<th:block th:if="${navi.currentPage - 1 > 0}">
-		    	<a th:href="@{/member/myboard(page=${navi.currentPage - 1}, searchText=${searchText})}">
+		    	<a th:href="@{/member/myLikedReview(page=${navi.currentPage - 1}, searchText=${searchText})}">
 					<i class="fa fa-arrow-left"></i>
 				</a>
 		    </th:block>
@@ -487,10 +545,10 @@
 			<th:block th:if="${navi.endPageGroup ne 0}">
 		      <th:block th:each="counter : ${#numbers.sequence(navi.startPageGroup, navi.endPageGroup)}">
 				  <li class="active" th:if="${navi.currentPage == counter}">
-		          	<a th:href="@{/member/myboard(page=${counter}, searchText=${searchText})}" th:text="${counter}"></a>&nbsp;
+		          	<a th:href="@{/member/myLikedReview(page=${counter}, searchText=${searchText})}" th:text="${counter}"></a>&nbsp;
 		          </li>
 		          <li th:unless="${navi.currentPage == counter}">
-		          	<a th:href="@{/member/myboard(page=${counter}, searchText=${searchText})}" th:text="${counter}"></a>&nbsp;
+		          	<a th:href="@{/member/myLikedReview(page=${counter}, searchText=${searchText})}" th:text="${counter}"></a>&nbsp;
 		          </li>
 		      </th:block>
 		    </th:block>
@@ -498,7 +556,7 @@
           <!-- 다음 페이지가 없을 경우 보여주지 않음 -->
 			<th:block th:if="${navi.currentPage < navi.totalPageCount}">
 				<li>
-			    	<a th:href="@{/member/myboard(page=${navi.currentPage + 1}, searchText=${searchText})}">
+			    	<a th:href="@{/member/myLikedReview(page=${navi.currentPage + 1}, searchText=${searchText})}">
 						<i class="fa fa-arrow-right"></i>
 					</a>
 				</li>
@@ -508,7 +566,7 @@
           
 			<th:block th:if="${navi.currentPage + navi.pagePerGroup <= navi.totalPageCount + 1}">
 				<li>
-			    	<a th:href="@{/member/myboard(page=${navi.currentPage + navi.pagePerGroup}, searchText=${searchText})}">
+			    	<a th:href="@{/member/myLikedReview(page=${navi.currentPage + navi.pagePerGroup}, searchText=${searchText})}">
 						<i class="fa fa-arrow-right-to-bracket"></i>
 					</a>
 				</li>
