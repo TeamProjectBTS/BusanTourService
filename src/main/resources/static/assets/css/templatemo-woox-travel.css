@@ -19,6 +19,7 @@ Table of contents
 09. footer
 10. main-slider
 11 - silder container
+12 - board, search
 --------------------------------------------- */
 /* 
 ---------------------------------------------
@@ -31,6 +32,7 @@ font & reset css
 reset
 --------------------------------------------- 
 */
+
 
 .slider-container {
             text-align: center;
