@@ -31,7 +31,7 @@ public class ReviewService {
   @Value("${file.upload.path}")
   private String uploadPath;
   
-  @Transactional
+  	@Transactional
 	public void saveReview(Review review, List<MultipartFile> files) {
   	
 			// 데이터베이스에 저장한다.
@@ -65,6 +65,11 @@ public class ReviewService {
 	public List<Review> findReviews(String searchTextReview, int startRecord, int countPerPage) {
 		RowBounds rowBounds = new RowBounds(startRecord, countPerPage);
 		return reviewMapper.findReviews(searchTextReview, rowBounds);
+	}
+	
+	public List<Review> findReviewsByMember_id(String member_id/*, int startRecord, int countPerPage*/) {
+//		RowBounds rowBounds = new RowBounds(startRecord, countPerPage);
+		return reviewMapper.findReviewsByMember_id(member_id);
 	}
 	
 //	public Board findBoard(Long board_id) {
