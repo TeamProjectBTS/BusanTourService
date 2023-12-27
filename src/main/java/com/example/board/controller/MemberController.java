@@ -35,6 +35,7 @@ import com.example.board.repository.MemberMapper;
 import com.example.board.service.BoardService;
 import com.example.board.service.MemberService;
 import com.example.board.service.ReviewService;
+import com.example.board.util.PageNavigator;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -50,6 +51,10 @@ public class MemberController {
 	private final BoardService boardService;
 	private final ReviewService reviewService;
 	private final LikeMapper likeMapper;
+	
+	// 페이징 처리를 위한 상수값
+    private final int countPerPage = 10;
+    private final int pagePerGroup = 5;
 
 	// 회원가입 페이지 이동
 	@GetMapping("join")
@@ -240,32 +245,132 @@ public class MemberController {
 	}
 
 	@GetMapping("myboard")
-	public String myboard(@AuthenticationPrincipal UserInfo userInfo, Model model) {
+	public String myboard(@AuthenticationPrincipal UserInfo userInfo, 
+			 @RequestParam(value="page", defaultValue="1") int page,
+			 @RequestParam(value="searchText", defaultValue="") String searchText,
+			 Model model) {
 		List<Board> findBoards = boardService.findBoardsByMember_id(userInfo.getMember().getMember_id());
+		int total = findBoards.size();
+		List<Board> boards = new ArrayList<>();
+		
+		int startIndex = page * countPerPage - countPerPage;
+		int endIndex = page * countPerPage - 1;
+		for(int i = startIndex; i <= endIndex; i++) {
+			if(i == total) {
+				break;
+			}
+			boards.add(findBoards.get(i));
+		}
+		
+		PageNavigator navi = new PageNavigator(countPerPage, pagePerGroup, page, total);
+		
+		model.addAttribute("navi", navi);
+		model.addAttribute("searchText", searchText);
+		model.addAttribute("boards", boards);
 		model.addAttribute("loginUser", userInfo);
-		model.addAttribute("boards", findBoards);
 		return "member/myboard";
 	}
 
 	@GetMapping("myreview")
-	public String myreview(@AuthenticationPrincipal UserInfo userInfo, Model model) {
+	public String myreview(@AuthenticationPrincipal UserInfo userInfo, 
+			@RequestParam(value="page", defaultValue="1") int page,
+			 @RequestParam(value="searchText", defaultValue="") String searchText,
+			 Model model) {
 		List<Review> findReviews = reviewService.findReviewsByMember_id(userInfo.getMember().getMember_id());
+		int total = findReviews.size();
+		List<Review> reviews = new ArrayList<>();
+		
+		int startIndex = page * countPerPage - countPerPage;
+		int endIndex = page * countPerPage - 1;
+		for(int i = startIndex; i <= endIndex; i++) {
+			if(i == total) {
+				break;
+			}
+			reviews.add(findReviews.get(i));
+		}
+		
+		PageNavigator navi = new PageNavigator(countPerPage, pagePerGroup, page, total);
+		
+		model.addAttribute("navi", navi);
+		model.addAttribute("searchText", searchText);
+		model.addAttribute("reviews", reviews);
 		model.addAttribute("loginUser", userInfo);
-		model.addAttribute("reviews",findReviews);
 		return "member/myreview";
 	}
 
 	@GetMapping("myLikedBoard")
-	public String mylike(@AuthenticationPrincipal UserInfo userInfo, Model model) {
+	public String myLikedBoard(@AuthenticationPrincipal UserInfo userInfo,
+			 @RequestParam(value="page", defaultValue="1") int page,
+			 @RequestParam(value="searchText", defaultValue="") String searchText,
+			 Model model) {
 		
 		List<Long> likedBoardIdsByMemberId = likeMapper.getLikedBoardIdsByMemberId(userInfo.getMember().getMember_id());
-		List<Board> boards = new ArrayList();
+		List<Board> boards = new ArrayList<>();
+		int total = 0;
+		
 		for(Long board_id : likedBoardIdsByMemberId) {
-			boards.add(boardService.findBoard(board_id));
+			
+			total++;
 		}
+		
+		int startIndex = page * countPerPage - countPerPage;
+		int endIndex = page * countPerPage - 1;
+		for(int i = startIndex; i <= endIndex; i++) {
+			if(i == total) {
+				break;
+			}
+			boards.add(boardService.findBoard(likedBoardIdsByMemberId.get(i)));
+			
+		}
+		
+		PageNavigator navi = new PageNavigator(countPerPage, pagePerGroup, page, total);
+		
+		model.addAttribute("navi", navi);
+		model.addAttribute("searchText", searchText);
 		model.addAttribute("boards", boards);
 		model.addAttribute("loginUser", userInfo);
-		return "member/mylike";
+		
+		return "member/myLikedBoard";
+	}
+	
+	@GetMapping("myLikedReview")
+	public String myLikedReview(@AuthenticationPrincipal UserInfo userInfo,
+			 @RequestParam(value="page", defaultValue="1") int page,
+			 @RequestParam(value="searchText", defaultValue="") String searchText,
+			 Model model) {
+		
+		List<Long> likedReviewIdsByMemberId = likeMapper.getLikedReviewIdsByMemberId(userInfo.getMember().getMember_id());
+		List<Review> reviews = new ArrayList<>();
+		int total = 0;
+		
+		for(Long review_id : likedReviewIdsByMemberId) {
+			total++;
+		}
+		
+		int startIndex = page * countPerPage - countPerPage;
+		int endIndex = page * countPerPage - 1;
+		for(int i = startIndex; i <= endIndex; i++) {
+			if(i == total) {
+				break;
+			}
+			
+			if(likedReviewIdsByMemberId.get(i) != null) {
+				reviews.add(reviewService.findReview(likedReviewIdsByMemberId.get(i)));
+			} else {
+				
+			}
+			
+			
+		}
+		
+		PageNavigator navi = new PageNavigator(countPerPage, pagePerGroup, page, total);
+		
+		model.addAttribute("navi", navi);
+		model.addAttribute("searchText", searchText);
+		model.addAttribute("reviews", reviews);
+		model.addAttribute("loginUser", userInfo);
+		
+		return "member/myLikedReview";
 	}
 
 }
