@@ -19,6 +19,7 @@ Table of contents
 09. footer
 10. main-slider
 11 - silder container
+12 - board, search
 --------------------------------------------- */
 /* 
 ---------------------------------------------
@@ -31,6 +32,7 @@ font & reset css
 reset
 --------------------------------------------- 
 */
+
 
 .slider-container {
             text-align: center;
@@ -1400,7 +1402,7 @@ About Page Style
 
 .weekly-offers {
   padding-bottom: 120px;
-  margin-top: 120px;
+  margin-top: 10px;
   border-bottom: 1px solid #eee;
 }
 
