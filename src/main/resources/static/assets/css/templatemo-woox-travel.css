@@ -1228,9 +1228,29 @@ About Page Style
 --------------------------------------------- 
 */
 
-.about-main-content {
+.about-main-content1 {
+  margin-top: 70px;
+  background-image: url(../images/tour.jpg);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  padding: 130px 0px 200px 0px;
+}
+
+.about-main-content2 {
   margin-top: 70px;
   background-image: url(../images/hotel-main.jpg);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  padding: 130px 0px 200px 0px;
+}
+
+.about-main-content3 {
+  margin-top: 70px;
+  background-image: url(../images/shopping.jpg);
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
