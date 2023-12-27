@@ -382,7 +382,7 @@
 
 								<div style="text-align: center;">
 									<th:block th:if="${loginUser.member.attached_filename != null}">
-									<img  th:src="@{'/uploaded/img/' + ${loginUser.member.attached_filename}}"
+									<img  th:src="@{'/uploaded/img/' + ${loginUser.member.attached_filename}}" id="img"
 									 style="border-radius: 50%; height: 150px; width: 150px; margin: auto; border: none;">
 									</th:block>
 									
@@ -447,7 +447,7 @@
 										<div class="col-lg-7">
 											<form action="/uploadProfilePicture" method="post" enctype="multipart/form-data" style="margin: autoS;">
 												<div class="border-button" style="display: inline-block;">
-													<input style="" type="file" name="file" accept="image/*" onchange="setImg(this);">
+													<input  type="file" name="file" accept="image/*" onchange="setImg(this);">
 												</div>
 												<p style="margin: 5px;"></p>
 												<div class="border-button" style="display: inline;">
@@ -467,12 +467,19 @@
 							<div class="row">
 
 								<div class="col-lg-12">
-									<div class="row">
+									<div class="row" style="margin-top: 10px;">
 										<div class="col-lg-5">
 											<div style="padding-right: 0%;" class="item2">
 												<h4 style="padding: 10px; text-align: center;">비밀번호 변경</h4>
 											</div>
 										</div>
+										
+										<div class="col-lg-7">
+											<div style="padding-right: 0%;" class="item2" >
+												<h6 style="padding: 10px; text-align: center; color:red">비밀번호가 일치하지 않습니다</h6>
+											</div>
+										</div>
+										
 									</div>
 								</div>
 							</div>
@@ -610,7 +617,11 @@
 
 <!-- JavaScript로 Thymeleaf에서 가져온 데이터 사용 -->
 <script th:inline="javascript">
-
+	
+	$(".option").click(function () {
+		$(".option").removeClass("active");
+		$(this).addClass("active");
+	});
 
 	// 버튼과 메뉴 요소 가져오기
 	const button = document.getElementById('hoverButton');
@@ -680,12 +691,7 @@
 <script src="/assets/js/popup.js"></script>
 <script src="/assets/js/custom.js"></script>
 
-<script>
-	$(".option").click(function () {
-		$(".option").removeClass("active");
-		$(this).addClass("active");
-	});
-</script>
+
 
 </body>
 

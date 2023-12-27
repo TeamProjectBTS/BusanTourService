@@ -12,7 +12,7 @@ public class MemberUpdateForm {
 	private String member_id;
 	@Size(min = 6, max = 20 , message = "비밀번호는 6~20사이로 입력해주세요.")
 	private String password;
-	@Pattern(regexp = "^[a-zA-Z0-9]{4,20}$",  message="닉네임은 영문 및 숫자 4~20자로만 가능합니다.")
+	@Pattern(regexp = "^[ㄱ-ㅎ가-힣]{1,5}$",  message="닉네임은 한글 5자까지 가능합니다.")
 	@NotEmpty(message = "닉네임을 입력해주세요")
 	private String nickname;
 	@NotEmpty(message = "전화번호를 입력해주세요")

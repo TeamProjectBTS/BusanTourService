@@ -113,7 +113,7 @@ public class API_Tour_Controller {
 //    		log.info("review : {}", review);
     		List<ReviewAttachedFile> findFilesByReviewId = reviewService.findFilesByReviewId(review.getReview_id());
     		eachFileLists.add(findFilesByReviewId);
-    		log.info("findFilesByReviewId : {}",findFilesByReviewId);
+//    		log.info("findFilesByReviewId : {}",findFilesByReviewId);
     	}
     }
     

@@ -219,7 +219,7 @@ public class MemberController {
 		
 		model.addAttribute("loginUser", userInfo);
 		model.addAttribute("mypage", updateForm);
-		log.info("현재멤버입니다:{}",member);
+//		log.info("현재멤버입니다:{}",member);
 		return "member/mypage";
 	}
 

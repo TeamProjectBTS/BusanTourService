@@ -93,11 +93,11 @@ public class MemberService {
 	    if(file != null && file.getSize() > 0 || !file.isEmpty()) {
 	    	// 첨부파일 저장
 	    	MemberAttachedFile saveFile = fileService.profileAttachedFile(file);
-	    	log.info("멤버서비스:프로필업데이트:savefile:{}",saveFile);
+//	    	log.info("멤버서비스:프로필업데이트:savefile:{}",saveFile);
 	    	
 	    	// 첨부파일 내용을 데이터베이스에 저장
 	    	saveFile.setMember_id(member.getMember_id());
-	    	log.info("멤버서비스:프로필업데이트:savefile:{}",saveFile);
+//	    	log.info("멤버서비스:프로필업데이트:savefile:{}",saveFile);
 	    	memberMapper.memberSaveFile(saveFile);
 	    	
 	    	//멤버 테이블에 attached_file속성 저장
@@ -106,11 +106,11 @@ public class MemberService {
 	    	
 	    	// member_attached_file 테이블에 저장
 	    	MemberProfileUpdateForm memberProfileUpdateForm = Member.toMemberProfileUpdateForm(member);
-	    	log.info("멤버서비스:프로필업데이트:memberProfileUpdateForm:{}",memberProfileUpdateForm);
+//	    	log.info("멤버서비스:프로필업데이트:memberProfileUpdateForm:{}",memberProfileUpdateForm);
 	    	memberProfileUpdateForm.setMember_id(member.getMember_id());
-	    	log.info("멤버서비스:프로필업데이트:memberProfileUpdateForm:{}",memberProfileUpdateForm);
+//	    	log.info("멤버서비스:프로필업데이트:memberProfileUpdateForm:{}",memberProfileUpdateForm);
 	    	memberMapper.updateMemberProfile(memberProfileUpdateForm);
-	    	log.info("멤버서비스:프로필업데이트 완료");
+//	    	log.info("멤버서비스:프로필업데이트 완료");
 	    	
 
 	    	
