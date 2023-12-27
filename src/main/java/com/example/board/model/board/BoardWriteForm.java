@@ -2,8 +2,6 @@ package com.example.board.model.board;
 
 import java.time.LocalDateTime;
 
-import javax.validation.constraints.DecimalMax;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;

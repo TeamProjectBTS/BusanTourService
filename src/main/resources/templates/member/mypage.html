@@ -17,12 +17,12 @@
     
 	h2{
 	font-weight: bold; /* 굵은 글꼴 적용 */
-	/*Stext-shadow: 5px 5px 5px rgb(0, 0, 0); /* 그림자 설정 */
+	text-shadow: 5px 5px 5px rgb(0, 0, 0); /* 그림자 설정 */
 	}
 	
 	h4{
 	font-weight: bold; /* 굵은 글꼴 적용 */
-	/*text-shadow: 5px 5px 5px rgb(0, 0, 0); /* 그림자 설정 */
+	text-shadow: 5px 5px 5px rgb(0, 0, 0); /* 그림자 설정 */
 	}
 
 
@@ -36,7 +36,7 @@
   border-radius: 25px;
   padding-right: 100px;
   margin-bottom: 30px;
-  width: auto;
+  width: 400px;
    border-bottom: 2px solid rgb(95, 95, 95);
 }
   .amazing-deals .item3{
@@ -196,7 +196,8 @@
 
 
 	#box {
-		
+		border: 2px solid rgb(179, 179, 179);
+		/* 외곽선 스타일과 색상을 설정합니다. */
 		padding: 15px;
 		/* 외곽선과 내용 사이의 간격을 조절합니다. */
 		margin-bottom: 15px;
@@ -381,14 +382,8 @@
 							<div style=" margin:auto;" class="row">
 
 								<div style="text-align: center;">
-									<th:block th:if="${loginUser.member.attached_filename != null}">
 									<img  th:src="@{'/uploaded/img/' + ${loginUser.member.attached_filename}}"
-									 style="border-radius: 50%; height: 150px; width: 150px; margin: auto; border: none;">
-									</th:block>
-									
-									<th:block th:if="${loginUser.member.attached_filename == null}">
-										<img id="img" style="border-radius: 50%; height: 150px; width: 150px; margin: auto; border: none;" src="/assets/images/pabicon.png">
-									</th:block>
+									id="img" style="border-radius: 50%; height: 150px; width: 150px; margin: auto;">
 								</div>
 								<div style="text-align:center; margin:auto; margin-top: 10px;">
 									<h6>[[${loginUser.member.nickname}]]님</h6>
@@ -402,18 +397,18 @@
 						<div class="row">
 							<div class="col-lg-12">
 								<div class="main-button">
-									<a style="width: 100%; text-align: center;" href="/member/mypage">나의 정보 수정</a>
+									<a style="width: 100%; text-align: center;" href="#">내 정보수정</a>
 								</div>
 							</div>
 						</div>
 
 
 
-	
+
 						<div class="row">
 							<div class="col-lg-12">
 								<div class="main-button">
-									<a style="width: 100%; text-align: center;" href="/member/myLikedBoard">내가 좋아한 게시글 및 리뷰</a>
+									<a style="width: 100%; text-align: center;" href="/member/mylike">내 좋아요 목록</a>
 								</div>
 							</div>
 						</div>
@@ -421,7 +416,7 @@
 						<div class="row">
 							<div class="col-lg-12">
 								<div class="main-button">
-									<a style="width: 100%; text-align: center;" href="/member/myboard">나의 게시글 및 리뷰</a>
+									<a style="width: 100%; text-align: center;" href="/member/myboard">내 글 목록</a>
 								</div>
 							</div>
 						</div>
@@ -439,22 +434,24 @@
 								<div class="col-lg-12">
 									<div class="row">
 										<div class="col-lg-5">
-											<div style="padding-right: 0%; display: block;" class="item2">
+											<div style="padding-right: 0%;" class="item2">
 												<h4 style="padding: 10px; text-align: center;">프로필사진 등록</h4>
 											</div>
 										</div>
 										
 										<div class="col-lg-7">
-											<form action="/uploadProfilePicture" method="post" enctype="multipart/form-data" style="margin: autoS;">
+											
+												<div class="border-button">
+												
+												<form action="/uploadProfilePicture" method="post" enctype="multipart/form-data">
+													<input style="width: 60%;" type="file" name="file" accept="image/*" onchange="setImg(this);">
 												<div class="border-button" style="display: inline-block;">
-													<input style="" type="file" name="file" accept="image/*" onchange="setImg(this);">
-												</div>
-												<p style="margin: 5px;"></p>
-												<div class="border-button" style="display: inline;">
 												<input type="submit" value="프로필 사진 등록"></input>
 												</div>
+												</form>
 												
-											</form>
+												</div>
+											
 											</div>
 											</div>
 											</div>
