@@ -108,15 +108,15 @@ public class ReviewController {
         return "review/write";
     }
 
-    // 게시글 쓰기
+    // 리뷰 쓰기
     @PostMapping("write")
     public String write(@AuthenticationPrincipal UserInfo userInfo,
-                        @Validated @ModelAttribute("writeForm") ReviewWriteForm reviewWriteForm,
                         @RequestParam(value="UC_SEQ") Long UC_SEQ,
-                    		@RequestParam(value="page", defaultValue="1") int page,
-                  			@RequestParam(value="searchTextReview", defaultValue="") String searchTextReview,
+                		@RequestParam(value="page", defaultValue="1") int page,
+              			@RequestParam(value="searchTextReview", defaultValue="") String searchTextReview,
+                        @RequestParam(value="files", required=false) List<MultipartFile> files,
+                        @Validated @ModelAttribute("writeForm") ReviewWriteForm reviewWriteForm,
                         BindingResult result,
-                        @RequestParam(required=false) List<MultipartFile> files,
                         Model model
                         ) {
        
@@ -135,7 +135,13 @@ public class ReviewController {
         review.setMember_id(userInfo.getMember().getMember_id());
         review.setNickname(userInfo.getMember().getNickname());
         
-      	reviewService.saveReview(review, files);
+        
+        reviewService.saveReview(review, files);
+        
+        for(MultipartFile file : files) {
+        	log.info("파일 하나 들어옴, file : {}", file.getName());
+        }
+      	
         
       	List<Item> items = t_ApiService.getItems();
       	

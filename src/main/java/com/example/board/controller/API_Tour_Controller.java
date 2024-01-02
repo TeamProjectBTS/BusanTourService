@@ -24,7 +24,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
-@RequestMapping("tour_spot")
+@RequestMapping("tourSpot")
 @RequiredArgsConstructor
 @Slf4j
 public class API_Tour_Controller {
@@ -101,20 +101,27 @@ public class API_Tour_Controller {
   	}
   	
   	int total = reviewService.getTotalInReview(UC_SEQ, searchTextReview);
-
+  	int currentPageCount = 0;
     PageNavigator navi = new PageNavigator(countPerPage, pagePerGroup, page, total);
 
     List<List<ReviewAttachedFile>> eachFileLists = new ArrayList<>();
     // 데이터베이스에 저장된 모든 Board 객체를 리스트 형태로 받는다.
     List<Review> reviews = new ArrayList<>(); 
+    
     for(Review review : reviewService.findReviews(searchTextReview, navi.getStartRecord(), navi.getCountPerPage())) {
-    	if(review.getUC_SEQ().equals(UC_SEQ)) {
-    		reviews.add(review);
-//    		log.info("review : {}", review);
-    		List<ReviewAttachedFile> findFilesByReviewId = reviewService.findFilesByReviewId(review.getReview_id());
-    		eachFileLists.add(findFilesByReviewId);
-//    		log.info("findFilesByReviewId : {}",findFilesByReviewId);
+    	if(currentPageCount <= 10) {
+    		if(review.getUC_SEQ().equals(UC_SEQ)) {
+	    		reviews.add(review);
+	//    		log.info("review : {}", review);
+	    		List<ReviewAttachedFile> findFilesByReviewId = reviewService.findFilesByReviewId(review.getReview_id());
+	    		eachFileLists.add(findFilesByReviewId);
+	    		log.info("findFilesByReviewId : {}",findFilesByReviewId);
+	    		currentPageCount++;
+    		}
+    		
     	}
+    	
+    	
     }
     
     

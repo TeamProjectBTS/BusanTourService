@@ -286,7 +286,7 @@
 						<!-- ***** Logo End ***** -->
 						<!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li><a style=" border-radius: 0px;" class="menu-item" href="/tour_spot/list">관광지</a></li>
+                        <li><a style=" border-radius: 0px;" class="menu-item" href="/tourSpot/list">관광지</a></li>
                         <li><a style=" border-radius: 0px;" class="menu-item" href="/restaurant/list">음식점</a></li>
                         <li><a style=" border-radius: 0px;" class="menu-item" href="/shopping/list">쇼핑</a></li>
                         <li>
@@ -439,7 +439,7 @@
 							<div class="col-lg-12" th:each="review : ${reviews}" style="display: block;">
 							<div class="item3" >
 								<th:block th:if="${review.sort == 'tour_spot'}">
-								<a th:href="@{/tour_spot/read(UC_SEQ=${review.UC_SEQ})}">
+								<a th:href="@{/tourSpot/read(UC_SEQ=${review.UC_SEQ})}">
 								<div class="row" style="--bs-gutter-y: 1.5rem; padding-top: 10px; padding-bottom: 10px;">
 								
 									<div class="col-lg-1 asd" id="container" style="margin: auto;">

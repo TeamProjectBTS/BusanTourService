@@ -54,7 +54,7 @@ https://templatemo.com/tm-580-woox-travel
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li><a style=" border-radius: 0px;" class="menu-item" href="/tour_spot/list">관광지</a></li>
+                        <li><a style=" border-radius: 0px;" class="menu-item" href="/tourSpot/list">관광지</a></li>
                         <li><a style=" border-radius: 0px;" class="menu-item" href="/restaurant/list">음식점</a></li>
                         <li><a style=" border-radius: 0px;" class="menu-item" href="/shopping/list">쇼핑</a></li>
                         <li>
@@ -239,10 +239,10 @@ https://templatemo.com/tm-580-woox-travel
   
   <div class="bulletin-board-container">
 	  <!-- 실제 write 부분 시작 -->
-			  <form method="post" th:action="@{/review/write(UC_SEQ=${writeForm.UC_SEQ})}" enctype="multipart/form-data" th:object="${writeForm}"
-			   style="margin:0; padding:0;" >
+			  <form method="post" th:action="@{/review/write(UC_SEQ=${writeForm.UC_SEQ})}" 
+			  enctype="multipart/form-data" th:object="${writeForm}" style="margin:0; padding:0;" >
 			   
-				<input type="file" name="files" id="fileInput" accept="image/*" multiple onchange="previewImages()">
+				<input type="file" name="files" id="fileInput" accept="image/*" onchange="previewImages()" multiple>
 				<div id="previewContainer"></div>
 				
 				<table id="fileTable" style="width: 50%;">
@@ -380,30 +380,29 @@ https://templatemo.com/tm-580-woox-travel
       $(this).addClass("active"); 
     });
     
-    let uploadedFiles = [];
+let uploadedFiles = [];
 let fileTableBody = document.getElementById('fileTableBody');
 let previewContainer = document.getElementById('previewContainer');
-let fileNameDisplay = document.getElementById('fileNameDisplay');
 
 function previewImages() {
     let fileInput = document.getElementById('fileInput');
+    let files = fileInput.files;
 
     // 이미지 개수를 최대 5개로 제한
-    if (fileInput.files.length > 5) {
+    if (files.length > 5) {
         alert('이미지는 최대 5개까지 업로드할 수 있습니다.');
         // 초과한 파일은 삭제
-        let excessFilesCount = fileInput.files.length - 5;
-        Array.from(fileInput.files).splice(0, excessFilesCount);
+        Array.from(files).splice(0, files.length - 5);
     }
 
     // 미리보기 및 파일명 추가
-    for (let i = 0; i < fileInput.files.length; i++) {
-        let file = fileInput.files[i];
+    for (let i = 0; i < files.length; i++) {
+        let file = files[i];
         uploadedFiles.push(file);
 
         let reader = new FileReader();
 
-        reader.onload = function(e) {
+        reader.onload = function (e) {
             // 미리보기 추가
             let preview = document.createElement('img');
             preview.src = e.target.result;
@@ -415,7 +414,7 @@ function previewImages() {
             let fileNameDisplayItem = document.createElement('p');
             fileNameDisplayItem.textContent = '업로드된 파일 ' + uploadedFiles.length + ': ' + file.name;
             fileNameDisplayItem.className = 'fileNameDisplayItem';
-            fileNameDisplay.appendChild(fileNameDisplayItem);
+            previewContainer.appendChild(fileNameDisplayItem);
         };
 
         reader.readAsDataURL(file);
@@ -442,7 +441,7 @@ function updateFileList() {
         let deleteButton = document.createElement('span');
         deleteButton.textContent = '삭제';
         deleteButton.className = 'deleteButton';
-        deleteButton.onclick = function() {
+        deleteButton.onclick = function () {
             deleteFile(i);
         };
 
@@ -467,7 +466,7 @@ function updatePreview() {
         let file = uploadedFiles[i];
         let reader = new FileReader();
 
-        reader.onload = function(e) {
+        reader.onload = function (e) {
             // 미리보기 추가
             let preview = document.createElement('img');
             preview.src = e.target.result;
@@ -479,6 +478,7 @@ function updatePreview() {
         reader.readAsDataURL(file);
     }
 }
+
     
   </script>
   </body>

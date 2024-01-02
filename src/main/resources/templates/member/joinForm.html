@@ -56,7 +56,7 @@ https://templatemo.com/tm-580-woox-travel
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li><a style=" border-radius: 0px;" class="menu-item" href="/tour_spot/list">관광지</a></li>
+                        <li><a style=" border-radius: 0px;" class="menu-item" href="/tourSpot/list">관광지</a></li>
                         <li><a style=" border-radius: 0px;" class="menu-item" href="/restaurant/list">음식점</a></li>
                         <li><a style=" border-radius: 0px;" class="menu-item" href="/shopping/list">쇼핑</a></li>
                         <li>
@@ -128,7 +128,7 @@ https://templatemo.com/tm-580-woox-travel
               <div class="col-lg-6">
                   <fieldset>
                       <label for="nickname" class="form-label">&nbsp;&nbsp;&nbsp;&nbsp; 닉네임 입력</label>
-                      <input type="text" th:field="*{nickname}" placeholder="한글은 6자, 영문은 20자까지 가능" autocomplete="on" required>
+                      <input type="text" th:field="*{nickname}" placeholder="닉네임은 한글 6자까지 가능합니다." autocomplete="on" required>
                        <div class="alert alert-success" th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}"></div>
 					  
                   </fieldset>

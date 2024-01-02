@@ -37,15 +37,16 @@ public class ReviewService {
 			// 데이터베이스에 저장한다.
 			reviewMapper.saveReview(review);
 		
-    for(MultipartFile file : files) {
-    	if(file != null && file.getSize() > 0 || !file.isEmpty()) {
-	    	// 첨부파일 저장
-	    	ReviewAttachedFile saveFile = fileService.saveReviewFile(file);
-	    	// 첨부파일 내용을 데이터베이스에 저장
-	    	saveFile.setReview_id(review.getReview_id());
-	    	reviewMapper.saveFile(saveFile);
-    	}
-    }
+	    for(MultipartFile file : files) {
+	    	if(file != null && file.getSize() > 0 || !file.isEmpty()) {
+		    	// 첨부파일 저장
+		    	ReviewAttachedFile saveFile = fileService.saveReviewFile(file);
+		    	// 첨부파일 내용을 데이터베이스에 저장
+		    	saveFile.setReview_id(review.getReview_id());
+		    	reviewMapper.saveFile(saveFile);
+		    	log.info("파일 하나 저장, saveFile : {}",saveFile);
+	    	}
+	    }
 	}
   
 	public ReviewAttachedFile findFileByAttachedFileId(Long id) {
